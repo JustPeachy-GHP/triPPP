@@ -30,8 +30,8 @@ router.get("/:itineraryitemId", async (req, res, next) => {
 // POST - api/itineraryitems - post new itineraryitem
 router.post("/", async (req, res, next) => {
   try {
-    const item = await createItineraryitem(req.body);
-    res.send(item);
+    const itineraryitem = await createItineraryitem(req.body);
+    res.send(itineraryitem);
   } catch (error) {
     next(error);
   }

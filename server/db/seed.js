@@ -2,12 +2,11 @@ const client = require("./client");
 
 const { createTrip, getAllTrips } = require("./helpers/trips");
 const { createJournal } = require("./helpers/journals");
-const { createItineraryitem} = require("./helpers/itineraryitems");
+const { createItineraryitem } = require("./helpers/itineraryitems");
 const { createUser } = require("./helpers/users");
 const { createGroup } = require("./helpers/groups");
 const { createGroupmemb } = require("./helpers/groupmembs");
 // destructuring it so we can pull in each array separately
-
 
 const {
   users,
@@ -63,12 +62,16 @@ const createTables = async () => {
       );
   
 
-
+      CREATE TABLE itineraryitems (
+        itinerary_id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(user_id),
+        rating INTEGER
+    );
 
         CREATE TYPE vibe AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
         CREATE TABLE trip (
             trip_id SERIAL PRIMARY KEY,
-            itinerary_id INTEGER REFERENCES itineraryitems(intinerary_id),
+            itinerary_id INTEGER REFERENCES itineraryitems(itinerary_id),
             group_id INTEGER REFERENCES groups(group_id),
             tripname varchar(255) NOT NULL,
             numdays INTEGER,
@@ -78,11 +81,7 @@ const createTables = async () => {
                         
         );
 
-        CREATE TABLE itineraryitems (
-            itinerary_id SERIAL PRIMARY KEY,
-            user_id INTEGER REFERENCES users(user_id),
-            rating INTEGER
-        );
+
 
         CREATE TABLE journals (
             journal_id SERIAL PRIMARY KEY,
