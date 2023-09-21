@@ -2,7 +2,7 @@ const client = require("./client");
 
 const {
   users,
-  locations,
+  // locations,
   trips,
   journals,
   itineraryitems,
@@ -15,10 +15,10 @@ const dropTables = async () => {
   try {
     console.log("tables dropping!");
     // we are calling upon client connection to make query to db
+    // took out locations
     await client.query(`
   
       DROP TABLE IF EXISTS users cascade;
-      DROP TABLE IF EXISTS locations cascade;
       DROP TABLE IF EXISTS trips cascade;
       DROP TABLE IF EXISTS journals cascade;
       DROP TABLE IF EXISTS itineraryitems cascade;
@@ -33,12 +33,12 @@ const dropTables = async () => {
 // create tables
 
 // leaving out locations at this time
-    //   CREATE TABLE locations (
-    //     location_id SERIAL PRIMARY KEY,
-    //     coord POINT,
-    //     place_id TEXT,
-    //     destination varchar(255)
-    // );
+//   CREATE TABLE locations (
+//     location_id SERIAL PRIMARY KEY,
+//     coord POINT,
+//     place_id TEXT,
+//     destination varchar(255)
+// );
 // removed trip_id and location_id from itineraryitems table and location_id was removed from trip table
 
 const createTables = async () => {
@@ -164,11 +164,11 @@ const createInitialItineraryitems = async () => {
     for (const itineraryitem of itineraryitems) {
       await createItineraryitem(itineraryitem);
     }
-    console.log("created itineraryitem");
+    // console.log("created itineraryitem");
   } catch (error) {
     throw error;
   }
-  console.log(itineraryitems);
+  // console.log(itineraryitems);
 };
 
 const createInitialGroups = async () => {
