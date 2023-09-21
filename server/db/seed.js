@@ -32,6 +32,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS itineraryitems cascade;
       DROP TABLE IF EXISTS groupmembers cascade;
       DROP TABLE IF EXISTS groups cascade;
+      DROP TYPE IF EXISTS vibe cascade;
           `);
     console.log("tables dropped!");
   } catch (error) {
@@ -68,11 +69,12 @@ const createTables = async () => {
         rating INTEGER
     );
 
+
+
         CREATE TYPE vibe AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
-        CREATE TABLE trip (
+        CREATE TABLE trips (
             trip_id SERIAL PRIMARY KEY,
             itinerary_id INTEGER REFERENCES itineraryitems(itinerary_id),
-            group_id INTEGER REFERENCES groups(group_id),
             tripname varchar(255) NOT NULL,
             numdays INTEGER,
             numtravelers INTEGER,
@@ -81,7 +83,14 @@ const createTables = async () => {
                         
         );
 
+        CREATE TABLE groups (
+          group_id SERIAL PRIMARY KEY,
+          user_id INTEGER REFERENCES users(user_id),
+          trip_id INTEGER REFERENCES trips(trip_id)
 
+    
+          
+      );
 
         CREATE TABLE journals (
             journal_id SERIAL PRIMARY KEY,
@@ -95,12 +104,7 @@ const createTables = async () => {
         );
 
 
-        CREATE TABLE groups (
-            group_id SERIAL PRIMARY KEY,
-            user_id INTEGER REFERENCES users(user_id),
-            trip_id INTEGER REFERENCES trips(trip_id)
-            
-        );
+
 
         CREATE TABLE groupmembers (
             groupmembers_id SERIAL PRIMARY KEY,

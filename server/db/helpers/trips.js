@@ -4,7 +4,7 @@ const client = require("../client");
 const createTrip = async ({
   trip_id,
   itinerary_id,
-  group_id,
+  // group_id,
   tripname,
   numdays,
   numtravelers,
@@ -23,7 +23,7 @@ const createTrip = async ({
       [
         trip_id,
         itinerary_id,
-        group_id,
+        // group_id,
         tripname,
         numdays,
         numtravelers,
