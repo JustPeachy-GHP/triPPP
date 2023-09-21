@@ -1,27 +1,27 @@
 const client = require("../client");
 
-const createJournal = async ({ journal_id, coord, place_id, destination }) => {
+const createJournal = async ({ journal_id, user_id, trip_id, videocontent, image, title, timestamp, entry }) => {
   try {
     const {
-      rows: [location],
+      rows: [journal],
     } = await client.query(
       `
-        INSERT INTO locations(location_id, coord, place_id, destination)
-        VALUES($1, $2, $3, $4)
+        INSERT INTO journals(journal_id, user_id, trip_id, videocontent, image, title, timestamp, entry)
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *;
         `,
-      [location_id, coord, place_id, destination]
+      [journal_id, user_id, trip_id, videocontent, image, title, timestamp, entry]
     );
-    return location;
+    return journal;
   } catch (error) {
     throw error;
   }
 };
 
-const getAllLocations = async () => {
+const getAllJournals = async () => {
   try {
     const { rows } = await client.query(`
-    SELECT * FROM locations;
+    SELECT * FROM journals;
     `);
     return rows;
   } catch (error) {
@@ -29,19 +29,19 @@ const getAllLocations = async () => {
   }
 };
 
-const getLocationById = async (locationId) => {
+const getJournalById = async (journalId) => {
   try {
     const {
-      rows: [locations],
+      rows: [journals],
     } = await client.query(`
       SELECT * 
-      FROM locations
-      WHERE location_id = ${locationId};
+      FROM journals
+      WHERE journal_id = ${journalId};
     `);
-    return locations;
+    return journals;
   } catch (error) {
     throw error;
   }
 };
 
-module.exports = { createLocation, getAllLocations, getLocationById };
+module.exports = { createJournal, getAllJournals, getJournalById };
