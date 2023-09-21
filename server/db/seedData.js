@@ -38,83 +38,56 @@ const users = [
   },
 ];
 
-// const locations = [
-//   {
-//     location_id: 1,
-//     destination: "Paris, France",
-//     coord: { latitude: 48.8566, longitude: 2.3522 },
-//   },
-//   {
-//     location_id: 2,
-//     destination: "New York City, USA",
-//     coord: { latitude: 40.7128, longitude: -74.006 },
-//   },
-//   {
-//     location_id: 3,
-//     destination: "Tokyo, Japan",
-//     coord: { latitude: 35.682839, longitude: 139.759455 },
-//   },
-//   {
-//     location_id: 4,
-//     destination: "Rome, Italy",
-//     coord: { latitude: 41.9028, longitude: 12.4964 },
-//   },
-//   {
-//     location_id: 5,
-//     destination: "Sydney, Australia",
-//     coord: { latitude: -33.8688, longitude: 151.2093 },
-//   },
-//   {
-//     location_id: 6,
-//     destination: "Cape Town, South Africa",
-//     coord: { latitude: -33.9249, longitude: 18.4241 },
-//   },
-//   {
-//     location_id: 7,
-//     destination: "Rio de Janeiro, Brazil",
-//     coord: { latitude: -22.9083, longitude: -43.1964 },
-//   },
-//   {
-//     location_id: 8,
-//     destination: "Barcelona, Spain",
-//     coord: { latitude: 41.3851, longitude: 2.1734 },
-//   },
-//   {
-//     location_id: 9,
-//     destination: "Auckland, New Zealand",
-//     coord: { latitude: -36.8485, longitude: 174.7633 },
-//   },
-//   {
-//     location_id: 10,
-//     destination: "Istanbul, Turkey",
-//     coord: { latitude: 41.0082, longitude: 28.9784 },
-//   },
-//   {
-//     location_id: 11,
-//     destination: "Bali, Indonesia",
-//     coord: { latitude: -8.4095, longitude: 115.1889 },
-//   },
-//   {
-//     location_id: 12,
-//     destination: "Machu Picchu, Peru",
-//     coord: { latitude: -13.1631, longitude: -72.545 },
-//   },
-//   {
-//     location_id: 13,
-//     destination: "Venice, Italy",
-//     coord: { latitude: 45.4408, longitude: 12.3155 },
-//   },
-//   {
-//     location_id: 14,
-//     destination: "Santorini, Greece",
-//     coord: { latitude: 36.3932, longitude: 25.4615 },
-//   },
-//   {
-//     location_id: 15,
-//     destination: "Cairo, Egypt",
-//     coord: { latitude: 30.0444, longitude: 31.2357 },
-//   },
-// ];
+const locations = [
+  {
+    location_id: 1,
+    destination: "Paris, France",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,32.168568'),
+  },
+  {
+    location_id: 2,
+    destination: "New York City, USA",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+  {
+    location_id: 3,
+    destination: "Tokyo, Japan",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+  {
+    location_id: 4,
+    destination: "Rome, Italy",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+  {
+    location_id: 5,
+    destination: "Sydney, Australia",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+  {
+    location_id: 6,
+    destination: "Cape Town, South Africa",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+  {
+    location_id: 7,
+    destination: "Rio de Janeiro, Brazil",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+  {
+    location_id: 8,
+    destination: "Barcelona, Spain",
+    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
+    coord: ('41.387397,2.168568'),
+  },
+];
 
 const trips = [
   {
@@ -331,6 +304,7 @@ module.exports = {
   users,
   trips,
   journals,
+  locations,
   itineraryitems,
   groupmembs,
   groups,

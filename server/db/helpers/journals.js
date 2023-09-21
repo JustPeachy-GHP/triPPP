@@ -1,6 +1,15 @@
 const client = require("../client");
 
-const createJournal = async ({ journal_id, user_id, trip_id, videocontent, image, title, timestamp, entry }) => {
+const createJournal = async ({
+  journal_id,
+  user_id,
+  trip_id,
+  videocontent,
+  image,
+  title,
+  timestamp,
+  entry,
+}) => {
   try {
     const {
       rows: [journal],
@@ -10,7 +19,16 @@ const createJournal = async ({ journal_id, user_id, trip_id, videocontent, image
         VALUES($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *;
         `,
-      [journal_id, user_id, trip_id, videocontent, image, title, timestamp, entry]
+      [
+        journal_id,
+        user_id,
+        trip_id,
+        videocontent,
+        image,
+        title,
+        timestamp,
+        entry,
+      ]
     );
     return journal;
   } catch (error) {
@@ -29,14 +47,14 @@ const getAllJournals = async () => {
   }
 };
 
-const getJournalById = async (journalId) => {
+const getJournalById = async (journal_id) => {
   try {
     const {
       rows: [journals],
     } = await client.query(`
       SELECT * 
       FROM journals
-      WHERE journal_id = ${journalId};
+      WHERE journal_id = ${journal_id};
     `);
     return journals;
   } catch (error) {

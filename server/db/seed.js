@@ -6,11 +6,12 @@ const { createItineraryitem } = require("./helpers/itineraryitems");
 const { createUser } = require("./helpers/users");
 const { createGroup } = require("./helpers/groups");
 const { createGroupmemb } = require("./helpers/groupmembs");
+const { createLocation } = require("./helpers/locations");
 // destructuring it so we can pull in each array separately
 
 const {
   users,
-  // locations,
+  locations,
   trips,
   journals,
   itineraryitems,
@@ -29,6 +30,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS users cascade;
       DROP TABLE IF EXISTS trips cascade;
       DROP TABLE IF EXISTS journals cascade;
+      DROP TABLE IF EXISTS locations cascade;
       DROP TABLE IF EXISTS itineraryitems cascade;
       DROP TABLE IF EXISTS groupmembs cascade;
       DROP TABLE IF EXISTS groups cascade;
@@ -42,12 +44,7 @@ const dropTables = async () => {
 // create tables
 
 // leaving out locations at this time
-//   CREATE TABLE locations (
-//     location_id SERIAL PRIMARY KEY,
-//     coord POINT,
-//     place_id TEXT,
-//     destination varchar(255)
-// );
+
 // removed trip_id and location_id from itineraryitems table and location_id was removed from trip table
 
 const createTables = async () => {
@@ -61,10 +58,18 @@ const createTables = async () => {
         firstname varchar(255),
         lastname varchar(255)
       );
+
+      CREATE TABLE locations (
+        location_id SERIAL PRIMARY KEY,
+        coord POINT,
+        place_id varchar(255),
+        destination varchar(255)
+    );
   
 
       CREATE TABLE itineraryitems (
         itinerary_id SERIAL PRIMARY KEY,
+        location_id INTEGER REFERENCES locations(location_id),
         user_id INTEGER REFERENCES users(user_id),
         rating INTEGER
     );
@@ -75,6 +80,7 @@ const createTables = async () => {
         CREATE TABLE trips (
             trip_id SERIAL PRIMARY KEY,
             itinerary_id INTEGER REFERENCES itineraryitems(itinerary_id),
+            location_id INTEGER REFERENCES locations(location_id),
             tripname varchar(255) NOT NULL,
             numdays INTEGER,
             numtravelers INTEGER,
@@ -113,6 +119,8 @@ const createTables = async () => {
             group_id INTEGER REFERENCES groups(group_id)
         );
 
+
+
           `);
   } catch (error) {
     throw error;
@@ -135,17 +143,17 @@ const createInitialUsers = async () => {
 };
 
 // locations
-// const createInitialLocations = async () => {
-//   try {
-//     for (const location of locations) {
-//       await createLocation(location);
-//     }
-//     console.log("created location");
-//   } catch (error) {
-//     throw error;
-//   }
-//   console.log(locations);
-// };
+const createInitialLocations = async () => {
+  try {
+    for (const location of locations) {
+      await createLocation(location);
+    }
+    console.log("created location");
+  } catch (error) {
+    throw error;
+  }
+  console.log(locations);
+};
 
 const createInitialTrips = async () => {
   try {
@@ -219,12 +227,12 @@ const rebuildDb = async () => {
     // Generate the data
 
     await createInitialUsers();
+    await createInitialLocations();
     await createInitialItineraryitems();
     await createInitialTrips();
     await createInitialGroups();
     await createInitialJournals();
     await createInitialGroupmembs();
-    // await createInitialLocations();
 
     // come back later after we create this in helpers
     // await getAllSongs();
