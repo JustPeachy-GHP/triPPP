@@ -14,7 +14,7 @@ const {
   trips,
   journals,
   itineraryitems,
-  groupmembers,
+  groupmembs,
   groups,
 } = require("./seedData.js");
 
@@ -30,7 +30,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS trips cascade;
       DROP TABLE IF EXISTS journals cascade;
       DROP TABLE IF EXISTS itineraryitems cascade;
-      DROP TABLE IF EXISTS groupmembers cascade;
+      DROP TABLE IF EXISTS groupmembs cascade;
       DROP TABLE IF EXISTS groups cascade;
       DROP TYPE IF EXISTS vibe cascade;
           `);
@@ -106,8 +106,8 @@ const createTables = async () => {
 
 
 
-        CREATE TABLE groupmembers (
-            groupmembers_id SERIAL PRIMARY KEY,
+        CREATE TABLE groupmembs (
+            groupmembs_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
             trip_id INTEGER REFERENCES trips(trip_id),
             group_id INTEGER REFERENCES groups(group_id)
@@ -195,16 +195,16 @@ const createInitialGroups = async () => {
   console.log(groups);
 };
 
-const createInitialGroupmembers = async () => {
+const createInitialGroupmembs = async () => {
   try {
-    for (const groupmembers of groupmembers) {
-      await createGroupmemb(groupmembers);
+    for (const groupmemb of groupmembs) {
+      await createGroupmemb(groupmembs);
     }
     console.log("created Groupmembers");
   } catch (error) {
     throw error;
   }
-  console.log(groupmembers);
+  console.log(groupmembs);
 };
 
 // rebuild db
@@ -223,7 +223,7 @@ const rebuildDb = async () => {
     await createInitialTrips();
     await createInitialGroups();
     await createInitialJournals();
-    await createInitialGroupmembers();
+    await createInitialGroupmembs();
     // await createInitialLocations();
 
     // come back later after we create this in helpers

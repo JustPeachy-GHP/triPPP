@@ -1,8 +1,8 @@
 const client = require("../client");
 
 const createItineraryitem = async ({
-  itineraryitem_id,
-  trip_id,
+  itinerary_id,
+  // trip_id,
   user_id,
   rating,
 }) => {
@@ -11,11 +11,11 @@ const createItineraryitem = async ({
       rows: [itineraryitem],
     } = await client.query(
       `
-        INSERT INTO itineraryitems(itineraryitem_id, trip_id, user_id, rating)
-        VALUES($1, $2, $3, $4)
+        INSERT INTO itineraryitems(itinerary_id, user_id, rating)
+        VALUES($1, $2, $3)
         RETURNING *;
         `,
-      [itineraryitem_id, trip_id, user_id, rating]
+      [itinerary_id, user_id, rating]
     );
     return itineraryitem;
   } catch (error) {
@@ -34,14 +34,14 @@ const getAllItineraryitems = async () => {
   }
 };
 
-const getItineraryitemById = async (itineraryitemId) => {
+const getItineraryitemById = async (itinerary_id) => {
   try {
     const {
       rows: [itineraryitems],
     } = await client.query(`
       SELECT * 
       FROM itineraryitems
-      WHERE itineraryitem_id = ${itineraryitemId};
+      WHERE itinerary_id = ${itinerary_id};
     `);
     return itineraryitems;
   } catch (error) {
