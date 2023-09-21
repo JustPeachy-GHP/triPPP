@@ -43,9 +43,7 @@ const dropTables = async () => {
 };
 // create tables
 
-// leaving out locations at this time
-
-// removed trip_id and location_id from itineraryitems table and location_id was removed from trip table
+// removed trip_id from itineraryitems table
 
 const createTables = async () => {
   try {

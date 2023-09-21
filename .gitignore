@@ -44,6 +44,9 @@ server/node_modules
 client/node_modules
 jspm_packages/
 
+# secrets file
+server/secrets.js
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
