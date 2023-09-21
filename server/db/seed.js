@@ -1,5 +1,14 @@
 const client = require("./client");
 
+const { createTrip, getAllTrips } = require("./helpers/trips");
+const { createJournal } = require("./helpers/journals");
+const { createItineraryitem} = require("./helpers/itineraryitems");
+const { createUser } = require("./helpers/users");
+const { createGroup } = require("./helpers/groups");
+const { createGroupmemb } = require("./helpers/groupmembs");
+// destructuring it so we can pull in each array separately
+
+
 const {
   users,
   // locations,
@@ -186,7 +195,7 @@ const createInitialGroups = async () => {
 const createInitialGroupmembers = async () => {
   try {
     for (const groupmembers of groupmembers) {
-      await createGroupmember(groupmembers);
+      await createGroupmemb(groupmembers);
     }
     console.log("created Groupmembers");
   } catch (error) {
