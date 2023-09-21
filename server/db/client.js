@@ -2,7 +2,7 @@
 const { Client } = require('pg')
 
 //Establishing connect to database (like how we do with http://)
-const dbName = ''
+const dbName = 'triPPP'
 const client = new Client(`postgres://localhost:5432/${dbName}`)
 
 //Export for use in other files

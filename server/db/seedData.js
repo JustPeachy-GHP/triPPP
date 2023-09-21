@@ -116,7 +116,7 @@ const users = [
     },
   ];
   
-  const tripData = [
+  const trips = [
     {
       trip_id: 1,
       itinierary_id: 1,
@@ -133,11 +133,11 @@ const users = [
       itinierary_id: 2,
       group_id: 2,
       location_id: 2,
-      tripName: "Party",
+      tripname: "Party",
       numdays: 7,
       numtravelers: 4,
       isdecided: false,
-      vibeform: "Chill",
+      vibeform: "Party",
     },
     {
       trip_id: 3,
@@ -170,11 +170,11 @@ const users = [
       numdays: 3,
       numtravelers: 2,
       isdecided: true,
-      vibeform: "Scenic",
+      vibeform: "Chill",
     },
   ];
   
-  const journalData = [
+  const journals = [
     {
       journal_id: 1,
       user_id: 1,
@@ -311,7 +311,7 @@ const users = [
     },
   ];
   
-  const itinieraryData = [
+  const itineraryitems = [
     {
       itinierary_id: 1,
       trip_id: 1,
@@ -342,3 +342,4 @@ const users = [
     },
   ];
   
+  module.exports = { users, locations, trips, journals, itineraryitems, groupmembers, groups }
