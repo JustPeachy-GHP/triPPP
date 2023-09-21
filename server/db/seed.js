@@ -207,7 +207,7 @@ const rebuildDb = async () => {
     // Generate the data
 
     await createInitialUsers();
-    await createInitialLocations();
+    // await createInitialLocations();
     await createInitialTrips();
     await createInitialJournals();
     await createInitialItineraryitems();
