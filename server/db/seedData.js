@@ -225,26 +225,6 @@ const journals = [
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 5,
   },
-  {
-    journal_id: 6,
-    user_id: 5,
-    video_content: "https://www.youtube.com/watch?v=video6",
-    image: "https://example.com/image6.jpg",
-    title: "Desert Safari",
-    entry: "Explored the Sahara Desert and camped under the stars.",
-    timestamp: "2023-09-08 16:28:32-07",
-    trip_id: 6,
-  },
-  {
-    journal_id: 7,
-    user_id: 2,
-    video_content: "https://www.youtube.com/watch?v=video7",
-    image: "https://example.com/image7.jpg",
-    title: "Historic Athens",
-    entry: "Visited the Acropolis and learned about Greek history.",
-    timestamp: "2023-09-08 16:28:32-07",
-    trip_id: 7,
-  },
 ];
 
 const groupmembs = [

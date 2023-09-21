@@ -34,14 +34,14 @@ const getAllGroupmembs = async () => {
   }
 };
 
-const getGroupmembById = async (groupmembId) => {
+const getGroupmembById = async (groupmemb_id) => {
   try {
     const {
       rows: [groupmembs],
     } = await client.query(`
       SELECT * 
       FROM groupmembs
-      WHERE groupmemb_id = ${groupmembId};
+      WHERE groupmemb_id = ${groupmemb_id};
     `);
     return groupmembs;
   } catch (error) {

@@ -107,7 +107,7 @@ const createTables = async () => {
 
 
         CREATE TABLE groupmembs (
-            groupmembs_id SERIAL PRIMARY KEY,
+            groupmemb_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
             trip_id INTEGER REFERENCES trips(trip_id),
             group_id INTEGER REFERENCES groups(group_id)
@@ -176,11 +176,11 @@ const createInitialItineraryitems = async () => {
     for (const itineraryitem of itineraryitems) {
       await createItineraryitem(itineraryitem);
     }
-    // console.log("created itineraryitem");
+    console.log("created itineraryitem");
   } catch (error) {
     throw error;
   }
-  // console.log(itineraryitems);
+  console.log(itineraryitems);
 };
 
 const createInitialGroups = async () => {
@@ -198,7 +198,7 @@ const createInitialGroups = async () => {
 const createInitialGroupmembs = async () => {
   try {
     for (const groupmemb of groupmembs) {
-      await createGroupmemb(groupmembs);
+      await createGroupmemb(groupmemb);
     }
     console.log("created Groupmembers");
   } catch (error) {
