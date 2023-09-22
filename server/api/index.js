@@ -30,6 +30,6 @@ router.use("/groups", require("./groups"));
 router.use("/groupmembs", require("./groupmembs"));
 
 // ROUTER: /api/locations
-// router.use("/locations", require("./locations"));
+router.use("/locations", require("./locations"));
 
 module.exports = router;
