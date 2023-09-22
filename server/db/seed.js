@@ -41,6 +41,21 @@ const dropTables = async () => {
     throw error;
   }
 };
+
+// drop location table
+const dropLocationTables = async () => {
+  try {
+    console.log("tables dropping!");
+    // we are calling upon client connection to make query to db
+    // took out locations
+    await client.query(`
+      DROP TABLE IF EXISTS locations cascade;
+          `);
+    console.log("LOCATION tables dropped!");
+  } catch (error) {
+    throw error;
+  }
+};
 // create tables
 
 // removed trip_id from itineraryitems table
@@ -57,12 +72,6 @@ const createTables = async () => {
         lastname varchar(255)
       );
 
-      CREATE TABLE locations (
-        location_id SERIAL PRIMARY KEY,
-        coord POINT,
-        place_id varchar(255),
-        destination varchar(255)
-    );
   
 
       CREATE TABLE itineraryitems (
@@ -126,6 +135,50 @@ const createTables = async () => {
 };
 
 // create initial items
+
+// create location table
+const createLocationTable = async () => {
+  try {
+    console.log("LOCATION tables are being created!");
+    await client.query(`
+    CREATE TABLE locations (
+      location_id SERIAL PRIMARY KEY,
+      coord POINT,
+      place_id varchar(255),
+      destination varchar(255)
+  );
+  `);
+  } catch (error) {}
+};
+
+// alter trip table to have group_id
+const alterTripTable = async () => {
+  try {
+    console.log("TRIP tables are being ALTERED!");
+    await client.query(`
+    ALTER TABLE trips 
+      ADD group_id INTEGER REFERENCES groups(group_id)
+
+  `);
+  } catch (error) {
+    throw error;
+  }
+  console.log(trips);
+};
+// alter itinerary items table to have trip_id
+const alterItineraryitemTable = async () => {
+  try {
+    console.log("ITINERARYITEMS tables are being ALTERED!");
+    await client.query(`
+    ALTER TABLE itineraryitems 
+      ADD trip_id INTEGER REFERENCES trips(trip_id)
+
+  `);
+  } catch (error) {
+    throw error;
+  }
+  console.log(trips);
+};
 
 // create users
 const createInitialUsers = async () => {
@@ -219,21 +272,27 @@ const rebuildDb = async () => {
     // connect to the local database! WOO
     client.connect();
     // run functions
+    await dropLocationTables();
     await dropTables();
+
+    await createLocationTable();
     await createTables();
 
     // Generate the data
 
     await createInitialUsers();
-    await createInitialLocations();
+
     await createInitialItineraryitems();
     await createInitialTrips();
     await createInitialGroups();
     await createInitialJournals();
     await createInitialGroupmembs();
+    await createInitialLocations();
 
-    // come back later after we create this in helpers
-    // await getAllSongs();
+    await alterTripTable();
+    await alterItineraryitemTable();
+
+    // await dropTables();
   } catch (error) {
     console.error(error);
   } finally {
