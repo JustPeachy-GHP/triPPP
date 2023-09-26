@@ -49,4 +49,23 @@ const getGroupmembById = async (groupmemb_id) => {
   }
 };
 
-module.exports = { createGroupmemb, getAllGroupmembs, getGroupmembById };
+const deleteMember = async (groupmemb_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    DELETE FROM groupmembs WHERE "groupmemb_id"=$1 RETURNING *
+    `,
+      [groupmemb_id]
+    );
+    return rows[0];
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = {
+  createGroupmemb,
+  getAllGroupmembs,
+  getGroupmembById,
+  deleteMember,
+};
