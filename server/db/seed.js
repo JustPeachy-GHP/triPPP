@@ -73,12 +73,12 @@ const createTables = async () => {
       );
 
   
-
       CREATE TABLE itineraryitems (
         itinerary_id SERIAL PRIMARY KEY,
         location_id INTEGER REFERENCES locations(location_id),
         user_id INTEGER REFERENCES users(user_id),
-        rating INTEGER
+        rating INTEGER,
+        vibe text[]
     );
 
 

@@ -41,51 +41,59 @@ const users = [
 const locations = [
   {
     location_id: 1,
-    destination: "Paris, France",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,32.168568'),
+    destination: "Barcelona, Spain",
+    place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
+    coord: ('41.385063,2.173404'),
+    vibe: [ "shop", "party", "local"]
   },
   {
     location_id: 2,
-    destination: "New York City, USA",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "Asheville, North Carolina",
+    place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
+    coord: ('35.595058,-82.551487'),
+    vibe: ["outdoors", "chill"]
   },
   {
     location_id: 3,
-    destination: "Tokyo, Japan",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "Las Vegas, Nevada",
+    place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+    coord: ('36.1699,-115.1398'),
+    vibe: ["party", "shop"]
   },
   {
     location_id: 4,
-    destination: "Rome, Italy",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "Chicago, Illinois",
+    place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
+    coord: ('41.8781,2.168568, -87.6298'),
+    vibe: ["local", "shop"]
   },
   {
     location_id: 5,
-    destination: "Sydney, Australia",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "Denver, Colorado",
+    place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
+    coord: ('39.7392,-104.9903'),
+    vibe: ["outdoors", "shop"]
   },
   {
     location_id: 6,
-    destination: "Cape Town, South Africa",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "Key West, Florida",
+    place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
+    coord: ('24.5551,-81.7800'),
+    vibe: ["party", "chill"]
   },
   {
     location_id: 7,
-    destination: "Rio de Janeiro, Brazil",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "New York City, New York",
+    place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
+    coord: ('40.7128,-74.0060'),
+    vibe: ["shop", "local"]
   },
   {
     location_id: 8,
-    destination: "Barcelona, Spain",
-    place_id: "ChIJgUbEo8cfqokR5lP9_Wh_DaM",
-    coord: ('41.387397,2.168568'),
+    destination: "Los Angeles, California",
+    place_id: "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    coord: ('34.0522,-118.2437'),
+    vibe: ["party", "shopping"]
   },
 ];
 
