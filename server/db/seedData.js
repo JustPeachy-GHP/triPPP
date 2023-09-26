@@ -64,7 +64,7 @@ const locations = [
     location_id: 4,
     destination: "Chicago, Illinois",
     place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
-    coord: ('41.8781,2.168568, -87.6298'),
+    coord: ('41.8781,-87.6298'),
     vibe: ["local", "shop"]
   },
   {
