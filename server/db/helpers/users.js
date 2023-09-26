@@ -31,14 +31,17 @@ async function getAllUsers() {
 }
 
 // GET - /api/users/:id
-async function getUserById(id) {
+async function getUserById(user_id) {
   try {
     const {
       rows: [user],
-    } = await client.query(`
+    } = await client.query(
+      `
             SELECT * FROM users
-            WHERE user_id = ${id}
-        `);
+            WHERE user_id = $1;
+        `,
+      [user_id]
+    );
     console.log(user);
     return user;
   } catch (error) {
@@ -47,16 +50,130 @@ async function getUserById(id) {
 }
 // email = username
 const getUserByEmail = async (email) => {
-  const {
-    rows: [user],
-  } = await client.query(
-    `
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
     SELECT * FROM users
-    WHERE users.email = $1
+    WHERE users.email = $1;
     `,
-    [email]
-  );
-  return user;
+      [email]
+    );
+    return user;
+  } catch (error) {
+    throw error;
+  }
 };
 
-module.exports = { createUser, getAllUsers, getUserById, getUserByEmail };
+const updateUserPass = async (email, password) => {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+  `
+  UPDATE users
+  SET password = $2
+  WHERE e-mail = $1;`,
+      [email, password]
+    );
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getGroupAdminById = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    SELECT * 
+    FROM groups
+    WHERE user_id=$1;
+    `,
+      [user_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getGroupMemberById = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    SELECT * 
+    FROM groupmembs
+    WHERE user_id=$1;
+    `,
+      [user_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getJournalById = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    SELECT * 
+    FROM journals
+    WHERE user_id=$1;
+    `,
+      [user_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getTripsAdminById = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    SELECT *
+    FROM trips
+    JOIN groups on groups.trip_id = trips.trip_id
+    Where groups.user_id = $1;
+    `,
+      [user_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getTripsMemberById = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    SELECT *
+    FROM trips
+    JOIN groupmembs on trips.trip_id = groupmembs.trip_id
+    WHERE groupmembs.user_id = $1;
+    `,
+      [user_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  createUser,
+  getAllUsers,
+  getUserById,
+  getUserByEmail,
+  updateUserPass,
+  getGroupAdminById,
+  getGroupMemberById,
+  getJournalById,
+  getTripsAdminById,
+  getTripsMemberById,
+};
