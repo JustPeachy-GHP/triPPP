@@ -77,8 +77,7 @@ const createTables = async () => {
         itinerary_id SERIAL PRIMARY KEY,
         location_id INTEGER REFERENCES locations(location_id),
         user_id INTEGER REFERENCES users(user_id),
-        rating INTEGER,
-        vibe text[]
+        rating INTEGER 
     );
 
 
@@ -145,7 +144,8 @@ const createLocationTable = async () => {
       location_id SERIAL PRIMARY KEY,
       coord POINT,
       place_id varchar(255),
-      destination varchar(255)
+      destination varchar(255),
+      vibe text[]
   );
   `);
   } catch (error) {}
