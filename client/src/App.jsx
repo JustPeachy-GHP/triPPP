@@ -1,8 +1,8 @@
 // import { groupmembs, groups, journals, trips, users } from '../../server/db/seedData';
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from '../Features/Display/Navbar';
-import Muidrawer from '../Features/Display/Muidrawer';
+import Navbar from './Features/Display/Navbar';
+import Muidrawer from './Features/Display/Muidrawer';
 // import AllJournalEntries from '../Features/Journal';
 
 
