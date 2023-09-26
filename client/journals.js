@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080/api";
+// const baseUrl = "http://localhost:8080/api";
 const journalUrl = "http://localhost:8080/api/journals";
 
 export async function fetchAllJournals() {
@@ -71,6 +71,23 @@ export async function createJournal(
     console.log(result);
     return result;
   } catch (error) {
-    console.error("trouble creating journal entry", error)
+    console.error("trouble creating journal entry", error);
+  }
+}
+
+export async function updateJournal(journal_id, journal) {
+  try {
+    const response = await fetch(`${journalUrl}/${journal_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(journal),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("trouble updating song", error);
   }
 }
