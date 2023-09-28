@@ -1,13 +1,20 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import AllJournalEntries from "../Features/Journal/AllJournalEntries";
+import SingleJournalEntry from "../Features/Journal/SingleJournalEntry";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/allJournals" element={<AllJournalEntries />} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="/allJournals" element={<AllJournalEntries />} />
+          <Route
+            path="/journals/:journal_id"
+            element={<SingleJournalEntry />}
+          />
+        </Routes>
+      </div>
     </>
   );
 }

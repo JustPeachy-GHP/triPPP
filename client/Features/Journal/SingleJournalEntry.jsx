@@ -21,7 +21,8 @@ export default function SingleJournal() {
   return (
     <div key={journal.journal_id}>
       <h4>{journal.title}</h4>
-      <h4>{journal.entry}</h4>
+      <h4 id="journal">Entry: {journal.entry}</h4>
+      <img id="image" src={journal.image} alt={journal.title} />
     </div>
   );
 }

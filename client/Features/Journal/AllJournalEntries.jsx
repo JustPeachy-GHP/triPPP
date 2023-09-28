@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllJournals, deleteJournal } from "../journals";
+import { fetchAllJournals, deleteJournal } from "../../journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
 
@@ -21,8 +21,8 @@ export default function AllJournals() {
   const journalsToDisplay = searchParam
     ? journal.filter(
         (journal) =>
-          journal.name.toLowerCase().includes(searchParam) ||
-          journal.artist.toLowerCase().includes(searchParam)
+          journal.title.toLowerCase().includes(searchParam) ||
+          journal.entry.toLowerCase().includes(searchParam)
       )
     : journal;
 
@@ -44,7 +44,7 @@ export default function AllJournals() {
         <label id="search">Search: </label>
         <input
           type="text"
-          placeholder="Search journal or artist"
+          placeholder="Search for journal"
           onChange={(event) => setSearchParam(event.target.value.toLowerCase())}
         />
       </div>
@@ -54,10 +54,10 @@ export default function AllJournals() {
       {journalsToDisplay.map((journal) => {
         return (
           <div key={journal.id}>
-            <h4 id="journal">Title: {journal.timestamp}</h4>
+            <h4 id="journal">Time/Date: {journal.timestamp}</h4>
             <h4 id="journal">Title: {journal.title}</h4>
-            <h4 id="journal">Entry: {journal.entry}</h4>
-            <img id="image" src={journal.image} alt={journal.name} />
+            {/* <h4 id="journal">Entry: {journal.entry}</h4>
+            <img id="image" src={journal.image} alt={journal.title} /> */}
             {/* add video */}
             <div>
               <button

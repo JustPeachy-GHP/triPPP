@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createJournal } from "../../journals";
-// videocontent, image, title, timestamp, entry
 export default function CreateJournalForm({ journal, setJournal }) {
   const [videocontent, setVideocontent] = useState("");
   const [image, setImage] = useState("");
@@ -18,6 +17,7 @@ export default function CreateJournalForm({ journal, setJournal }) {
       timestamp,
       entry
     );
+    console.log(API);
     if (API.success) {
       console.log("New journal entry: ", API.data.newJournal);
 
@@ -47,7 +47,7 @@ export default function CreateJournalForm({ journal, setJournal }) {
         />
 
         <input
-          id="image"
+          id="image-text"
           placeholder="Insert Image URL"
           value={image}
           onChange={(e) => setImage(e.target.value)}
@@ -65,11 +65,12 @@ export default function CreateJournalForm({ journal, setJournal }) {
           onChange={(e) => setTimestamp(e.target.value)}
         />
         <input
-          id="entry"
+          id="entry-text"
           placeholder="Entry"
           value={entry}
           onChange={(e) => setEntry(e.target.value)}
         />
+        <button type="submit">Submit</button>
       </form>
     </>
   );

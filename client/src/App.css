@@ -1,0 +1,51 @@
+/* Include the Open Sans font from Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+/* Apply the font to your HTML elements */
+body {
+  font-family: "Open Sans", sans-serif;
+  /* Use 'sans-serif' as a fallback font in case the custom font isn't available. */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
+  /* Apply the font to headings if needed. */
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  /* Apply the font to paragraphs if needed. */
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#image {
+  height: 15em;
+  padding: 1 rem;
+}
+
+body {
+  background: linear-gradient(to right, #ffebe1, #f49867);
+}
+
+/* #entry-text {
+    height: 15em;
+    width: 15em;
+} */
+
+/* h4 {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #f49867, #000);
+  font-family: "Memphis River", sans-serif;
+} */
