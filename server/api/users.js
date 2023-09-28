@@ -45,11 +45,11 @@ router.get("/:id", async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
   try {
     console.log(req.body);
-    const { email, password } = req.body;
-    // hash
-    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    const { email, password, firstname, lastname } = req.body;
+    // NOTE currently bypassing bcrypt - will use the below line when we put bcrypt back in:
+    // const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
-    const user = await createUser({ email, password: hashedPassword });
+    const user = await createUser({ email, password, firstname, lastname });
     console.log(user);
     delete user.password;
 
@@ -62,7 +62,8 @@ router.post("/register", async (req, res, next) => {
       signed: true,
     });
 
-    delete user.password;
+    console.log("server api token", token);
+    console.log("server api user", user)
 
     res.send({ user, token });
   } catch (error) {
@@ -72,19 +73,22 @@ router.post("/register", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   try {
-    console.log("req.body", req.body);
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
-    console.log("user", user);
-    if (!user) {
+    console.log("SERVER API returned user:", user);
+    if (!email) {
       res.sendStatus(401);
       return;
     }
-    const validPassword = await bcrypt.compare(password, user.password);
+    // NOTE currently bypassing bcrypt - will use the below line when we put bcrypt back in:
+    // const validPassword = await bcrypt.compare(password, user.password);
+
+    password === user.password ? validPassword = true : validPassword = false
 
     delete user.password;
     if (validPassword) {
       //create our token
+      console.log("should have no password", user)
       const token = jwt.sign(user, JWT_SECRET);
       //attach cookie to our response using the token that we created
       res.cookie("token", token, {
@@ -94,7 +98,7 @@ router.post("/login", async (req, res, next) => {
       });
 
       console.log("token", token);
-      delete user.password;
+      // delete user.password;
       res.send({ user, token });
       return token;
     }

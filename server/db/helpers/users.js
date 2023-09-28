@@ -60,6 +60,7 @@ const getUserByEmail = async (email) => {
     `,
       [email]
     );
+    console.log("db query:", user)
     return user;
   } catch (error) {
     throw error;
