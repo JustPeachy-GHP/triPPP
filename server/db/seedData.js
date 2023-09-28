@@ -1,37 +1,75 @@
 // dummy data in here
 
+// const users = [
+//   {
+//     user_id: 1,
+//     password: "password1",
+//     email: "joe@example.com",
+//     firstname: "Adventure",
+//     lastname: "Joe",
+//   },
+//   {
+//     user_id: 2,
+//     password: "password2",
+//     email: "ninja@example.com",
+//     firstname: "Coding",
+//     lastname: "Ninja",
+//   },
+//   {
+//     user_id: 3,
+//     password: "password3",
+//     email: "samantha@example.com",
+//     firstname: "Explorer",
+//     lastname: "Samantha",
+//   },
+//   {
+//     user_id: 4,
+//     password: "password4",
+//     email: "geek@example.com",
+//     firstname: "Gamer",
+//     lastname: "Geek",
+//   },
+//   {
+//     user_id: 5,
+//     password: "password5",
+//     email: "music@example.com",
+//     firstname: "Music",
+//     lastname: "Maestro",
+//   },
+// ];
+
 const users = [
   {
     user_id: 1,
-    password: "password1",
+    password: "$2b$10$cDkJKeMlzQmVX/9FcpPc3eI4AhSECDrk1KHF9zTtjEjiyNkG8XuVO",
     email: "joe@example.com",
     firstname: "Adventure",
     lastname: "Joe",
   },
   {
     user_id: 2,
-    password: "password2",
+    password: "$2b$10$TqHQbtfkjtSsr3Y4ABc6FulMcWC0kSe6578pELuOKXUtj0/pZhygm",
     email: "ninja@example.com",
     firstname: "Coding",
     lastname: "Ninja",
   },
   {
     user_id: 3,
-    password: "password3",
+    password: "$2b$10$dH4rC5eg8C2SZlgOGfoby./K9cQq3XIR5Az/tjpOfQE3msTM4nkO6",
     email: "samantha@example.com",
     firstname: "Explorer",
     lastname: "Samantha",
   },
   {
     user_id: 4,
-    password: "password4",
+    password: "$2b$10$kpmtufzti1u/LKWXUpi9ruU5TcC3ZE1kY/XKeCjkafojQb2hq36DW",
     email: "geek@example.com",
     firstname: "Gamer",
     lastname: "Geek",
   },
   {
     user_id: 5,
-    password: "password5",
+    password: "$2b$10$7NtA6sdf/fmcCOXXtvk5XuEb3myJ20bzO6U5wYd3FC6TQtG2Gu/mS",
     email: "music@example.com",
     firstname: "Music",
     lastname: "Maestro",
