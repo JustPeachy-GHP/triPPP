@@ -4,14 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../helpers/auth'
 import { login } from '../../slices/authSlice'
 
-// export default function Login({ token, setActiveUser, setToken}){
 export default function Login(){
 
-    // const [userId, setUserId] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    // const [firstname, setFirstname] = useState("")
-    // const [token, setToken] = useState(false)
     const [tried, setTried] = useState(0)
     const [content, setContent] = useState("")
 
@@ -48,11 +44,6 @@ export default function Login(){
                 setContent("Something went wrong! Do you need to register?")
             } else { 
 
-            // setToken(response.token)
-            // setUserId(response.user.user_id)
-            // setFirstname(response.user.firstname)
-            // response.token && navigate("/userpage")
-
             dispatch(login({
                 email: email,
                 token: response.token,
@@ -60,7 +51,7 @@ export default function Login(){
                 firstname: response.user.firstname,
                 }))
             }
-
+            response.token && navigate("/userlanding")
             return content
 
         } catch (error) {
@@ -74,13 +65,18 @@ export default function Login(){
         <h2>Log In</h2>
         <form onSubmit={handleSubmit} >
         <label>
-            Username: <input id="username" autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />
+            Username: <input id="username" required autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />
         </label><br/>
         <label>
-            Password: <input id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            Password: <input id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </label><br/>
         <div>
-            <button>Submit</button>
+            <button disabled = { 
+                email.length < 1 || 
+                password.length < 1
+                }>
+                    Submit
+                </button>
         </div>
         </form>
 

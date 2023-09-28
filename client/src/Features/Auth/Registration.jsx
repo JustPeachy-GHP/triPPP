@@ -37,14 +37,18 @@ export default function Registration({setToken, setActiveUser}) {
             const response = await postNewUser(newUserObject)
             console.log("user created", response.user.user_id)
             console.log("token created", response.token)
-            // setToken(response.token)
-            // setActiveUser(response.user.user_id)
+
+            if (!response.token) {
+                setContent("Something went wrong!")
+            } else {
             dispatch(login({
                 email: email,
                 token: response.token,
                 user_id: response.user.user_id,
                 firstname: response.user.firstname,
             }))
+        }
+            response.token && navigate("/userlanding")
             return response
         } catch (error) {
             console.log(error)
@@ -64,13 +68,19 @@ export default function Registration({setToken, setActiveUser}) {
             Password: <input required value={password} onChange={(e) => setPassword(e.target.value)} />
             </label><br/>
             <label>
-            First Name: <input value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+            First Name: <input required value={firstname} onChange={(e) => setFirstname(e.target.value)} />
             </label><br/>
             <label>
             Last Name: <input required value={lastname} onChange={(e) => setLastname(e.target.value)} />
             </label><br/>
                 <div>
-                <button>Submit</button>
+                <button disabled = { 
+                    email.length < 1 || 
+                    password.length < 1 || 
+                    firstname < 1 || 
+                    lastname < 1 }>
+                        Submit
+                </button>
                 </div>
             </form>
              <div>
