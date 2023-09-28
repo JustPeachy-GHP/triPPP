@@ -58,8 +58,8 @@ export default function Registration({setToken, setActiveUser}) {
     return (
     <>
     <div className="displaytop">
-        <h2>Register</h2>
         <div className="loginform">
+        <h2>Register</h2>
             <form onSubmit={handleSubmit} >
              <label>
             Username: <input required value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -84,8 +84,8 @@ export default function Registration({setToken, setActiveUser}) {
                 </div>
             </form>
              <div>
-                <h2>Already registered?</h2>
-                <button className="login" onClick={handleClick}>Back to Login</button>
+                <h3>Already registered?</h3>
+                <button className="registerbutton" onClick={handleClick}>Back to Login</button>
             </div>
         </div>
     </div>
