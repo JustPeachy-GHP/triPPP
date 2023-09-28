@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
-import { setone, settwo } from '../../store/testSlice'
+import { setone, settwo } from '../../slices/testSlice'
 // added a DisplayTest component so you can see the value retrieved from state - "Look ma, no props!"
 import DisplayTest from "./DisplayTest";
 

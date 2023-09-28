@@ -6,6 +6,9 @@ import Muidrawer from './Features/Display/Muidrawer';
 // import AllJournalEntries from '../Features/Journal';
 import Test from './Features/Test/Test';
 import DisplayTest from './Features/Test/DisplayTest';
+import Login from './Features/Auth/Login'
+import Registration from './Features/Auth/Registration'
+import UserLanding from './Features/User/UserLanding'
 
 
 function App() {
@@ -21,6 +24,10 @@ function App() {
     <Routes>
     <Route path="/test" element={<Test/>}/>
     <Route path="/displaytest" element={<DisplayTest/>}/>
+    <Route path="/login" element={<Login/>}/>
+    <Route path="/register" element={<Registration/>}/>
+    <Route path="/userlanding" element={<UserLanding/>}/>
+    {/* <Route path="/register" element={<Registration/>}/> */}
     {/* <Route path="/display" element={<Display/>}/>
     <Route path="/itinerary" element={<Itinerary/>}/>
     <Route path="/trips" element={<Trip/>}/> */}

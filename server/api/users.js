@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { JWT_SECRET, COOKIE_SECRET } = require("../secrets");
 const router = require("express").Router();
 
@@ -45,12 +45,18 @@ router.get("/:id", async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
   try {
     console.log(req.body);
-    const { email, password } = req.body;
-    // hash
-    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    const { email, password, firstname, lastname } = req.body;
 
-    const user = await createUser({ email, password: hashedPassword });
-    console.log(user);
+    console.log("before bcrypt: ", password)
+    // NOTE currently bypassing bcrypt - will use the below line when we put bcrypt back in:
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+   
+    req.body['password'] = hashedPassword
+
+    console.log("after bcrypt: ", req.body)
+
+    const user = await createUser(req.body);
+    console.log("after created: ", user);
     delete user.password;
 
     const token = jwt.sign(user, JWT_SECRET);
@@ -62,7 +68,8 @@ router.post("/register", async (req, res, next) => {
       signed: true,
     });
 
-    delete user.password;
+    console.log("server api token", token);
+    console.log("server api user", user)
 
     res.send({ user, token });
   } catch (error) {
@@ -72,19 +79,22 @@ router.post("/register", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   try {
-    console.log("req.body", req.body);
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
-    console.log("user", user);
-    if (!user) {
+    console.log("SERVER API returned user:", user);
+    if (!email) {
       res.sendStatus(401);
       return;
     }
+    // NOTE currently bypassing bcrypt - will use the below line when we put bcrypt back in:
     const validPassword = await bcrypt.compare(password, user.password);
+
+    // password === user.password ? validPassword = true : validPassword = false
 
     delete user.password;
     if (validPassword) {
       //create our token
+      console.log("should have no password", user)
       const token = jwt.sign(user, JWT_SECRET);
       //attach cookie to our response using the token that we created
       res.cookie("token", token, {
@@ -94,7 +104,7 @@ router.post("/login", async (req, res, next) => {
       });
 
       console.log("token", token);
-      delete user.password;
+      // delete user.password;
       res.send({ user, token });
       return token;
     }
@@ -181,6 +191,7 @@ router.get("/ujournal/:id", async (req, res, next) => {
   try {
     console.log("getting journal_id from journals by id...");
     const user = await getJournalById(req.params.id);
+    console.log("journal ", user)
     res.send(user);
   } catch (error) {
     next(error);
@@ -193,18 +204,20 @@ router.get("/utripadmin/:id", async (req, res, next) => {
   try {
     console.log("getting trips by groups that user is admin of by id...");
     const user = await getTripsAdminById(req.params.id);
+    console.log("admin ", user)
     res.send(user);
   } catch (error) {
     next(error);
   }
 });
 
-// GET - /api/users/utripadmin/:id - get trips user is admin of
+// GET - /api/users/utripmemb/:id - get trips user is admin of
 
 router.get("/utripmemb/:id", async (req, res, next) => {
   try {
     console.log("getting trips by groups that user is member of by id...");
     const user = await getTripsMemberById(req.params.id);
+    console.log("memb ", user)
     res.send(user);
   } catch (error) {
     next(error);
