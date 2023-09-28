@@ -4,6 +4,7 @@ export async function postNewUser(newUserObj) {
     try {
         console.log("in postNewUser")
         // remove empty keys that will cause postgresql to choke
+        // not needed for new user unless we want to add optional fields
         // Object.keys(newUserObj).forEach(
         //     (key) => (newUserObj[key] === null || newUserObj[key] === '') && delete newUserObj[key])
         const response = await fetch(`${baseUrl}/register`, {
