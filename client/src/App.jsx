@@ -9,6 +9,8 @@ import DisplayTest from "./Features/Test/DisplayTest";
 import Login from "./Features/Auth/Login";
 import Registration from "./Features/Auth/Registration";
 import UserLanding from "./Features/User/UserLanding";
+import LandingPage from "./Features/Trip/LandingPage";
+import TripForm from "./Features/Trip/TripForm";
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/userlanding" element={<UserLanding />} />
-        {/* <Route path="/trips" element={<LandingPage />} /> */}
+        <Route path="/trips" element={<LandingPage />} />
+        <Route path="/tripform" element={<TripForm />} />
         {/* <Route path="/register" element={<Registration/>}/> */}
         {/* <Route path="/display" element={<Display/>}/>
     <Route path="/itinerary" element={<Itinerary/>}/>

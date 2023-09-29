@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { createTrip } from "../../helpers/trips";
-import Form from "./Form";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
