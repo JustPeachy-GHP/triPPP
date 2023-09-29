@@ -2,6 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import AllJournalEntries from "../Features/Journal/AllJournalEntries";
 import SingleJournalEntry from "../Features/Journal/SingleJournalEntry";
+import CreateJournalForm from "../Features/Journal/CreateJournalForm";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             path="/journals/:journal_id"
             element={<SingleJournalEntry />}
           />
+          <Route path="/journalform" element={<CreateJournalForm />}></Route>
         </Routes>
       </div>
     </>

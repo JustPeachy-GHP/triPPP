@@ -10,6 +10,8 @@ export default function AllJournals() {
   const navigate = useNavigate();
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuthenticated);
+  const user_id = useSelector((state) => state.auth.user_id);
 
   // need to EDIT so it fetches all journals of that USERS
   useEffect(() => {
@@ -41,6 +43,9 @@ export default function AllJournals() {
     }
   };
 
+  const userJournals = journalsToDisplay.filter(
+    (journal) => journal.user_id === user_id
+  );
   // this MAPS over all the journals to show each journal with timestamp, title, entry, image and video
   return (
     <div>
@@ -56,7 +61,7 @@ export default function AllJournals() {
         <CreateJournalForm journal={journal} setJournal={setJournal} />
       </div>
       {isAuthenticated ? (
-        journalsToDisplay.map((journal) => {
+        userJournals.map((journal) => {
           return (
             <div key={journal.id}>
               <h4 id="journal">Time/Date: {journal.timestamp}</h4>
