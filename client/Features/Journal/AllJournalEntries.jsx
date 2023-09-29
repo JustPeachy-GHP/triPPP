@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllJournals, deleteJournal } from "../../journals";
+import { fetchAllJournals, deleteJournal } from "../../src/helpers/journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
 import { useSelector } from "react-redux";
