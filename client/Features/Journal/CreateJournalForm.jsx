@@ -7,10 +7,15 @@ export default function CreateJournalForm({ journal, setJournal }) {
   const [timestamp, setTimestamp] = useState("");
   const [entry, setEntry] = useState("");
   const [error, setError] = useState(null);
+  // had to hard code for now
+  const user_id = 1;
+  const trip_id = 1;
 
   async function handleSubmit(e) {
     e.preventDefault();
     const API = await createJournal(
+      user_id,
+      trip_id,
       videocontent,
       image,
       title,

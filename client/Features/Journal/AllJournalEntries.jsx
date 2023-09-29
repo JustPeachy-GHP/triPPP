@@ -9,6 +9,8 @@ export default function AllJournals() {
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
 
+  // user_id ? then they are authenticated
+  // OR no user_id show 1 thing else ...
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   console.log(isAuthenticated);
   const user_id = useSelector((state) => state.auth.user_id);
@@ -44,6 +46,7 @@ export default function AllJournals() {
   };
 
   const userJournals = journalsToDisplay.filter(
+    // check db query under users 
     (journal) => journal.user_id === user_id
   );
   // this MAPS over all the journals to show each journal with timestamp, title, entry, image and video
