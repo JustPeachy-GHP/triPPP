@@ -6,9 +6,13 @@ import Muidrawer from './Features/Display/Muidrawer';
 // import AllJournalEntries from '../Features/Journal';
 import Test from './Features/Test/Test';
 import DisplayTest from './Features/Test/DisplayTest';
-import Login from './Features/Auth/Login'
-import Registration from './Features/Auth/Registration'
-import UserLanding from './Features/User/UserLanding'
+import Login from './Features/Auth/Login';
+import Registration from './Features/Auth/Registration';
+import UserLanding from './Features/User/UserLanding';
+import LocationsMap from './Features/Display/Map';
+import TInfoWindow from './Features/Display/TInfoWindow';
+
+
 
 
 function App() {
@@ -20,6 +24,9 @@ function App() {
       <Navbar/>
   </Muidrawer>
    
+   <LocationsMap/>
+   <TInfoWindow/>
+
 
     <Routes>
     <Route path="/test" element={<Test/>}/>

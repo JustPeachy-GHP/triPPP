@@ -1,0 +1,35 @@
+div#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    display: block;
+  }
+  
+  .infoContainer {
+    height: 100vh;
+    width: 41vw;
+    display: block;
+    background-color: #BFD9CD;
+    color: black;
+  }
+  
+  .info-card{
+    z-index: 1;
+    background-color: #8FA69D;
+    color: whitesmoke;
+  }
+  
+  .mapContainer {
+    height: 100vh;
+    width: 50vw;
+    display: block;
+    float: right;
+    position: sticky;
+  }
+  
+  .map-container {
+    padding-left: 50%;
+    height: 100%;
+    width: 50%;
+  }

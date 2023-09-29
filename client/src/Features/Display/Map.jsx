@@ -4,7 +4,7 @@ import {
     InfoWindowF,
     useJsApiLoader
   } from "@react-google-maps/api";
-  import React, { useState } from "react";
+  import React, { useState, useMemo } from "react";
   
   const libraries = ["places"];
   const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
@@ -17,7 +17,7 @@ import {
     const [placeDetails, setPlaceDetails] = useState(null);
     
   
-    const pinned = [
+    const pinned = useMemo(() => [
       { lat: 41.385063, lng: 2.173404, placeId:"ChIJ5TCOcRaYpBIRCmZHTz37sEQ" },
       { lat: 35.595058, lng: -82.551487, placeId:"ChIJCW8PPKmMWYgRXTo0BsEx75Q"  },
       { lat: 36.1699, lng: -115.1398, placeId:"ChIJ0X31pIK3voARo3mz1ebVzDo" },
@@ -27,7 +27,7 @@ import {
       { lat: 40.7128, lng: -74.0060, placeId:"ChIJOwg_06VPwokRYv534QaPC8g" },
       { lat: 34.0522, lng: -118.2437, placeId:"ChIJE9on3F3HwoAR9AhGJW_fL-I"  },
   
-      ];  
+      ], []);  
   
     
   
@@ -45,7 +45,7 @@ import {
     
         setMap(map);
         setPlacesService(placesService);
-      }, []);
+      }, [pinned]);
     
       const handleGetLocationInfo = (placeId) => {
         if (placesService && placeId) {

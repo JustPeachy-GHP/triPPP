@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useJsApiLoader } from "@react-google-maps/api";
 
 const libraries = ["places"];
 const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
 
 const TInfoWindow = () => {
-  const [map, setMap] = useState(null);
   const [placesService, setPlacesService] = useState(null);
   const [placeDetails, setPlaceDetails] = useState([]);
   
-  const placeIds = [
+  const placeIds = useMemo(()=> [
     "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     "ChIJ0X31pIK3voARo3mz1ebVzDo",
@@ -18,7 +17,7 @@ const TInfoWindow = () => {
     "ChIJGZPxxsW20YgRVe3uNrw1q-k",
     "ChIJOwg_06VPwokRYv534QaPC8g",
     "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-  ];
+  ], []);
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: API_KEY,
@@ -27,13 +26,8 @@ const TInfoWindow = () => {
 
   useEffect(() => {
     if (isLoaded && !placesService) {
-      const mapInstance = new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: 0, lng: 0 }, // Set initial center as needed
-        zoom: 5, // Set initial zoom as needed
-      });
-      const placesServiceInstance = new window.google.maps.places.PlacesService(mapInstance);
+      const placesServiceInstance = new window.google.maps.places.PlacesService(document.createElement('div'));
 
-      setMap(mapInstance);
       setPlacesService(placesServiceInstance);
     }
   }, [isLoaded, placesService]);
@@ -85,10 +79,8 @@ const TInfoWindow = () => {
           ))}
         </div>
       )}
-      <div id="map" style={{ width: "100%", height: "400px" }}></div>
     </div>
   );
 };
 
 export default TInfoWindow;
-
