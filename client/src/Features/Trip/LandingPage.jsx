@@ -1,6 +1,4 @@
 import React from "react";
-import TripForm from "./TripForm";
-import Login from "../Auth/Login";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
