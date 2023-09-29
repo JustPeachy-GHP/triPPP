@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { fetchAllJournals, deleteJournal } from "../../journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
+import { useSelector } from "react-redux";
 
 export default function AllJournals() {
   const [journal, setJournal] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
 
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  // need to EDIT so it fetches all journals of that USERS
   useEffect(() => {
     async function fetchJournals() {
       const response = await fetchAllJournals();
@@ -51,29 +55,33 @@ export default function AllJournals() {
       <div>
         <CreateJournalForm journal={journal} setJournal={setJournal} />
       </div>
-      {journalsToDisplay.map((journal) => {
-        return (
-          <div key={journal.id}>
-            <h4 id="journal">Time/Date: {journal.timestamp}</h4>
-            <h4 id="journal">Title: {journal.title}</h4>
-            {/* <h4 id="journal">Entry: {journal.entry}</h4>
+      {isAuthenticated ? (
+        journalsToDisplay.map((journal) => {
+          return (
+            <div key={journal.id}>
+              <h4 id="journal">Time/Date: {journal.timestamp}</h4>
+              <h4 id="journal">Title: {journal.title}</h4>
+              {/* <h4 id="journal">Entry: {journal.entry}</h4>
             <img id="image" src={journal.image} alt={journal.title} /> */}
-            {/* add video */}
-            <div>
-              <button
-                onClick={() => {
-                  navigate(`/journals/${journal.journal_id}`);
-                }}
-              >
-                See Details
-              </button>
-              <button onClick={() => handleDelete(journal.journal_id)}>
-                Delete
-              </button>
+              {/* add video */}
+              <div>
+                <button
+                  onClick={() => {
+                    navigate(`/journals/${journal.journal_id}`);
+                  }}
+                >
+                  See Details
+                </button>
+                <button onClick={() => handleDelete(journal.journal_id)}>
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <p>Please log in to view journals.</p>
+      )}
     </div>
   );
 }
