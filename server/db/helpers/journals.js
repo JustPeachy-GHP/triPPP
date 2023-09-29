@@ -1,7 +1,7 @@
 const client = require("../client");
 
 const createJournal = async ({
-  journal_id,
+  // journal_id,
   user_id,
   trip_id,
   videocontent,
@@ -10,17 +10,18 @@ const createJournal = async ({
   timestamp,
   entry,
 }) => {
+  console.log(user_id, trip_id, videocontent, image, title, timestamp, entry);
   try {
     const {
       rows: [journal],
     } = await client.query(
       `
-        INSERT INTO journals(journal_id, user_id, trip_id, videocontent, image, title, timestamp, entry)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+        INSERT INTO journals(user_id, trip_id, videocontent, image, title, timestamp, entry)
+        VALUES($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
         `,
       [
-        journal_id,
+        // journal_id,
         user_id,
         trip_id,
         videocontent,
@@ -30,6 +31,7 @@ const createJournal = async ({
         entry,
       ]
     );
+    console.log(journal);
     return journal;
   } catch (error) {
     throw error;
