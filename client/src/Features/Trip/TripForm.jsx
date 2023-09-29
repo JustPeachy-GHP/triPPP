@@ -60,9 +60,3 @@ export default function TripForm() {
 }
 
 // how are we going to pass data up to form.jsx?
-
-// const [videocontent, setVideocontent] = useState("");
-//   const [image, setImage] = useState("");
-//   const [title, setTitle] = useState("");
-//   const [timestamp, setTimestamp] = useState("");
-//   const [entry, setEntry] = useState("");

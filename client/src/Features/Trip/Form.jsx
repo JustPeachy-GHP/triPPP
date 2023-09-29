@@ -7,15 +7,7 @@ import TripForm from "./TripForm";
 
 export default function Form() {
   const [tripname, setTripName] = useState("");
-  const [filledForm, setFilledForm] = useState(false);
+  const [filledForm, setFilledForm] = useState(true);
 
-  return (
-    <div>
-      {filledForm ? <VibeCheck /> : <TripForm />}
-      {/* <TripForm setTripName={setTripName} /> */}
-      {/* // <VibeCheck setTripName={setTripName} /> */}
-      {/* <Login setTripName={setTripName} /> */}
-      {/* <TripAdminPage setTripName={setTripName} /> */}
-    </div>
-  );
+  return <div>{filledForm ? <VibeCheck /> : <TripForm />}</div>;
 }
