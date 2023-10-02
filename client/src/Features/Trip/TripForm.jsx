@@ -3,26 +3,40 @@ import { createTrip } from "../../helpers/trips";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
-  const [numtravelers, setNumTravelers] = useState("");
   const [numdays, setNumDays] = useState("");
+  const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
 
-  async function handleSubmit(e) {
+  const submitHandler = (e) => {
     e.preventDefault();
-    const API = await createTrip(tripname, numdays, numtravelers);
-    if (API.success) {
-      console.log("New trip", API.data.newTrip);
+    let newTripObject = {
+      tripname: tripname,
+      numdays: numdays,
+      numtravelers: numtravelers,
+      vibeform: vibeform,
+    };
+    console.log("submit data", newTripObject);
+    async function createNewTrip() {
+      const result = await createTrip(
+        // tripname,
+        // numdays,
+        // numtravelers,
+        // vibeform
+        newTripObject
+      );
+      console.log(result);
       settripName("");
-      setNumTravelers("");
       setNumDays("");
-    } else {
-      console.log("error");
+      setNumTravelers("");
+      setVibeForm("");
+      return result;
     }
-  }
+    createNewTrip();
+  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitHandler}>
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input
@@ -51,65 +65,104 @@ export default function TripForm() {
         {/* outdoors, chill, party, local, shop*/}
         <fieldset>
           {/* CHILL */}
-          <img
+          {/* <img
             id="chill-img"
             src="https://tinyurl.com/446u8r4f"
             alt="woman relaxing on the beach"
-          ></img>
+          ></img> */}
           <div>
-            <input type="radio" id="chill" name="drone" value="huey" checked />
-            <label for="chill">Chill</label>
+            <input
+              type="radio"
+              id="chill"
+              name="vibe"
+              value={vibeform}
+              onChange={(e) => setVibeForm(e.target.id)}
+            />
+            <label for="chill">
+              Chill
+              {/* <img
+                id="chill-img"
+                src="https://tinyurl.com/446u8r4f"
+                alt="woman relaxing on the beach"
+              ></img> */}
+            </label>
           </div>
           {/* OUTDOORS */}
-          <img
-            id="outdoors-img"
-            src="https://tinyurl.com/3f5zeycb"
-            alt="couple in mountains"
-          ></img>
           <div>
-            <input type="radio" id="outdoors" name="drone" value="outdoors" />
-            <label for="outdoors">Outdoors</label>
+            <input
+              type="radio"
+              id="outdoors"
+              name="vibe"
+              value={vibeform}
+              onChange={(e) => setVibeForm(e.target.id)}
+            />
+            <label for="outdoors">
+              Outdoors
+              {/* <img
+                id="outdoors-img"
+                src="https://tinyurl.com/3f5zeycb"
+                alt="couple in mountains"
+              ></img> */}
+            </label>
           </div>
           {/* PARTY */}
-          <img
-            id="party-img"
-            src="https://tinyurl.com/4yw8yvbr"
-            alt="people partying in a club"
-          ></img>
           <div>
-            <input type="radio" id="party" name="party" value="party" />
-            <label for="party">Party</label>
+            <input
+              type="radio"
+              id="party"
+              name="vibe"
+              value={vibeform}
+              onChange={(e) => setVibeForm(e.target.id)}
+            />
+            <label for="party">
+              Party
+              {/* <img
+                id="party-img"
+                src="https://tinyurl.com/4yw8yvbr"
+                alt="people partying in a club"
+              ></img> */}
+            </label>
           </div>
           {/* LOCAL */}
-          <img
-            id="local-img"
-            src="https://tinyurl.com/5t4sndky"
-            alt="man sitting in front of parisian cafe"
-          ></img>
           <div>
-            <input type="radio" id="local" name="drone" value="local" />
-            <label for="local">Local</label>
+            <input
+              type="radio"
+              id="local"
+              name="vibe"
+              value={vibeform}
+              onChange={(e) => setVibeForm(e.target.id)}
+            />
+            <label for="local">
+              Local
+              {/* <img
+                id="local-img"
+                src="https://tinyurl.com/5t4sndky"
+                alt="man sitting in front of parisian cafe"
+              ></img> */}
+            </label>
           </div>
           {/* SHOP */}
-          <img
-            id="shop-img"
-            src=" https://tinyurl.com/5n8mwked"
-            alt="woman shopping in a store"
-          ></img>
           <div>
-            <input type="radio" id="shop" name="drone" value="shop" />
-            <label for="shop">Shop</label>
+            <input
+              type="radio"
+              id="shop"
+              name="vibe"
+              value={vibeform}
+              onChange={(e) => setVibeForm(e.target.id)}
+            />
+            <label for="shop">
+              Shop{" "}
+              {/* <img
+                id="shop-img"
+                src=" https://tinyurl.com/5n8mwked"
+                alt="woman shopping in a store"
+              ></img> */}
+            </label>
           </div>
           <br />
-          <input
-            type="checkbox"
-            placeholder="VibeCheck"
-            onChange={(e) => setVibeForm(e.target.value)}
-            value={vibeform}
-          />
-          <br />
-          <button type="submit">Submit</button>
+          {/* hook up event listener to  */}
         </fieldset>
+        <button type="Submit">Submit</button>
       </form>
     </div>
   );

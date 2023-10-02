@@ -1,33 +1,20 @@
 const BASE_URL = "http://localhost:8080/api/trips";
 
-export async function createTrip(
-  itinerary_id,
-  location_id,
-  tripname,
-  numdays,
-  numtravelers,
-  vibeform
-) {
+export async function createTrip(tripobj) {
   try {
     const response = await fetch(`${BASE_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        itinerary_id,
-        location_id,
-        tripname,
-        numdays,
-        numtravelers,
-        vibeform,
-      }),
+      body: JSON.stringify(tripobj),
     });
     const result = await response.json();
     console.log(result);
     return result;
   } catch (error) {
     console.log("Your trip was not made");
+    throw error;
   }
 }
 

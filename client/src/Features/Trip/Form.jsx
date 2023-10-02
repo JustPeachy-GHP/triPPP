@@ -11,3 +11,5 @@ export default function Form() {
 
   return <div>{filledForm ? <VibeCheck /> : <TripForm />}</div>;
 }
+
+// tripform data + vibecheck data => form.js => helpers => database
