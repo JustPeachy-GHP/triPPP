@@ -168,7 +168,7 @@ const journals = [
     title: "Beach Day",
     entry: "Spent the day relaxing on the beautiful beach in Bali.",
     timestamp: "2016-01-25 10:10:10.555555-05:00",
-    trip_id: 2,
+    trip_id: 1,
   },
   {
     journal_id: 3,
@@ -179,7 +179,7 @@ const journals = [
     title: "Cultural Immersion",
     entry: "Explored historic sites and tried local cuisine in Rome.",
     timestamp: "2023-09-08 16:28:32-07",
-    trip_id: 3,
+    trip_id: 1,
   },
   {
     journal_id: 4,
@@ -190,7 +190,7 @@ const journals = [
     title: "City Lights",
     entry: "New York City's skyline is simply breathtaking at night.",
     timestamp: "2016-01-25 10:10:10.555555-05:00",
-    trip_id: 4,
+    trip_id: 1,
   },
   {
     journal_id: 5,

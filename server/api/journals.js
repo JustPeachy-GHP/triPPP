@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllJournals, createJournal, getJournalById } = require("../db/helpers/journals");
+const {
+  getAllJournals,
+  getAllJournalsByTrip,
+  createJournal,
+  getJournalById,
+  updateJournal,
+  deleteJournal,
+} = require("../db/helpers/journals");
 
-// GET - api/journal - get all journal
+// GET - api/journals - get all journal
 router.get("/", async (req, res, next) => {
   try {
     const journal = await getAllJournals();
@@ -13,10 +20,35 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/journal/:journalId - get single journal
-router.get("/:journalId", async (req, res, next) => {
+// GET - api/journals/:user_id/:trip_id
+router.get("/:user_id/:trip_id", async (req, res, next) => {
   try {
-    const journal = await getJournalById(req.params.journalId);
+    const journal = await getAllJournalsByTrip(
+      req.params.user_id,
+      req.params.trip_id
+    );
+    res.send(journal);
+  } catch (error) {
+    throw error;
+  }
+});
+
+// DELETE - /api/journals/:user_id/:trip_id - delete a journal
+router.delete("/:journal_id", async (req, res, next) => {
+  try {
+    console.log("entering router delete");
+    const journal = await deleteJournal(req.params.journal_id);
+    console.log(journal);
+    res.send(journal);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// GET - api/journals/:journalId - get single journal
+router.get("/:journal_id", async (req, res, next) => {
+  try {
+    const journal = await getJournalById(req.params.journal_id);
     res.send(journal);
   } catch (error) {
     next(error);
@@ -30,6 +62,15 @@ router.post("/", async (req, res, next) => {
     res.send(journal);
   } catch (error) {
     next(error);
+  }
+});
+
+router.patch("/:journal_id/edit", async (req, res, next) => {
+  try {
+    const journal = await updateJournal(req.params.journal_id, req.body);
+    res.send(journal);
+  } catch (error) {
+    throw error;
   }
 });
 module.exports = router;

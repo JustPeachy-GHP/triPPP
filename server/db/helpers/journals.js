@@ -49,6 +49,37 @@ const getAllJournals = async () => {
   }
 };
 
+const getAllJournalsByTrip = async (user_id, trip_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT * 
+      FROM journals
+      WHERE user_id = $1
+      AND trip_id = $2
+    `,
+      [user_id, trip_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteJournal = async (journal_id) => {
+  try {
+    console.log("deleting a song");
+    const { rows } = await client.query(`
+    DELETE FROM journals
+    WHERE journal_id = ${journal_id}
+    RETURNING *;
+    `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getJournalById = async (journal_id) => {
   try {
     const {
@@ -64,4 +95,36 @@ const getJournalById = async (journal_id) => {
   }
 };
 
-module.exports = { createJournal, getAllJournals, getJournalById };
+const updateJournal = async (journal_id, edits = {}) => {
+  const changeString = Object.keys(edits)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(",");
+
+  if (changeString.length === 0) {
+    return;
+  }
+  try {
+    const {
+      rows: [journal],
+    } = await client.query(
+      `
+    UPDATE journals
+    SET ${changeString}
+    WHERE journal_id=${journal_id}
+    RETURNING * ;`,
+      Object.values(edits)
+    );
+    return journal;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  createJournal,
+  getAllJournals,
+  getAllJournalsByTrip,
+  getJournalById,
+  updateJournal,
+  deleteJournal
+};
