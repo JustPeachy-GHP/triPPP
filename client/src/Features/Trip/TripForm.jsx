@@ -47,13 +47,69 @@ export default function TripForm() {
           value={numdays}
         />{" "}
         <br />
-        <input
-          type="checkbox"
-          placeholder="VibeCheck"
-          onChange={(e) => setVibeForm(e.target.value)}
-          value={vibeform}
-        />
-        <button type="submit">Submit</button>
+        <h3>What's the vibe you're going for?</h3>
+        {/* outdoors, chill, party, local, shop*/}
+        <fieldset>
+          {/* CHILL */}
+          <img
+            id="chill-img"
+            src="https://tinyurl.com/446u8r4f"
+            alt="woman relaxing on the beach"
+          ></img>
+          <div>
+            <input type="radio" id="chill" name="drone" value="huey" checked />
+            <label for="chill">Chill</label>
+          </div>
+          {/* OUTDOORS */}
+          <img
+            id="outdoors-img"
+            src="https://tinyurl.com/3f5zeycb"
+            alt="couple in mountains"
+          ></img>
+          <div>
+            <input type="radio" id="outdoors" name="drone" value="outdoors" />
+            <label for="outdoors">Outdoors</label>
+          </div>
+          {/* PARTY */}
+          <img
+            id="party-img"
+            src="https://tinyurl.com/4yw8yvbr"
+            alt="people partying in a club"
+          ></img>
+          <div>
+            <input type="radio" id="party" name="party" value="party" />
+            <label for="party">Party</label>
+          </div>
+          {/* LOCAL */}
+          <img
+            id="local-img"
+            src="https://tinyurl.com/5t4sndky"
+            alt="man sitting in front of parisian cafe"
+          ></img>
+          <div>
+            <input type="radio" id="local" name="drone" value="local" />
+            <label for="local">Local</label>
+          </div>
+          {/* SHOP */}
+          <img
+            id="shop-img"
+            src=" https://tinyurl.com/5n8mwked"
+            alt="woman shopping in a store"
+          ></img>
+          <div>
+            <input type="radio" id="shop" name="drone" value="shop" />
+            <label for="shop">Shop</label>
+          </div>
+          <br />
+          <input
+            type="checkbox"
+            placeholder="VibeCheck"
+            onChange={(e) => setVibeForm(e.target.value)}
+            value={vibeform}
+          />
+          <br />
+          <button type="submit">Submit</button>
+        </fieldset>
       </form>
     </div>
   );
