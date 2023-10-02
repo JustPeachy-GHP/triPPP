@@ -16,7 +16,10 @@ function App() {
             element={<SingleJournalEntry />}
           />
           <Route path="/journalform" element={<CreateJournalForm />}></Route>
-          <Route path="/edit" element={<EditJournalForm />}></Route>
+          <Route
+            path="/journals/:journal_id/edit"
+            element={<EditJournalForm />}
+          ></Route>
         </Routes>
       </div>
     </>

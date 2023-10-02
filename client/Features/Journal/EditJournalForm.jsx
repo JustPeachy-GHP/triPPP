@@ -22,11 +22,12 @@ export default function EditJournal() {
     async function getSingleJournal() {
       try {
         const response = await fetchSingleJournal(journal_id);
-        setVideocontent(response[0].videocontent);
-        setImage(response[0].image);
-        setTitle(response[0].title);
-        setTimestamp(response[0].timestamp);
-        setEntry(response[0].entry);
+        console.log(response);
+        setVideocontent(response.videocontent);
+        setImage(response.image);
+        setTitle(response.title);
+        setTimestamp(response.timestamp);
+        setEntry(response.entry);
       } catch (error) {
         console.error("trouble getting journal to EDIT", error);
       }
@@ -49,7 +50,7 @@ export default function EditJournal() {
     e.preventDefault();
 
     let editJournalObject = {
-      journal_id: journal_id,
+      //   journal_id: journal_id,
       user_id: user_id,
       trip_id: trip_id,
       videocontent: videocontent,

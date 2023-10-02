@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchSingleJournal } from "../../src/helpers/journals";
+import { Link } from "react-router-dom";
+import EditJournalForm from "./EditJournalForm";
 
 export default function SingleJournal() {
   const params = useParams();
@@ -23,7 +25,9 @@ export default function SingleJournal() {
       <h4>{journal.title}</h4>
       <h4 id="journal">Entry: {journal.entry}</h4> <br />
       <img id="image" src={journal.image} alt={journal.title} /> <br />
-      <button>Edit</button>
+      <Link to={`/journals/${params.journal_id}/edit`}>
+        <button>Edit</button>
+      </Link>
     </div>
   );
 }
