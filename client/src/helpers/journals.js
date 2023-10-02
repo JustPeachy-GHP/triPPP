@@ -12,6 +12,17 @@ export async function fetchAllJournals() {
   }
 }
 
+export async function fetchAllJournalsByTrip(user_id, trip_id) {
+  try {
+    const response = await fetch(`${journalUrl}/${user_id}/${trip_id}`);
+    const returnVal = await response.json();
+    return returnVal;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 // fetch single journal entry
 export async function fetchSingleJournal(journal_id) {
   try {
@@ -77,7 +88,7 @@ export async function createJournal(
 
 export async function updateJournal(journal_id, journal) {
   try {
-    const response = await fetch(`${journalUrl}/${journal_id}`, {
+    const response = await fetch(`${journalUrl}/${journal_id}/edit`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

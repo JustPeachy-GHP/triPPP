@@ -10,7 +10,10 @@ function App() {
     <>
       <div>
         <Routes>
-          <Route path="/allJournals" element={<AllJournalEntries />} />
+          <Route
+            path="/journals/:user_id/:trip_id"
+            element={<AllJournalEntries />}
+          />
           <Route
             path="/journals/:journal_id"
             element={<SingleJournalEntry />}

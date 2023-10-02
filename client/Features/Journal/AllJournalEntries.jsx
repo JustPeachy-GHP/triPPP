@@ -1,28 +1,36 @@
 import { useEffect, useState } from "react";
-import { fetchAllJournals, deleteJournal } from "../../src/helpers/journals";
+import {
+  fetchAllJournals,
+  deleteJournal,
+  fetchAllJournalsByTrip,
+} from "../../src/helpers/journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+// import { useSelector } from "react-redux";
 
 export default function AllJournals() {
   const [journal, setJournal] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
+  const params = useParams();
 
   // user_id ? then they are authenticated
   // OR no user_id show 1 thing else ...
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log(isAuthenticated);
-  const user_id = useSelector((state) => state.auth.user_id);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // console.log(isAuthenticated);
+  // const user_id = useSelector((state) => state.auth.user_id);
 
   // need to EDIT so it fetches all journals of that USERS
   useEffect(() => {
     async function fetchJournals() {
-      const response = await fetchAllJournals();
+      const response = await fetchAllJournalsByTrip(
+        params.user_id,
+        params.trip_id
+      );
       setJournal(response);
     }
     fetchJournals();
-    console.log(journal);
   }, []);
 
   // to SEARCH through journals
@@ -45,10 +53,10 @@ export default function AllJournals() {
     }
   };
 
-  const userJournals = journalsToDisplay.filter(
-    // check db query under users 
-    (journal) => journal.user_id === user_id
-  );
+  // const userJournals = journalsToDisplay.filter(
+  //   // check db query under users
+  //   (journal) => journal.user_id === user_id
+  // );
   // this MAPS over all the journals to show each journal with timestamp, title, entry, image and video
   return (
     <div>
@@ -63,33 +71,29 @@ export default function AllJournals() {
       <div>
         <CreateJournalForm journal={journal} setJournal={setJournal} />
       </div>
-      {isAuthenticated ? (
-        userJournals.map((journal) => {
-          return (
-            <div key={journal.id}>
-              <h4 id="journal">Time/Date: {journal.timestamp}</h4>
-              <h4 id="journal">Title: {journal.title}</h4>
-              {/* <h4 id="journal">Entry: {journal.entry}</h4>
+      {journalsToDisplay.map((journal) => {
+        return (
+          <div key={journal.id}>
+            <h4 id="journal">Time/Date: {journal.timestamp}</h4>
+            <h4 id="journal">Title: {journal.title}</h4>
+            {/* <h4 id="journal">Entry: {journal.entry}</h4>
             <img id="image" src={journal.image} alt={journal.title} /> */}
-              {/* add video */}
-              <div>
-                <button
-                  onClick={() => {
-                    navigate(`/journals/${journal.journal_id}`);
-                  }}
-                >
-                  See Details
-                </button>
-                <button onClick={() => handleDelete(journal.journal_id)}>
-                  Delete
-                </button>
-              </div>
+            {/* add video */}
+            <div>
+              <button
+                onClick={() => {
+                  navigate(`/journals/${journal.journal_id}`);
+                }}
+              >
+                See Details
+              </button>
+              <button onClick={() => handleDelete(journal.journal_id)}>
+                Delete
+              </button>
             </div>
-          );
-        })
-      ) : (
-        <p>Please log in to view journals.</p>
-      )}
+          </div>
+        );
+      })}
     </div>
   );
 }

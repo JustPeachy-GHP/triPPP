@@ -16,7 +16,7 @@ export default function EditJournal() {
   const user_id = 1;
   const trip_id = 1;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     async function getSingleJournal() {
@@ -50,7 +50,7 @@ export default function EditJournal() {
     e.preventDefault();
 
     let editJournalObject = {
-      //   journal_id: journal_id,
+      journal_id: journal_id,
       user_id: user_id,
       trip_id: trip_id,
       videocontent: videocontent,
@@ -63,8 +63,11 @@ export default function EditJournal() {
     console.log("submit", editJournalObject);
 
     try {
-      console.log("before post", editJournalObject.journal_id);
-      const response = await updateJournal(editJournalObject);
+      console.log("before post", editJournalObject);
+      const response = await updateJournal(
+        editJournalObject.journal_id,
+        editJournalObject
+      );
       console.log("posted", response);
       const returnVal = response;
       return returnVal;
