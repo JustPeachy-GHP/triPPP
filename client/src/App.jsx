@@ -3,6 +3,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './Features/Display/Navbar';
 import Muidrawer from './Features/Display/Muidrawer';
+import Navtitle from './Features/Display/Navtitle';
+// import Navtitle from './Features/Display/Navtitle';
 // import AllJournalEntries from '../Features/Journal';
 import Test from './Features/Test/Test';
 import DisplayTest from './Features/Test/DisplayTest';
@@ -15,12 +17,14 @@ function App() {
 
   return (
     <>
+    <h1> If this is not here then triPPP wont show..why</h1>
+  <Navtitle/> 
 
-  <Muidrawer>
+  {/* <Muidrawer>
       <Navbar/>
-  </Muidrawer>
+  </Muidrawer> */}
    
-
+<h1>triPPP</h1>
     <Routes>
     <Route path="/test" element={<Test/>}/>
     <Route path="/displaytest" element={<DisplayTest/>}/>
