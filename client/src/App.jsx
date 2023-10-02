@@ -1,6 +1,6 @@
 // import { groupmembs, groups, journals, trips, users } from '../../server/db/seedData';
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from './Features/Display/Navbar';
 import Muidrawer from './Features/Display/Muidrawer';
 // import AllJournalEntries from '../Features/Journal';
@@ -9,37 +9,42 @@ import DisplayTest from './Features/Test/DisplayTest';
 import Login from './Features/Auth/Login';
 import Registration from './Features/Auth/Registration';
 import UserLanding from './Features/User/UserLanding';
-import LocationsMap from './Features/Display/Map';
+// import MemoizedLocationsMap from './Features/Display/Map';
 import TInfoWindow from './Features/Display/TInfoWindow';
-
-
+import ErrorBoundary from './Features/Display/ErrorBoundary';
+import { GoogleMapsContextProvider } from './context/googleMapsContext';
+import "./App.css";
+import MemoizedLocationsMap from './Features/Display/Map';
 
 
 function App() {
 
   return (
     <>
+      <ErrorBoundary>
+        <GoogleMapsContextProvider>
+          <Muidrawer>
+              <Navbar/>
+          </Muidrawer>
+          <MemoizedLocationsMap/>
+          <TInfoWindow/>
+            <Routes>
+              <Route path="/test" element={<Test/>}/>
+              <Route path="/displaytest" element={<DisplayTest/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/register" element={<Registration/>}/>
+              <Route path="/userlanding" element={<UserLanding/>}/>
+              {/* <Route path="/" element={<LocationsMap/>}/>
+              <Route path="/" element={<TInfoWindow/>}/> */}
 
-  <Muidrawer>
-      <Navbar/>
-  </Muidrawer>
-   
-   <LocationsMap/>
-   <TInfoWindow/>
-
-
-    <Routes>
-    <Route path="/test" element={<Test/>}/>
-    <Route path="/displaytest" element={<DisplayTest/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/register" element={<Registration/>}/>
-    <Route path="/userlanding" element={<UserLanding/>}/>
-    {/* <Route path="/register" element={<Registration/>}/> */}
-    {/* <Route path="/display" element={<Display/>}/>
-    <Route path="/itinerary" element={<Itinerary/>}/>
-    <Route path="/trips" element={<Trip/>}/> */}
-    {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
-    </Routes>
+              {/* <Route path="/register" element={<Registration/>}/> */}
+              {/* <Route path="/display" element={<Display/>}/>
+              <Route path="/itinerary" element={<Itinerary/>}/>
+              <Route path="/trips" element={<Trip/>}/> */}
+              {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
+            </Routes>
+        </GoogleMapsContextProvider>
+      </ErrorBoundary>
     </>
   )
 }

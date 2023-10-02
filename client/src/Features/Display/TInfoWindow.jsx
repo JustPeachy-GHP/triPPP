@@ -1,86 +1,62 @@
-import { useState, useEffect, useMemo } from "react";
-import { useJsApiLoader } from "@react-google-maps/api";
+import PropTypes from "prop-types";
+import { useGoogleMaps } from "../../context/googleMapsContext";
+import { useState, useEffect } from "react";
 
-const libraries = ["places"];
-const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
 
 const TInfoWindow = () => {
-  const [placesService, setPlacesService] = useState(null);
-  const [placeDetails, setPlaceDetails] = useState([]);
+  const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
+  const [placeKeys, setPlaceKeys] = useState([]);
   
-  const placeIds = useMemo(()=> [
-    "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
-    "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    "ChIJ0X31pIK3voARo3mz1ebVzDo",
-    "ChIJ7cv00DwsDogRAMDACa2m4K8",
-    "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
-    "ChIJGZPxxsW20YgRVe3uNrw1q-k",
-    "ChIJOwg_06VPwokRYv534QaPC8g",
-    "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-  ], []);
-
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: API_KEY,
-    libraries,
-  });
-
   useEffect(() => {
-    if (isLoaded && !placesService) {
-      const placesServiceInstance = new window.google.maps.places.PlacesService(document.createElement('div'));
-
-      setPlacesService(placesServiceInstance);
+    if (isGoogleMapsLoaded && Object.keys(placesDetails).length > 0 ) {
+      const keys = Object.keys(placesDetails);
+      setPlaceKeys(keys);
     }
-  }, [isLoaded, placesService]);
+  }, [isGoogleMapsLoaded, map, placesDetails]);
 
-  useEffect(() => {
-    if (placesService && placeIds.length > 0) {
-      const requests = placeIds.map((placeId) => ({
-        placeId: placeId,
-        fields: ["name", "photos", "types"],
-      }));
+  const handleCardClick = (placeId) => {
+    const lat = placesDetails[placeId].geometry.location.lat();
+    const lng = placesDetails[placeId].geometry.location.lng();
 
-      Promise.all(
-        requests.map((request) => new Promise((resolve) =>
-          placesService.getDetails(request, (place, status) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-              resolve(place);
-            } else {
-              console.error("Error fetching place details", request.placeId, status);
-              resolve(null); // Resolve with null in case of error
-            }
-          })
-        ))
-      ).then((results) => {
-        const filteredResults = results.filter(Boolean); // Remove null results
-        setPlaceDetails(filteredResults);
-      });
+    if (map) {
+      map.panTo(new window.google.maps.LatLng(lat, lng));
+      map.setZoom(5); // You can adjust the zoom level as needed
     }
-  }, [placesService, placeIds]);
-
-  if (loadError) {
-    return <div>Error loading Google Maps API</div>;
   }
-
   return (
     <div className="infoContainer">
-      {!isLoaded ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="info-card">
-          <h1>Location Information:</h1>
-          {placeDetails.map((place, index) => (
-            <div key={index} className="info-item">
-              <h2>{place.name}</h2>
-              <p>{place.types.join(", ")}</p>
-              {place.photos && place.photos.length > 0 && (
-                <img src={place.photos[0].getUrl()} alt={place.name} />
-              )}
+      {placeKeys.length > 0 ? 
+        (
+          <>
+            <div className="info-card">
+              {/* Use a MUI card component here and when it clicks pass in the place ID which is stored as a key */}
+              <h1>Location Information:</h1>
+              {placeKeys.map((key) => (
+                <div key={key} className="info-item">
+                  <h2 onClick={(() => handleCardClick(key))}>{placesDetails[key].name}</h2>
+                  <p>{placesDetails[key].types.join(", ")}</p>
+                  {placesDetails[key].photos && placesDetails[key].photos.length > 0 && (
+                    <img src={placesDetails[key].photos[0].getUrl()} alt={placesDetails[key].name} />
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          </>
+          
+        ) 
+        : 
+        (
+          <h1>Loading...</h1>
+        )
+      }
     </div>
   );
+};
+
+
+TInfoWindow.propTypes = {
+  
+  placeDetails: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default TInfoWindow;
