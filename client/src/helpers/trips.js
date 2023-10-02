@@ -15,12 +15,12 @@ export async function createTrip(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // itinerary_id,
-        // location_id,
+        itinerary_id,
+        location_id,
         tripname,
         numdays,
         numtravelers,
-        // vibeform,
+        vibeform,
       }),
     });
     const result = await response.json();
@@ -31,11 +31,9 @@ export async function createTrip(
   }
 }
 
-// TRIP FORM
-// createtrip
-
 // =====TRIP ADMIN FORM
 // delete trip
+
 // delete groupmemb
 // update trip
-// get trip by id
+// get trip by id and members for that trip
