@@ -31,7 +31,7 @@ const MuiDrawertwo = () => {
         onClick={() => setOpenDrawer(!openDrawer)}
       >
         <MenuIcon />
-        {/* <triPPPimage/> */}
+        <triPPPimage/>
       </IconButton>
     </React.Fragment>
   );
