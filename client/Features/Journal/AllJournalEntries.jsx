@@ -46,7 +46,10 @@ export default function AllJournals() {
   const handleDelete = async (journal_id) => {
     try {
       await deleteJournal(journal_id);
-      const updatedjournals = await fetchAllJournalsByTrip();
+      const updatedjournals = await fetchAllJournalsByTrip(
+        params.user_id,
+        params.trip_id
+      );
       setJournal(updatedjournals);
     } catch (error) {
       console.error("trouble deleting journal", error);
