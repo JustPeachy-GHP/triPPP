@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
+import ActivityRater from '../Display/ActivityRater'
 
 
 const TInfoWindow = () => {
@@ -38,6 +39,7 @@ const TInfoWindow = () => {
                   {placesDetails[key].photos && placesDetails[key].photos.length > 0 && (
                     <img src={placesDetails[key].photos[0].getUrl()} alt={placesDetails[key].name} />
                   )}
+                  <ActivityRater />
                 </div>
               ))}
             </div>
