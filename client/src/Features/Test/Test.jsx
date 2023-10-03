@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { setone, settwo } from '../../slices/testSlice'
 // added a DisplayTest component so you can see the value retrieved from state - "Look ma, no props!"
 import DisplayTest from "./DisplayTest";
+import ActivityRater from '../Display/ActivityRater'
 
 export default function Test() {
   // getting testVal1 and testVal2 from redux
@@ -52,6 +53,8 @@ const handleSubmit = () => {
         </form>
 
         <DisplayTest />
+        <h2>Testing voting/rater</h2>
+        <ActivityRater />
 
       </div>
     </>
