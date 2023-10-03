@@ -5,11 +5,11 @@ import {
   List,
   ListItemIcon,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu"; //replace here with out icon import
+import MenuIcon from "@mui/icons-material/Menu"; //this is the 3 line icon
 import Navbar from "./Navbar";
-// import triPPPimage from "../Assets";
 
-// const pages = ["demo", "not linked", "just text", "need to connect to navbar"];
+
+
 const MuiDrawertwo = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -31,7 +31,7 @@ const MuiDrawertwo = () => {
         onClick={() => setOpenDrawer(!openDrawer)}
       >
         <MenuIcon />
-        <triPPPimage/>
+ 
       </IconButton>
     </React.Fragment>
   );

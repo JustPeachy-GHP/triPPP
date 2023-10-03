@@ -9,7 +9,8 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded"; // replace here with our icon
+// import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded"; // replace here with our icon
+import triPPPimage from "../../Assets/triPPPimage.png";
 import MuiDrawertwo from "./MuiDrawertwo";
 import Navbar from "./Navbar";
 const Header = () => {
@@ -24,8 +25,12 @@ const Header = () => {
         {/* below here is the navbar coloring, you can also style the size here too I think */}
       <AppBar sx={{ background: "#F49867" }}> 
         <Toolbar>
-        {/* starting here below is the icon addeding and that they are using a mui and adjusting it, import it and then do <blahh/> */}
-          <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} />
+        {/* starting here below is the icon addeding and that they are using a mui and adjusting it, import it and then do <blahh/>
+          <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} /> */}
+          <div>
+          <img src={triPPPimage} alt="" className="imagelogo"/>
+        </div>
+
           {isMatch ? (
             <>
               <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
