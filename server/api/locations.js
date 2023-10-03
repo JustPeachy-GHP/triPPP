@@ -11,9 +11,10 @@ const {
 router.get("/", async (req, res, next) => {
   try {
     const location = await getAllLocations();
-    res.send(location);
+    res.json(locations);
   } catch (error) {
-    throw error;
+    console.error("Error fetching locations:", error);
+    res.status(500).json({ error: "Failed to fetch locations" });  
   }
 });
 

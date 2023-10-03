@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:8080/api/locations";
 export async function fetchAllLocations() {
     console.log("Fetching locations");
     try {
-        const response = await fetch(`${BASE_URL}/locations`);
+        const response = await fetch(`${BASE_URL}/`);
         if (!response.ok) {
             throw new Error('API request failed with status: ${response.status}')
         }
@@ -12,7 +12,7 @@ export async function fetchAllLocations() {
         return result;
     } catch (error) {
         console.log("No locations!", error);
-        return error;
+        throw error;
     }
 }
 
