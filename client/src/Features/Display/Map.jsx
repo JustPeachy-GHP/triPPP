@@ -24,8 +24,6 @@ const LocationsMap = () => {
     getAllLocations()
   }, []);
 
- 
-
   function parseCoordinates(coord) {
     const [lat, lng] = coord.split(',').map(parseFloat);
     return { lat, lng };
@@ -34,8 +32,6 @@ const LocationsMap = () => {
   const coordinates = locations.map((item) => parseCoordinates(item.coord));
   console.log(coordinates);
   
-
-
   const onHandleGetLocationInfo = React.useCallback(function callback(placeId, placesObj) {
     return new Promise((resolve, reject) => {
       if (placesService && placeId) {
