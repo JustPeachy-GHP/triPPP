@@ -11,7 +11,7 @@ const {
 router.get("/", async (req, res, next) => {
   try {
     const location = await getAllLocations();
-    res.json(locations);
+    res.json(location);
   } catch (error) {
     console.error("Error fetching locations:", error);
     res.status(500).json({ error: "Failed to fetch locations" });  
@@ -19,9 +19,9 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET - api/location/:locationId - get single location
-router.get("/:locationId", async (req, res, next) => {
+router.get("/:location_id", async (req, res, next) => {
   try {
-    const location = await getLocationById(req.params.locationId);
+    const location = await getLocationById(req.params.location_id);
     res.send(location);
   } catch (error) {
     next(error);
