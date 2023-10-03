@@ -37,7 +37,7 @@ const LocationsMap = () => {
       if (placesService && placeId) {
         const request = {
           placeId: placeId,
-          fields: ["name", "photos", "type", "geometry"],
+          fields: ["name", "photos", "geometry"],
         };
   
         placesService.getDetails(request, (place, status) => {
@@ -130,7 +130,7 @@ const LocationsMap = () => {
                           (
                             <div>
                               <h3>{placesDetails[placeId].name}</h3>
-                              <h3>{placesDetails[placeId].types.join(", ")}</h3>
+                              <h3>{location.vibe.join(", ")}</h3>
                               {placesDetails[placeId].photos &&
                                 placesDetails[placeId].photos.length > 0 && (
                                   <img
