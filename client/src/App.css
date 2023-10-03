@@ -1,9 +1,41 @@
-div#root {
+
+#root, div#root {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
     display: block;
+  }
+  
+  .inforater {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25vw;
+    border: solid 1px black;
+  }
+  
+  .infovoter {
+    width: 20vw;
+    display: flexbox;
+    flex-flow: column;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  
+  .currentvote {
+    width: 20vw;
+    text-align: right;
+  }
+  
+  .hearts {
+    display: block;
+    width: 20vw;
+  }
+  
+  .heartstext {
+    display: block;
+    width:20vw;  
   }
   
   .infoContainer {
