@@ -34,7 +34,7 @@ const Header = () => {
 
           {isMatch ? (
             <>
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
+              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}> 
                 Title of brand here
               </Typography>
               {/* //things working but why is this here or is it needed - TO BE CHECKED BC LINKING WORKS NOW */}
@@ -43,7 +43,7 @@ const Header = () => {
           ) : (
             <>
 
-            {/* when you click its blue.. */}
+            {/* when you click its blue.. also when you make the screen bigger the  logo dissapear and the 3 line drawer dissaperar as well*/}
               <Button sx={{ marginLeft: "auto", background:"#D96E48"  }} variant="contained">
               <Link to="/login"> Login </Link>
               </Button>
