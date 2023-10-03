@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <React.Fragment>
         {/* below here is the navbar coloring, you can also style the size here too I think */}
-      <AppBar sx={{ background: "#F49867", backgroundColor: "#D96E48" }}> 
+      <AppBar sx={{ background: "#F49867", }}> 
         <Toolbar>
         {/* starting here below is the icon addeding and that they are using a mui and adjusting it, import it and then do <blahh/>
           <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} /> */}
@@ -42,8 +42,6 @@ const Header = () => {
             </>
           ) : (
             <>
-            {/* //is it here? the  tabs? the LINKING, routes?*/}
-              <Navbar/> 
 
             {/* when you click its blue.. */}
               <Button sx={{ marginLeft: "auto", background:"#D96E48"  }} variant="contained">

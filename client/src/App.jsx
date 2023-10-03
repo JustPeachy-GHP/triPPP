@@ -17,14 +17,10 @@ function App() {
 
   return (
     <>
-    <h1> If this is not here then triPPP wont show..why</h1>
   <Navtitle/> 
-
-  {/* <Muidrawer>
-      <Navbar/>
-  </Muidrawer> */}
-   
-<h1>triPPP</h1>
+   <br/>
+   <br/>
+<h1>triPPP - this line is moves when changing browser size</h1>
     <Routes>
     <Route path="/test" element={<Test/>}/>
     <Route path="/displaytest" element={<DisplayTest/>}/>
@@ -46,3 +42,7 @@ export default App
 
 //need to import the compenets for all these navagation - need the component files name for the nav to work
 //All those up there is like a placeholder
+
+  // <Muidrawer>
+  //   <Navbar/>
+  // </Muidrawer>
