@@ -12,30 +12,31 @@ const LocationsMap = () => {
   const [activeMarker, setActiveMarker] = useState(null);
   const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
   const [locations, setLocations] = useState([]);
-  
-  
-    async function getAllLocations() {
+
+  async function getAllLocations() {
+    try {
       console.log("Fetching location data");
       const locationsData = await fetchAllLocations();
-      if (Array.isArray(locationsData)) {
+      console.log(locationsData)
       setLocations(locationsData);
-    } else {
-      console.error("fetchAllLocations did not return an array")
+    } catch (error) {
+      console.error("Error fetching locations:", error);
     }
   }
 
-    useEffect (() => {
-    getAllLocations()
+  useEffect(() => {
+    getAllLocations();
   }, []);
 
   function parseCoordinates(coord) {
-    const [lat, lng] = coord.split(',').map(parseFloat);
-    return { lat, lng };
+    if (coord && typeof coord === 'object' && 'x' in coord && 'y' in coord) {
+      return { lat: coord.x, lng: coord.y };
+    } else {
+      console.error("Invalid coordinate format:", coord);
+      return { lat: 0, lng: 0 }; // Provide default coordinates or handle the error as needed
+    }
   }
-  
-  const coordinates = locations.map((item) => parseCoordinates(item.coord));
-  console.log(coordinates);
-  
+
   const onHandleGetLocationInfo = React.useCallback(function callback(placeId, placesObj) {
     return new Promise((resolve, reject) => {
       if (placesService && placeId) {
@@ -43,7 +44,7 @@ const LocationsMap = () => {
           placeId: placeId,
           fields: ["name", "photos", "geometry"],
         };
-  
+
         placesService.getDetails(request, (place, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             placesObj[placeId] = place;
@@ -63,7 +64,6 @@ const LocationsMap = () => {
     if (Object.keys(places).length > 0) {
       setPlacesDetails(places);
     }
-    
   }, [setPlacesDetails]);
 
   const onLoad = React.useCallback(async function callback(map) {
@@ -71,16 +71,16 @@ const LocationsMap = () => {
     const placesService = new window.google.maps.places.PlacesService(map);
     setPlacesService(placesService);
     let places = {};
-  
+
     try {
       for (const location of locations) {
         bounds.extend(parseCoordinates(location.coord));
-        places = await onHandleGetLocationInfo(location.placeId, places);
+        places = await onHandleGetLocationInfo(location.place_id, places);
       }
-  
+
       map.fitBounds(bounds);
       setMap(map);
-  
+
       if (Object.keys(places).length > 0) {
         onHandleSetPlacesDetails(places);
       }
@@ -96,7 +96,6 @@ const LocationsMap = () => {
     }
   };
 
-
   if (!window.google || !window.google.maps) {
     return <div>Loading Google Maps...</div>;
   }
@@ -111,10 +110,10 @@ const LocationsMap = () => {
               zoom={12}
               onLoad={onLoad}
             >
-              {locations.map(({ lat, lng, placeId }, index) => (
+              {locations.map(({ coord, place_id, vibe }, index) => (
                 <MarkerF
                   key={index}
-                  position={{ lat, lng }}
+                  position={parseCoordinates(coord)}
                   setIcon={{
                     scaledSize: new window.google.maps.Size(30, 30),
                     origin: new window.google.maps.Point(0, 0),
@@ -127,19 +126,19 @@ const LocationsMap = () => {
                   {placesService && activeMarker === index ? (
                     <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
                       <div className="locationInformation">
-                        <button onClick={() => handleZoomToLocation(lat, lng)}>
+                        <button onClick={() => handleZoomToLocation(parseCoordinates(coord).lat, parseCoordinates(coord).lng)}>
                           Zoom to Location
                         </button>
                         {
                           (
                             <div>
-                              <h3>{placesDetails[placeId].name}</h3>
-                              <h3>{location.vibe.join(", ")}</h3>
-                              {placesDetails[placeId].photos &&
-                                placesDetails[placeId].photos.length > 0 && (
+                              <h3>{placesDetails[place_id].name}</h3>
+                              <h3>{vibe.join(", ")}</h3>
+                              {placesDetails[place_id].photos &&
+                                placesDetails[place_id].photos.length > 0 && (
                                   <img
-                                    src={placesDetails[placeId].photos[0].getUrl()}
-                                    alt={placesDetails[placeId].name}
+                                    src={placesDetails[place_id].photos[0].getUrl()}
+                                    alt={placesDetails[place_id].name}
                                   />
                                 )}
                             </div>
@@ -157,12 +156,9 @@ const LocationsMap = () => {
             <h1>Loading...</h1>
           )
         }
-      
       </div>
     </>
   );
 };
 
-const MemoizedLocationsMap = React.memo(LocationsMap);
-
-export default MemoizedLocationsMap;
+export default LocationsMap;

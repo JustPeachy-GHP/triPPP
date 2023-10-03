@@ -65,17 +65,36 @@ router.get("/vibe/:vibe", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const location = await getAllLocations();
-    res.json(location);
+    res.send(location);
   } catch (error) {
-    console.error("Error fetching locations:", error);
-    res.status(500).json({ error: "Failed to fetch locations" });  
+    throw error;
   }
 });
 
-// GET - api/location/:locationId - get single location
+// // GET - api/location/:locationId - get single location
 router.get("/:location_id", async (req, res, next) => {
   try {
     const location = await getLocationById(req.params.location_id);
+    res.send(location);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// // GET - api/location/:coord - get single location
+router.get("/:coord", async (req, res, next) => {
+  try {
+    const location = await getLocationByCoord(req.params.coord);
+    res.send(location);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// // GET - api/location/:place_id - get single location
+router.get("/:place_id", async (req, res, next) => {
+  try {
+    const location = await getLocationByPlaceId(req.params.place_id);
     res.send(location);
   } catch (error) {
     next(error);
