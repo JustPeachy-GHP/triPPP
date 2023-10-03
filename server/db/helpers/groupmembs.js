@@ -49,13 +49,14 @@ const getGroupmembById = async (groupmemb_id) => {
   }
 };
 
-const deleteMember = async (groupmemb_id) => {
+const deleteMember = async (group_id, user_id) => {
   try {
     const { rows } = await client.query(
       `
-    DELETE FROM groupmembs WHERE "groupmemb_id"=$1 RETURNING *
+    DELETE FROM groupmembs WHERE "group_id"=$1 AND "user_id"=$2 RETURNING *
+
     `,
-      [groupmemb_id]
+      [group_id, user_id]
     );
     return rows[0];
   } catch (err) {
