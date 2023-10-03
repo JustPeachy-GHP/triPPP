@@ -17,8 +17,12 @@ const LocationsMap = () => {
     async function getAllLocations() {
       console.log("Fetching location data");
       const locationsData = await fetchAllLocations();
-      setLocations(locationsData)
-    } 
+      if (Array.isArray(locationsData)) {
+      setLocations(locationsData);
+    } else {
+      console.error("fetchAllLocations did not return an array")
+    }
+  }
 
     useEffect (() => {
     getAllLocations()
