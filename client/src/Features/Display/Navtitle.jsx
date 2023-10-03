@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 // import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded"; // replace here with our icon
 import triPPPimage from "../../Assets/triPPPimage.png";
 import MuiDrawertwo from "./MuiDrawertwo";
@@ -23,7 +24,7 @@ const Header = () => {
   return (
     <React.Fragment>
         {/* below here is the navbar coloring, you can also style the size here too I think */}
-      <AppBar sx={{ background: "#F49867" }}> 
+      <AppBar sx={{ background: "#F49867", backgroundColor: "#D96E48" }}> 
         <Toolbar>
         {/* starting here below is the icon addeding and that they are using a mui and adjusting it, import it and then do <blahh/>
           <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} /> */}
@@ -44,12 +45,11 @@ const Header = () => {
             {/* //is it here? the  tabs? the LINKING, routes?*/}
               <Navbar/> 
 
-
               <Button sx={{ marginLeft: "auto", background:"#D96E48"  }} variant="contained">
-                Login
+              <Link to="/login"> Login </Link>
               </Button>
-              <Button sx={{ marginLeft: "10px", background:"#D96E48"  }} variant="contained">
-                Register
+              <Button sx={{ marginLeft: "10px", background:"#D96E48", backgroundColor: "#D96E48" }} variant="contained">
+              <Link to="/register"> Register </Link>
               </Button>
             </>
           )}

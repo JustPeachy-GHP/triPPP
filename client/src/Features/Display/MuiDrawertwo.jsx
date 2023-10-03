@@ -5,7 +5,7 @@ import {
   List,
   ListItemIcon,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu"; //this is the 3 line icon
+import MenuIcon from "@mui/icons-material/Menu";
 import Navbar from "./Navbar";
 
 
@@ -27,7 +27,7 @@ const MuiDrawertwo = () => {
         </List>
       </Drawer>
       <IconButton
-        sx={{ color: "white", marginLeft: "auto" }} //color of the drop down icon the 3 lines - you can style the coloring here maybe..
+        sx={{ color: "white", marginLeft: "auto" }}
         onClick={() => setOpenDrawer(!openDrawer)}
       >
         <MenuIcon />
