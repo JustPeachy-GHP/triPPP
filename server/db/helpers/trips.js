@@ -2,14 +2,14 @@ const client = require("../client");
 
 // left out location_id for now
 const createTrip = async ({
-  trip_id,
-  itinerary_id,
-  location_id,
+  // trip_id,
+  // itinerary_id,
+  // location_id,
   // group_id,
   tripname,
   numdays,
   numtravelers,
-  isdecided,
+  // isdecided,
   vibeform,
 }) => {
   try {
@@ -17,19 +17,19 @@ const createTrip = async ({
       rows: [trip],
     } = await client.query(
       `
-            INSERT INTO trips(trip_id, itinerary_id, location_id, tripname, numdays, numtravelers, isdecided, vibeform)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+            INSERT INTO trips( tripname, numdays, numtravelers, vibeform)
+            VALUES($1, $2, $3, $4)
             RETURNING *;
             `,
       [
-        trip_id,
-        itinerary_id,
-        location_id,
+        // trip_id,
+        // itinerary_id,
+        // location_id,
         // group_id,
         tripname,
         numdays,
         numtravelers,
-        isdecided,
+        // isdecided,
         vibeform,
       ]
     );

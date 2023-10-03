@@ -81,50 +81,50 @@ const locations = [
     location_id: 1,
     destination: "Barcelona, Spain",
     place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
-    coord: ('41.385063,2.173404'),
-    vibe: [ "shop", "party", "local"]
+    coord: "41.385063,2.173404",
+    vibe: ["shop", "party", "local"],
   },
   {
     location_id: 2,
     destination: "Asheville, North Carolina",
     place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.595058,-82.551487'),
-    vibe: ["outdoors", "chill"]
+    coord: "35.595058,-82.551487",
+    vibe: ["outdoors", "chill"],
   },
   {
     location_id: 3,
     destination: "Las Vegas, Nevada",
     place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
-    coord: ('36.1699,-115.1398'),
-    vibe: ["party", "shop"]
+    coord: "36.1699,-115.1398",
+    vibe: ["party", "shop"],
   },
   {
     location_id: 4,
     destination: "Chicago, Illinois",
     place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
-    coord: ('41.8781,-87.6298'),
-    vibe: ["local", "shop"]
+    coord: "41.8781,-87.6298",
+    vibe: ["local", "shop"],
   },
   {
     location_id: 5,
     destination: "Denver, Colorado",
     place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
-    coord: ('39.7392,-104.9903'),
-    vibe: ["outdoors", "shop"]
+    coord: "39.7392,-104.9903",
+    vibe: ["outdoors", "shop"],
   },
   {
     location_id: 6,
     destination: "Key West, Florida",
     place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
-    coord: ('24.5551,-81.7800'),
-    vibe: ["party", "chill"]
+    coord: "24.5551,-81.7800",
+    vibe: ["party", "chill"],
   },
   {
     location_id: 7,
     destination: "New York City, New York",
     place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
-    coord: ('40.7128,-74.0060'),
-    vibe: ["shop", "local"]
+    coord: "40.7128,-74.0060",
+    vibe: ["shop", "local"],
   },
   {
     location_id: 8,

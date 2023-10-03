@@ -9,13 +9,10 @@ export default function LandingPage() {
         <button> Take me on an adventure!</button> <br />{" "}
       </Link>
 
-      <Link to="/login">
+      <Link to="/userlanding">
         <button> Planning in Progress</button> <br />{" "}
       </Link>
 
-      <Link to="/login">
-        <button> Login</button> <br />{" "}
-      </Link>
 
       <br />
     </div>
