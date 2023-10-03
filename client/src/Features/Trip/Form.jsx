@@ -31,10 +31,10 @@ function FormAccess() {
 
 // with the user_id associted with the user, connect that to the trip you make
 
-if (user_id) {
-  // navigate to tripform
-  useNavigate();
-} else {
-  // navigate to login
-  useNavigate();
-}
+// if (user_id) {
+//   // navigate to tripform
+//   useNavigate();
+// } else {
+//   // navigate to login
+//   useNavigate();
+// }

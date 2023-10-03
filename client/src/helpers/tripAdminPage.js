@@ -1,5 +1,5 @@
 const BASE_URL = "http://localhost:8080/api/trips";
-const GROUP_URL = "http://localhost:8080/api/groups";
+const GROUPMEMBS_URL = "http://localhost:8080/api/groupmembs";
 
 // deleteGroupMemb-line 10
 // addGroupMemb-line 27
@@ -9,7 +9,7 @@ const GROUP_URL = "http://localhost:8080/api/groups";
 // ==================DELETE GROUP MEMB==========
 export async function deleteGroupMember(group_id, user_id) {
   // what is the url we should be requesting from?
-  const url = `${BASE_URL}/${trip_id}/groupmemb/${user_id}`;
+  const url = `${GROUPMEMBS_URL}/${group_id}/${user_id}`;
   try {
     const response = await fetch(url, {
       method: "DELETE",
@@ -27,8 +27,8 @@ export async function deleteGroupMember(group_id, user_id) {
 
 // delete from group membs where groupid=groupid
 // ================ADD GROUP MEMB==============
-export async function addGroupMember(trip_id, user_id) {
-  const url = `${BASE_URL}/${trip_id}/groupmemb/${user_id}`;
+export async function addGroupMember(group_id, user_id) {
+  const url = `${GROUPMEMBS_URL}/${group_id}/${user_id}`;
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -69,17 +69,14 @@ export async function deleteTrip(trip_id) {
 }
 // ==============UPDATE TRIP=================
 
-export async function updateTrip(username, password) {
+export async function updateTrip(trip_id, tripData) {
   try {
-    const response = await fetch(`${BASE_URL}/users/login`, {
-      method: "POST",
+    const response = await fetch(`${BASE_URL}/${trip_id}`, {
+      method: "PUT", // Changed method to PUT for updating
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
+      body: JSON.stringify(tripData), // Added tripData to JSON.stringify()
     });
     const result = await response.json();
     return result;
