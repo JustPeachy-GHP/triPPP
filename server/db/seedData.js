@@ -131,7 +131,7 @@ const locations = [
     destination: "Los Angeles, California",
     place_id: "ChIJE9on3F3HwoAR9AhGJW_fL-I",
     coord: ('34.0522,-118.2437'),
-    vibe: ["party", "shopping"]
+    vibe: ["party", "shop"]
   },
 ];
 
