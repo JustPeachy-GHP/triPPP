@@ -9,7 +9,8 @@ export default function Navbar() {
       <Link to="/display"> Map </Link> <br></br>
       <Link to="/journal"> Journal </Link> <br></br>
       <Link to="/itinerary "> Itinerary </Link> <br></br>
-      <Link to="/trips"> Trips </Link> <br></br>
+
+      <Link to="/trips"> Trip </Link> <br></br>
       <Link to="/login"> Login </Link> <br></br>
       <Link to="/about"> About </Link>
     </div>

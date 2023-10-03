@@ -37,6 +37,7 @@ export default function TripForm() {
   return (
     <div>
       <form onSubmit={submitHandler}>
+
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input
@@ -61,6 +62,7 @@ export default function TripForm() {
           value={numdays}
         />{" "}
         <br />
+
         <h3>What's the vibe you're going for?</h3>
         {/* outdoors, chill, party, local, shop*/}
         <fieldset>
@@ -163,9 +165,12 @@ export default function TripForm() {
           {/* hook up event listener to  */}
         </fieldset>
         <button type="Submit">Submit</button>
+
       </form>
     </div>
   );
 }
 
 // how are we going to pass data up to form.jsx?
+
+

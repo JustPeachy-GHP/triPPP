@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LandingPage from "./LandingPage";
 import TripAdminPage from "./TripAdminPage";
 import VibeCheck from "./VibeCheck";
+
 import { createTrip } from "../../helpers/trips";
 import TripForm from "./TripForm";
 
