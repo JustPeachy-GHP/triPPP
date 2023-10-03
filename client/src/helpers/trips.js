@@ -29,9 +29,9 @@ export async function createTrip(tripobj) {
 // delete groupmemb
 // update trip
 // get trip by id and members for that trip
-=======
-  }
-}
+// =======
+//   }
+// }
 
 // TRIP FORM
 // createtrip

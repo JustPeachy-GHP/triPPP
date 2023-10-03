@@ -11,7 +11,7 @@ import DisplayTest from './Features/Test/DisplayTest';
 import Login from './Features/Auth/Login';
 import Registration from './Features/Auth/Registration';
 import UserLanding from './Features/User/UserLanding';
-// import TInfoWindow from './Features/Display/TInfoWindow';
+import TInfoWindow from './Features/Display/TInfoWindow';
 import ErrorBoundary from './Features/Display/ErrorBoundary';
 import { GoogleMapsContextProvider } from './context/googleMapsContext';
 import "./App.css";
