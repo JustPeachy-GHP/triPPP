@@ -90,14 +90,14 @@ const getAllLocations = async () => {
   }
 };
 
-const getLocationById = async (locationId) => {
+const getLocationById = async (location_id) => {
   try {
     const {
       rows: [locations],
     } = await client.query(`
       SELECT * 
       FROM locations
-      WHERE location_id = ${locationId};
+      WHERE location_id = ${location_id};
     `);
     return locations;
   } catch (error) {

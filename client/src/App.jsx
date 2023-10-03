@@ -11,8 +11,7 @@ import DisplayTest from './Features/Test/DisplayTest';
 import Login from './Features/Auth/Login';
 import Registration from './Features/Auth/Registration';
 import UserLanding from './Features/User/UserLanding';
-// import MemoizedLocationsMap from './Features/Display/Map';
-import TInfoWindow from './Features/Display/TInfoWindow';
+// import TInfoWindow from './Features/Display/TInfoWindow';
 import ErrorBoundary from './Features/Display/ErrorBoundary';
 import { GoogleMapsContextProvider } from './context/googleMapsContext';
 import "./App.css";
@@ -30,13 +29,14 @@ function App() {
           <Muidrawer>
               <Navbar/>
           </Muidrawer>
-          <MemoizedLocationsMap/>
-          <TInfoWindow/>
+          {/* <MemoizedLocationsMap/>
+          <TInfoWindow/> */}
             <Routes>
               <Route path="/test" element={<Test/>}/>
               <Route path="/displaytest" element={<DisplayTest/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Registration/>}/>
+              <Route path="/display" element={<MemoizedLocationsMap/>}/>
               <Route path="/userlanding" element={<UserLanding/>}/>
               <Route path="/trips" element={<Form />} />
               <Route path="/tripform" element={<TripForm />} />

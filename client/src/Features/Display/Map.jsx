@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useGoogleMaps } from "../../context/googleMapsContext";
+import { fetchAllLocations } from "../../helpers/locations";
 import {
   GoogleMap,
   MarkerF,
@@ -10,26 +11,37 @@ const LocationsMap = () => {
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
   const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
-  const pinned = useMemo(
-    () => [
-      { lat: 41.385063, lng: 2.173404, placeId: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ" },
-      { lat: 35.595058, lng: -82.551487, placeId: "ChIJCW8PPKmMWYgRXTo0BsEx75Q" },
-      { lat: 36.1699, lng: -115.1398, placeId: "ChIJ0X31pIK3voARo3mz1ebVzDo" },
-      { lat: 41.8781, lng: -87.6298, placeId: "ChIJ7cv00DwsDogRAMDACa2m4K8" },
-      { lat: 39.7392, lng: -104.9903, placeId: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE" },
-      { lat: 24.5551, lng: -81.7800, placeId: "ChIJGZPxxsW20YgRVe3uNrw1q-k" },
-      { lat: 40.7128, lng: -74.0060, placeId: "ChIJOwg_06VPwokRYv534QaPC8g" },
-      { lat: 34.0522, lng: -118.2437, placeId: "ChIJE9on3F3HwoAR9AhGJW_fL-I" },
-    ],
-    []
-  );
+  const [locations, setLocations] = useState([]);
+  
+  
+    async function getAllLocations() {
+      console.log("Fetching location data");
+      const locationsData = await fetchAllLocations();
+      if (Array.isArray(locationsData)) {
+      setLocations(locationsData);
+    } else {
+      console.error("fetchAllLocations did not return an array")
+    }
+  }
 
+    useEffect (() => {
+    getAllLocations()
+  }, []);
+
+  function parseCoordinates(coord) {
+    const [lat, lng] = coord.split(',').map(parseFloat);
+    return { lat, lng };
+  }
+  
+  const coordinates = locations.map((item) => parseCoordinates(item.coord));
+  console.log(coordinates);
+  
   const onHandleGetLocationInfo = React.useCallback(function callback(placeId, placesObj) {
     return new Promise((resolve, reject) => {
       if (placesService && placeId) {
         const request = {
           placeId: placeId,
-          fields: ["name", "photos", "type", "geometry"],
+          fields: ["name", "photos", "geometry"],
         };
   
         placesService.getDetails(request, (place, status) => {
@@ -61,9 +73,9 @@ const LocationsMap = () => {
     let places = {};
   
     try {
-      for (const pinnedItem of pinned) {
-        bounds.extend(pinnedItem);
-        places = await onHandleGetLocationInfo(pinnedItem.placeId, places);
+      for (const location of locations) {
+        bounds.extend(parseCoordinates(location.coord));
+        places = await onHandleGetLocationInfo(location.placeId, places);
       }
   
       map.fitBounds(bounds);
@@ -75,7 +87,7 @@ const LocationsMap = () => {
     } catch (error) {
       console.error("Error loading location info:", error);
     }
-  }, [onHandleGetLocationInfo, pinned, onHandleSetPlacesDetails, setMap]);
+  }, [onHandleGetLocationInfo, locations, onHandleSetPlacesDetails, setMap]);
 
   const handleZoomToLocation = (lat, lng) => {
     if (map) {
@@ -99,7 +111,7 @@ const LocationsMap = () => {
               zoom={12}
               onLoad={onLoad}
             >
-              {pinned.map(({ lat, lng, placeId }, index) => (
+              {locations.map(({ lat, lng, placeId }, index) => (
                 <MarkerF
                   key={index}
                   position={{ lat, lng }}
@@ -122,7 +134,7 @@ const LocationsMap = () => {
                           (
                             <div>
                               <h3>{placesDetails[placeId].name}</h3>
-                              <h3>{placesDetails[placeId].types.join(", ")}</h3>
+                              <h3>{location.vibe.join(", ")}</h3>
                               {placesDetails[placeId].photos &&
                                 placesDetails[placeId].photos.length > 0 && (
                                   <img

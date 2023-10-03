@@ -65,16 +65,17 @@ router.get("/vibe/:vibe", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const location = await getAllLocations();
-    res.send(location);
+    res.json(location);
   } catch (error) {
-    throw error;
+    console.error("Error fetching locations:", error);
+    res.status(500).json({ error: "Failed to fetch locations" });  
   }
 });
 
 // GET - api/location/:locationId - get single location
-router.get("/:locationId", async (req, res, next) => {
+router.get("/:location_id", async (req, res, next) => {
   try {
-    const location = await getLocationById(req.params.locationId);
+    const location = await getLocationById(req.params.location_id);
     res.send(location);
   } catch (error) {
     next(error);
