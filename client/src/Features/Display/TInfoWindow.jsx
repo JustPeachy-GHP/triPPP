@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ActivityRater from "./ActivityRater";
 
 
+
 const TInfoWindow = () => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
@@ -40,6 +41,7 @@ const TInfoWindow = () => {
                     <img src={placesDetails[key].photos[0].getUrl()} alt={placesDetails[key].name} />
                   )}
                   <ActivityRater/>
+
                 </div>
               ))}
             </div>
