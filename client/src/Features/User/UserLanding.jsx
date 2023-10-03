@@ -11,6 +11,7 @@ export default function UserLanding () {
     const [journals, setJournals] = useState ([])
 
     const myId = useSelector((state) => state.auth.user_id)
+    const myname = useSelector((state) => state.auth.firstname)
 
     //get list of trips user is organizing
     useEffect (() => {
@@ -45,8 +46,8 @@ export default function UserLanding () {
 
     return(
     <>
-    <div>
-    <h1>User Landing</h1>
+    <div className="userlanding">
+    <h1>Welcome, {myname}!</h1>
     <h2>Trips</h2>
     <h3>Organizing:</h3>
     {
