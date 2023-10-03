@@ -1,7 +1,8 @@
 // import { groupmembs, groups, journals, trips, users } from '../../server/db/seedData';
 
+
 import './App.css'
-import { BrowerRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './Features/Display/Navbar';
 import Muidrawer from './Features/Display/Muidrawer';
 // import AllJournalEntries from '../Features/Journal';
@@ -17,11 +18,13 @@ import { GoogleMapsContextProvider } from './context/googleMapsContext';
 import "./App.css";
 import MemoizedLocationsMap from './Features/Display/Map';
 import Form from "./Features/Trip/Form";
+import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
 
 function App() {
   return (
     <>
+
       <ErrorBoundary>
         <GoogleMapsContextProvider>
           <Muidrawer>
@@ -49,7 +52,7 @@ function App() {
             </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>
-      
+     
     </>
   );
 }
