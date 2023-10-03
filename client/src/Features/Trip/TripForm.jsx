@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createTrip } from "../../helpers/trips";
 import "./tripform.css";
+import Login from "../Auth/Login";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
@@ -168,5 +169,3 @@ export default function TripForm() {
 }
 
 // how are we going to pass data up to form.jsx?
-
-// make the button go to the main page

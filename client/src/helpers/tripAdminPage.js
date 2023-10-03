@@ -1,14 +1,13 @@
 const BASE_URL = "http://localhost:8080/api/trips";
 const GROUP_URL = "http://localhost:8080/api/groups";
 
-// deleteGroupMemb
-// addGroupMemb
-// getSingleTrip
-// deleteSingleTrip
-
-// do i need to get group members by the trip_id?
-
-export async function deleteGroupMember(trip_id, user_id) {
+// deleteGroupMemb-line 10
+// addGroupMemb-line 27
+// fetchSingleTrip- line 43
+// deleteTrip-line 54
+// updateTrip-line 71
+// ==================DELETE GROUP MEMB==========
+export async function deleteGroupMember(group_id, user_id) {
   // what is the url we should be requesting from?
   const url = `${BASE_URL}/${trip_id}/groupmemb/${user_id}`;
   try {
@@ -24,7 +23,26 @@ export async function deleteGroupMember(trip_id, user_id) {
     console.error("Deleting groupmember is not working", error);
   }
 }
+// /api/groupmembs/:groupid/:userid for the route
 
+// delete from group membs where groupid=groupid
+// ================ADD GROUP MEMB==============
+export async function addGroupMember(trip_id, user_id) {
+  const url = `${BASE_URL}/${trip_id}/groupmemb/${user_id}`;
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error("Deleting groupmember is not working", error);
+  }
+}
+// ==============GET SINGLE TRIP==============
 export const fetchSingleTrip = async (trip_id) => {
   try {
     const response = await fetch(`${BASE_URL}/${trip_id}`);
@@ -34,36 +52,38 @@ export const fetchSingleTrip = async (trip_id) => {
     console.error("Cannot fetch single trip", error);
   }
 };
-
-export const deleteTrip = async (id) => {
+// ===============DELETE TRIP================
+export async function deleteTrip(trip_id) {
   try {
-    console.log("..entering delete trip");
     const response = await fetch(`${BASE_URL}/${trip_id}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
     });
+    const result = await response.json();
+    console.log(result);
   } catch (error) {
-    console.error("Cannot delete trip", error);
+    console.error("Deleting trip? is not working", error);
   }
-};
-// ====================DELETING A TRIP MEMBER
-// get trip by id. join trip_id with group. access the user_ids of each member
-// show users for that particular trip
-// do i need to do a join on the server side that i didn't do before?
-// what are the parameters?
-export async function deleteTripMemb(trip_id, user_id) {
+}
+// ==============UPDATE TRIP=================
+
+export async function updateTrip(username, password) {
   try {
-    console.log("deleting trip member");
-    // what is the url for the tripmembers? This definitely isn't right
-    const response = await fetch(`${BASE_URL}/${trip_id}`, {
-      method: "DELETE",
+    const response = await fetch(`${BASE_URL}/users/login`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
     });
+    const result = await response.json();
+    return result;
   } catch (error) {
-    console.error("Cannot delete trip", error);
+    console.error(error);
   }
 }

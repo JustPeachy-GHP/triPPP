@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 import LandingPage from "./LandingPage";
 import TripAdminPage from "./TripAdminPage";
 import VibeCheck from "./VibeCheck";
+
 import { createTrip } from "../../helpers/trips";
 import TripForm from "./TripForm";
 
@@ -10,6 +11,16 @@ export default function Form() {
   const [filledForm, setFilledForm] = useState(true);
 
   return <div>{filledForm ? <VibeCheck /> : <TripForm />}</div>;
+}
+
+const user_id = 1;
+
+function FormAccess() {
+  if (user_id === null) {
+    useNavigate(<Login />);
+  } else {
+    useNavigate(<LandingPage />);
+  }
 }
 
 // tripform data + vibecheck data => form.js => helpers => database

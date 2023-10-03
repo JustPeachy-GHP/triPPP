@@ -13,6 +13,7 @@ export default function LandingPage() {
         <button> Planning in Progress</button> <br />{" "}
       </Link>
 
+
       <br />
     </div>
   );
