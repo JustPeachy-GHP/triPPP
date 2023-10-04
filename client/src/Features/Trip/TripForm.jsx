@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createTrip } from "../../helpers/trips";
-import "./tripform.css";
+// import "./tripform.css";
 // import Login from "../Auth/Login";
 import { Link } from "react-router-dom";
 
