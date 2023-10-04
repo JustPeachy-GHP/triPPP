@@ -145,7 +145,7 @@ const createLocationTable = async () => {
       coord POINT,
       place_id varchar(255),
       destination varchar(255),
-      vibe text[]
+      vibes vibe[]
   );
   `);
   } catch (error) {}

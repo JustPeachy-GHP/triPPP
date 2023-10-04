@@ -20,3 +20,8 @@ export async function createTrip(tripobj) {
     throw error;
   }
 }
+
+// delete trip
+// delete groupmemb
+// update trip
+// get trip by id
