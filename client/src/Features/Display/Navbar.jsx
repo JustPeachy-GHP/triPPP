@@ -16,7 +16,7 @@ export default function Navbar() {
     </div>
   );
 }
-// export default Navbar
+
 
 //what is needed to be shown
 //would need a home page, see users?, see group(yourself)

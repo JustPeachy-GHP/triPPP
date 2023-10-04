@@ -1,0 +1,9 @@
+.vibe-img {
+    width: 50px; /* Adjust the width to your preference */
+    height: 50px; /* Adjust the height to your preference */
+  }
+  
+  /* Optional: Add some spacing around each image option */
+  .vibe-option {
+    margin-bottom: 10px;
+  }

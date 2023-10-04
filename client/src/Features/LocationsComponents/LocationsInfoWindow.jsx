@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
-import ActivityRater from "./ActivityRater";
+import ActivityRater from "../Display/ActivityRater";
 
 
 

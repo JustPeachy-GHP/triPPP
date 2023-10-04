@@ -1,21 +1,33 @@
 const client = require("../client");
 
+const getAllLocations = async () => {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM locations;
+    `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const createLocation = async ({
   location_id,
   coord,
   place_id,
   destination,
+  vibes
 }) => {
   try {
     const {
       rows: [location],
     } = await client.query(
       `
-        INSERT INTO locations(location_id, coord, place_id, destination)
-        VALUES($1, $2, $3, $4)
+        INSERT INTO locations(location_id, coord, place_id, destination, vibes)
+        VALUES($1, $2, $3, $4, $5)
         RETURNING *;
         `,
-      [location_id, coord, place_id, destination]
+      [location_id, coord, place_id, destination, vibes]
     );
     return location;
   } catch (error) {
@@ -79,16 +91,7 @@ const reviseDestRating = async ({
   }
 };
 
-const getAllLocations = async () => {
-  try {
-    const { rows } = await client.query(`
-    SELECT * FROM locations;
-    `);
-    return rows;
-  } catch (error) {
-    throw error;
-  }
-};
+
 
 const getLocationById = async (location_id) => {
   try {
