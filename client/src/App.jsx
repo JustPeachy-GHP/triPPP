@@ -16,8 +16,8 @@ import ErrorBoundary from './Features/Display/ErrorBoundary';
 import { GoogleMapsContextProvider } from './context/googleMapsContext';
 import "./App.css";
 // import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
-import Form from "./Features/Trip/Form";
-import LandingPage from "./Features/Trip/LandingPage";
+// import Form from "./Features/Trip/Form";
+// import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 
@@ -39,8 +39,8 @@ function App() {
               <Route path="/register" element={<Registration/>}/>
               <Route path="/locations" element={<LocationsPage/>}/>
               <Route path="/userlanding" element={<UserLanding/>}/>
-              <Route path="/trips" element={<Form />} />
-              <Route path="/tripform" element={<TripForm />} />
+              <Route path="/trips" element={<TripForm />} />
+              {/* <Route path="/tripform" element={<TripForm />} /> */}
 
               {/* <Route path="/" element={<LocationsMap/>}/>
               <Route path="/" element={<TInfoWindow/>}/> */}

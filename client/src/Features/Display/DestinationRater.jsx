@@ -4,7 +4,7 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material/";
 import {
   getDestRatings,
   reviseDestRating,

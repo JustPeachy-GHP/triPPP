@@ -1,5 +1,16 @@
 const client = require("../client");
 
+const getAllLocations = async () => {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM locations;
+    `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const createLocation = async ({
   location_id,
   coord,
@@ -80,16 +91,7 @@ const reviseDestRating = async ({
   }
 };
 
-const getAllLocations = async () => {
-  try {
-    const { rows } = await client.query(`
-    SELECT * FROM locations;
-    `);
-    return rows;
-  } catch (error) {
-    throw error;
-  }
-};
+
 
 const getLocationById = async (location_id) => {
   try {
