@@ -4,12 +4,12 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Box from "@mui/material/Box";
 import {
   checkRatings,
   addNewItinRating,
   reviseIRating,
 } from "../../helpers/itinerary";
+import { Box } from "@mui/material";
 
 // dummy data being used until we are loading component from the map
 const trip_id = 4;
@@ -177,7 +177,7 @@ export default function Rater() {
         itineraryObject.itinerary_id = itinerary_id;
         console.log("added", itineraryObject.itinerary_id, itineraryObject);
         const response = await reviseIRating(itineraryObject);
-        console.log(response)
+        console.log(response);
       } catch (error) {
         console.log(error);
       }

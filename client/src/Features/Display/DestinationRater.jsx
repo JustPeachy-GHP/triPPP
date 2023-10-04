@@ -4,20 +4,17 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Box from "@mui/material/Box";
 import {
   getDestRatings,
   reviseDestRating,
   addNewDestRating,
 } from "../../helpers/location";
-
-
+import { Box } from "@mui/material";
 // dummy data being used until we are loading component from the map
-const trip_id = 3
-const group_id = 4
-const user_id = 4
-const location_id = 1
-
+const trip_id = 3;
+const group_id = 4;
+const user_id = 4;
+const location_id = 1;
 
 export default function DestRater() {
   const [alreadyRated, setAlreadyRated] = useState(false);
@@ -28,7 +25,6 @@ export default function DestRater() {
   const [limitLow, setLimitLow] = useState(0);
   const [limitHigh, setLimitHigh] = useState(0);
   const [ratings, setRatings] = useState([]);
-
 
   let retrieved = [];
 
@@ -138,7 +134,7 @@ export default function DestRater() {
         destinationObject.itinerary_id = itinerary_id;
         console.log("added", destinationObject.itinerary_id, destinationObject);
         const response = await reviseDestRating(destinationObject);
-        console.log(response)
+        console.log(response);
       } catch (error) {
         console.log(error);
       }

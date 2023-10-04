@@ -15,13 +15,13 @@ export default function Form() {
 
 const user_id = 1;
 
-function FormAccess() {
-  if (user_id === null) {
-    useNavigate(<Login />);
-  } else {
-    useNavigate(<LandingPage />);
-  }
-}
+// function FormAccess() {
+//   if (user_id === null) {
+//     useNavigate(<Login />);
+//   } else {
+//     useNavigate(<LandingPage />);
+//   }
+// }
 
 // tripform data + vibecheck data => form.js => helpers => database
 
