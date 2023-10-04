@@ -72,16 +72,6 @@ const createTables = async () => {
         lastname varchar(255)
       );
 
-      CREATE TYPE vibe AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
-
-      CREATE TABLE locations (
-        location_id SERIAL PRIMARY KEY,
-        coord POINT,
-        place_id varchar(255),
-        destination varchar(255),
-        vibes vibe[]
-      );
-
   
       CREATE TABLE itineraryitems (
         itinerary_id SERIAL PRIMARY KEY,
@@ -90,6 +80,9 @@ const createTables = async () => {
         rating INTEGER 
     );
 
+
+
+        CREATE TYPE vibe AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
         CREATE TABLE trips (
             trip_id SERIAL PRIMARY KEY,
             itinerary_id INTEGER REFERENCES itineraryitems(itinerary_id),
@@ -142,6 +135,21 @@ const createTables = async () => {
 
 // create initial items
 
+// create location table
+const createLocationTable = async () => {
+  try {
+    console.log("LOCATION tables are being created!");
+    await client.query(`
+    CREATE TABLE locations (
+      location_id SERIAL PRIMARY KEY,
+      coord POINT,
+      place_id varchar(255),
+      destination varchar(255),
+      vibes vibe[]
+  );
+  `);
+  } catch (error) {}
+};
 
 // alter trip table to have group_id
 const alterTripTable = async () => {
@@ -267,7 +275,7 @@ const rebuildDb = async () => {
     await dropLocationTables();
     await dropTables();
 
-    // await createLocationTable();
+    await createLocationTable();
     await createTables();
 
     // Generate the data
@@ -284,6 +292,7 @@ const rebuildDb = async () => {
     await alterTripTable();
     await alterItineraryitemTable();
 
+    // await dropTables();
   } catch (error) {
     console.error(error);
   } finally {
