@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useGoogleMaps } from "../../context/googleMapsContext"
+import { useGoogleMaps } from "../../context/googleMapsContext";
 import { fetchAllLocations } from "../../helpers/locations";
 import {
   GoogleMap,
-  MarkerF,
-  InfoWindowF
-} from "@react-google-maps/api";
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api"; // Corrected component names
 
 const LocationsMap = () => {
   const [placesService, setPlacesService] = useState(null);
@@ -110,51 +110,53 @@ const LocationsMap = () => {
               zoom={12}
               onLoad={onLoad}
             >
-              {locations.map(({ coord, place_id, vibes }, index) => (
-                <MarkerF
-                  key={index}
-                  position={parseCoordinates(coord)}
-                  setIcon={{
-                    scaledSize: new window.google.maps.Size(30, 30),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(15, 15),
-                  }}
-                  onClick={() => {
-                    setActiveMarker(index);
-                  }}
-                >
-                  {placesService && activeMarker === index ? (
-                    <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-                      <div className="locationInformation">
-                        <button onClick={() => handleZoomToLocation(parseCoordinates(coord).lat, parseCoordinates(coord).lng)}>
-                          Zoom to Location
-                        </button>
-                        {
-                          (
-                            <div>
-                              <h3>{placesDetails[place_id].name}</h3>
-                              {vibes && vibes.length > 0 && (
-                                <h3>Vibes: {vibes.replace(/[{}]/g, '').split(',').join(", ")}</h3>
+              {Array.isArray(locations) && locations.length > 0 ? (
+                locations.map(({ coord, place_id, vibes }, index) => (
+                  <Marker
+                    key={index}
+                    position={parseCoordinates(coord)}
+                    icon={{
+                      scaledSize: new window.google.maps.Size(30, 30),
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(15, 15),
+                    }}
+                    onClick={() => {
+                      setActiveMarker(index);
+                    }}
+                  >
+                    {placesService && activeMarker === index ? (
+                      <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                        <div className="locationInformation">
+                          <button onClick={() => handleZoomToLocation(parseCoordinates(coord).lat, parseCoordinates(coord).lng)}>
+                            Zoom to Location
+                          </button>
+                          {
+                            (
+                              <div>
+                                <h3>{placesDetails[place_id].name}</h3>
+                                {vibes && vibes.length > 0 && (
+                                  <h3>Vibes: {vibes.replace(/[{}]/g, '').split(',').join(", ")}</h3>
                                 )}
-                              {placesDetails[place_id].photos &&
-                                placesDetails[place_id].photos.length > 0 && (
-                                  <img
-                                    src={placesDetails[place_id].photos[0].getUrl()}
-                                    alt={placesDetails[place_id].name}
-                                  />
-                                )}
-                            </div>
-                          )
-                        }
-                      </div>
-                    </InfoWindowF>
-                  ) : null}
-                </MarkerF>
-              ))}
+                                {placesDetails[place_id].photos &&
+                                  placesDetails[place_id].photos.length > 0 && (
+                                    <img
+                                      src={placesDetails[place_id].photos[0].getUrl()}
+                                      alt={placesDetails[place_id].name}
+                                    />
+                                  )}
+                              </div>
+                            )
+                          }
+                        </div>
+                      </InfoWindow>
+                    ) : null}
+                  </Marker>
+                ))
+              ) : (
+                <h1>No locations to display.</h1>
+              )}
             </GoogleMap>
-          )
-          :
-          (
+          ) : (
             <h1>Loading...</h1>
           )
         }

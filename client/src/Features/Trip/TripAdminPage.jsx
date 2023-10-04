@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { deleteGroupMember } from "../../helpers/tripAdminPage";
-import { deleteTrip } from "../../helpers/tripAdminPage";
-import { updateTrip } from "../../helpers/tripAdminPage";
-import { addGroupMember } from "../../helpers/tripAdminPage";
-import { fetchSingleTrip } from "../../helpers/tripAdminPage";
+// import React, { useState, useEffect } from "react";
+// import { deleteGroupMember } from "../../helpers/tripAdminPage";
+// import { deleteTrip } from "../../helpers/tripAdminPage";
+// import { updateTrip } from "../../helpers/tripAdminPage";
+// import { addGroupMember } from "../../helpers/tripAdminPage";
+// import { fetchSingleTrip } from "../../helpers/tripAdminPage";
 
 export default function TripAdminPage({ group_id, trip_id }) {
   const [tripData, setTripData] = useState(null);
@@ -75,3 +75,4 @@ export default function TripAdminPage({ group_id, trip_id }) {
     </div>
   );
 }
+

@@ -17,6 +17,7 @@ import "./App.css";
 // import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
 // import Form from "./Features/Trip/Form";
 import LandingPage from "./Features/Trip/LandingPage";
+
 import TripForm from "./Features/Trip/TripForm";
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdminPage";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/TripAdminPage" element={<TripAdminPage />} />
             {/* <Route path="/" element={<LocationsMap/>}/>
+
               <Route path="/" element={<TInfoWindow/>}/> */}
 
             {/* <Route path="/register" element={<Registration/>}/> */}

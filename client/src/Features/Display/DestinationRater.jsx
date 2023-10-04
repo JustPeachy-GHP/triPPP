@@ -4,12 +4,12 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Box } from "@mui/material/";
 import {
   getDestRatings,
   reviseDestRating,
   addNewDestRating,
 } from "../../helpers/location";
-import { Box } from "@mui/material";
 // dummy data being used until we are loading component from the map
 const trip_id = 3;
 const group_id = 4;

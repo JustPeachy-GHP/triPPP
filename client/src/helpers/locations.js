@@ -5,9 +5,9 @@ export async function fetchAllLocations() {
     try {
       const response = await fetch(`${BASE_URL}`);
       if (!response.ok) {
-        throw new Error("Network response was not ok. Status: ${response.status}");
+        throw new Error(`Network response was not ok. Status: ${response.status}`);
       }
-        
+  
       const data = await response.json();
       return data.locations; // Assuming the response has a 'locations' array
     } catch (error) {
@@ -15,6 +15,7 @@ export async function fetchAllLocations() {
       return []; // Return an empty array or handle the error appropriately
     }
   }
+  
 
 // GET all coord
 export async function fetchCoord(coord) {

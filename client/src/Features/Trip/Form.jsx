@@ -1,19 +1,19 @@
-import React, { useState, useNavigate } from "react";
-import LandingPage from "./LandingPage";
-import TripAdminPage from "./TripAdminPage";
-import VibeCheck from "./VibeCheck";
+// import React, { useState, useNavigate } from "react";
+// import LandingPage from "./LandingPage";
+// import TripAdminPage from "./TripAdminPage";
+// import VibeCheck from "./VibeCheck";
 
-import { createTrip } from "../../helpers/trips";
-import TripForm from "./TripForm";
+// import { createTrip } from "../../helpers/trips";
+// import TripForm from "./TripForm";
 
-export default function Form() {
-  const [tripname, setTripName] = useState("");
-  const [filledForm, setFilledForm] = useState(true);
+// export default function Form() {
+//   const [tripname, setTripName] = useState("");
+//   const [filledForm, setFilledForm] = useState(true);
 
-  return <div>{filledForm ? <VibeCheck /> : <TripForm />}</div>;
-}
+//   return <div>{filledForm ? <VibeCheck /> : <TripForm />}</div>;
+// }
 
-const user_id = 1;
+// const user_id = 1;
 
 // function FormAccess() {
 //   if (user_id === null) {
@@ -23,13 +23,13 @@ const user_id = 1;
 //   }
 // }
 
-// tripform data + vibecheck data => form.js => helpers => database
+// // tripform data + vibecheck data => form.js => helpers => database
 
-// if the user isn't logged in, direct them to the log in page
+// // if the user isn't logged in, direct them to the log in page
 
-// if the user is logged in, direct them to our trip form
+// // if the user is logged in, direct them to our trip form
 
-// with the user_id associted with the user, connect that to the trip you make
+// // with the user_id associted with the user, connect that to the trip you make
 
 // if (user_id) {
 //   // navigate to tripform
