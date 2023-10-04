@@ -50,34 +50,28 @@ export default function TripAdminPage({ group_id, trip_id }) {
     }
   };
 
-  // function DeleteButton() {
-  //   const handleDelete = () => {
-  //     alert("Group Member Deleted");
-  //   };
-  //   function DeleteTrip() {
-  //     const handleDelete = () => {
-  //       alert("Trip Deleted");
-  //     };
-  //   }
-  // }
   return (
-    <h1>something</h1>
-    // <div>
-    //   <h1> Your Trip</h1>
-    //   <h3> {trip.tripname} </h3>
-    //   <p> {groupmembs.groupmembs} </p>
-
-    //   <button onClick={() => handleDelete(post._id)}>Delete Post</button>
-
-    //   <form>
-    //     <label for="addTraveler">Add New Traveler:</label>
-    //     <input type="email" id="email" placeholder="Email" /> <br />
-    //     <button type="submit" value="submit" /> <br />
-    //     {/* display emails of trip members  */}
-    //     <br />
-    //     <DeleteButton onClick={handleDelete} />
-    //     <DeleteTrip onClick={handleTripDelete} />
-    //   </form>
-    // </div>
+    <div>
+      <h1>Your Trips</h1>
+      <h3>
+        <getSingleTrip />
+      </h3>
+      <form>
+        {/* Add Member */}
+        <label for="addTraveler">Add New Traveler:</label>
+        <input type="email" id="email" placeholder="Email" /> <br />
+        {/* DISPLAY GROUP MEMBS */}
+        {/* need to be able to get group membs */}
+        {/* DELETE GROUP MEMB*/}
+        {/* needs to be connected somehow to deletegroupmemb function */}
+        <button onClick={() => handleDelete(groupmembs.user_id)}>
+          {" "}
+          Delete Member
+        </button>
+        {/* DELETE TRIPS */}
+        <button onClick={() => handleDelete(trip.trip_id)}>Delete Trip</button>
+        {/* <button type="submit" value="submit" onSubmit={()=> handle}/> Submit Updated Trip<br /> */}
+      </form>
+    </div>
   );
 }
