@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { createTrip } from "../../helpers/trips";
+import "./tripform.css";
+import Login from "../Auth/Login";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
@@ -7,8 +9,11 @@ export default function TripForm() {
   const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
 
+  // hardcoding dummy data for a user_id
+
   const submitHandler = (e) => {
     e.preventDefault();
+    alert("You've submitted your trip!");
     let newTripObject = {
       tripname: tripname,
       numdays: numdays,
@@ -17,13 +22,7 @@ export default function TripForm() {
     };
     console.log("submit data", newTripObject);
     async function createNewTrip() {
-      const result = await createTrip(
-        // tripname,
-        // numdays,
-        // numtravelers,
-        // vibeform
-        newTripObject
-      );
+      const result = await createTrip(newTripObject);
       console.log(result);
       settripName("");
       setNumDays("");
@@ -37,7 +36,6 @@ export default function TripForm() {
   return (
     <div>
       <form onSubmit={submitHandler}>
-
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input
@@ -62,35 +60,33 @@ export default function TripForm() {
           value={numdays}
         />{" "}
         <br />
-
+        {/* ====================VIBE QUESTIONS============== */}
         <h3>What's the vibe you're going for?</h3>
         {/* outdoors, chill, party, local, shop*/}
         <fieldset>
-          {/* CHILL */}
-          {/* <img
-            id="chill-img"
-            src="https://tinyurl.com/446u8r4f"
-            alt="woman relaxing on the beach"
-          ></img> */}
-          <div>
-            <input
-              type="radio"
-              id="chill"
-              name="vibe"
-              value={vibeform}
-              onChange={(e) => setVibeForm(e.target.id)}
-            />
-            <label for="chill">
-              Chill
-              {/* <img
-                id="chill-img"
-                src="https://tinyurl.com/446u8r4f"
-                alt="woman relaxing on the beach"
-              ></img> */}
-            </label>
+          {/* ==============CHILL ============*/}
+          <div className="vibe-option">
+            <div>
+              <input
+                type="radio"
+                id="chill"
+                name="vibe"
+                value={vibeform}
+                onChange={(e) => setVibeForm(e.target.id)}
+              />
+              <label for="chill">
+                Chill
+                <img
+                  id="vibe-img"
+                  src="https://tinyurl.com/446u8r4f"
+                  alt="woman relaxing on the beach"
+                ></img>
+              </label>
+            </div>
           </div>
-          {/* OUTDOORS */}
-          <div>
+
+          {/* ============OUTDOORS============= */}
+          <div className="vibe-option">
             <input
               type="radio"
               id="outdoors"
@@ -100,15 +96,16 @@ export default function TripForm() {
             />
             <label for="outdoors">
               Outdoors
-              {/* <img
-                id="outdoors-img"
+              <img
+                id="vibe-img"
                 src="https://tinyurl.com/3f5zeycb"
                 alt="couple in mountains"
-              ></img> */}
+              ></img>
             </label>
           </div>
-          {/* PARTY */}
-          <div>
+
+          {/* ===========PARTY============= */}
+          <div className="vibe-option">
             <input
               type="radio"
               id="party"
@@ -118,15 +115,16 @@ export default function TripForm() {
             />
             <label for="party">
               Party
-              {/* <img
-                id="party-img"
+              <img
+                id="vibe-img"
                 src="https://tinyurl.com/4yw8yvbr"
                 alt="people partying in a club"
-              ></img> */}
+              ></img>
             </label>
           </div>
-          {/* LOCAL */}
-          <div>
+
+          {/* ==========LOCAL============ */}
+          <div className="vibe-option">
             <input
               type="radio"
               id="local"
@@ -136,15 +134,15 @@ export default function TripForm() {
             />
             <label for="local">
               Local
-              {/* <img
-                id="local-img"
+              <img
+                id="vibe-img"
                 src="https://tinyurl.com/5t4sndky"
                 alt="man sitting in front of parisian cafe"
-              ></img> */}
+              ></img>
             </label>
           </div>
-          {/* SHOP */}
-          <div>
+          {/* ==========SHOP============ */}
+          <div className="vibe-option">
             <input
               type="radio"
               id="shop"
@@ -154,23 +152,20 @@ export default function TripForm() {
             />
             <label for="shop">
               Shop{" "}
-              {/* <img
-                id="shop-img"
+              <img
+                id="vibe-img"
                 src=" https://tinyurl.com/5n8mwked"
                 alt="woman shopping in a store"
-              ></img> */}
+              ></img>
             </label>
           </div>
           <br />
           {/* hook up event listener to  */}
         </fieldset>
         <button type="Submit">Submit</button>
-
       </form>
     </div>
   );
 }
 
 // how are we going to pass data up to form.jsx?
-
-

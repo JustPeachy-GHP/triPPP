@@ -1,8 +1,7 @@
 const BASE_URL = "http://localhost:8080/api/trips";
 
-
+// ==================Create trip======> tripfor.jsx
 export async function createTrip(tripobj) {
-
   try {
     const response = await fetch(`${BASE_URL}`, {
       method: "POST",
@@ -11,7 +10,6 @@ export async function createTrip(tripobj) {
       },
 
       body: JSON.stringify(tripobj),
-
     });
     const result = await response.json();
     console.log(result);
@@ -23,18 +21,6 @@ export async function createTrip(tripobj) {
   }
 }
 
-// =====TRIP ADMIN FORM
-// delete trip
-
-// delete groupmemb
-// update trip
-// get trip by id and members for that trip
-
-
-// TRIP FORM
-// createtrip
-
-// =====TRIP ADMIN FORM
 // delete trip
 // delete groupmemb
 // update trip
