@@ -18,9 +18,9 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET - api/location/:locationId - get single location
-router.get("/:locationId", async (req, res, next) => {
+router.get("/:location_id", async (req, res, next) => {
   try {
-    const location = await getLocationById(req.params.locationId);
+    const location = await getLocationById(req.params.location_id);
     res.send(location);
   } catch (error) {
     next(error);

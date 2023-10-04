@@ -23,6 +23,18 @@ export async function fetchAllJournalsByTrip(user_id, trip_id) {
   }
 }
 
+export async function fetchAllJournalsByLocation(user_id, location_id) {
+  try {
+    const response = await fetch(
+      `${journalUrl}/locations/${user_id}/${location_id}`
+    );
+    const returnVal = await response.json();
+    return returnVal;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // fetch single journal entry
 export async function fetchSingleJournal(journal_id) {
   try {

@@ -8,6 +8,7 @@ const {
   getJournalById,
   updateJournal,
   deleteJournal,
+  getAllJournalsByLocation,
 } = require("../db/helpers/journals");
 
 // GET - api/journals - get all journal
@@ -73,4 +74,18 @@ router.patch("/:journal_id/edit", async (req, res, next) => {
     throw error;
   }
 });
+
+// GET - api/journals/:location_id
+router.get(
+  "/journals/locations/:user_id/:location_id",
+  async (req, res, next) => {
+    try {
+      const journal = await getAllJournalsByLocation();
+      res.send(journal);
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 module.exports = router;

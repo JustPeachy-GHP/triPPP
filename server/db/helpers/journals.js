@@ -66,6 +66,23 @@ const getAllJournalsByTrip = async (user_id, trip_id) => {
   }
 };
 
+const getAllJournalsByLocation = async (user_id, location_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT * 
+      FROM journals
+      WHERE user_id = $1
+      AND location_id = $2
+    `,
+      [user_id, location_id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const deleteJournal = async (journal_id) => {
   try {
     console.log("deleting a song");
@@ -126,5 +143,6 @@ module.exports = {
   getAllJournalsByTrip,
   getJournalById,
   updateJournal,
-  deleteJournal
+  deleteJournal,
+  getAllJournalsByLocation,
 };
