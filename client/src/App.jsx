@@ -43,6 +43,8 @@ export default App
 //need to import the compenets for all these navagation - need the component files name for the nav to work
 //All those up there is like a placeholder
 
+
+//moved this here bc using drawertwo
   // <Muidrawer>
   //   <Navbar/>
   // </Muidrawer>
