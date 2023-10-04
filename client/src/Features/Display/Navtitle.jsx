@@ -41,12 +41,12 @@ const Header = () => {
             <>
 
             {/* when you click its blue.. also when you make the screen bigger the  logo dissapear and the 3 line drawer dissaperar as well*/}
-              <Button sx={{ marginLeft: "auto", background:"#D96E48"  }} variant="contained">
+              {/* <Button sx={{ marginLeft: "auto", background:"#D96E48"  }} variant="contained">
               <Link to="/login"> Login </Link>
               </Button>
               <Button sx={{ marginLeft: "10px", background:"#D96E48", backgroundColor: "#D96E48" }} variant="contained">
               <Link to="/register"> Register </Link>
-              </Button>
+              </Button> */}
             </>
           )}
         </Toolbar>
