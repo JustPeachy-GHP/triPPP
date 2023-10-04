@@ -9,7 +9,7 @@ console.log("hi")
     id="navbar">
       <Link to="/">Home </Link>  <br></br>
       <Link to="/destination"> Map </Link>  <br></br>
-      <Link to="/location"> Location </Link> <br></br>
+      <Link to="/locations"> Location </Link> <br></br>
       <Link to="/journal"> Journal </Link> <br></br>
       <Link to="/itinerary "> Itinerary  </Link> <br></br>
       <Link to="/trip"> Trip </Link> <br></br>
