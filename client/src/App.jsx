@@ -40,7 +40,7 @@ function App() {
             <Route path="/userlanding" element={<UserLanding />} />
             <Route path="/trips" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
-
+            <Route path="/TripAdminPage" element={<TripAdminPage />} />
             {/* <Route path="/" element={<LocationsMap/>}/>
               <Route path="/" element={<TInfoWindow/>}/> */}
 
