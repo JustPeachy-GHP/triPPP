@@ -19,6 +19,7 @@ const MuiDrawertwo = () => {
         anchor="left"
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
+        className="drawervtwo"
       >
         <List>
               <ListItemIcon sx={{ fontSize: "20px", padding: "10px" }}>
@@ -29,8 +30,9 @@ const MuiDrawertwo = () => {
       <IconButton
         sx={{ color: "white", marginLeft: "auto" }}
         onClick={() => setOpenDrawer(!openDrawer)}
+        className="muidrawertwoiconbutton"
       >
-        <MenuIcon />
+        <MenuIcon className="muiiconimage"/>
  
       </IconButton>
     </React.Fragment>

@@ -31,7 +31,7 @@ const Header = () => {
 
           {isMatch ? (
             <>
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}> 
+              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }} className="logoname"> 
                 Title of brand here
               </Typography>
              
