@@ -84,10 +84,30 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/location/:locationId - get single location
-router.get("/:locationId", async (req, res, next) => {
+// // GET - api/location/:locationId - get single location
+router.get("/:location_id", async (req, res, next) => {
   try {
-    const location = await getLocationById(req.params.locationId);
+    const location = await getLocationById(req.params.location_id);
+    res.send(location);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// // GET - api/location/:coord - get single location
+router.get("/:coord", async (req, res, next) => {
+  try {
+    const location = await getLocationByCoord(req.params.coord);
+    res.send(location);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// // GET - api/location/:place_id - get single location
+router.get("/:place_id", async (req, res, next) => {
+  try {
+    const location = await getLocationByPlaceId(req.params.place_id);
     res.send(location);
   } catch (error) {
     next(error);

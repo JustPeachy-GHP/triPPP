@@ -39,10 +39,13 @@ router.post("/", async (req, res, next) => {
 });
 
 // check if this is correct
-// DELETE -api/groupmembs/:groupmembId - delete single group memb
-router.delete("/:id", async (req, res, next) => {
+// DELETE /api/groupmembs/:group_id/:user_id - delete single group memb
+router.delete("/:group_id/:user_id", async (req, res, next) => {
   try {
-    const groupMemb = await deleteMember(req.params.id);
+    const groupMemb = await deleteMember(
+      req.params.group_id,
+      req.params.user_id
+    );
     res.send(groupMemb);
   } catch (err) {
     next(err);
