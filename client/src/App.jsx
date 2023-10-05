@@ -28,8 +28,8 @@ function App() {
           <Muidrawer>
               <Navbar/>
           </Muidrawer>
-          {/* <MemoizedLocationsMap/>
-          <TInfoWindow/> */}
+          <MemoizedLocationsMap/>
+          <TInfoWindow/>
             <Routes>
               <Route path="/test" element={<Test/>}/>
               <Route path="/displaytest" element={<DisplayTest/>}/>
