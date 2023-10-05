@@ -3,8 +3,8 @@ import { useGoogleMaps } from "../../context/googleMapsContext";
 import { fetchAllLocations } from "../../helpers/locations";
 import {
   GoogleMap,
-  Marker,
-  InfoWindow,
+  MarkerF,
+  InfoWindowF,
 } from "@react-google-maps/api"; // Corrected component names
 
 const LocationsMap = () => {
@@ -13,24 +13,29 @@ const LocationsMap = () => {
   const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
   const [locations, setLocations] = useState([]);
 
-  async function getAllLocations() {
-    try {
-      console.log("Fetching location data");
-      const locationsData = await fetchAllLocations();
-      console.log(locationsData)
-      setLocations(locationsData);
-    } catch (error) {
-      console.error("Error fetching locations:", error);
-    }
-  }
-
   useEffect(() => {
-    getAllLocations();
+    async function getAllLocations() {
+      try {
+        const locationsData = await fetchAllLocations();
+        setLocations(locationsData);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    }
+
+    try {
+      getAllLocations();
+    } catch(e) {
+      console.log(e);
+    }
   }, []);
 
   function parseCoordinates(coord) {
+    console.log(coord);
     if (coord && typeof coord === 'object' && 'x' in coord && 'y' in coord) {
-      return { lat: coord.x, lng: coord.y };
+      const coordinateObj = { lat: coord.x, lng: coord.y };
+      console.log(coordinateObj);
+      return coordinateObj;
     } else {
       console.error("Invalid coordinate format:", coord);
       return { lat: 0, lng: 0 }; // Provide default coordinates or handle the error as needed
@@ -103,7 +108,7 @@ const LocationsMap = () => {
   return (
     <>
       <div className="mapContainer">
-        {isGoogleMapsLoaded ? 
+        {isGoogleMapsLoaded && locations.length > 0 ? 
           (
             <GoogleMap
               mapContainerClassName="map-container"
@@ -112,7 +117,7 @@ const LocationsMap = () => {
             >
               {Array.isArray(locations) && locations.length > 0 ? (
                 locations.map(({ coord, place_id, vibes }, index) => (
-                  <Marker
+                  <MarkerF
                     key={index}
                     position={parseCoordinates(coord)}
                     icon={{
@@ -125,7 +130,7 @@ const LocationsMap = () => {
                     }}
                   >
                     {placesService && activeMarker === index ? (
-                      <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                      <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
                         <div className="locationInformation">
                           <button onClick={() => handleZoomToLocation(parseCoordinates(coord).lat, parseCoordinates(coord).lng)}>
                             Zoom to Location
@@ -148,9 +153,9 @@ const LocationsMap = () => {
                             )
                           }
                         </div>
-                      </InfoWindow>
+                      </InfoWindowF>
                     ) : null}
-                  </Marker>
+                  </MarkerF>
                 ))
               ) : (
                 <h1>No locations to display.</h1>

@@ -7,9 +7,8 @@ export async function fetchAllLocations() {
       if (!response.ok) {
         throw new Error(`Network response was not ok. Status: ${response.status}`);
       }
-  
       const data = await response.json();
-      return data.locations; // Assuming the response has a 'locations' array
+      return data;
     } catch (error) {
       console.error("Error fetching locations:", error);
       return []; // Return an empty array or handle the error appropriately
