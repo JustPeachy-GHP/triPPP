@@ -18,6 +18,7 @@ import "./App.css";
 import MemoizedLocationsMap from './Features/Display/Map';
 import Form from "./Features/Trip/Form";
 import TripForm from "./Features/Trip/TripForm";
+import Itinerary from "./Features/Itinerary/ItineraryView"
 
 function App() {
   return (
@@ -27,8 +28,8 @@ function App() {
           <Muidrawer>
               <Navbar/>
           </Muidrawer>
-          <MemoizedLocationsMap/>
-          <TInfoWindow/>
+          {/* <MemoizedLocationsMap/>
+          <TInfoWindow/> */}
             <Routes>
               <Route path="/test" element={<Test/>}/>
               <Route path="/displaytest" element={<DisplayTest/>}/>
@@ -37,13 +38,14 @@ function App() {
               <Route path="/userlanding" element={<UserLanding/>}/>
               <Route path="/trips" element={<Form />} />
               <Route path="/tripform" element={<TripForm />} />
-
+              <Route path="/itinerary" element={<Itinerary/>}/>
+              {/* <Route path="/modaltest" element={<Modal/>}/> */}
               {/* <Route path="/" element={<LocationsMap/>}/>
               <Route path="/" element={<TInfoWindow/>}/> */}
 
               {/* <Route path="/register" element={<Registration/>}/> */}
               {/* <Route path="/display" element={<Display/>}/>
-              <Route path="/itinerary" element={<Itinerary/>}/>
+              
               <Route path="/trips" element={<Trip/>}/> */}
               {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
             </Routes>
