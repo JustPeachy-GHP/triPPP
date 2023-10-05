@@ -27,6 +27,19 @@ export async function getDestRatings(possibleDestObj) {
     }
   }
 
+  export async function getDestName(location_id) {
+    try {
+      const response = await fetch(
+        `${baseUrl}/destname/${location_id}`
+      );
+      const returnVal = response.json();
+      return returnVal;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   export async function reviseDestRating(destinationObject) {
     try {
       const itinerary_id = destinationObject.itinerary_id

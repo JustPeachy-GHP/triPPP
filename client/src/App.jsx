@@ -18,9 +18,9 @@ import "./App.css";
 // import Form from "./Features/Trip/Form";
 import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
+import Itinerary from "./Features/Itinerary/ItineraryView"
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdminPage";
-
 function App() {
   return (
     <>
@@ -39,11 +39,10 @@ function App() {
             <Route path="/trips" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
-
+            <Route path="/itinerary" element={<Itinerary/>}/>
             {/* <Route path="/register" element={<Registration/>}/> */}
             {/* <Route path="/display" element={<Display/>}/>
-              <Route path="/itinerary" element={<Itinerary/>}/>
-              {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
+            {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>
