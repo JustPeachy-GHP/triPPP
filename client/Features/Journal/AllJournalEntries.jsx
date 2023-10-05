@@ -3,7 +3,7 @@ import {
   fetchAllJournals,
   deleteJournal,
   fetchAllJournalsByTrip,
-  fetchAllJournalsByLocation,
+  // fetchAllJournalsByLocation,
 } from "../../src/helpers/journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
@@ -35,16 +35,16 @@ export default function AllJournals() {
     fetchJournals();
   }, []);
 
-  useEffect(() => {
-    async function fetchJournals2() {
-      const response = await fetchAllJournalsByLocation(
-        params.user_id,
-        params.location_id
-      );
-      setJournal(response);
-    }
-    fetchJournals2();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchJournals2() {
+  //     const response = await fetchAllJournalsByLocation(
+  //       params.user_id,
+  //       params.location_id
+  //     );
+  //     setJournal(response);
+  //   }
+  //   fetchJournals2();
+  // }, []);
 
   // function getCoordinatesForJournal(journalId, journals, trips, locations) {
   //   // Find the journal entry with the given journal_id

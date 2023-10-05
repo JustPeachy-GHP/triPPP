@@ -26,7 +26,9 @@ export default function SingleJournal() {
       <h4 id="journal">Entry: {journal.entry}</h4> <br />
       <img id="image" src={journal.image} alt={journal.title} /> <br />
       <Link to={`/journals/${params.journal_id}/edit`}>
-        <button>Edit</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Edit
+        </button>
       </Link>
     </div>
   );
