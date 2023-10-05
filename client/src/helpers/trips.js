@@ -17,6 +17,16 @@ export async function createTrip(tripname, numdays, numtravelers, vibeform) {
   }
 }
 
+export const fetchSingleTrip = async (trip_id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${trip_id}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Cannot fetch single trip", error);
+  }
+};
+
 // TRIP FORM
 // createtrip
 

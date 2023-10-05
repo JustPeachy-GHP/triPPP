@@ -1,8 +1,3 @@
-// need to make helper, api, db query for:
-// - checkRatings get existing votes where we match on trip_id and location_id
-// - addNewItinRating
-// - changeRating
-
 const baseUrl = "http://localhost:8080/api/itineraryitems";
 
 export async function checkRatings(checkItinObject) {
@@ -11,6 +6,33 @@ export async function checkRatings(checkItinObject) {
     const location_id = checkItinObject.location_id
     const response = await fetch(
       `${baseUrl}/checkratings/${trip_id}/${location_id}`
+    );
+    const returnVal = response.json();
+    return returnVal;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+// export async function getJoinedItinerary(trip_id) {
+//   try {
+//     const response = await fetch(
+//       `${baseUrl}/itinjoin/${trip_id}`
+//     );
+//     const returnVal = response.json()
+//     console.log("in getJoinedItinerary client helper", returnVal)
+//     return returnVal;
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
+
+export async function getItineraryByTrip(trip_id) {
+  try {
+    const response = await fetch(
+      `${baseUrl}/bytrip/${trip_id}/`
     );
     const returnVal = response.json();
     return returnVal;
