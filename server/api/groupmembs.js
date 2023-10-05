@@ -19,9 +19,9 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET - api/groupmembs/:groupmembId - get single groupmemb
-router.get("/:groupmembId", async (req, res, next) => {
+router.get("/:groupmemb_id", async (req, res, next) => {
   try {
-    const groupmemb = await getGroupmembById(req.params.groupmembId);
+    const groupmemb = await getGroupmembById(req.params.groupmemb_id);
     res.send(groupmemb);
   } catch (error) {
     next(error);
