@@ -135,5 +135,10 @@ dist
 .pnp.*
 
 
+#env
+.env.development
+
+
 # secrets file
 server/secrets.js
+

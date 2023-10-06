@@ -1,3 +1,4 @@
+
 // import { groupmembs, groups, journals, trips, users } from '../../server/db/seedData';
 
 import "./App.css";
@@ -25,6 +26,11 @@ import Itinerary from "./Features/Itinerary/ItineraryView"
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdminPage";
 import ItineraryPage from "./Features/Itinerary/ItineraryPage";
+import AllJournalEntries from "../Features/Journal/AllJournalEntries";
+import SingleJournalEntry from "../Features/Journal/SingleJournalEntry";
+import CreateJournalForm from "../Features/Journal/CreateJournalForm";
+import EditJournalForm from "../Features/Journal/EditJournalForm";
+
 function App() {
   return (
     <>
@@ -48,6 +54,17 @@ function App() {
             <Route path="/home" element={<LocationsPage />} />
             
             <Route path="/itinerary" element={<Itinerary/>}/>
+                  <Route
+            path="/journals/:user_id/:trip_id"
+            element={<AllJournalEntries />}
+          />
+          <Route
+            path="/journals/:journal_id"
+            element={<SingleJournalEntry />}
+          />
+          <Route path="/journalform" element={<CreateJournalForm />} />
+          <Route path="/journals/:journal_id/edit"
+            element={<EditJournalForm />} />
 
             {/* <Route path="/register" element={<Registration/>}/> */}
             {/* <Route path="/display" element={<Display/>}/>
@@ -62,6 +79,7 @@ function App() {
 
 export default App;
 
+
 //need to import the compenets for all these navagation - need the component files name for the nav to work
 //All those up there is like a placeholder
 
@@ -70,3 +88,4 @@ export default App;
   // <Muidrawer>
   //   <Navbar/>
   // </Muidrawer>
+

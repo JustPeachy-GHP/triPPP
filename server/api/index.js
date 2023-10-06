@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// GET /api/guitarApp
+// GET /api/triPPP
 router.get("/", async (req, res, next) => {
   try {
     res.send("OK");

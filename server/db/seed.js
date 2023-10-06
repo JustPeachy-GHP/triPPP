@@ -64,6 +64,8 @@ const createTables = async () => {
   try {
     console.log("tables are being created!");
     await client.query(`
+
+
       CREATE TABLE users (
         user_id SERIAL PRIMARY KEY,
         email varchar(255) UNIQUE NOT NULL,
@@ -72,7 +74,8 @@ const createTables = async () => {
         lastname varchar(255)
       );
 
-      CREATE TYPE vibe AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
+
+      CREATE TYPE vibes AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
       CREATE TABLE locations (
         location_id SERIAL PRIMARY KEY,
         coord POINT,
@@ -81,13 +84,18 @@ const createTables = async () => {
         vibes vibe[]
     );
 
+
+  
       CREATE TABLE itineraryitems (
         itinerary_id SERIAL PRIMARY KEY,
         location_id INTEGER REFERENCES locations(location_id),
         user_id INTEGER REFERENCES users(user_id),
         rating INTEGER 
     );
-        
+
+
+
+
         CREATE TABLE trips (
             trip_id SERIAL PRIMARY KEY,
             itinerary_id INTEGER REFERENCES itineraryitems(itinerary_id),
@@ -113,6 +121,7 @@ const createTables = async () => {
             journal_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
             trip_id INTEGER REFERENCES trips(trip_id),
+            location_id INTEGER REFERENCES locations(location_id),
             videocontent TEXT,
             image TEXT,
             title varchar(255),
@@ -277,7 +286,7 @@ const rebuildDb = async () => {
     // connect to the local database! WOO
     client.connect();
     // run functions
-    await dropLocationTables();
+    // await dropLocationTables();
     await dropTables();
 
     // await createLocationTable();
