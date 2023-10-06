@@ -1,16 +1,6 @@
 /* Include the Open Sans font from Google Fonts */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
-/* Apply the font to your HTML elements */
-body {
-  background: linear-gradient(to right, #ffebe1, #f49867);
-  background-color: #f49867; /* Fallback color */
-  color: #333; /* Text color */
-
-  /* Use Open Sans as the default font */
-  font-family: "Open Sans", sans-serif;
-}
-
 h1,
 h2,
 h3,
@@ -18,7 +8,6 @@ h4,
 h5,
 h6 {
   font-family: "Open Sans", sans-serif;
-  /* font-weight: bold; */
 }
 
 p {
@@ -43,29 +32,13 @@ p {
   /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
 }
 
-body {
-  background: linear-gradient(to right, #ffebe1, #f49867);
-}
-
-/* #entry-text {
-    height: 15em;
-    width: 15em;
-} */
-
-/* h4 {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to bottom, #f49867, #000);
-  font-family: "Memphis River", sans-serif;
-} */
-
 form {
-  max-width: 500px; /* Adjust the maximum width to your preference */
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff; /* Form background color */
+  background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 input {
@@ -103,26 +76,25 @@ label {
 
 .button {
   background-color: white;
-  border: 2px solid #fff; /* White border */
-  border-radius: 50px; /* 50% border radius for a round shape */
-  padding: 10px 10px; /* Adjust padding to make it bigger */
-  font-size: 1rem; /* Adjust font size to make it bigger */
+  border: 2px solid #fff;
+  border-radius: 50px;
+  padding: 10px 10px;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #abeeba; /* Button background color on hover */
+  background-color: #abeeba;
   color: rgb(0, 0, 0);
 }
 
 nav {
-  background-color: #fff; /* White background color */
-  color: #000; /* Black text color */
+  background-color: #fff;
+  color: #000;
 }
 
-/* Style the list items and links */
 ul {
   list-style-type: none;
   padding: 0;
@@ -136,7 +108,7 @@ li {
 
 a {
   text-decoration: none;
-  color: #000; /* Black text color for links */
+  color: #000;
 }
 
 a:hover {

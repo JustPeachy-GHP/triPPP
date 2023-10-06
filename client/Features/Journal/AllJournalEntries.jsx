@@ -28,27 +28,27 @@ export default function AllJournals() {
   // const user_id = useSelector((state) => state.auth.user_id);
 
   // need to EDIT so it fetches all journals of that USERS
-  // useEffect(() => {
-  //   async function fetchJournals() {
-  //     const response = await fetchAllJournalsByTrip(
-  //       params.user_id,
-  //       params.trip_id
-  //     );
-  //     setJournal(response);
-  //   }
-  //   fetchJournals();
-  // }, []);
-
   useEffect(() => {
     async function fetchJournals() {
-      const response = await fetchAllJournalsByLocation(
+      const response = await fetchAllJournalsByTrip(
         params.user_id,
-        location_id
+        params.trip_id
       );
       setJournal(response);
     }
     fetchJournals();
-  }, [params.user_id, location_id]);
+  }, []);
+
+  // useEffect(() => {
+  //   async function fetchJournals() {
+  //     const response = await fetchAllJournalsByLocation(
+  //       params.user_id,
+  //       location_id
+  //     );
+  //     setJournal(response);
+  //   }
+  //   fetchJournals();
+  // }, [params.user_id, location_id]);
 
   // function getCoordinatesForJournal(journalId, journals, trips, locations) {
   //   // Find the journal entry with the given journal_id
@@ -109,18 +109,13 @@ export default function AllJournals() {
           onChange={(event) => setSearchParam(event.target.value.toLowerCase())}
         />
       </div>
-      {/* 
-      <div>
-        <CreateJournalForm journal={journal} setJournal={setJournal} />
-      </div> */}
+
       {journalsToDisplay.map((journal) => {
         return (
           <div key={journal.id}>
             <h4 id="journal">Time/Date: {journal.timestamp}</h4>
             <h4 id="journal">Title: {journal.title}</h4>
-            {/* <h4 id="journal">Entry: {journal.entry}</h4>
-            <img id="image" src={journal.image} alt={journal.title} /> */}
-            {/* add video */}
+
             <div>
               <button
                 class="button"
