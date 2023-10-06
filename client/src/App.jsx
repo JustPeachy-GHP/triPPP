@@ -20,6 +20,7 @@ import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdminPage";
+import ItineraryPage from "./Features/Itinerary/ItineraryPage";
 
 function App() {
   return (
@@ -34,11 +35,13 @@ function App() {
             <Route path="/displaytest" element={<DisplayTest />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Registration />} />
-            <Route path="/locations" element={<LocationsPage />} />
+            
             <Route path="/userlanding" element={<UserLanding />} />
             <Route path="/trips" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
+            <Route path="/home" element={<LocationsPage />} />
+            <Route path="/itinerary" element={<ItineraryPage />} />
 
             {/* <Route path="/register" element={<Registration/>}/> */}
             {/* <Route path="/display" element={<Display/>}/>

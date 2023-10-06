@@ -3,7 +3,9 @@ const client = require("../client");
 const getAllLocations = async () => {
   try {
     const { rows } = await client.query(`
-    SELECT * FROM locations;
+    SELECT * FROM locations
+    WHERE vibes
+    IS NOT NULL;
     `);
     return rows;
   } catch (error) {
