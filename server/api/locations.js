@@ -8,17 +8,30 @@ const {
   getLocationByVibe,
   createDestRating,
   reviseDestRating, 
-  getDestVotes
+  getDestVotes,
+  getLocationNameById
 } = require("../db/helpers/locations");
 
-// GET - api/locations/checkratings - get all votes that
-// match location_id and trip_id
+// GET api/locations/destname/:location_id - get all votes that
+// match location_id and trip_id 
+router.get("/destname/:location_id", async (req, res, next) => {
+  try {
+    console.log("in destname api")
+    const row = await getLocationNameById(req.params.location_id)
+    res.send(row)
+  } catch (error) {
+    next(error)
+  }
+});
+
+// GET api/locations/checkratings - get all votes that
+// match location_id and trip_id 
 router.get("/destratings/:trip_id/:location_id", async (req, res, next) => {
   try {
-    const items = await getDestVotes(req.params.trip_id, req.params.location_id);
-    res.send(items);
+    const items = await getDestVotes(req.params.trip_id, req.params.location_id)
+    res.send(items)
   } catch (error) {
-    next(error);
+    next(error)
   }
 });
 

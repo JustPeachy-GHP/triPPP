@@ -1,6 +1,5 @@
 const BASE_URL = "http://localhost:8080/api/trips";
 
-// ==================Create trip======> tripfor.jsx
 export async function createTrip(tripobj) {
   try {
     const response = await fetch(`${BASE_URL}`, {
@@ -20,6 +19,16 @@ export async function createTrip(tripobj) {
     throw error;
   }
 }
+
+export const fetchSingleTrip = async (trip_id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${trip_id}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Cannot fetch single trip", error);
+  }
+};
 
 // delete trip
 // delete groupmemb

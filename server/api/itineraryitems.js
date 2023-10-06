@@ -7,9 +7,21 @@ const {
   createItinRating,
   getItineraryitemById,
   getItineraryVotes,
-  reviseIRating
+  reviseIRating,
+  getItineraryByTrip,
+  getItineraryJoinInfo
 } = require("../db/helpers/itineraryitems");
 
+// GET - api/itineraryitems/itinjoin/:trip_id/
+router.get("/itinjoin/:trip_id/", async (req, res, next) => {
+  try {
+    console.log("in api, trip_id", req.params.trip_id)
+    const response = await getItineraryJoinInfo(req.params.trip_id);
+    res.send(response);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // GET - api/itineraryitems/checkratings - get all votes that
 // match location_id and trip_id
@@ -27,14 +39,19 @@ router.put("/reviseirating/:itinerary_id", async (req, res, next) => {
   try {
     const itineraryitem = await reviseIRating(
       req.body
-      // {itinerary_id: req.params.itinerary_id,
-      // trip_id: req.body.trip_id,
-      // location_id: req.body.location_id,
-      // user_id: req.body.user_id,
-      // rating: req.body.rating,}
     );
     // const itineraryitem = await reviseIRating(req.params.itinerary_id, req.body);
     res.send(itineraryitem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET - api/itineraryitems/bytrip/:trip_id - get all itinerary items associated with a trip
+router.get("/bytrip/:trip_id", async (req, res, next) => {
+  try {
+    const response = await getItineraryByTrip(req.params.trip_id);
+    res.send(response);
   } catch (error) {
     next(error);
   }
@@ -59,9 +76,6 @@ router.get("/", async (req, res, next) => {
     throw error;
   }
 });
-
-
-
 
 // POST - api/itineraryitems/newrating - post new itinerary item rating
 router.post("/newrating", async (req, res, next) => {
