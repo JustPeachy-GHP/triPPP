@@ -74,7 +74,6 @@ const createTables = async () => {
         lastname varchar(255)
       );
 
-
       CREATE TYPE vibes AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
       CREATE TABLE locations (
         location_id SERIAL PRIMARY KEY,
@@ -84,8 +83,6 @@ const createTables = async () => {
         vibes vibe[]
     );
 
-
-  
       CREATE TABLE itineraryitems (
         itinerary_id SERIAL PRIMARY KEY,
         location_id INTEGER REFERENCES locations(location_id),
