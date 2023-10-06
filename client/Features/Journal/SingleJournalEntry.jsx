@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { fetchSingleJournal } from "../../src/helpers/journals";
 import { Link } from "react-router-dom";
 import EditJournalForm from "./EditJournalForm";
+import JournalNavbar from "./JournalNavbar";
 
 export default function SingleJournal() {
   const params = useParams();
@@ -22,13 +23,12 @@ export default function SingleJournal() {
 
   return (
     <div key={journal.journal_id}>
+      <JournalNavbar />
       <h4>{journal.title}</h4>
       <h4 id="journal">Entry: {journal.entry}</h4> <br />
       <img id="image" src={journal.image} alt={journal.title} /> <br />
       <Link to={`/journals/${params.journal_id}/edit`}>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Edit
-        </button>
+        <button class="button ">Edit</button>
       </Link>
     </div>
   );

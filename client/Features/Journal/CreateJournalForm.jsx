@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createJournal } from "../../journals";
+import JournalNavbar from "./JournalNavbar";
+
 export default function CreateJournalForm({ journal, setJournal }) {
   const [videocontent, setVideocontent] = useState("");
   const [image, setImage] = useState("");
@@ -23,6 +25,8 @@ export default function CreateJournalForm({ journal, setJournal }) {
       entry
     );
     console.log(API);
+    // only alert if form is completed
+    alert("New journal has been created!");
     if (API.success) {
       console.log("New journal entry: ", API.data.newJournal);
 
@@ -42,6 +46,7 @@ export default function CreateJournalForm({ journal, setJournal }) {
 
   return (
     <>
+      <JournalNavbar />
       <form onSubmit={handleSubmit}>
         <input
           id="videocontent"

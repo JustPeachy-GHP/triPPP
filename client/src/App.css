@@ -3,8 +3,12 @@
 
 /* Apply the font to your HTML elements */
 body {
+  background: linear-gradient(to right, #ffebe1, #f49867);
+  background-color: #f49867; /* Fallback color */
+  color: #333; /* Text color */
+
+  /* Use Open Sans as the default font */
   font-family: "Open Sans", sans-serif;
-  /* Use 'sans-serif' as a fallback font in case the custom font isn't available. */
 }
 
 h1,
@@ -14,12 +18,12 @@ h4,
 h5,
 h6 {
   font-family: "Open Sans", sans-serif;
-  /* Apply the font to headings if needed. */
+  /* font-weight: bold; */
 }
 
 p {
   font-family: "Open Sans", sans-serif;
-  /* Apply the font to paragraphs if needed. */
+  font-size: 1rem;
 }
 
 #root {
@@ -30,8 +34,13 @@ p {
 }
 
 #image {
-  height: 15em;
-  padding: 1 rem;
+  height: 20em;
+  padding: 3rem;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  margin: 10px;
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
 }
 
 body {
@@ -49,3 +58,91 @@ body {
   background: linear-gradient(to bottom, #f49867, #000);
   font-family: "Memphis River", sans-serif;
 } */
+
+form {
+  max-width: 500px; /* Adjust the maximum width to your preference */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* Form background color */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3; /* Button background color on hover */
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Optional: Add label styles for better form accessibility */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.button {
+  background-color: white;
+  border: 2px solid #fff; /* White border */
+  border-radius: 50px; /* 50% border radius for a round shape */
+  padding: 10px 10px; /* Adjust padding to make it bigger */
+  font-size: 1rem; /* Adjust font size to make it bigger */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.button:hover {
+  background-color: #abeeba; /* Button background color on hover */
+  color: rgb(0, 0, 0);
+}
+
+nav {
+  background-color: #fff; /* White background color */
+  color: #000; /* Black text color */
+}
+
+/* Style the list items and links */
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  margin: 0 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #000; /* Black text color for links */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.journal {
+  font-family: "Open Sans", sans-serif;
+}

@@ -3,11 +3,12 @@ import {
   fetchAllJournals,
   deleteJournal,
   fetchAllJournalsByTrip,
-  // fetchAllJournalsByLocation,
+  fetchAllJournalsByLocation,
 } from "../../src/helpers/journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
 import { useParams } from "react-router-dom";
+import JournalNavbar from "./JournalNavbar";
 
 // import { useSelector } from "react-redux";
 
@@ -17,6 +18,9 @@ export default function AllJournals() {
   const navigate = useNavigate();
   const params = useParams();
 
+  const user_id = 1;
+  const trip_id = 1;
+
   // user_id ? then they are authenticated
   // OR no user_id show 1 thing else ...
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -24,27 +28,27 @@ export default function AllJournals() {
   // const user_id = useSelector((state) => state.auth.user_id);
 
   // need to EDIT so it fetches all journals of that USERS
+  // useEffect(() => {
+  //   async function fetchJournals() {
+  //     const response = await fetchAllJournalsByTrip(
+  //       params.user_id,
+  //       params.trip_id
+  //     );
+  //     setJournal(response);
+  //   }
+  //   fetchJournals();
+  // }, []);
+
   useEffect(() => {
     async function fetchJournals() {
-      const response = await fetchAllJournalsByTrip(
+      const response = await fetchAllJournalsByLocation(
         params.user_id,
-        params.trip_id
+        location_id
       );
       setJournal(response);
     }
     fetchJournals();
-  }, []);
-
-  // useEffect(() => {
-  //   async function fetchJournals2() {
-  //     const response = await fetchAllJournalsByLocation(
-  //       params.user_id,
-  //       params.location_id
-  //     );
-  //     setJournal(response);
-  //   }
-  //   fetchJournals2();
-  // }, []);
+  }, [params.user_id, location_id]);
 
   // function getCoordinatesForJournal(journalId, journals, trips, locations) {
   //   // Find the journal entry with the given journal_id
@@ -96,6 +100,7 @@ export default function AllJournals() {
   // this MAPS over all the journals to show each journal with timestamp, title, entry, image and video
   return (
     <div>
+      <JournalNavbar />
       <div>
         <label id="search">Search: </label>
         <input
@@ -104,9 +109,10 @@ export default function AllJournals() {
           onChange={(event) => setSearchParam(event.target.value.toLowerCase())}
         />
       </div>
+      {/* 
       <div>
         <CreateJournalForm journal={journal} setJournal={setJournal} />
-      </div>
+      </div> */}
       {journalsToDisplay.map((journal) => {
         return (
           <div key={journal.id}>
@@ -117,13 +123,17 @@ export default function AllJournals() {
             {/* add video */}
             <div>
               <button
+                class="button"
                 onClick={() => {
                   navigate(`/journals/${journal.journal_id}`);
                 }}
               >
                 See Details
               </button>
-              <button onClick={() => handleDelete(journal.journal_id)}>
+              <button
+                class="button"
+                onClick={() => handleDelete(journal.journal_id)}
+              >
                 Delete
               </button>
             </div>

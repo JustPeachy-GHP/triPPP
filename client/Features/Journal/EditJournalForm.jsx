@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { updateJournal } from "../../src/helpers/journals";
 import { fetchSingleJournal } from "../../src/helpers/journals";
+import JournalNavbar from "./JournalNavbar";
 // import { time } from "console";
 
 export default function EditJournal() {
@@ -61,6 +62,7 @@ export default function EditJournal() {
     };
 
     console.log("submit", editJournalObject);
+    alert("Entry succesfully edited!");
 
     try {
       console.log("before post", editJournalObject);
@@ -78,6 +80,7 @@ export default function EditJournal() {
 
   return (
     <>
+      <JournalNavbar />
       <h2>Edit Journal</h2>
       <div>
         <form onSubmit={handleSubmit}>
@@ -118,7 +121,9 @@ export default function EditJournal() {
             value={entry}
             onChange={(e) => setEntry(e.target.value)}
           />
-          <button type="submit">Submit</button>
+          <button class="button" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </>
