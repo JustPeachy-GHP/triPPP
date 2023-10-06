@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchSingleJournal } from "../../src/helpers/journals";
+import { fetchSingleJournal } from "../../../src/helpers/journals";
 import { Link } from "react-router-dom";
 import EditJournalForm from "./EditJournalForm";
 import JournalNavbar from "./JournalNavbar";

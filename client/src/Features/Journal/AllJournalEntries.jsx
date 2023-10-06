@@ -4,7 +4,7 @@ import {
   deleteJournal,
   fetchAllJournalsByTrip,
   fetchAllJournalsByLocation,
-} from "../../src/helpers/journals";
+} from "../../../src/helpers/journals";
 import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
 import { useParams } from "react-router-dom";

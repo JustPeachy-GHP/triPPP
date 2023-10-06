@@ -26,10 +26,10 @@ import Itinerary from "./Features/Itinerary/ItineraryView"
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdminPage";
 import ItineraryPage from "./Features/Itinerary/ItineraryPage";
-import AllJournalEntries from "../Features/Journal/AllJournalEntries";
-import SingleJournalEntry from "../Features/Journal/SingleJournalEntry";
-import CreateJournalForm from "../Features/Journal/CreateJournalForm";
-import EditJournalForm from "../Features/Journal/EditJournalForm";
+import AllJournalEntries from "./Features/Journal/AllJournalEntries";
+import SingleJournalEntry from "./Features/Journal/SingleJournalEntry";
+import CreateJournalForm from "./Features/Journal/CreateJournalForm";
+import EditJournalForm from "./Features/Journal/EditJournalForm";
 
 function App() {
   return (
