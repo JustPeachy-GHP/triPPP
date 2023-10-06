@@ -1,5 +1,5 @@
 // Require Client from pg
-const { Client } = require('pg')
+const { Client } = require("pg");
 
 //Establishing connect to database (like how we do with http://)
 // const dbName = 'triPPP'

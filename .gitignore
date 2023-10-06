@@ -134,5 +134,11 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+
 #env
 .env.development
+
+
+# secrets file
+server/secrets.js
+
