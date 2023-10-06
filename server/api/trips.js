@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllTrips, createTrip, getTripById } = require("../db/helpers/trips");
+const {
+  getAllTrips,
+  createTrip,
+  getTripById,
+  updateTrip,
+  deleteTrip,
+} = require("../db/helpers/trips");
 
 // GET - api/trips - get all trips
 router.get("/", async (req, res, next) => {
@@ -32,4 +38,25 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
+// // PUT- api/trips/:tripId - update a single trip
+router.put("/:tripId", async (req, res, next) => {
+  try {
+    const trip = await updateTrip(req.params.trip_id, req.body);
+    res.send(trip);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// DELETE - api/trips - delete trip
+router.delete("/:tripId", async (req, res, next) => {
+  try {
+    const trip = await deleteTrip(req.params.id);
+    res.send(trip);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

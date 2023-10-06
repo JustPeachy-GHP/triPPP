@@ -74,7 +74,7 @@ const createTables = async () => {
         lastname varchar(255)
       );
 
-      CREATE TYPE vibe AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
+      CREATE TYPE vibes AS ENUM ('chill', 'shop', 'local', 'party', 'outdoors');
 
       CREATE TABLE locations (
         location_id SERIAL PRIMARY KEY,

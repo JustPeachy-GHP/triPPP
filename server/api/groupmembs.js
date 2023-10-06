@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllGroupmembs, createGroupmemb, getGroupmembById } = require("../db/helpers/groupmembs");
+const {
+  getAllGroupmembs,
+  createGroupmemb,
+  getGroupmembById,
+  deleteMember,
+} = require("../db/helpers/groupmembs");
 
 // GET - api/groupmembs - get all groupmembs
 router.get("/", async (req, res, next) => {
@@ -32,4 +37,19 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
+// check if this is correct
+// DELETE /api/groupmembs/:group_id/:user_id - delete single group memb
+router.delete("/:group_id/:user_id", async (req, res, next) => {
+  try {
+    const groupMemb = await deleteMember(
+      req.params.group_id,
+      req.params.user_id
+    );
+    res.send(groupMemb);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

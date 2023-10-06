@@ -1,16 +1,21 @@
 const client = require("../client");
 
-const createGroupmemb = async ({ trip_id, user_id, group_id }) => {
+const createGroupmemb = async ({
+  groupmemb_id,
+  trip_id,
+  user_id,
+  group_id,
+}) => {
   try {
     const {
       rows: [groupmemb],
     } = await client.query(
       `
-        INSERT INTO groupmembs(trip_id, user_id, group_id)
-        VALUES($1, $2, $3)
+        INSERT INTO groupmembs(groupmemb_id, trip_id, user_id, group_id)
+        VALUES($1, $2, $3, $4)
         RETURNING *;
         `,
-      [trip_id, user_id, group_id]
+      [groupmemb_id, trip_id, user_id, group_id]
     );
     return groupmemb;
   } catch (error) {
@@ -44,4 +49,24 @@ const getGroupmembById = async (groupmemb_id) => {
   }
 };
 
-module.exports = { createGroupmemb, getAllGroupmembs, getGroupmembById };
+const deleteMember = async (group_id, user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+    DELETE FROM groupmembs WHERE "group_id"=$1 AND "user_id"=$2 RETURNING *
+
+    `,
+      [group_id, user_id]
+    );
+    return rows[0];
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = {
+  createGroupmemb,
+  getAllGroupmembs,
+  getGroupmembById,
+  deleteMember,
+};
