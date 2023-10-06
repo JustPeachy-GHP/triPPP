@@ -4,7 +4,7 @@ const getAllLocations = async () => {
   try {
     const { rows } = await client.query(`
     SELECT * FROM locations
-    WHERE vibes
+    WHERE vibe
     IS NOT NULL;
     `);
     return rows;

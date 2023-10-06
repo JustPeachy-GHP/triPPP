@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { updateJournal } from "../../src/helpers/journals";
-import { fetchSingleJournal } from "../../src/helpers/journals";
+import { updateJournal } from "../../../src/helpers/journals";
+import { fetchSingleJournal } from "../../../src/helpers/journals";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
 // import { time } from "console";
