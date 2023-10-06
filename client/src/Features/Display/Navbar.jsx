@@ -5,14 +5,15 @@ export default function Navbar() {
 
   return (
 
-    <div 
-    className="Navbar"
-    id="navbar">
+    <div className="navBar" id="navbar">
+      <Link to="/home">Home </Link> <br></br>
+   
       <Link to="/">Home </Link>  <br></br>
       <Link to="/destination"> Map </Link>  <br></br>
       <Link to="/locations"> Location </Link> <br></br>
 
     
+
       <Link to="/display"> Map </Link> <br></br>
 
       <Link to="/journal"> Journal </Link> <br></br>
