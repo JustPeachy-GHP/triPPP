@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import CreateJournalForm from "./CreateJournalForm";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
-
+import "./Journal.css";
 // import { useSelector } from "react-redux";
 
 export default function AllJournals() {

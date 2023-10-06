@@ -4,6 +4,7 @@ import { fetchSingleJournal } from "../../src/helpers/journals";
 import { Link } from "react-router-dom";
 import EditJournalForm from "./EditJournalForm";
 import JournalNavbar from "./JournalNavbar";
+import "./Journal.css";
 
 export default function SingleJournal() {
   const params = useParams();

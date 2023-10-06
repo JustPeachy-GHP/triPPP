@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createJournal } from "../../journals";
 import JournalNavbar from "./JournalNavbar";
+import "./Journal.css";
 
 export default function CreateJournalForm({ journal, setJournal }) {
   const [videocontent, setVideocontent] = useState("");
