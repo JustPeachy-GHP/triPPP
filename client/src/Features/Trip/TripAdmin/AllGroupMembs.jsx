@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getAllMembersbyId } from "../../helpers/tripAdminPage";
-import DeletetGroupMembButton from "./DeleteGroupMembButton";
+import { getAllMembersbyId } from "../../../helpers/tripAdminPage";
+import DeleteGroupMembButton from "./DeleteGroupMembButton";
 
 export default function AllGroupMembs() {
   const [allGMembs, setAllGMembs] = useState([]);
@@ -18,7 +18,8 @@ export default function AllGroupMembs() {
 
   return (
     <div key={allGMembs.trip_id}>
-      <DeletetGroupMembButton />
+      <DeleteGroupMembButton />
+      {/* need delete group memb button to display next to each group memb */}
     </div>
   );
 }

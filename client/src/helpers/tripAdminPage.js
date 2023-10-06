@@ -17,7 +17,7 @@ export async function getAllMembersbyId(trip_id, user_id) {
   }
 }
 // ==================DELETE GROUP MEMB==========
-export async function deleteGroupMember(trip_id, user_id) {
+export async function deleteGroupMember(user_id, trip_id) {
   // what is the url we should be requesting from?
   const url = `${BASE_URL}/${trip_id}/groupmemb/${user_id}`;
   try {
@@ -56,6 +56,9 @@ export async function addGroupMember(trip_id, user_id) {
 export const fetchSingleTrip = async (trip_id) => {
   try {
     const response = await fetch(`${BASE_URL}/${trip_id}`);
+    if (!response.ok) {
+      throw new Error("error fetching single trip");
+    }
     const result = await response.json();
     return result;
   } catch (error) {

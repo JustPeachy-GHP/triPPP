@@ -16,10 +16,10 @@ import { GoogleMapsContextProvider } from "./context/googleMapsContext";
 import "./App.css";
 // import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
 // import Form from "./Features/Trip/Form";
-import LandingPage from "./Features/Trip/LandingPage";
-import TripForm from "./Features/Trip/TripForm";
+import LandingPage from "./Features/Trip/TripForm/LandingPage";
+import TripForm from "./Features/Trip/TripForm/TripForm";
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
-import TripAdminPage from "./Features/Trip/TripAdminPage";
+import TripAdminPage from "./Features/Trip/TripAdmin/TripAdminPage";
 
 function App() {
   return (

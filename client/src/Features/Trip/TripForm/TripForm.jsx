@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { createTrip } from "../../helpers/trips";
 // import "./tripform.css";
 // import Login from "../Auth/Login";
 import { Link } from "react-router-dom";
+import { createTrip } from "../../../helpers/trips";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");

@@ -1,4 +1,4 @@
-import { addGroupMember } from "../../helpers/tripAdminPage";
+import { addGroupMember } from "../../../helpers/tripAdminPage";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 

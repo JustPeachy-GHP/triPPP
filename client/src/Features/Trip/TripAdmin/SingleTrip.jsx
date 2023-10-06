@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchSingleTrip } from "../../helpers/tripAdminPage";
+import { fetchSingleTrip } from "../../../helpers/tripAdminPage";
 
 export default function SingleTrip({ trip_id }) {
   const [oneTrip, setoneTrip] = useState([]);
@@ -7,7 +7,7 @@ export default function SingleTrip({ trip_id }) {
   useEffect(() => {
     async function getSingleTrip() {
       // hardcoded in trip_id of 1
-      const response = await fetchSingleTrip(5);
+      const response = await fetchSingleTrip();
       console.log("One trip to rule them all!", response);
       setoneTrip(response);
     }
@@ -15,10 +15,12 @@ export default function SingleTrip({ trip_id }) {
   }, []);
   return (
     <div id="trip-view">
-      <h1> {oneTrip}Placeholder Trip</h1>
+      <h1> {oneTrip.name}</h1>
+      {/* stretch- add location */}
     </div>
   );
 }
 
 // NOTES
 // can't see any trips, even when hardcoding in a trip id of 1
+// Stephanie wants to pass props from userlanding page to here to get the trip_id

@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:8080/api/trips";
 
-// ==================Create trip======> tripfor.jsx
+// ==================Create trip======> tripform.jsx
 export async function createTrip(tripobj) {
   try {
     const response = await fetch(`${BASE_URL}`, {

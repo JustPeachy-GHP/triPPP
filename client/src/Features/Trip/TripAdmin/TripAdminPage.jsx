@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { updateTrip } from "../../helpers/tripAdminPage";
-import SingleTrip from "./SingleTrip";
+// import { updateTrip } from "../../helpers/tripAdminPage";
+// import SingleTrip from "./SingleTrip";
 import DeleteTripButton from "./DeleteTripButton";
-import DeleteGroupMembButton from "./DeleteGroupMembButton";
-import AddGroupMemb from "./AddGroupMemb";
-import AllGroupMembs from "./AllGroupMembs";
+// import AddGroupMemb from "./AddGroupMemb";
+// import AllGroupMembs from "./AllGroupMembs";
 export default function TripAdminPage() {
   return (
     <>
-      <h1>Your Trip</h1>
-      <SingleTrip />
-      <AllGroupMembs />
-      <AddGroupMemb />
-      <DeleteGroupMembButton />
+      <h1>{/* <SingleTrip /> */}</h1>
+      <br />
+      {/* <AllGroupMembs /> */}
+      {/* <AddGroupMemb /> */}
       <br />
       <br />
       <DeleteTripButton />

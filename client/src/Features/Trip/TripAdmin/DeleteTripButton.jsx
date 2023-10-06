@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { deleteTrip } from "../../helpers/tripAdminPage";
+import { deleteTrip } from "../../../helpers/tripAdminPage";
 
 export default function DeleteTripButton({ trip_id }) {
   const navigate = useNavigate();
