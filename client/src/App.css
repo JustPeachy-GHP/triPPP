@@ -1,3 +1,23 @@
+.imagelogo {
+    width: 60px;
+    height: 60px;
+}
+
+.muidrawertwoiconbutton {
+    position: sticky;
+}
+
+.muiiconimage{
+    position: sticky;
+}
+
+.drawervtwo {
+    position: sticky;
+}
+
+.logoname {
+    position: sticky;
+}
 
 #root, div#root {
     max-width: 1280px;
@@ -74,3 +94,4 @@
     margin-right: auto;
     cursor: move;
   }
+

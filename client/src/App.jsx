@@ -2,8 +2,11 @@
 
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Features/Display/Navbar";
-import Muidrawer from "./Features/Display/Muidrawer";
+
+import Navbar from './Features/Display/Navbar';
+import Muidrawer from './Features/Display/Muidrawer';
+import Navtitle from './Features/Display/Navtitle';
+// import Navtitle from './Features/Display/Navtitle';
 // import AllJournalEntries from '../Features/Journal';
 import Test from "./Features/Test/Test";
 import DisplayTest from "./Features/Test/DisplayTest";
@@ -24,12 +27,13 @@ import TripAdminPage from "./Features/Trip/TripAdminPage";
 function App() {
   return (
     <>
+
       <ErrorBoundary>
         <GoogleMapsContextProvider>
-          <Muidrawer>
-            <Navbar />
-          </Muidrawer>
-          <Routes>
+       <Navtitle/> 
+          <br/>
+           <br/>
+            <Routes>
             <Route path="/test" element={<Test />} />
             <Route path="/displaytest" element={<DisplayTest />} />
             <Route path="/login" element={<Login />} />
@@ -46,6 +50,7 @@ function App() {
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>
+
     </>
   );
 }
@@ -54,3 +59,9 @@ export default App;
 
 //need to import the compenets for all these navagation - need the component files name for the nav to work
 //All those up there is like a placeholder
+
+
+//moved this here bc using drawertwo
+  // <Muidrawer>
+  //   <Navbar/>
+  // </Muidrawer>
