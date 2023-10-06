@@ -11,13 +11,26 @@ import DisplayTest from './Features/Test/DisplayTest';
 import Login from './Features/Auth/Login'
 import Registration from './Features/Auth/Registration'
 import UserLanding from './Features/User/UserLanding'
+import Modal from './Features/Display/Modal';
 
 
 function App() {
 
   return (
     <>
-  <Navtitle/> 
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <Modal>
+    <Navtitle/> 
+
+    </Modal>
+ 
    <br/>
    <br/>
 <h1>triPPP - this line is moves when changing browser size</h1>
