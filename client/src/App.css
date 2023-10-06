@@ -18,3 +18,80 @@
 .logoname {
     position: sticky;
 }
+
+#root, div#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    display: block;
+  }
+  
+  .inforater {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25vw;
+    border: solid 1px black;
+  }
+  
+  .infovoter {
+    width: 20vw;
+    display: flexbox;
+    flex-flow: column;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  
+  .currentvote {
+    width: 20vw;
+    text-align: right;
+  }
+  
+  .hearts {
+    display: block;
+    width: 20vw;
+  }
+  
+  .heartstext {
+    display: block;
+    width:20vw;  
+  }
+  
+  .infoContainer {
+    height: 100vh;
+    width: 41vw;
+    display: block;
+    background-color: #BFD9CD;
+    color: black;
+  }
+  
+  .info-card{
+    z-index: 1;
+    background-color: #8FA69D;
+    color: whitesmoke;
+  }
+  
+  .mapContainer {
+    height: 100vh;
+    width: 50vw;
+    display: block;
+    float: right;
+    position: sticky;
+  }
+  
+  .map-container {
+    padding-left: 50%;
+    height: 100%;
+    width: 50%;
+  }
+
+  .itinerary-item {
+    width: 50vw;
+    border: solid 1px black;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: move;
+  }
+
