@@ -20,6 +20,7 @@ import { GoogleMapsContextProvider } from "./context/googleMapsContext";
 import "./App.css";
 // import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
 // import Form from "./Features/Trip/Form";
+
 import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
 import Itinerary from "./Features/Itinerary/ItineraryView"
@@ -50,6 +51,7 @@ function App() {
             <Route path="/trips" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
+            <Route path="/tripadminpage/1" element={<TripAdminPage />} />
 
             <Route path="/home" element={<LocationsPage />} />
             
