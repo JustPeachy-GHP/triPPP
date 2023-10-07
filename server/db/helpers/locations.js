@@ -3,7 +3,9 @@ const client = require("../client");
 const getAllLocations = async () => {
   try {
     const { rows } = await client.query(`
-    SELECT * FROM locations;
+    SELECT * FROM locations
+    WHERE vibe
+    IS NOT NULL;
     `);
     return rows;
   } catch (error) {
@@ -124,17 +126,32 @@ const getLocationByVibe = async (vibe) => {
   }
 };
 
+// untested -- currently not allowing votes on destination
 const getDestVotes = async (trip_id, location_id) => {
   try {
     const { rows } = await client.query(`
       SELECT * 
       FROM itineraryitems
-      WHERE trip_id = $1 AND location_id = $2
+      WHERE trip_id = $1 AND location_id = $2;
     `,[trip_id, location_id])
+    console.log(rows)
     return rows;
   } catch (error) {
     throw error;
   }
 };
 
-module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes };
+const getLocationNameById = async (location_id) => {
+  try {
+    const {rows} = await client.query(`
+      SELECT destination
+      FROM locations
+      WHERE location_id = $1;
+      `,[location_id])
+    return rows
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById };

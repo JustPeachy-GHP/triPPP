@@ -5,10 +5,10 @@ import  LocationsInfoWindow  from "./LocationsInfoWindow";
 export default function LocationsPage() {
     return(
         <>
-        <div>
+        <div className="fixed-component">
         <MemoizedLocationsMap/>
         </div>
-        <div> 
+        <div className="scrollable-content"> 
         <LocationsInfoWindow/> 
         </div>
         </>

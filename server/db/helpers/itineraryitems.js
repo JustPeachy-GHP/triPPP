@@ -108,6 +108,20 @@ const getItineraryitemById = async (itinerary_id) => {
   }
 };
 
+const getItineraryByTrip = async (trip_id) => {
+  try {
+      const { rows } = await client.query(`
+      SELECT * 
+      FROM itineraryitems
+      WHERE trip_id = $1;
+    `, [trip_id]);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 const getItineraryVotes = async (trip_id, location_id) => {
   try {
     const { rows } = await client.query(`
@@ -121,11 +135,28 @@ const getItineraryVotes = async (trip_id, location_id) => {
   }
 };
 
+const getItineraryJoinInfo = async ( trip_id ) => {
+  try {
+    const {rows} = await client.query(`
+    SELECT trips.tripname, trips.numdays, trips.numtravelers, 
+    trips.isdecided, itineraryitems.location_id, itineraryitems.rating 
+    FROM trips 
+    JOIN itineraryitems on trips.trip_id = itineraryitems.trip_id 
+    WHERE trips.trip_id = $1;
+    `,[trip_id])
+    console.log(rows)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   createItineraryitem,
   createItinRating,
   getAllItineraryitems,
   getItineraryitemById,
   getItineraryVotes,
-  reviseIRating
+  reviseIRating,
+  getItineraryByTrip,
+  getItineraryJoinInfo
 };

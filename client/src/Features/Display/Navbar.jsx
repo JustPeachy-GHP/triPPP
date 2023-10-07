@@ -4,9 +4,18 @@ export default function Navbar() {
   console.log("hi");
 
   return (
-    <div className="Navbar" id="navbar">
-      <Link to="/">Home </Link> <br></br>
+
+    <div className="navBar" id="navbar">
+      <Link to="/home">Home </Link> <br></br>
+   
+      <Link to="/">Home </Link>  <br></br>
+      <Link to="/destination"> Map </Link>  <br></br>
+      <Link to="/locations"> Location </Link> <br></br>
+
+    
+
       <Link to="/display"> Map </Link> <br></br>
+
       <Link to="/journal"> Journal </Link> <br></br>
       <Link to="/itinerary "> Itinerary </Link> <br></br>
 

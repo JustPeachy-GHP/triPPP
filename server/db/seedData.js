@@ -1,3 +1,4 @@
+
 // dummy data in here
 
 // const users = [
@@ -37,6 +38,7 @@
 //     lastname: "Maestro",
 //   },
 // ];
+
 
 const users = [
   {
@@ -90,6 +92,7 @@ const locations = [
     place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: ('35.595058,-82.551487'),
     vibes: ["outdoors", "chill"]
+
   },
   {
     location_id: 3,
@@ -97,6 +100,7 @@ const locations = [
     place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
     coord: ('36.1699,-115.1398'),
     vibes: ["party", "shop"]
+
   },
   {
     location_id: 4,
@@ -139,7 +143,7 @@ const trips = [
   {
     trip_id: 1,
     itinerary_id: 1,
-    // group_id: 1,
+    group_id: 1,
     location_id: 1,
     tripname: "European Adventure",
     numdays: 14,
@@ -150,7 +154,7 @@ const trips = [
   {
     trip_id: 2,
     itinerary_id: 2,
-    // group_id: 2,
+    group_id: 2,
     location_id: 2,
     tripname: "Party",
     numdays: 7,
@@ -161,7 +165,7 @@ const trips = [
   {
     trip_id: 3,
     itinerary_id: 3,
-    // group_id: 3,
+    group_id: 3,
     location_id: 3,
     tripname: "Cultural Experience",
     numdays: 10,
@@ -172,7 +176,7 @@ const trips = [
   {
     trip_id: 4,
     itinerary_id: 4,
-    // group_id: 4,
+    group_id: 4,
     location_id: 4,
     tripname: "City Exploration",
     numdays: 5,
@@ -183,7 +187,7 @@ const trips = [
   {
     trip_id: 5,
     itinerary_id: 5,
-    // group_id: 5,
+    group_id: 5,
     location_id: 5,
     tripname: "Mountain Retreat",
     numdays: 3,
@@ -198,17 +202,53 @@ const journals = [
     journal_id: 1,
     user_id: 1,
     videocontent: "https://www.youtube.com/watch?v=video1",
-    image: "https://example.com/image1.jpg",
+    image:
+      "https://www.reuters.com/resizer/-K5JWbCI58lWSmK0kXXS7ECII6Y=/1200x1500/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/AHF2FYISNJO55J6N35YJBZ2JYY.jpg",
+    title: "Exploring Paris",
+    entry:
+      "Today was a day I will forever hold dear. As the morning sun gently kissed the streets of Paris, I ventured out into the enchanting city. The Eiffel Tower, standing tall and majestic, was my first stop. Seeing this iconic symbol of France up close was a dream come true. Its intricate lattice structure against the clear blue sky left me in awe. Afterward, I found a cozy café tucked away on a charming Parisian street. With a view of the Eiffel Tower in the distance, I savored a fresh croissant, warm from the oven. Its delicate layers melted in my mouth, a taste of pure Parisian delight. Today's experience was a perfect blend of history, culture, and culinary delight, making my time in Paris truly unforgettable.",
+    timestamp: "2023-09-08 16:28:32-07",
+    trip_id: 1,
+  },
+  {
+    journal_id: 1,
+    user_id: 1,
+    videocontent: "https://www.youtube.com/watch?v=video1",
+    image:
+      "https://www.reuters.com/resizer/-K5JWbCI58lWSmK0kXXS7ECII6Y=/1200x1500/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/AHF2FYISNJO55J6N35YJBZ2JYY.jpg",
     title: "Exploring Paris",
     entry: "Today, I visited the Eiffel Tower and had a delicious croissant.",
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 1,
   },
   {
+    journal_id: 1,
+    user_id: 1,
+    videocontent: "https://www.youtube.com/watch?v=video1",
+    image:
+      "https://www.reuters.com/resizer/-K5JWbCI58lWSmK0kXXS7ECII6Y=/1200x1500/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/AHF2FYISNJO55J6N35YJBZ2JYY.jpg",
+    title: "Still Exploring Paris",
+    entry: "Today, I tried escargo",
+    timestamp: "2023-09-08 16:28:32-07",
+    trip_id: 1,
+  },
+  {
+    journal_id: 1,
+    user_id: 1,
+    videocontent: "https://www.youtube.com/watch?v=video1",
+    image:
+      "https://www.reuters.com/resizer/-K5JWbCI58lWSmK0kXXS7ECII6Y=/1200x1500/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/AHF2FYISNJO55J6N35YJBZ2JYY.jpg",
+    title: "Still Really Exploring Paris",
+    entry: "Today, I did many things.",
+    timestamp: "2023-09-08 16:28:32-07",
+    trip_id: 1,
+  },
+  {
     journal_id: 2,
-    user_id: 2,
+    user_id: 1,
     video_content: "https://www.youtube.com/watch?v=zqT0j13dZx4",
-    image: "https://example.com/image2.jpg",
+    image:
+      "https://a.cdn-hotels.com/gdcs/production50/d535/172cb39f-200a-4bed-8911-353860c517c2.jpg",
     title: "Beach Day",
     entry: "Spent the day relaxing on the beautiful beach in Bali.",
     timestamp: "2016-01-25 10:10:10.555555-05:00",
@@ -218,7 +258,8 @@ const journals = [
     journal_id: 3,
     user_id: 3,
     video_content: "https://www.youtube.com/watch?v=5DcA4BePBdA",
-    image: "https://example.com/image3.jpg",
+    image:
+      "https://www.historyhit.com/app/uploads/fly-images/5149921/The-Colosseum-e1633702661138-750x537-c.jpg?x80808",
     title: "Cultural Immersion",
     entry: "Explored historic sites and tried local cuisine in Rome.",
     timestamp: "2023-09-08 16:28:32-07",
@@ -228,7 +269,8 @@ const journals = [
     journal_id: 4,
     user_id: 1,
     video_content: "https://www.youtube.com/watch?v=WLSnrXEtrT4",
-    image: "https://example.com/image4.jpg",
+    image:
+      "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/f2/84/26.jpg",
     title: "City Lights",
     entry: "New York City's skyline is simply breathtaking at night.",
     timestamp: "2016-01-25 10:10:10.555555-05:00",
@@ -238,11 +280,13 @@ const journals = [
     journal_id: 5,
     user_id: 4,
     video_content: "https://www.youtube.com/watch?v=jvN5hZzhFHM",
-    image: "https://example.com/image5.jpg",
+    image:
+      "https://nepaltrekroutes.com/wp-content/uploads/2020/09/everest-panorama-view.jpg",
     title: "Mountain Adventure",
     entry: "Hiked to the summit and enjoyed panoramic views in Nepal.",
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 5,
+    location_id: 1,
   },
 ];
 
