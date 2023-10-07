@@ -49,16 +49,31 @@ const getGroupmembById = async (groupmemb_id) => {
   }
 };
 
-const deleteMember = async (group_id, user_id) => {
+const deleteMember = async (trip_id, user_id) => {
   try {
     const { rows } = await client.query(
       `
-    DELETE FROM groupmembs WHERE "group_id"=$1 AND "user_id"=$2 RETURNING *
+    DELETE FROM groupmembs WHERE "trip_id"=$1 AND "user_id"=$2 RETURNING *
 
     `,
-      [group_id, user_id]
+      [trip_id, user_id]
     );
     return rows[0];
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getTripGroupMembsbyId = async (trip_id) => {
+  try {
+    const { rows } = await client.query(
+      `SELECT groupmembs.trip_id, groupmembs.group_id, groupmembs.user_id, users.email, users.firstname, users.lastname
+      FROM groupmembs 
+      JOIN users on users.user_id = groupmembs.user_id 
+      WHERE groupmembs.trip_id = $1;`,
+      [trip_id]
+    );
+    return rows;
   } catch (err) {
     throw err;
   }
@@ -69,4 +84,5 @@ module.exports = {
   getAllGroupmembs,
   getGroupmembById,
   deleteMember,
+  getTripGroupMembsbyId,
 };

@@ -7,9 +7,9 @@ const GROUPMEMBS_URL = "http://localhost:8080/api/groupmembs";
 // deleteTrip-line 54
 // updateTrip-line 71
 // ===================Get Group Members=======
-export async function getAllMembersbyId(trip_id, user_id) {
+export async function getAllMembersbyId(trip_id) {
   try {
-    const response = await fetch(`${GROUPMEMBS_URL}/${trip_id}/${user_id}`);
+    const response = await fetch(`${GROUPMEMBS_URL}/${trip_id}`);
     const returnVal = await response.json();
     return returnVal;
   } catch (error) {
@@ -19,7 +19,7 @@ export async function getAllMembersbyId(trip_id, user_id) {
 // ==================DELETE GROUP MEMB==========
 export async function deleteGroupMember(user_id, trip_id) {
   // what is the url we should be requesting from?
-  const url = `${BASE_URL}/${trip_id}/groupmemb/${user_id}`;
+  const url = `${BASE_URL}/${trip_id}/${user_id}`;
   try {
     const response = await fetch(url, {
       method: "DELETE",

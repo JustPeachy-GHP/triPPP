@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { deleteTrip } from "../../../helpers/tripAdminPage";
 
 export default function DeleteTripButton({ trip_id }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   async function handleDelete() {
     try {
       const response = await deleteTrip(trip_id);
-      navigate(0);
+      // navigate("/userlanding");
     } catch (error) {
       console.error(error);
     }

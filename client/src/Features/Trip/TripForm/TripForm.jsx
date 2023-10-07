@@ -163,7 +163,7 @@ export default function TripForm() {
           <br />
           {/* hook up event listener to  */}
         </fieldset>
-        <Link to="/tripadminpage">
+        <Link to="/userlanding">
           <button type="Submit">Submit</button>
         </Link>
       </form>

@@ -39,6 +39,7 @@ function App() {
             <Route path="/trips" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
+            <Route path="/tripadminpage/1" element={<TripAdminPage />} />
 
             {/* <Route path="/register" element={<Registration/>}/> */}
             {/* <Route path="/display" element={<Display/>}/>
