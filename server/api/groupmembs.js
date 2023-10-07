@@ -29,6 +29,7 @@ router.get("/all/:trip_id", async (req, res, next) => {
 });
 
 // GET - api/groupmembs/:groupmembId - get single groupmemb
+// server doesn't know we are looking for trip_id vs groupmemb_id, so we need to add a slash before query
 router.get("/:groupmemb_id", async (req, res, next) => {
   try {
     const groupmemb = await getGroupmembById(req.params.groupmemb_id);
@@ -62,7 +63,4 @@ router.delete("/:trip_id/:user_id", async (req, res, next) => {
   }
 });
 
-
 module.exports = router;
-
-

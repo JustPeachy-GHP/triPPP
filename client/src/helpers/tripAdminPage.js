@@ -9,7 +9,7 @@ const GROUPMEMBS_URL = "http://localhost:8080/api/groupmembs";
 // ===================Get Group Members=======
 export async function getAllMembersbyId(trip_id) {
   try {
-    const response = await fetch(`${GROUPMEMBS_URL}/${trip_id}`);
+    const response = await fetch(`${GROUPMEMBS_URL}/all/${trip_id}`);
     const returnVal = await response.json();
     return returnVal;
   } catch (error) {
