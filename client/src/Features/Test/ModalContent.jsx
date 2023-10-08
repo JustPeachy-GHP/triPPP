@@ -2,13 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { setone, settwo } from '../../slices/testSlice'
-// added a DisplayTest component so you can see the value retrieved from state - "Look ma, no props!"
-import DisplayTest from "./DisplayTest";
-import ActivityRater from '../Display/ActivityRater'
-import DestinationRater from '../Display/DestinationRater'
-import BasicModal from "./BasicModal";
 
-export default function Test() {
+export default function ModalContent() {
   // getting testVal1 and testVal2 from redux
   console.log(useSelector(state => state.test.testVal1))
   console.log(useSelector(state => state.test.testVal2))
@@ -21,6 +16,9 @@ export default function Test() {
 
   const [val1, setVal1] = useState(initialVal1);
   const [val2, setVal2] = useState(initialVal2);
+
+  const displayVal1 = useSelector(state => state.test.testVal1);
+  const displayVal2 = useSelector(state => state.test.testVal2);
 
   // can' useDispatch() directly, have to set it to a variable - same as useNavigate
   const dispatch = useDispatch()
@@ -54,14 +52,10 @@ const handleSubmit = () => {
           </div>
         </form>
 
-        <DisplayTest />
-        <h2>Testing itinerary voting/rater</h2>
-        <ActivityRater />
-
-        <h2>Testing destination voting/rater</h2>
-        <DestinationRater />
-
-        <BasicModal/>
+        <div>
+        <h2>Val1: {val1}</h2>
+        <h2>Val2: {val2}</h2>
+      </div>
 
       </div>
     </>
