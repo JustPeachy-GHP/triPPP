@@ -11,7 +11,7 @@ import {
 } from "@react-google-maps/api"; // Corrected component names
 
 
-function DestinationsMap(destination) {
+function ItineraryMap(destination) {
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
   const { isGoogleMapsLoaded, map, setMap, itineraryPlacesDetails, setItineraryPlacesDetails } = useGoogleMaps();
@@ -184,10 +184,10 @@ function DestinationsMap(destination) {
   );
 }
 
-DestinationsMap.propTypes = {
+ItineraryMap.propTypes = {
   destination: PropTypes.string,
 };
 
-const MemoizedDestinationsMap = React.memo(DestinationsMap);
+const MemoizedItineraryMap = React.memo(ItineraryMap);
 
-export default MemoizedDestinationsMap;
+export default MemoizedItineraryMap;

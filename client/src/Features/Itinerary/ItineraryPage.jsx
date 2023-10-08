@@ -1,5 +1,5 @@
 import ItineraryInfoWindow from "./ItineraryInfoWindow";
-import MemoizedDestinationsMap from "./ItineraryMap";
+import MemoizedItineraryMap from "./ItineraryMap";
 import { useLocation } from "react-router-dom";
 
 export default function ItineraryPage() {
@@ -10,7 +10,7 @@ export default function ItineraryPage() {
     return(
         <> 
             <div className="fixed-component">
-                <MemoizedDestinationsMap props={destination}/>
+                <MemoizedItineraryMap props={destination}/>
             </div>
             <div className="scrollable-content"> 
                 <ItineraryInfoWindow props={destination}/> 

@@ -5,20 +5,19 @@ import { useNavigate } from "react-router-dom";
 import ActivityRater from "../Display/ActivityRater";
 
 const ItineraryInfoWindow = () => {
-  const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
+  const { isGoogleMapsLoaded, map, itineraryPlacesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
-  const navigate = useNavigate(); // Add React Router's useHistory hook
 
   useEffect(() => {
-    if (isGoogleMapsLoaded && Object.keys(placesDetails).length > 0) {
-      const keys = Object.keys(placesDetails);
+    if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
+      const keys = Object.keys(itineraryPlacesDetails);
       setPlaceKeys(keys);
     }
-  }, [isGoogleMapsLoaded, map, placesDetails]);
+  }, [isGoogleMapsLoaded, map, itineraryPlacesDetails]);
 
   const handleCardClick = (placeId) => {
-    const lat = placesDetails[placeId].geometry.location.lat();
-    const lng = placesDetails[placeId].geometry.location.lng();
+    const lat = itineraryPlacesDetails[placeId].geometry.location.lat();
+    const lng = itineraryPlacesDetails[placeId].geometry.location.lng();
 
     if (map) {
       map.panTo(new window.google.maps.LatLng(lat, lng));
@@ -36,17 +35,17 @@ const ItineraryInfoWindow = () => {
             {placeKeys.map((key) => (
               <div key={key} className="info-item">
                 <h2 className="nameZoom" onClick={() => handleCardClick(key)}>
-                  {placesDetails[key].name}
+                  {itineraryPlacesDetails[key].name}
                 </h2>
-                {placesDetails[key].photos && placesDetails[key].photos.length > 0 && (
+                {itineraryPlacesDetails[key].photos && itineraryPlacesDetails[key].photos.length > 0 && (
                   <img
-                    src={placesDetails[key].photos[0].getUrl()}
-                    alt={placesDetails[key].name}
+                    src={itineraryPlacesDetails[key].photos[0].getUrl()}
+                    alt={itineraryPlacesDetails[key].name}
                     style={{ width: '400px', height: 'auto' }}
                   />
                 )}
-                <br></br>
-                {/* <ActivityRater /> */}
+                <br>
+                </br>
               </div>
             ))}
           </div>
@@ -59,10 +58,5 @@ const ItineraryInfoWindow = () => {
 };
 
 
-
-ItineraryInfoWindow.propTypes = {
-  
-  placeDetails: PropTypes.arrayOf(PropTypes.object),
-};
 
 export default ItineraryInfoWindow;
