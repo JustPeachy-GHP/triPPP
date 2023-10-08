@@ -16,9 +16,11 @@ export async function fetchAllLocations() {
   }
 
   // GET all itinerary locations data
-export async function fetchItineraryLocations() {
+export async function fetchItineraryLocations(id) {
     try {
-      const response = await fetch(`${BASE_URL}`);
+      const url = `${BASE_URL}/itinerary/${id}`;
+      console.log(url);
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Network response was not ok. Status: ${response.status}`);
       }

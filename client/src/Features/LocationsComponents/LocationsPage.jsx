@@ -6,10 +6,10 @@ export default function LocationsPage() {
     return(
         <>
         <div className="fixed-component">
-        <MemoizedLocationsMap/>
+            <MemoizedLocationsMap/>
         </div>
         <div className="scrollable-content"> 
-        <LocationsInfoWindow/> 
+            <LocationsInfoWindow/> 
         </div>
         </>
     );

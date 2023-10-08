@@ -85,11 +85,13 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/location - get all itinerary location
-router.get("/", async (req, res, next) => {
+// GET - api/location/itinerary/:id - get all itinerary location
+router.get("/itinerary/:id", async (req, res, next) => {
   try {
-    const activity = await getItineraryLocations();
-    res.send(activity);
+    const id = req.params.id;
+    console.log(id);
+    const activities = await getItineraryLocations(id);
+    res.send(activities);
   } catch (error) {
     throw error;
   }

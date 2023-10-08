@@ -80,6 +80,7 @@ const createTables = async () => {
         coord POINT,
         place_id varchar(255),
         destination varchar(255),
+        destination_place_id varchar(255),
         vibes vibe[]
     );
 

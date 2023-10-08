@@ -13,13 +13,14 @@ const getAllLocations = async () => {
   }
 };
 
-const getItineraryLocations = async () => {
+const getItineraryLocations = async (destination) => {
   try {
+    console.log("Destination ID: ", destination);
     const { rows } = await client.query(`
-    SELECT * FROM locations
-    WHERE vibes
-    IS NULL;
-    `);
+    SELECT * 
+    FROM locations
+    WHERE destination_place_id = '${destination}';
+  `);
     return rows;
   } catch (error) {
     throw error;
@@ -30,6 +31,7 @@ const createLocation = async ({
   location_id,
   coord,
   place_id,
+  destination_place_id,
   destination,
   vibes
 }) => {
@@ -38,11 +40,11 @@ const createLocation = async ({
       rows: [location],
     } = await client.query(
       `
-        INSERT INTO locations(location_id, coord, place_id, destination, vibes)
-        VALUES($1, $2, $3, $4, $5)
+        INSERT INTO locations(location_id, coord, place_id, destination_place_id, destination, vibes)
+        VALUES($1, $2, $3, $4, $5, $6)
         RETURNING *;
         `,
-      [location_id, coord, place_id, destination, vibes]
+      [location_id, coord, place_id, destination_place_id, destination, vibes]
     );
     return location;
   } catch (error) {

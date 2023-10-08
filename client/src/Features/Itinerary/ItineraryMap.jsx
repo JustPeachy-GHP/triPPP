@@ -1,42 +1,30 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { fetchItineraryLocations } from "../../helpers/locations";
+
 
 import {
   GoogleMap,
   MarkerF,
   InfoWindowF,
-  useJsApiLoader
 } from "@react-google-maps/api"; // Corrected component names
 
 
-function DestinationsMap() {
-
+function DestinationsMap(destination) {
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
-  const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
-  const [activity, setActivity] = useState([]);
-
-  // const { placeId } = useParams();
-
-  // const itineraryLocations = [
-  //   { lat: 35.594840999999995, lng: -82.5515138, placeId:"ChIJXYDlZVfzWYgRaimqe4ND4Vs"},
-  //   { lat: 35.564009, lng: -82.551487, placeId:"ChIJ9ZsMofuMWYgRPaMd6kPpv70"  },
-  //   { lat: 35.592901600000005, lng: -82.481200199999989, placeId:"" },
-  //   { lat: 35.57837, lng: -82.500883899999991, placeId:"ChIJZ9il6JPzWYgR1cUrYlcprbw" },
-  //   { lat: 35.5321913, lng: -82.5368195, placeId:"ChIJdb2htJTyWYgRG4PVQhGknMY" },
-  //   { lat: 35.2396627, lng: -82.731398200000015, placeId:"ChIJ9-sHI0e7WYgRpiJprZdEIWg" },
-  //   { lat: 35.5913513, lng: -82.52996379999999, placeId:"ChIJcyDdW2PzWYgRV7WZYmKiOW4" },
-  //   { lat: 35.5788237, lng: -82.5947328, placeId:"ChIJ_7Pu4IqNWYgR1CvE0rTQ2Mw"  },
-
-  //   ]; 
+  const { isGoogleMapsLoaded, map, setMap, itineraryPlacesDetails, setItineraryPlacesDetails } = useGoogleMaps();
+  const [activities, setActivities] = useState([]);
+  
 
   useEffect(() => {
-    async function getItineraryLocations() {
+    async function getItineraryLocations(destination) {
       try {
-        const itineraryData = await fetchItineraryLocations();
+        console.log("Fetching destination: ", destination);
+        const itineraryData = await fetchItineraryLocations(destination);
         console.log("Fetched itineraryData:", itineraryData);
-        setActivity(itineraryData);
+        setActivities(itineraryData);
         console.log("Activity state updated:", itineraryData);
       } catch (error) {
         console.error("Error fetching locations:", error);
@@ -44,17 +32,15 @@ function DestinationsMap() {
     }
 
     try {
-      getItineraryLocations();
+      getItineraryLocations(destination.props);
     } catch(e) {
       console.log(e);
     }
-  }, []);
+  }, [destination]);
 
   function parseCoordinates(coord) {
-    console.log(coord);
     if (coord && typeof coord === 'object' && 'x' in coord && 'y' in coord) {
       const coordinateObj = { lat: coord.x, lng: coord.y };
-      console.log(coordinateObj);
       return coordinateObj;
     } else {
       console.error("Invalid coordinate format:", coord);
@@ -67,7 +53,7 @@ function DestinationsMap() {
       if (placesService && placeId) {
         const request = {
           placeId: placeId,
-          fields: ["name", "photos", "geometry"],
+          fields: ["name", "photos", "geometry", "rating"],
         };
 
         placesService.getDetails(request, (place, status) => {
@@ -85,26 +71,25 @@ function DestinationsMap() {
     });
   }, [placesService]);
 
-  const onHandleSetPlacesDetails = React.useCallback(function callback(places) {
+  const onHandleSetItineraryPlacesDetails = React.useCallback(function callback(places) {
     if (Object.keys(places).length > 0) {
-      setPlacesDetails(places);
+      setItineraryPlacesDetails(places);
     }
-  }, [setPlacesDetails]);
+  }, [setItineraryPlacesDetails]);
 
     const onLoad = React.useCallback(async function callback(map) {
       const bounds = new window.google.maps.LatLngBounds();
       const placesService = new window.google.maps.places.PlacesService(map);
       setPlacesService(placesService);
-      let places = {};
+      let itineraryPlaces = {};
     
       try {
-        for (const item of activity) {
+        for (const item of activities) {
           bounds.extend(parseCoordinates(item.coord));
-    
           if (item.place_id) {
             // Log place_id to check if it's present
             console.log("Fetching place details for place_id:", item.place_id);
-            places = await onHandleGetItineraryInfo(item.place_id, places);
+            itineraryPlaces = await onHandleGetItineraryInfo(item.place_id, itineraryPlaces);
           } else {
             // Log a message for missing place_id
             console.warn("Skipping item due to missing place_id:", item);
@@ -112,18 +97,19 @@ function DestinationsMap() {
         }
     
         // Log places to check if it's populated
-        console.log("Fetched places:", places);
+        console.log("Fetched places:", itineraryPlaces);
     
         map.fitBounds(bounds);
         setMap(map);
     
-        if (Object.keys(places).length > 0) {
-          onHandleSetPlacesDetails(places);
+        if (Object.keys(itineraryPlaces).length > 0) {
+          onHandleSetItineraryPlacesDetails(itineraryPlaces);
         }
       } catch (error) {
         console.error("Error loading location info:", error);
       }
-    }, [onHandleGetItineraryInfo, activity, onHandleSetPlacesDetails, setMap]);
+    }, [onHandleGetItineraryInfo, activities, onHandleSetItineraryPlacesDetails, setMap]);
+
   const handleZoomToLocation = (lat, lng) => {
     if (map) {
       map.panTo(new window.google.maps.LatLng(lat, lng));
@@ -138,15 +124,15 @@ function DestinationsMap() {
     return (
            <>
       <div className="mapContainer">
-        {isGoogleMapsLoaded && activity.length > 0 ? 
+        {isGoogleMapsLoaded && activities.length > 0 ? 
           (
             <GoogleMap
               mapContainerClassName="map-container"
               zoom={12}
               onLoad={onLoad}
             >
-              {Array.isArray(activity) && activity.length > 0 ? (
-                activity.map(({ coord, place_id }, index) => (
+              {Array.isArray(activities) && activities.length > 0 ? (
+                activities.map(({ coord, place_id }, index) => (
                   <MarkerF
                     key={index}
                     position={parseCoordinates(coord)}
@@ -168,14 +154,15 @@ function DestinationsMap() {
                           {
                             (
                               <div>
-                                <h3>{placesDetails[place_id].name}</h3>
-                                {placesDetails[place_id].photos &&
-                                  placesDetails[place_id].photos.length > 0 && (
+                                <h3>{itineraryPlacesDetails[place_id].name}</h3>
+                                {itineraryPlacesDetails[place_id].photos &&
+                                  itineraryPlacesDetails[place_id].photos.length > 0 && (
                                     <img
-                                      src={placesDetails[place_id].photos[0].getUrl()}
-                                      alt={placesDetails[place_id].name}
+                                      src={itineraryPlacesDetails[place_id].photos[0].getUrl()}
+                                      alt={itineraryPlacesDetails[place_id].name}
                                     />
                                   )}
+                                  <h3>Google Rating: {itineraryPlacesDetails[place_id].rating}</h3>
                               </div>
                             )
                           }
@@ -196,6 +183,10 @@ function DestinationsMap() {
     </>
   );
 }
+
+DestinationsMap.propTypes = {
+  destination: PropTypes.string,
+};
 
 const MemoizedDestinationsMap = React.memo(DestinationsMap);
 

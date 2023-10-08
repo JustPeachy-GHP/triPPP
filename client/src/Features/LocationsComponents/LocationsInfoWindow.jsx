@@ -25,9 +25,11 @@ const LocationsInfoWindow = () => {
     }
   };
 
-  const handleLetsGoClick = () => {
+  const handleLetsGoClick = (key) => {
+    const place = key;
+    console.log(place);
     // Navigate to the itinerary page with the placeId as a URL parameter
-    navigate(`/itinerary/`);
+    navigate(`/itinerary/`, { state: place });
   };
 
   return (
