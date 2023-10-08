@@ -4,6 +4,7 @@ import { fetchSingleTrip } from "../../../helpers/tripAdminPage";
 import { addGroupMember } from "../../../helpers/tripAdminPage";
 import { getAllMembersbyId } from "../../../helpers/tripAdminPage";
 import { deleteTrip } from "../../../helpers/tripAdminPage";
+import EachMemb from "./EachMemb";
 
 export default function TripAdminPage() {
   const [username, setUsername] = useState(null);
@@ -13,15 +14,15 @@ export default function TripAdminPage() {
 
   useEffect(() => setTripId(trip_id), []);
 
-  async function handleSubmit(e) {
-    try {
-      e.preventDefault();
-      const APIData = await addGroupMember(username);
-      console.log("API Data", APIData);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async function handleSubmit(e) {
+  //   try {
+  //     e.preventDefault();
+  //     const APIData = await addGroupMember(username);
+  //     console.log("API Data", APIData);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
   console.log(trip_id, "this is my trip id ");
   useEffect(() => {
     async function getSingleTrip(trip_id) {
@@ -37,7 +38,7 @@ export default function TripAdminPage() {
     async function membersingroup() {
       const response = await getAllMembersbyId(trip_id);
       console.log("All members showing", response);
-      setAllGMembs(...allGMembs, ...response);
+      setAllGMembs(response);
       console.log(response);
     }
     membersingroup();
@@ -54,11 +55,7 @@ export default function TripAdminPage() {
 
   return (
     <>
-      <h1>haaaayyyy</h1>
-      <h1>
-        {oneTrip.name}
-        {/* stretch- add location */}
-      </h1>
+      <h1>{oneTrip.tripname}</h1>
       <br />
       {console.log(allGMembs, "mapmapmap")}
       {allGMembs.map((member) => {
@@ -75,7 +72,7 @@ export default function TripAdminPage() {
         );
       })}
 
-      <form onSubmit={() => handleSubmit}>
+      <form onSubmit={() => handleSubmit()}>
         <label>
           <h2> Add Traveler </h2>
           {/* // check if this is right */}

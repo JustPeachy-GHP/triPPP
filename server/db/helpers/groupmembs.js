@@ -73,6 +73,7 @@ const getTripGroupMembsbyId = async (trip_id) => {
       WHERE groupmembs.trip_id = $1;`,
       [trip_id]
     );
+    console.log("in db helper", rows);
     return rows;
   } catch (err) {
     throw err;
