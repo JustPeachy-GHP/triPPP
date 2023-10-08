@@ -3,7 +3,7 @@ import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TInfoWindow = () => {
+const LocationsInfoWindow = () => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const navigate = useNavigate(); // Add React Router's useHistory hook
@@ -65,9 +65,9 @@ const TInfoWindow = () => {
 
 
 
-TInfoWindow.propTypes = {
+LocationsInfoWindow.propTypes = {
   
   placeDetails: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default TInfoWindow;
+export default LocationsInfoWindow;

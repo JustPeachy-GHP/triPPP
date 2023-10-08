@@ -13,6 +13,19 @@ const getAllLocations = async () => {
   }
 };
 
+const getItineraryLocations = async () => {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM locations
+    WHERE vibes
+    IS NULL;
+    `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const createLocation = async ({
   location_id,
   coord,
@@ -154,4 +167,4 @@ const getLocationNameById = async (location_id) => {
   }
 }
 
-module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById };
+module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations };

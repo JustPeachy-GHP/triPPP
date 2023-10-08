@@ -137,6 +137,27 @@ const locations = [
     coord: ('34.0522,-118.2437'),
     vibes: ["party", "shop"]
   },
+  {
+    location_id: 9,
+    destination: "Omni Grove Park Inn - Country Club",
+    place_id: "ChIJLb17W8f0WYgRpWXPmOh22Fk",
+    coord: ('35.619857,-82.542978'),
+    vibes: []
+  },
+  {
+    location_id: 10,
+    destination: "Biltmore Forest Country Club",
+    place_id: "ChIJdb2htJTyWYgRG4PVQhGknMY",
+    coord: ('35.532191,-82.536819'),
+    vibes: []
+  },
+  {
+    location_id: 11,
+    destination: "Lake Lure Adventure Company",
+    place_id: "ChIJ_xr5xelYV4gRc1TL7kMyiV0",
+    coord: ('35.423333,-82.186666'),
+    vibes: []
+  },
 ];
 
 const trips = [
