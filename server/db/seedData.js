@@ -142,104 +142,91 @@ const locations = [
     destination: "Omni Grove Park Inn - Country Club",
     place_id: "ChIJLb17W8f0WYgRpWXPmOh22Fk",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.619857,-82.542978'),
-    vibes: []
+    coord: ('35.619857,-82.542978')
   },
   {
     location_id: 10,
     destination: "Biltmore Forest Country Club",
     place_id: "ChIJdb2htJTyWYgRG4PVQhGknMY",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.532191,-82.536819'),
-    vibes: []
+    coord: ('35.532191,-82.536819')
   },
   {
     location_id: 11,
     destination: "Lake Lure Adventure Company",
     place_id: "ChIJ_xr5xelYV4gRc1TL7kMyiV0",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.423333,-82.186666'),
-    vibes: []
+    coord: ('35.423333,-82.186666')
   },
   {
     location_id: 12,
     destination: "Reems Creek Golf Club",
     place_id: "ChIJ3zMqbswfWogRUYZ0hyNgj58",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.698753,-82.520927'),
-    vibes: []
+    coord: ('35.698753,-82.520927')
   },
   {
     location_id: 13,
     destination: "Asheville Adventure Company",
     place_id: "ChIJ9289NOaMWYgRzGcX7_SMje4",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.566272,-82.586497'),
-    vibes: []
+    coord: ('35.566272,-82.586497')
   },
   {
     location_id: 14,
     destination: "Asheville Municipal Golf Course",
     place_id: "ChIJZ9il6JPzWYgR1cUrYlcprbw",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.5783,-82.500883'),
-    vibes: []
+    coord: ('35.5783,-82.500883')
   },
   {
     location_id: 15,
     destination: "Eiffel Tower",
-    place_id: "ChIJCU7jRO5u5kcRtKqrn5BJ5dE",
+    place_id: "ChIJLU7jZClu5kcR4PcOOO6p3I0",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('48.858844,2.294351'),
-    vibes: []
+    coord: ('48.858844,2.294351')
   },
   {
     location_id: 16,
     destination: "La Barceloneta Beach",
     place_id: "ChIJk1xgCQejpBIRUvCCQOH6ACY",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('41.3784,2.1925'),
-    vibes: []
+    coord: ('41.3784,2.1925')
   },
   {
     location_id: 17,
     destination: "Montpellier Botanical Garden",
     place_id: "ChIJuaew9wavthIRVF6Rv-gqcSE",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('43.3643,3.5238'),
-    vibes: []
+    coord: ('43.3643,3.5238')
   },
   {
     location_id: 18,
     destination: "Palais des Papes",
     place_id: "ChIJb_jbjobrtRIRy9KIwWXljHc",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('43.9509,4.8077'),
-    vibes: []
+    coord: ('43.9509,4.8077')
   },
   {
     location_id: 19,
     destination: "Basilica of Notre Dame of Fourvière",
     place_id: "ChIJK1Jxdanr9EcRKY5nG3nMG50",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('45.7623,4.8226'),
-    vibes: []
+    coord: ('45.7623,4.8226')
   },
   {
     location_id: 20,
     destination: "Louvre Museum",
     place_id: "ChIJv2jjFjhu5kcRnzf3w7P-TQQ",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('48.8606,2.3376'),
-    vibes: []
+    coord: ('48.8606,2.3376')
   },
   {
     location_id: 21,
     destination: "La Boqueria Market",
     place_id: "ChIJp6ziDSuipBIRrb6hZvlUKkM",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
-    coord: ('41.3819,2.1717'),
-    vibes: []
+    coord: ('41.3819,2.1717')
   },
 ];
 

@@ -69,7 +69,7 @@ const LocationsInfoWindow = () => {
 
 LocationsInfoWindow.propTypes = {
   
-  placeDetails: PropTypes.arrayOf(PropTypes.object),
+  placesDetails: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default LocationsInfoWindow;
