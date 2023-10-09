@@ -1,10 +1,10 @@
-export default function ItineraryItems({ locid, index, destination, rating }) {
+export default function ItineraryItems({ index, locid, displayname, rating, classtype }) {
   return (
-    // make switch for B/L/D/Separator & itinerary items
+
  <span >
-    <div locid={locid} className="itinerary-item" draggable>
-      <h2>{destination}</h2>
-      <p>Average vote: {rating}</p>
+    <div key={index} locid={locid} className={classtype} draggable>
+      <h2>{displayname}</h2>
+      {rating !== "" ? <p>Average vote: {rating}</p> : null}
     </div>
   </span>
    
