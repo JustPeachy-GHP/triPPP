@@ -81,7 +81,7 @@ const users = [
 const locations = [
   {
     location_id: 1,
-    destination: "Barcelona, Spain",
+    destination: "Barcelona to Paris",
     place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('41.385063,2.173404'),
     vibes: [ "shop", "party", "local"]
@@ -92,7 +92,6 @@ const locations = [
     place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: ('35.595058,-82.551487'),
     vibes: ["outdoors", "chill"]
-
   },
   {
     location_id: 3,
@@ -100,7 +99,6 @@ const locations = [
     place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
     coord: ('36.1699,-115.1398'),
     vibes: ["party", "shop"]
-
   },
   {
     location_id: 4,
@@ -228,6 +226,122 @@ const locations = [
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('41.3819,2.1717')
   },
+
+  {
+    location_id: 22,
+    destination: "The Forum Shops at Caesars Palace",
+    place_id: "ChIJSfBqxTzEyIARuYjvD1pecJ8",
+    destination_place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+    coord: ('36.1189939,-115.2174111')
+  },
+
+  {
+    location_id: 23,
+    destination: "XS Nightclub",
+    place_id: "ChIJb7Qe8RTEyIARqt7WfhoTKPY",
+    destination_place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+    coord: ('36.1270805,-115.2061127')
+  },
+
+  {
+    location_id: 24,
+    destination: "The LINQ Promenade",
+    place_id: "ChIJd1tXQznEyIAR6hB3hvz06RY",
+    destination_place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
+    coord: ('36.1270805,-115.2061127')
+  },
+
+  {
+    location_id: 25,
+    destination: "Wicker Park",
+    place_id: "ChIJHyDL2cXSD4gRL6ENlLzZlZw",
+    destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
+    coord: ('41.91084,-87.67787')
+  },
+  {
+    location_id: 26,
+    destination: "Andersonville",
+    place_id: "ChIJrwSWvojRD4gRMJiiFShC3R4",
+    destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
+    coord: ('41.98192,-87.66830')
+  },
+  {
+    location_id: 27,
+    destination: "Lincoln Square",
+    place_id: "ChIJOQwghALSD4gRPZgJcaYbnmY",
+    destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
+    coord: ('41.96937,-87.68867')
+  },
+  {
+    location_id: 28,
+    destination: "Cherry Creek Shopping Center",
+    place_id: "ChIJX4Jmj5B-bIcR48cSaPW_jR0",
+    destination_place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
+    coord: ('39.71734,-104.95216')
+  },
+  {
+    location_id: 29,
+    destination: "Red Rocks Park and Amphitheatre",
+    place_id: "ChIJ18hsDtqCa4cRrdYsOQfng3w",
+    destination_place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
+    coord: ('39.66551,-105.20540')
+  },
+  {
+    location_id: 30,
+    destination: "16th Street Mall",
+    place_id: "ChIJHY5jhNp4bIcRN013V1sn9Ug",
+    destination_place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
+    coord: ('39.74826,-104.99463')
+  },
+  {
+    location_id: 31,
+    destination: "Duval Street",
+    place_id: "EiFEdXZhbCBTdCwgS2V5IFdlc3QsIEZMIDMzMDQwLCBVU0EiLiosChQKEgmHXBXO6bbRiBGhSA43NRlsuBIUChIJdyOVrTSx0YgRXjtGdy_pzj8",
+    destination_place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
+    coord: ('24.56270,-81.80857')
+  },
+  {
+    location_id: 32,
+    destination: "Mallory Square",
+    place_id: "ChIJFYVni-y20YgRB3LW82ZY4bw",
+    destination_place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
+    coord: ('24.56268,-81.81589')
+  },
+  {
+    location_id: 33,
+    destination: "Smathers Beach",
+    place_id: "ChIJYxGtrzGx0YgRO0FndRyfyLs",
+    destination_place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
+    coord: ('24.55219,-81.76857')
+  },
+  {
+    location_id: 34,
+    destination: "Chelsea Market",
+    place_id: "ChIJw2lMFL9ZwokRosAtly52YX4",
+    destination_place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
+    coord: ('40.74533,-73.99646')
+  },
+  {
+    location_id: 35,
+    destination: "Greenwich Village",
+    place_id: "ChIJpxMyDJRZwokRX0XfgiHEgog",
+    destination_place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
+    coord: ('40.74862,-73.89170')
+  },
+  {
+    location_id: 36,
+    destination: "Melrose Avenue",
+    place_id: "EiFNZWxyb3NlIEF2ZSwgTG9zIEFuZ2VsZXMsIENBLCBVU0EiLiosChQKEgl9KOCx07jCgBG4KPB94SvDnBIUChIJE9on3F3HwoAR9AhGJW_fL-I",
+    destination_place_id: "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    coord: ('41.735167,-93.5711476')
+  },
+  {
+    location_id: 37,
+    destination: "Sunset Strip",
+    place_id: "ChIJb-baHr2-woARBkWdGpP-CRQ",
+    destination_place_id: "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    coord: ('34.09128,-118.37977')
+  },
 ];
 
 const trips = [
@@ -286,6 +400,7 @@ const trips = [
     isdecided: true,
     vibeform: "chill",
   },
+  
 ];
 
 const journals = [

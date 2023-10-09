@@ -17,9 +17,7 @@ const LocationsMap = () => {
     async function getAllLocations() {
       try {
         const locationsData = await fetchAllLocations();
-        console.log("Fetched locations", locationsData);
         setLocations(locationsData);
-        console.log("Locations updated", locationsData);
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
@@ -81,14 +79,11 @@ const LocationsMap = () => {
       for (const location of locations) {
         bounds.extend(parseCoordinates(location.coord));
         if (location.place_id) {
-          console.log("Fetching locations for place_id", location.place_id);
           places = await onHandleGetLocationInfo(location.place_id, places);
         } else {
           console.warn("Skipping item due to place_id", location);
         }
       }
-
-      console.log("Fetched locations", places);
 
       map.fitBounds(bounds);
       setMap(map);

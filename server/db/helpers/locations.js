@@ -15,7 +15,6 @@ const getAllLocations = async () => {
 
 const getItineraryLocations = async (destination) => {
   try {
-    console.log("Destination ID: ", destination);
     const { rows } = await client.query(`
     SELECT * 
     FROM locations
@@ -149,7 +148,6 @@ const getDestVotes = async (trip_id, location_id) => {
       FROM itineraryitems
       WHERE trip_id = $1 AND location_id = $2;
     `,[trip_id, location_id])
-    console.log(rows)
     return rows;
   } catch (error) {
     throw error;

@@ -13,7 +13,7 @@ export default function ItineraryPage() {
                 <MemoizedItineraryMap props={destination}/>
             </div>
             <div className="scrollable-content"> 
-                <ItineraryInfoWindow props={destination}/> 
+                <ItineraryInfoWindow /> 
             </div>
         </>
     );

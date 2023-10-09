@@ -19,7 +19,6 @@ export async function fetchAllLocations() {
 export async function fetchItineraryLocations(id) {
     try {
       const url = `${BASE_URL}/itinerary/${id}`;
-      console.log(url);
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Network response was not ok. Status: ${response.status}`);

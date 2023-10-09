@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { fetchItineraryLocations } from "../../helpers/locations";
-
-
 import {
   GoogleMap,
   MarkerF,
   InfoWindowF,
 } from "@react-google-maps/api"; // Corrected component names
-
 
 function ItineraryMap(destination) {
   const [placesService, setPlacesService] = useState(null);
@@ -21,11 +18,8 @@ function ItineraryMap(destination) {
   useEffect(() => {
     async function getItineraryLocations(destination) {
       try {
-        console.log("Fetching destination: ", destination);
         const itineraryData = await fetchItineraryLocations(destination);
-        console.log("Fetched itineraryData:", itineraryData);
         setActivities(itineraryData);
-        console.log("Activity state updated:", itineraryData);
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
@@ -39,7 +33,7 @@ function ItineraryMap(destination) {
     } catch(e) {
       console.log(e);
     }
-  }, [destination]);
+  }, [destination.props]);
 
   function parseCoordinates(coord) {
     if (coord && typeof coord === 'object' && 'x' in coord && 'y' in coord) {
@@ -80,38 +74,39 @@ function ItineraryMap(destination) {
     }
   }, [setItineraryPlacesDetails]);
 
-    const onLoad = React.useCallback(async function callback(map) {
-      const bounds = new window.google.maps.LatLngBounds();
+
+  const onLoad = React.useCallback(async function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    
+    let itineraryPlaces = {};
+    
+    for (const item of activities) {
+      bounds.extend(parseCoordinates(item.coord));
+    }
+    map.fitBounds(bounds);
+    setMap(map);
+
+    try {
       const placesService = new window.google.maps.places.PlacesService(map);
+      console.log("placesService:", placesService);
       setPlacesService(placesService);
-      let itineraryPlaces = {};
-    
-      try {
-        for (const item of activities) {
-          bounds.extend(parseCoordinates(item.coord));
-          if (item.place_id) {
-            // Log place_id to check if it's present
-            console.log("Fetching place details for place_id:", item.place_id);
-            itineraryPlaces = await onHandleGetItineraryInfo(item.place_id, itineraryPlaces);
-          } else {
-            // Log a message for missing place_id
-            console.warn("Skipping item due to missing place_id:", item);
-          }
+
+      for (const item of activities) {
+        if (item.place_id) {
+          itineraryPlaces = await onHandleGetItineraryInfo(item.place_id, itineraryPlaces);
+        } else {
+          // Log a message for missing place_id
+          console.warn("Skipping item due to missing place_id:", item);
         }
-    
-        // Log places to check if it's populated
-        console.log("Fetched places:", itineraryPlaces);
-    
-        map.fitBounds(bounds);
-        setMap(map);
-    
-        if (Object.keys(itineraryPlaces).length > 0) {
-          onHandleSetItineraryPlacesDetails(itineraryPlaces);
-        }
-      } catch (error) {
-        console.error("Error loading location info:", error);
       }
-    }, [onHandleGetItineraryInfo, activities, onHandleSetItineraryPlacesDetails, setMap]);
+  
+      if (Object.keys(itineraryPlaces).length > 0) {
+        onHandleSetItineraryPlacesDetails(itineraryPlaces);
+      }
+    } catch (error) {
+      console.error("Error loading location info:", error);
+    }
+  }, [onHandleGetItineraryInfo, activities, onHandleSetItineraryPlacesDetails, setMap]);
 
   const handleZoomToLocation = (lat, lng) => {
     if (map) {
