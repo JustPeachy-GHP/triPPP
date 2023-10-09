@@ -4,7 +4,7 @@ const express = require("express");
 const server = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const PORT = 8081;
+const PORT = 8080;
 const jwt = require("jsonwebtoken");
 const { COOKIE_SECRET } = require("./secrets");
 

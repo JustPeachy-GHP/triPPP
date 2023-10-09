@@ -34,7 +34,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS itineraryitems cascade;
       DROP TABLE IF EXISTS groupmembs cascade;
       DROP TABLE IF EXISTS groups cascade;
-      DROP TYPE IF EXISTS vibe cascade;
+      DROP TYPE IF EXISTS vibes cascade;
           `);
     console.log("tables dropped!");
   } catch (error) {
@@ -81,7 +81,7 @@ const createTables = async () => {
         coord POINT,
         place_id varchar(255),
         destination varchar(255),
-        vibes vibe[]
+        vibes vibes[]
     );
 
 
@@ -104,7 +104,7 @@ const createTables = async () => {
             numdays INTEGER,
             numtravelers INTEGER,
             isdecided BOOLEAN,
-            vibeform vibe
+            vibeform vibes
                         
         );
 
