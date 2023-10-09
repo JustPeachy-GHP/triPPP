@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  // console.log("hi");
 
   return (
 
-    <div className="navBar" id="navbar">
-      <Link to="/home">Home </Link> <br></br>
-   
+    <div className="navBar" id="navbar">   
       <Link to="/">Home </Link>  <br></br>
       <Link to="/locations"> Location </Link> <br></br>
       <Link to="/userlanding"> User </Link> <br></br>

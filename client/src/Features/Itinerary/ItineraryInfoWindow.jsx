@@ -28,42 +28,28 @@ const ItineraryInfoWindow = () => {
   return (
     <div className="infoContainer">
       {placeKeys.length > 0 ? 
-      // (
-      //   <>
-      //     <div className="info-card">
-      //       <h1>Activity Options:</h1>
-      //       {placeKeys.map((key) => (
-      //         <div key={key} className="info-item">
-      //           <h2 className="nameZoom" onClick={() => handleCardClick(key)}>
-      //             {itineraryPlacesDetails[key].name}
-      //           </h2>
-      //           {itineraryPlacesDetails[key].photos && itineraryPlacesDetails[key].photos.length > 0 && (
-      //             <img
-      //               src={itineraryPlacesDetails[key].photos[0].getUrl()}
-      //               alt={itineraryPlacesDetails[key].name}
-      //               style={{ width: '400px', height: 'auto' }}
-      //             />
-      //           )}
-      //           <br>
-      //           </br>
-      //           {/* <ActivityRater /> */}
-      //         </div>
-      //       ))}
-      //     </div>
-      //   </>
-      // ) 
       (
-        <>
-          <p>{JSON.stringify(itineraryPlacesDetails[placeKeys[0]])}</p>
-        </>
-        
-      )
-      : 
-      (
+         <div className="info-card">
+           <h1>Activity Options:</h1>
+          {placeKeys.map((key) => (
+        <div key={key} className="info-item">
+        <h3>{itineraryPlacesDetails[key].name}</h3>
+        {itineraryPlacesDetails[key].photos && 
+          itineraryPlacesDetails[key].photos.length > 0 ? (
+                  <img
+                    src={itineraryPlacesDetails[key].photos[0].getUrl()}
+                    alt={itineraryPlacesDetails[key].name}
+                    style={{ width: '400px', height: 'auto' }}
+                  />
+                  ): null}
+        </div> 
+      ))}
+      </div>
+      ): (
         <div>No location information available.</div>
-      )}
-    </div>
-  );
+  )}
+  </div>
+);
 };
 
 

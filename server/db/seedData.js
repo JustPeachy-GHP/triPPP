@@ -254,9 +254,9 @@ const locations = [
   {
     location_id: 25,
     destination: "Wicker Park",
-    place_id: "ChIJHyDL2cXSD4gRL6ENlLzZlZw",
+    place_id: "ChIJTVle-sbSD4gRnXE7zWH7kkU",
     destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
-    coord: ('41.91084,-87.67787')
+    coord: ('41.6764342,-89.1990669')
   },
   {
     location_id: 26,

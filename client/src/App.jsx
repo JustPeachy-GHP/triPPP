@@ -13,7 +13,6 @@ import { GoogleMapsContextProvider } from "./context/googleMapsContext";
 import "./App.css";
 import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
-import Itinerary from "./Features/Itinerary/ItineraryView";
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdminPage";
 import ItineraryPage from "./Features/Itinerary/ItineraryPage";
@@ -28,7 +27,6 @@ function App() {
       <ErrorBoundary>
         <GoogleMapsContextProvider>
           <Navtitle />
-
           <Routes>
             <Route path="/test" element={<Test />} />
             <Route path="/displaytest" element={<DisplayTest />} />
@@ -54,6 +52,3 @@ function App() {
 }
 
 export default App;
-
-//need to import the compenets for all these navagation - need the component files name for the nav to work
-//All those up there is like a placeholder
