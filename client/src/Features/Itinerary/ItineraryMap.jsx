@@ -32,6 +32,9 @@ function ItineraryMap(destination) {
     }
 
     try {
+      // the prop destination comes to the component
+      // as an object with a key of props
+      // the value of that props is the destination place id
       getItineraryLocations(destination.props);
     } catch(e) {
       console.log(e);

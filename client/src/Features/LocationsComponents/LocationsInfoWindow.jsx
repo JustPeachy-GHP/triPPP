@@ -28,7 +28,10 @@ const LocationsInfoWindow = () => {
   const handleLetsGoClick = (key) => {
     const place = key;
     console.log(place);
-    // Navigate to the itinerary page with the placeId as a URL parameter
+
+    // Navigate to the itinerary page and pass the current destination
+    // navigate function can pass props to the component rendered at the /itinerary/ path
+    // this is passed as an object with a key called state
     navigate(`/itinerary/`, { state: place });
   };
 

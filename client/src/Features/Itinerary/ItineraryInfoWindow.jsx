@@ -1,7 +1,5 @@
-import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import ActivityRater from "../Display/ActivityRater";
 
 const ItineraryInfoWindow = () => {
@@ -46,6 +44,7 @@ const ItineraryInfoWindow = () => {
                 )}
                 <br>
                 </br>
+                <ActivityRater />
               </div>
             ))}
           </div>
