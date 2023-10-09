@@ -183,49 +183,49 @@ const locations = [
     location_id: 15,
     destination: "Eiffel Tower",
     place_id: "ChIJLU7jZClu5kcR4PcOOO6p3I0",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('48.858844,2.294351')
   },
   {
     location_id: 16,
     destination: "La Barceloneta Beach",
     place_id: "ChIJk1xgCQejpBIRUvCCQOH6ACY",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('41.3784,2.1925')
   },
   {
     location_id: 17,
     destination: "Montpellier Botanical Garden",
     place_id: "ChIJuaew9wavthIRVF6Rv-gqcSE",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('43.3643,3.5238')
   },
   {
     location_id: 18,
     destination: "Palais des Papes",
     place_id: "ChIJb_jbjobrtRIRy9KIwWXljHc",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('43.9509,4.8077')
   },
   {
     location_id: 19,
     destination: "Basilica of Notre Dame of Fourvière",
     place_id: "ChIJK1Jxdanr9EcRKY5nG3nMG50",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('45.7623,4.8226')
   },
   {
     location_id: 20,
     destination: "Louvre Museum",
-    place_id: "ChIJv2jjFjhu5kcRnzf3w7P-TQQ",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    place_id: "ChIJD3uTd9hx5kcR1IQvGfr8dbk",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('48.8606,2.3376')
   },
   {
     location_id: 21,
     destination: "La Boqueria Market",
-    place_id: "ChIJp6ziDSuipBIRrb6hZvlUKkM",
-    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sAA",
+    place_id: "ChIJAVoetfeipBIR1a1z3FTGCoY",
+    destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: ('41.3819,2.1717')
   },
 ];
