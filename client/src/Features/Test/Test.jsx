@@ -7,6 +7,7 @@ import DisplayTest from "./DisplayTest";
 import ActivityRater from '../Display/ActivityRater'
 import DestinationRater from '../Display/DestinationRater'
 import BasicModal from "./BasicModal";
+import ModalItinerary from "../Itinerary/ModalItinerary"
 
 export default function Test() {
   // getting testVal1 and testVal2 from redux
@@ -62,6 +63,8 @@ const handleSubmit = () => {
         <DestinationRater />
 
         <BasicModal/>
+
+        <ModalItinerary />
 
       </div>
     </>

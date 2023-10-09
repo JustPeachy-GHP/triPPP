@@ -3,6 +3,23 @@ import { useState, useEffect } from "react";
 import { getItineraryByTrip } from "../../helpers/itinerary";
 import { fetchSingleTrip } from "../../helpers/trips";
 import { getDestName } from "../../helpers/location";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  overflow: 'scroll',
+  width: '75%',
+  height: '75%',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 // trip_id will be passed through from the click that
 // gets you to the itinerary view page
@@ -131,6 +148,9 @@ export default function ItineraryView() {
   const [destNames, setDestNames] = useState([]);
   const [dayPlanArray, setDayPlanArray] = useState([]);
   const [finalVotes, setFinalVotes] = useState([]);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   let content = "";
 
@@ -301,8 +321,18 @@ export default function ItineraryView() {
 
   return (
     <div>
+      <Button onClick={handleOpen}>View Itinerary</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+      <Box sx={style}>
+      <div className="modaltitle">
       <h1>{tripname}</h1>
       <h2>Suggested Itinerary for {numDays} days</h2>
+      </div>
       {dayPlanArray.map((item, index) => {
         return (
           <ItineraryItems
@@ -314,6 +344,8 @@ export default function ItineraryView() {
           />
         );
       })}
+      </Box>
+      </Modal>
     </div>
   );
 }
