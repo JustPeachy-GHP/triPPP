@@ -52,10 +52,7 @@ function App() {
             <Route path="/home" element={<LocationsPage />} />
 
             <Route path="/itinerary" element={<Itinerary />} />
-            <Route
-              path="/journals/:user_id/:trip_id"
-              element={<AllJournalEntries />}
-            />
+            <Route path="/journal" element={<AllJournalEntries />} />
             <Route
               path="/journals/:journal_id"
               element={<SingleJournalEntry />}

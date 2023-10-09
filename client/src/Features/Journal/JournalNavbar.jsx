@@ -11,7 +11,7 @@ const Navbar = () => {
         </li>
         <li>
           {/* hard code for now */}
-          <Link to="/journals/1/1">Journals</Link>
+          <Link to="/journal">Journals</Link>
         </li>
         <li>
           <Link to="/journalform">Create</Link>

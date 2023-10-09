@@ -1,43 +1,52 @@
 import { useEffect, useState } from "react";
 import {
-  fetchAllJournals,
+  // fetchAllJournals,
   deleteJournal,
-  fetchAllJournalsByTrip,
-  fetchAllJournalsByLocation,
+  // fetchAllJournalsByTrip,
+  fetchAllJournalsByUser,
+  // fetchAllJournalsByLocation,
 } from "../../../src/helpers/journals";
 import { useNavigate } from "react-router-dom";
-import CreateJournalForm from "./CreateJournalForm";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function AllJournals() {
   const [journal, setJournal] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
   const params = useParams();
+  const user_id = useSelector((state) => state.auth.user_id);
 
-  const user_id = 1;
-  const trip_id = 1;
-
-  // user_id ? then they are authenticated
-  // OR no user_id show 1 thing else ...
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // console.log(isAuthenticated);
-  // const user_id = useSelector((state) => state.auth.user_id);
-
+  console.log(user_id);
   // need to EDIT so it fetches all journals of that USERS
+  // useEffect(() => {
+  //   async function fetchJournals() {
+  //     const response = await fetchAllJournalsByTrip(
+  //       params.user_id,
+  //       params.trip_id
+  //     );
+  //     setJournal(response);
+  //   }
+  //   fetchJournals();
+  // }, []);
+
   useEffect(() => {
     async function fetchJournals() {
-      const response = await fetchAllJournalsByTrip(
-        params.user_id,
-        params.trip_id
-      );
-      setJournal(response);
+      try {
+        const response = await fetchAllJournalsByUser(user_id);
+        console.log("Response:", response);
+        // const data = await response.json();
+        setJournal(response);
+      } catch (error) {
+        console.error("Error fetching journals by user:", error);
+      }
     }
-    fetchJournals();
-  }, []);
+    if (user_id) {
+      fetchJournals();
+    }
+  }, [user_id]);
 
   // useEffect(() => {
   //   async function fetchJournals() {
@@ -118,7 +127,7 @@ export default function AllJournals() {
 
             <div>
               <button
-                class="button"
+                className="button"
                 onClick={() => {
                   navigate(`/journals/${journal.journal_id}`);
                 }}
@@ -126,7 +135,7 @@ export default function AllJournals() {
                 See Details
               </button>
               <button
-                class="button"
+                className="button"
                 onClick={() => handleDelete(journal.journal_id)}
               >
                 Delete

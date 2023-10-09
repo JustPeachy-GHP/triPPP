@@ -12,9 +12,20 @@ export async function fetchAllJournals() {
   }
 }
 
-export async function fetchAllJournalsByTrip(user_id, trip_id) {
+// export async function fetchAllJournalsByTrip(user_id, trip_id) {
+//   try {
+//     const response = await fetch(`${journalUrl}/${user_id}/${trip_id}`);
+//     const returnVal = await response.json();
+//     return returnVal;
+//   } catch (error) {
+//     console.log(error);
+//     return error;
+//   }
+// }
+
+export async function fetchAllJournalsByUser(user_id) {
   try {
-    const response = await fetch(`${journalUrl}/${user_id}/${trip_id}`);
+    const response = await fetch(`${journalUrl}/user/${user_id}`);
     const returnVal = await response.json();
     return returnVal;
   } catch (error) {
@@ -111,6 +122,6 @@ export async function updateJournal(journal_id, journal) {
     console.log(result);
     return result;
   } catch (error) {
-    console.error("trouble updating song", error);
+    console.error("trouble updating journal", error);
   }
 }

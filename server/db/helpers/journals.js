@@ -66,6 +66,23 @@ const getAllJournalsByTrip = async (user_id, trip_id) => {
   }
 };
 
+const getAllJournalsByUser = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT * 
+      FROM journals
+      WHERE user_id = $1
+    `,
+      [user_id]
+    );
+    console.log("GETTING JOURNALS BY USER(DB)", rows);
+    return rows;
+  } catch (error) {
+    throw ("CANT GET JOURNALS BY USER(DB)", error);
+  }
+};
+
 const getAllJournalsByLocation = async (user_id, location_id) => {
   try {
     const { rows } = await client.query(
@@ -145,4 +162,5 @@ module.exports = {
   updateJournal,
   deleteJournal,
   getAllJournalsByLocation,
+  getAllJournalsByUser,
 };
