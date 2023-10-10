@@ -238,3 +238,14 @@ input:checked + .slider:before {
   box-shadow: 4px 4px 8px white;
   margin: 5px;
 }
+
+.logoutButton {
+  background-color: #fcf9f3;
+  box-sizing: border-box;
+  padding: 0;
+  color: #f49867;
+}
+
+.journalLink {
+  font-size: 2em;
+}

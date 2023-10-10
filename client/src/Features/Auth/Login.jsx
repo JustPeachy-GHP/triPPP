@@ -51,6 +51,10 @@ export default function Login(){
                 firstname: response.user.firstname,
                 }))
             }
+
+            localStorage.setItem("isAuthenticated", "true")
+            localStorage.setItem("JWToken", response.token)
+
             response.token && navigate("/userlanding")
             return content
 
