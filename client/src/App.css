@@ -1,92 +1,94 @@
 .imagelogo {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 .muidrawertwoiconbutton {
-    position: sticky;
+  position: sticky;
 }
 
-.muiiconimage{
-    position: sticky;
+.muiiconimage {
+  position: sticky;
 }
 
 .drawervtwo {
-    position: sticky;
+  position: sticky;
 }
 
 .logoname {
-    position: sticky;
+  position: sticky;
 }
 
-#root, div#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-    display: block;
-  }
-  
-  .inforater {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25vw;
-    border: solid 1px black;
-  }
-  
-  .infovoter {
-    width: 20vw;
-    display: flexbox;
-    flex-flow: column;
-    margin-left: auto;
-    margin-right:auto;
-  }
-  
-  .currentvote {
-    width: 20vw;
-    text-align: right;
-  }
-  
-  .hearts {
-    display: block;
-    width: 20vw;
-  }
-  
-  .heartstext {
-    display: block;
-    width:20vw;  
-  }
+#root,
+div#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: block;
+}
 
-  /* LOCATIONS COMPONENTS */
-  
-  .scrollable-content {
-    /* Style the scrollable content container */
-    height: 100vh; /* Set a fixed height or any height you prefer */
-    overflow-y: scroll; /* Enable vertical scrolling */
-  }
-  
-  .fixed-component {
-    /* Style the fixed component */
-    position: fixed; /* Fix the component's position */
-    top: 72px; /* Adjust the distance from the top */
-    right: 20px; /* Adjust the distance from the right */
-    width: 200px; /* Set a fixed width or any width you prefer */
-    padding: 10px; /* Add padding for spacing */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow for visibility */
-  }
+/* Activity and Destination raters */
+.inforater {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25vw;
+  border: solid 1px black;
+}
 
-  .nameZoom {
-    text-decoration: underline;
-  }
+.infovoter {
+  width: 20vw;
+  display: flexbox;
+  flex-flow: column;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .confirmButton {
+.currentvote {
+  width: 20vw;
+  text-align: right;
+}
+
+.hearts {
+  display: block;
+  width: 20vw;
+}
+
+.heartstext {
+  display: block;
+  width: 20vw;
+}
+
+/* LOCATIONS COMPONENTS */
+
+.scrollable-content {
+  /* Style the scrollable content container */
+  height: 100vh; /* Set a fixed height or any height you prefer */
+  overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+.fixed-component {
+  /* Style the fixed component */
+  position: fixed; /* Fix the component's position */
+  top: 72px; /* Adjust the distance from the top */
+  right: 20px; /* Adjust the distance from the right */
+  width: 200px; /* Set a fixed width or any width you prefer */
+  padding: 10px; /* Add padding for spacing */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow for visibility */
+}
+
+.nameZoom {
+  text-decoration: underline;
+}
+
+.confirmButton {
   background-color: whitesmoke; /* Background color for the button */
   border: none;
   border-radius: 10px; /* Adjust the border radius for rounded corners */
   padding: 12px 24px; /* Adjust padding as needed */
   font-size: 16px; /* Adjust font size as needed */
-  color: #8FA69D;
+  color: #8fa69d;
   box-shadow: 6px 6px 12px #c0c0c0, -6px -6px 12px whitesmoke; /* Neumorphic shadow effect */
   transition: all 0.2s ease-in-out; /* Smooth transition on hover */
 
@@ -98,63 +100,141 @@
   &:active {
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
+}
 
-  }
+.infoContainer {
+  height: 100vh;
+  width: 41vw;
+  display: block;
+  background-color: #bfd9cd;
+  color: black;
+}
 
-  .infoContainer {
-    height: 100vh;
-    width: 41vw;
-    display: block;
-    background-color: #BFD9CD;
-    color: black;
-  }
-  
-  .info-card{
-    z-index: 1;
-    background-color: #8FA69D;
-    color: whitesmoke;
-  }
-  
-  .mapContainer {
-    height: 100vh;
-    width: 50vw;
-    display: block;
-    float: right;
-    position: sticky;
-  }
-  
-  .map-container {
-    padding-left: 50%;
-    height: 100%;
-    width: 50%;
-  }
+.info-card {
+  z-index: 1;
+  background-color: #8fa69d;
+  color: whitesmoke;
+}
 
-  .place {
-    box-sizing: border-box;
-    padding-left: 10px;
-    width: 50vw;
-    border: solid 1px black;
-    border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: move;
-    background-color: #fff;
-  }
+.mapContainer {
+  height: 100vh;
+  width: 50vw;
+  display: block;
+  float: right;
+  position: sticky;
+}
 
-  .daymarker h2 {
-    border-top: solid 3px #F27C38;
-    border-bottom: solid 3px #F27C38;
-    color: #F27C38;
-    font-size: 2.5em;
-    padding-left: 1em;
-  }
+.map-container {
+  padding-left: 50%;
+  height: 100%;
+  width: 50%;
+}
 
-  .meal {
-    color: #8FA69D;
-    text-align: center;
-  }
+/* ModalItinerary */
+.place {
+  box-sizing: border-box;
+  padding-left: 10px;
+  width: 50vw;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: move;
+  background-color: #fff;
+}
 
-  .modaltitle {
-    text-align: center;
-  }
+.daymarker h2 {
+  border-top: solid 3px #f27c38;
+  border-bottom: solid 3px #f27c38;
+  color: #f27c38;
+  font-size: 2.5em;
+  padding-left: 1em;
+}
 
+.meal {
+  color: #8fa69d;
+  text-align: center;
+}
+
+.modaltitle {
+  text-align: center;
+}
+
+/* slider for SetDestToggle component */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-top: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #f49867;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f49867;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* User Landing */
+.textButtons {
+  width: 60vw;
+  border: none;
+  background-color: white;
+  opacity: .8;
+  font-size: 1.5em;
+  /* background: rgba(0,0,0,0.5); */
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 4px 4px 8px white;
+  margin: 5px;
+}

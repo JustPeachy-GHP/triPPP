@@ -8,6 +8,9 @@ import ActivityRater from '../Display/ActivityRater'
 import DestinationRater from '../Display/DestinationRater'
 import BasicModal from "./BasicModal";
 import ModalItinerary from "../Itinerary/ModalItinerary"
+import Tooltip from '@mui/material/Tooltip';
+import "./test.css"
+import SetDestToggle from '../Display/SetDestToggle'
 
 export default function Test() {
   // getting testVal1 and testVal2 from redux
@@ -15,6 +18,7 @@ export default function Test() {
   console.log(useSelector(state => state.test.testVal2))
 
   const navigate = useNavigate()
+  const classDisabled = null
 
   // same as above, but retrieving from redux to use as inital state for useState hooks
   const initialVal1 = useSelector(state => state.test.testVal1);
@@ -65,6 +69,10 @@ const handleSubmit = () => {
         <BasicModal/>
 
         <ModalItinerary />
+
+        {/* <Tooltip title="Toggle me to set your destination." enterDelay="500" > */}
+        <SetDestToggle />
+        {/* </Tooltip> */}
 
       </div>
     </>
