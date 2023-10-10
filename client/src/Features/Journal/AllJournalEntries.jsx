@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   deleteJournal,
   fetchAllJournalsByUser,
+  fetchAllJournalsByTrip,
 } from "../../../src/helpers/journals";
 import { fetchAllTrips } from "../../../src/helpers/trips";
 import { useNavigate } from "react-router-dom";
@@ -50,8 +51,6 @@ export default function AllJournals() {
     }
     fetchTrips();
   }, []);
-
-  console.log(trips);
 
   // function getCoordinatesForJournal(journalId, journals, trips, locations) {
   //   // Find the journal entry with the given journal_id
@@ -105,46 +104,59 @@ export default function AllJournals() {
         />
       </div>
 
-      {journalsToDisplay.map((journal) => {
-        return (
-          <div key={journal.id}>
-            <h4 id="journal">Time/Date: {journal.timestamp}</h4>
-            <h4 id="journal">Title: {journal.title}</h4>
-            <h4>Trip ID: {journal.trip_id}</h4>
+      {/* if journal.trip_id = number in array then map over */}
 
-            <div>
-              <button
-                className="button"
-                onClick={() => {
-                  navigate(`/journals/${journal.journal_id}`);
-                }}
-              >
-                See Details
-              </button>
-              <button
-                className="button"
-                onClick={() => handleDelete(journal.journal_id)}
-              >
-                Delete
-              </button>
-
-              <div>
-                {allTrips.map((trip) => {
-                  if (trips.includes(trip.trip_id)) {
-                    return (
-                      <div key={trip.trip_id}>
-                        <h3>Trip ID: {trip.trip_id}</h3>
-                        <h4>Trip Name: {trip.tripname}</h4>
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
+      <div>
+        {allTrips.map((trip) => {
+          if (trips.includes(trip.trip_id)) {
+            return (
+              <div key={trip.trip_id}>
+                <h4>Trip Name: {trip.tripname}</h4>
+                <button
+                  className="button"
+                  onClick={() => {
+                    navigate(`/journals/${journal.trip_id}`);
+                  }}
+                >
+                  See Journal Entries
+                </button>
               </div>
-            </div>
-          </div>
-        );
-      })}
+            );
+          }
+          return null;
+        })}
+      </div>
     </div>
   );
+}
+
+{
+  /* <div>
+  {journalsToDisplay
+    .filter((journal) => trips.includes(journal.trip_id))
+    .map((journal) => (
+      <div key={journal.journal_id}>
+        <h4>Title: {journal.title}</h4>
+      </div>
+    )}
+</div> */
+}
+
+{
+  /* <div>
+<button
+  className="button"
+  onClick={() => {
+    navigate(`/journals/${journal.journal_id}`);
+  }}
+>
+  See Details
+</button>
+<button
+  className="button"
+  onClick={() => handleDelete(journal.journal_id)}
+>
+  Delete
+</button>
+</div> */
 }

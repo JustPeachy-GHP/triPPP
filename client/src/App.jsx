@@ -52,7 +52,7 @@ function App() {
             <Route path="/home" element={<LocationsPage />} />
 
             <Route path="/itinerary" element={<Itinerary />} />
-            <Route path="/journal" element={<AllJournalEntries />} />
+            <Route path="/journals" element={<AllJournalEntries />} />
             <Route
               path="/journals/:journal_id"
               element={<SingleJournalEntry />}
