@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import SetDestToggle from "../Display/SetDestToggle";
 
 const LocationsInfoWindow = () => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
@@ -58,6 +59,7 @@ const LocationsInfoWindow = () => {
                 <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
                   Lets Go!
                 </button>
+                <SetDestToggle/>
               </div>
             ))}
           </div>

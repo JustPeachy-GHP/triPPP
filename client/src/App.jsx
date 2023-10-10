@@ -11,8 +11,8 @@ import { GoogleMapsContextProvider } from "./context/googleMapsContext";
 import "./App.css";
 // import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
 // import Form from "./Features/Trip/Form";
-import LandingPage from "./Features/Trip/LandingPage";
-import TripForm from "./Features/Trip/TripForm";
+import LandingPage from "./Features/Trip/TripForm/LandingPage";
+import TripForm from "./Features/Trip/TripForm/TripForm";
 import Itinerary from "./Features/Itinerary/ItineraryView"
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
 import TripAdminPage from "./Features/Trip/TripAdmin/TripAdminPage";
@@ -39,7 +39,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
-            <Route path="/home" element={<LocationsPage />} />
+            <Route path="/locations" element={<LocationsPage />} />
             <Route path="/itinerary" element={<ItineraryPage/>}/>
             <Route path="/journals/:user_id/:trip_id" element={<AllJournalEntries />}/>
             <Route path="/journals/:journal_id" element={<SingleJournalEntry />}/>
