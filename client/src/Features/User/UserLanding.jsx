@@ -54,11 +54,11 @@ export default function UserLanding() {
         <h2>Trips</h2>
         <h3>Organizing:</h3>
         {tripAdmins.map((group) => {
-          return <UserTrips group={group} />;
+          return <UserTrips group={group} trip_id={group.trip_id} location_id={group.location_id}/>;
         })}
         <h3>Joining:</h3>
         {tripsMemb.map((group) => {
-          return <UserTrips group={group} />;
+          return <UserTrips group={group} trip_id={group.trip_id} location_id={group.location_id}/>;
         })}
 
         <h2>Journals</h2>
