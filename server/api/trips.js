@@ -7,6 +7,7 @@ const {
   getTripById,
   updateTrip,
   deleteTrip,
+  setIsDecidedTrip
 } = require("../db/helpers/trips");
 
 // GET - api/trips - get all trips
@@ -28,6 +29,17 @@ router.get("/:tripId", async (req, res, next) => {
     next(error);
   }
 });
+
+//PATCH - api/trips/decided/:trip_id
+router.patch("/decided/:trip_id", async (req, res, next) => {
+  try {
+    console.log("in server api", req.body)
+    const trip = await setIsDecidedTrip(req.body)
+    res.send(trip)
+  } catch (error) {
+    next(error)
+  }
+})
 
 // POST - api/trips - post new trip
 router.post("/", async (req, res, next) => {

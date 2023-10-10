@@ -6,9 +6,9 @@ const {
   createGroupmemb,
   getGroupmembById,
   deleteMember,
+  getTripGroupMembsbyId,
 } = require("../db/helpers/groupmembs");
-
-// GET - api/groupmembs - get all groupmembs
+// GET - api/groupmembs/trip_id - get all groupmembs by trip id
 router.get("/", async (req, res, next) => {
   try {
     const groupmembs = await getAllGroupmembs();
@@ -18,10 +18,21 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/groupmembs/:groupmembId - get single groupmemb
-router.get("/:groupmembId", async (req, res, next) => {
+// GET - api/groupmembs/trip_id - get all groupmembs by trip id
+router.get("/all/:trip_id", async (req, res, next) => {
   try {
-    const groupmemb = await getGroupmembById(req.params.groupmembId);
+    const groupmembs = await getTripGroupMembsbyId(req.params.trip_id);
+    res.send(groupmembs);
+  } catch (error) {
+    throw error;
+  }
+});
+
+// GET - api/groupmembs/:groupmembId - get single groupmemb
+// server doesn't know we are looking for trip_id vs groupmemb_id, so we need to add a slash before query
+router.get("/:groupmemb_id", async (req, res, next) => {
+  try {
+    const groupmemb = await getGroupmembById(req.params.groupmemb_id);
     res.send(groupmemb);
   } catch (error) {
     next(error);
@@ -40,10 +51,10 @@ router.post("/", async (req, res, next) => {
 
 // check if this is correct
 // DELETE /api/groupmembs/:group_id/:user_id - delete single group memb
-router.delete("/:group_id/:user_id", async (req, res, next) => {
+router.delete("/:trip_id/:user_id", async (req, res, next) => {
   try {
     const groupMemb = await deleteMember(
-      req.params.group_id,
+      req.params.trip_id,
       req.params.user_id
     );
     res.send(groupMemb);
@@ -52,7 +63,4 @@ router.delete("/:group_id/:user_id", async (req, res, next) => {
   }
 });
 
-
 module.exports = router;
-
-

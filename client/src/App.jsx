@@ -1,5 +1,3 @@
-// import { groupmembs, groups, journals, trips, users } from '../../server/db/seedData';
-
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navtitle from "./Features/Display/Navtitle";
@@ -11,10 +9,13 @@ import UserLanding from "./Features/User/UserLanding";
 import ErrorBoundary from "./Features/Display/ErrorBoundary";
 import { GoogleMapsContextProvider } from "./context/googleMapsContext";
 import "./App.css";
+// import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
+// import Form from "./Features/Trip/Form";
 import LandingPage from "./Features/Trip/LandingPage";
 import TripForm from "./Features/Trip/TripForm";
+import Itinerary from "./Features/Itinerary/ItineraryView"
 import LocationsPage from "./Features/LocationsComponents/LocationsPage";
-import TripAdminPage from "./Features/Trip/TripAdminPage";
+import TripAdminPage from "./Features/Trip/TripAdmin/TripAdminPage";
 import ItineraryPage from "./Features/Itinerary/ItineraryPage";
 import AllJournalEntries from "./Features/Journal/AllJournalEntries";
 import SingleJournalEntry from "./Features/Journal/SingleJournalEntry";
@@ -26,8 +27,10 @@ function App() {
     <>
       <ErrorBoundary>
         <GoogleMapsContextProvider>
-          <Navtitle />
-          <Routes>
+       <Navtitle/> 
+          <br/>
+           <br/>
+            <Routes>
             <Route path="/test" element={<Test />} />
             <Route path="/displaytest" element={<DisplayTest />} />
             <Route path="/login" element={<Login />} />
@@ -36,14 +39,16 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
-            <Route path="/itinerary" element={<ItineraryPage />} />
-            <Route path="/locations" element={<LocationsPage />} />
+            <Route path="/home" element={<LocationsPage />} />
+            <Route path="/itinerary" element={<ItineraryPage/>}/>
             <Route path="/journals/:user_id/:trip_id" element={<AllJournalEntries />}/>
             <Route path="/journals/:journal_id" element={<SingleJournalEntry />}/>
             <Route path="/journalform" element={<CreateJournalForm />} />
-            <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
-            <Route path="/register" element={<Registration />} />
-            <Route path="/journals" element={<AllJournalEntries />} />
+            <Route path="/journals/:journal_id/edit" element={<EditJournalForm />} />
+
+            {/* <Route path="/register" element={<Registration/>}/> */}
+            {/* <Route path="/display" element={<Display/>}/>
+            {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>
@@ -52,3 +57,4 @@ function App() {
 }
 
 export default App;
+
