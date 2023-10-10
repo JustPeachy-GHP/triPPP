@@ -5,12 +5,14 @@ import ActivityRater from "../Display/ActivityRater";
 const ItineraryInfoWindow = () => {
   const { isGoogleMapsLoaded, map, itineraryPlacesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
       const keys = Object.keys(itineraryPlacesDetails);
       console.log(keys);
       setPlaceKeys(keys);
+      setIsLoading(false);
     }
   }, [isGoogleMapsLoaded, map, itineraryPlacesDetails]);
 
@@ -20,20 +22,25 @@ const ItineraryInfoWindow = () => {
 
     if (map) {
       map.panTo(new window.google.maps.LatLng(lat, lng));
-      map.setZoom(5); // You can adjust the zoom level as needed
+      map.setZoom(10); // You can adjust the zoom level as needed
     }
   };
 
 
   return (
     <div className="infoContainer">
-      {placeKeys.length > 0 ? 
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : placeKeys.length > 0 ? 
       (
          <div className="info-card">
            <h1>Activity Options:</h1>
           {placeKeys.map((key) => (
         <div key={key} className="info-item">
-        <h3>{itineraryPlacesDetails[key].name}</h3>
+          <h2 className="nameZoom" onClick={() => handleCardClick(key)}>
+                  {itineraryPlacesDetails[key].name}
+                </h2>
+        {/* <h3>{itineraryPlacesDetails[key].name}</h3> */}
         {itineraryPlacesDetails[key].photos && 
           itineraryPlacesDetails[key].photos.length > 0 ? (
                   <img

@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LocationsInfoWindow = () => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const navigate = useNavigate(); // Add React Router's useHistory hook
+
 
   useEffect(() => {
     if (isGoogleMapsLoaded && Object.keys(placesDetails).length > 0) {
@@ -27,6 +28,7 @@ const LocationsInfoWindow = () => {
 
   const handleLetsGoClick = (key) => {
     const place = key;
+    console.log(place);
 
     // Navigate to the itinerary page and pass the current destination
     // navigate function can pass props to the component rendered at the /itinerary/ path
