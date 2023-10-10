@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { createJournal } from "../../../journals";
+import { createJournal } from "../../../src/helpers/journals";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
 
@@ -89,4 +88,3 @@ export default function CreateJournalForm({ journal, setJournal }) {
 }
 
 // import { useState } from "react";
-

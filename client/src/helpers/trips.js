@@ -1,5 +1,16 @@
 const BASE_URL = "http://localhost:8080/api/trips";
 
+export async function fetchAllTrips() {
+  try {
+    const response = await fetch(`${BASE_URL}`);
+    const returnVal = await response.json();
+    return returnVal;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 export async function createTrip(tripobj) {
   try {
     const response = await fetch(`${BASE_URL}`, {

@@ -12,16 +12,16 @@ export async function fetchAllJournals() {
   }
 }
 
-// export async function fetchAllJournalsByTrip(user_id, trip_id) {
-//   try {
-//     const response = await fetch(`${journalUrl}/${user_id}/${trip_id}`);
-//     const returnVal = await response.json();
-//     return returnVal;
-//   } catch (error) {
-//     console.log(error);
-//     return error;
-//   }
-// }
+export async function fetchAllJournalsByTrip(user_id, trip_id) {
+  try {
+    const response = await fetch(`${journalUrl}/trip/${user_id}/${trip_id}`);
+    const returnVal = await response.json();
+    return returnVal;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
 
 export async function fetchAllJournalsByUser(user_id) {
   try {

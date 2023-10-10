@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import {
-  // fetchAllJournals,
   deleteJournal,
-  // fetchAllJournalsByTrip,
   fetchAllJournalsByUser,
-  // fetchAllJournalsByLocation,
 } from "../../../src/helpers/journals";
+import { fetchAllTrips } from "../../../src/helpers/trips";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
@@ -17,28 +15,23 @@ export default function AllJournals() {
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
   const params = useParams();
+  const [trips, setTrips] = useState([]);
+  const [allTrips, setAllTrips] = useState([]);
   const user_id = useSelector((state) => state.auth.user_id);
 
   console.log(user_id);
-  // need to EDIT so it fetches all journals of that USERS
-  // useEffect(() => {
-  //   async function fetchJournals() {
-  //     const response = await fetchAllJournalsByTrip(
-  //       params.user_id,
-  //       params.trip_id
-  //     );
-  //     setJournal(response);
-  //   }
-  //   fetchJournals();
-  // }, []);
 
   useEffect(() => {
     async function fetchJournals() {
       try {
         const response = await fetchAllJournalsByUser(user_id);
         console.log("Response:", response);
-        // const data = await response.json();
+
         setJournal(response);
+        const tripIds = response.map((journal) => journal.trip_id);
+        const uniqueTripIds = [...new Set(tripIds)];
+
+        setTrips(uniqueTripIds);
       } catch (error) {
         console.error("Error fetching journals by user:", error);
       }
@@ -48,16 +41,17 @@ export default function AllJournals() {
     }
   }, [user_id]);
 
-  // useEffect(() => {
-  //   async function fetchJournals() {
-  //     const response = await fetchAllJournalsByLocation(
-  //       params.user_id,
-  //       location_id
-  //     );
-  //     setJournal(response);
-  //   }
-  //   fetchJournals();
-  // }, [params.user_id, location_id]);
+  useEffect(() => {
+    async function fetchTrips() {
+      const response = await fetchAllTrips();
+      console.log("Response:", response);
+      setAllTrips(response);
+      console.log(allTrips);
+    }
+    fetchTrips();
+  }, []);
+
+  console.log(trips);
 
   // function getCoordinatesForJournal(journalId, journals, trips, locations) {
   //   // Find the journal entry with the given journal_id
@@ -92,21 +86,13 @@ export default function AllJournals() {
   const handleDelete = async (journal_id) => {
     try {
       await deleteJournal(journal_id);
-      const updatedjournals = await fetchAllJournalsByTrip(
-        params.user_id,
-        params.trip_id
-      );
+      const updatedjournals = await fetchAllJournalsByUser(user_id);
       setJournal(updatedjournals);
     } catch (error) {
       console.error("trouble deleting journal", error);
     }
   };
 
-  // const userJournals = journalsToDisplay.filter(
-  //   // check db query under users
-  //   (journal) => journal.user_id === user_id
-  // );
-  // this MAPS over all the journals to show each journal with timestamp, title, entry, image and video
   return (
     <div>
       <JournalNavbar />
@@ -124,6 +110,7 @@ export default function AllJournals() {
           <div key={journal.id}>
             <h4 id="journal">Time/Date: {journal.timestamp}</h4>
             <h4 id="journal">Title: {journal.title}</h4>
+            <h4>Trip ID: {journal.trip_id}</h4>
 
             <div>
               <button
@@ -140,6 +127,20 @@ export default function AllJournals() {
               >
                 Delete
               </button>
+
+              <div>
+                {allTrips.map((trip) => {
+                  if (trips.includes(trip.trip_id)) {
+                    return (
+                      <div key={trip.trip_id}>
+                        <h3>Trip ID: {trip.trip_id}</h3>
+                        <h4>Trip Name: {trip.tripname}</h4>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
             </div>
           </div>
         );

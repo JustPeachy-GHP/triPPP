@@ -53,7 +53,7 @@ const getAllJournalsByTrip = async (user_id, trip_id) => {
   try {
     const { rows } = await client.query(
       `
-      SELECT * 
+      SELECT *
       FROM journals
       WHERE user_id = $1
       AND trip_id = $2

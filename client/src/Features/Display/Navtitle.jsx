@@ -22,25 +22,26 @@ const Header = () => {
 
   return (
     <React.Fragment>
-        {/* below here is the navbar coloring, you can also style the size here too I think */}
-      <AppBar sx={{ background: "#F49867", }}> 
+      {/* below here is the navbar coloring, you can also style the size here too I think */}
+      <AppBar sx={{ background: "#F49867" }}>
+        <MuiDrawertwo />
         <Toolbar>
           <div>
-            <img src={triPPPimage} alt="" className="imagelogo"/>
-         </div>
+            <img src={triPPPimage} alt="" className="imagelogo" />
+          </div>
 
           {isMatch ? (
             <>
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10px" }} className="logoname"> 
+              <Typography
+                sx={{ fontSize: "2rem", paddingLeft: "10px" }}
+                className="logoname"
+              >
                 Title of brand here
               </Typography>
-             
-              <MuiDrawertwo />
             </>
           ) : (
             <>
-
-            {/* when you click its blue.. also when you make the screen bigger the  logo dissapear and the 3 line drawer dissaperar as well*/}
+              {/* when you click its blue.. also when you make the screen bigger the  logo dissapear and the 3 line drawer dissaperar as well*/}
               {/* <Button sx={{ marginLeft: "auto", background:"#D96E48"  }} variant="contained">
               <Link to="/login"> Login </Link>
               </Button>
@@ -56,6 +57,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-

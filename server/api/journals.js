@@ -6,6 +6,7 @@ const {
   createJournal,
   getJournalById,
   getAllJournalsByUser,
+  getAllJournalsByTrip,
 } = require("../db/helpers/journals");
 
 // GET - api/journal - get all journal
@@ -32,6 +33,19 @@ router.get("/:journal_id", async (req, res, next) => {
 router.get("/user/:user_id", async (req, res, next) => {
   try {
     const journal = await getAllJournalsByUser(req.params.user_id);
+    res.send(journal);
+    console.log("GETTING JOURNALS BY USER(API)", journal);
+  } catch (error) {
+    next("CANT GET JOURNALS BY USER(API)", error);
+  }
+});
+
+router.get("/trip/:user_id/:trip_id", async (req, res, next) => {
+  try {
+    const journal = await getAllJournalsByTrip(
+      req.params.user_id,
+      req.params.trip_id
+    );
     res.send(journal);
     console.log("GETTING JOURNALS BY USER(API)", journal);
   } catch (error) {
