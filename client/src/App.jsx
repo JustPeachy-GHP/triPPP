@@ -195,9 +195,9 @@ function App() {
             {/* <Route path="/display" element={<Display/>}/>
             {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
 
-//             <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
+{/* //             <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
 //             <Route path="/itinerary" element={<ItineraryPage />} />
-//             <Route path="/locations" element={<LocationsPage />} /> */}
+//             <Route path="/locations" element={<LocationsPage />} /> */} 
 
 
           </Routes>
