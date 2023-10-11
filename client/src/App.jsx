@@ -13,7 +13,6 @@ import { GoogleMapsContextProvider } from "./context/googleMapsContext";
 import "./App.css";
 // import MemoizedLocationsMap from './Features/LocationsComponents/LocationsMap';
 // import Form from "./Features/Trip/Form";
-import TripForm from "./Features/Trip/TripForm";
 import Itinerary from "./Features/Itinerary/ItineraryView";
 import LandingPage from "./Features/Display/LandingPage";
 import TripForm from "./Features/Trip/TripForm/TripForm";
@@ -137,10 +136,10 @@ function App() {
               }
             />
             <Route
-              path="/journals/:user_id/:trip_id"
+              path="/journals/trip/:trip_id"
               element={
                 <ProtectedRoute>
-                  <AllJournalEntries />
+                  <JournalsByTrip />
                 </ProtectedRoute>
               }
             />

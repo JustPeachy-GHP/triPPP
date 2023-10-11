@@ -29,6 +29,7 @@
 # client
 7. Navigate into the /triPPP/client directory  
 `npm install`
+`npm install -D tailwindcss postcss autoprefixer`
   
 8. Check that .gitignore lists **.env**
      

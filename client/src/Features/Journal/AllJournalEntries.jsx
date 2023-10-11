@@ -3,13 +3,8 @@ import {
   deleteJournal,
   fetchAllJournalsByUser,
   fetchAllJournalsByTrip,
-
 } from "../../../src/helpers/journals";
 import { fetchAllTrips } from "../../../src/helpers/trips";
-
-  fetchAllJournalsByLocation,
-} from "../../../src/helpers/journals";
-
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
@@ -119,11 +114,8 @@ export default function AllJournals() {
             </div>
           </div>
         );
-      })}
+      }
 
-    </div>
-  );
-}
 
 // function getCoordinatesForJournal(journalId, journals, trips, locations) {
 //   // Find the journal entry with the given journal_id
