@@ -1,21 +1,16 @@
 const client = require("../client");
 
-const createGroupmemb = async ({
-  groupmemb_id,
-  trip_id,
-  user_id,
-  group_id,
-}) => {
+const createGroupmemb = async ({ trip_id, user_id }) => {
   try {
     const {
       rows: [groupmemb],
     } = await client.query(
       `
-        INSERT INTO groupmembs(groupmemb_id, trip_id, user_id, group_id)
-        VALUES($1, $2, $3, $4)
+        INSERT INTO groupmembs(trip_id, user_id)
+        VALUES($1, $2)
         RETURNING *;
         `,
-      [groupmemb_id, trip_id, user_id, group_id]
+      [trip_id, user_id]
     );
     return groupmemb;
   } catch (error) {
