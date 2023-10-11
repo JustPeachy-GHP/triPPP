@@ -207,7 +207,7 @@ export default function Rater() {
             )}
           </div>
           <div>
-            <h4>Contents of this box would come from Infowindow</h4>
+            <p>Vote on this Activity:</p>
           </div>
           <div className="hearts">
             <StyledRating
@@ -231,7 +231,7 @@ export default function Rater() {
               <Box>{labels[hover !== -1 ? hover : value]}</Box>
             )}
           </div>
-          <p>{value} (displaying the value being set on click)</p>
+          <p>{value}</p>
         </div>
       </div>
     </>

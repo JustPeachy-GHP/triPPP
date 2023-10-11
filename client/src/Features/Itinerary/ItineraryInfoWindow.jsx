@@ -2,12 +2,15 @@ import { useGoogleMaps } from "../../context/googleMapsContext";
 import React, { useState, useEffect } from "react";
 import ActivityRater from "../Display/ActivityRater";
 import PropTypes from "prop-types";
+import ModalItinerary from "./ModalItinerary";
+
 
 
 const ItineraryInfoWindow = () => {
   const { isGoogleMapsLoaded, map, itineraryPlacesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+ 
 
   useEffect(() => {
     if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
@@ -37,13 +40,13 @@ const ItineraryInfoWindow = () => {
       ) : placeKeys.length > 0 ? 
       (
          <div className="info-card">
+          <br/>
            <h1>Activity Options:</h1>
           {placeKeys.map((key) => (
         <div key={key} className="info-item">
           <h2 className="nameZoom" onClick={() => handleCardClick(key)}>
                   {itineraryPlacesDetails[key].name}
                 </h2>
-        {/* <h3>{itineraryPlacesDetails[key].name}</h3> */}
         {itineraryPlacesDetails[key].photos && 
           itineraryPlacesDetails[key].photos.length > 0 ? (
                   <img
@@ -51,7 +54,9 @@ const ItineraryInfoWindow = () => {
                     alt={itineraryPlacesDetails[key].name}
                     style={{ width: '400px', height: 'auto' }}
                   />
+                  
                   ): null}
+                  <ActivityRater />
         </div> 
       ))}
       </div>

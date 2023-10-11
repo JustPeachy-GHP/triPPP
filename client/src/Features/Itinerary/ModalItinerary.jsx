@@ -138,7 +138,7 @@ const trip_id = 7;
 //   },
 // ];
 
-export default function ItineraryView() {
+export default function ItineraryView(trip_id) {
   const [items, setItems] = useState([]);
   const [numDays, setNumDays] = useState(0);
   const [numTravelers, setNumTravelers] = useState(0);
@@ -320,8 +320,8 @@ export default function ItineraryView() {
   console.log("dayPlanArray", dayPlanArray)
 
   return (
-    <div>
-      <Button onClick={handleOpen}>View Itinerary</Button>
+    <div >
+      <Button className="viewItinerary" onClick={handleOpen}>View Itinerary</Button>
       <Modal
         open={open}
         onClose={handleClose}
