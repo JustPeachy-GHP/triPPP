@@ -29,6 +29,7 @@ import AllJournalEntries from "./Features/Journal/AllJournalEntries";
 import SingleJournalEntry from "./Features/Journal/SingleJournalEntry";
 import CreateJournalForm from "./Features/Journal/CreateJournalForm";
 import EditJournalForm from "./Features/Journal/EditJournalForm";
+import JournalsByTrip from "./Features/Journal/JournalsByTrip";
 
 function App() {
   return (
@@ -53,6 +54,10 @@ function App() {
 
             <Route path="/itinerary" element={<Itinerary />} />
             <Route path="/journals" element={<AllJournalEntries />} />
+            <Route
+              path="/journals/trip/:trip_id"
+              element={<JournalsByTrip />}
+            />
             <Route
               path="/journals/:journal_id"
               element={<SingleJournalEntry />}
