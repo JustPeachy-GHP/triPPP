@@ -46,13 +46,10 @@ export default function LandingPage() {
             <br />
             During and after your journey, triPPP seamlessly transforms your adventure into cherished memories. You can effortlessly transition from your app-generated itinerary to a dedicated journaling space, where you can pen down your travel stories, save precious photos and videos, and share these cherished moments with your travel companions. triPPP turns your travels into unforgettable narratives that you can relive and share with your closest friends.
             </p>
-            <Link to="/tripform">
+            <Link to="/login">
               <button> Take me on an adventure!</button> <br />{" "}
             </Link>
             <br />
-            <Link to="/userlanding">
-              <button> Planning in Progress</button> <br />{" "}
-            </Link>
           </div>
         </Box>
       </Modal>

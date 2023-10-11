@@ -3,12 +3,15 @@ import React, { useState } from "react";
 // import Login from "../Auth/Login";
 import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
+import { useNavigate } from "react-router-dom";
 
 export default function TripForm() {
+  const [trip_id, setTrip_Id] = useState(null);
   const [tripname, settripName] = useState("");
   const [numdays, setNumDays] = useState("");
   const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
+  const navigate = useNavigate();
 
   // hardcoding dummy data for a user_id
 
@@ -22,17 +25,33 @@ export default function TripForm() {
       vibeform: vibeform,
     };
     console.log("submit data", newTripObject);
-    async function createNewTrip() {
-      const result = await createTrip(newTripObject);
-      console.log(result);
-      settripName("");
-      setNumDays("");
-      setNumTravelers("");
-      setVibeForm("");
-      return result;
-    }
+    
+    
     createNewTrip();
   };
+  
+  async function createNewTrip(tripObj) {
+    const result = await createTrip(tripObj);
+    console.log(result);
+
+    return result;
+  }
+
+  const handleSubmitClick = async (e) => {
+    e.preventDefault();
+
+    let newTripObject = {
+      tripname: tripname,
+      numdays: numdays,
+      numtravelers: numtravelers,
+      vibeform: vibeform,
+    };
+    console.log("submit data", newTripObject);
+
+    const trip = await createNewTrip(newTripObject);
+    console.log(trip);
+    navigate(`/${trip.trip_id}/locations`);
+  }
 
   return (
     <div>
@@ -75,7 +94,7 @@ export default function TripForm() {
                 value={vibeform}
                 onChange={(e) => setVibeForm(e.target.id)}
               />
-              <label for="chill">
+              <label htmlFor="chill">
                 Chill
                 <img
                   id="vibe-img"
@@ -95,7 +114,7 @@ export default function TripForm() {
               value={vibeform}
               onChange={(e) => setVibeForm(e.target.id)}
             />
-            <label for="outdoors">
+            <label htmlFor="outdoors">
               Outdoors
               <img
                 id="vibe-img"
@@ -114,7 +133,7 @@ export default function TripForm() {
               value={vibeform}
               onChange={(e) => setVibeForm(e.target.id)}
             />
-            <label for="party">
+            <label htmlFor="party">
               Party
               <img
                 id="vibe-img"
@@ -133,7 +152,7 @@ export default function TripForm() {
               value={vibeform}
               onChange={(e) => setVibeForm(e.target.id)}
             />
-            <label for="local">
+            <label htmlFor="local">
               Local
               <img
                 id="vibe-img"
@@ -151,7 +170,7 @@ export default function TripForm() {
               value={vibeform}
               onChange={(e) => setVibeForm(e.target.id)}
             />
-            <label for="shop">
+            <label htmlFor="shop">
               Shop{" "}
               <img
                 id="vibe-img"
@@ -163,9 +182,7 @@ export default function TripForm() {
           <br />
           {/* hook up event listener to  */}
         </fieldset>
-        <Link to="/userlanding">
-          <button type="Submit">Submit</button>
-        </Link>
+        <button type="Submit" onClick={handleSubmitClick}>Submit</button>
       </form>
     </div>
   );

@@ -39,8 +39,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/tripform" element={<TripForm />} />
             <Route path="/tripadminpage" element={<TripAdminPage />} />
-            <Route path="/locations/:trip_id" element={<LocationsPage />} />
-            <Route path="/itinerary/" element={<ItineraryPage/>}/>
+            <Route path=":trip_id/locations/" element={<LocationsPage />} />
+            <Route path="/itinerary/:place_id" element={<ItineraryPage/>}/>
             <Route path="/journals/:user_id/:trip_id" element={<AllJournalEntries />}/>
             <Route path="/journals/:journal_id" element={<SingleJournalEntry />}/>
             <Route path="/journalform" element={<CreateJournalForm />} />

@@ -9,13 +9,13 @@ const LocationsInfoWindow = (trip_id) => {
   const [placeKeys, setPlaceKeys] = useState([]);
   const navigate = useNavigate(); // Add React Router's useHistory hook
 
-
   useEffect(() => {
+    console.log(trip_id);
     if (isGoogleMapsLoaded && Object.keys(placesDetails).length > 0) {
       const keys = Object.keys(placesDetails);
       setPlaceKeys(keys);
     }
-  }, [isGoogleMapsLoaded, map, placesDetails]);
+  }, [isGoogleMapsLoaded, map, placesDetails, trip_id]);
 
   const handleCardClick = (placeId) => {
     const lat = placesDetails[placeId].geometry.location.lat();
@@ -28,7 +28,7 @@ const LocationsInfoWindow = (trip_id) => {
   };
 
   const handleLetsGoClick = (placeId) => {
-    const url = `/itinerary/?place_id=${placeId}`;
+    const url = `/itinerary/${placeId}`;
 
     // Navigate to the itinerary page and pass the current destination
     // navigate function can pass props to the component rendered at the /itinerary/ path
@@ -74,7 +74,7 @@ const LocationsInfoWindow = (trip_id) => {
 
 LocationsInfoWindow.propTypes = {
   
-  placesDetails: PropTypes.arrayOf(PropTypes.object),
+  trip_id: PropTypes.object,
 };
 
 export default LocationsInfoWindow;

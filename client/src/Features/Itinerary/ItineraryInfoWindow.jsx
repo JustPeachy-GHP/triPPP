@@ -2,14 +2,12 @@ import { useGoogleMaps } from "../../context/googleMapsContext";
 import React, { useState, useEffect } from "react";
 import ActivityRater from "../Display/ActivityRater";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 
 
-const ItineraryInfoWindow = (place_id) => {
+const ItineraryInfoWindow = () => {
   const { isGoogleMapsLoaded, map, itineraryPlacesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
@@ -23,8 +21,6 @@ const ItineraryInfoWindow = (place_id) => {
   const handleCardClick = (placeId) => {
     const lat = itineraryPlacesDetails[placeId].geometry.location.lat();
     const lng = itineraryPlacesDetails[placeId].geometry.location.lng();
-    const url = `/locations?place_id=${placeId}`;
-    navigate(url);
 
     if (map) {
       map.panTo(new window.google.maps.LatLng(lat, lng));
