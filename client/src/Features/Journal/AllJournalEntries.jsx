@@ -3,8 +3,13 @@ import {
   deleteJournal,
   fetchAllJournalsByUser,
   fetchAllJournalsByTrip,
+
 } from "../../../src/helpers/journals";
 import { fetchAllTrips } from "../../../src/helpers/trips";
+
+  fetchAllJournalsByLocation,
+} from "../../../src/helpers/journals";
+
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
@@ -71,6 +76,7 @@ export default function AllJournals() {
 
       {/* if journal.trip_id = number in array then map over */}
 
+
       <div>
         {allTrips.map((trip) => {
           if (
@@ -94,6 +100,27 @@ export default function AllJournals() {
           return null;
         })}
       </div>
+
+            <div>
+              <button
+                className="button"
+                onClick={() => {
+                  navigate(`/journals/${journal.journal_id}`);
+                }}
+              >
+                See Details
+              </button>
+              <button
+                className="button"
+                onClick={() => handleDelete(journal.journal_id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        );
+      })}
+
     </div>
   );
 }

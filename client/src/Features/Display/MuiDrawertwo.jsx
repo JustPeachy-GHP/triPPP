@@ -28,7 +28,7 @@ const MuiDrawertwo = () => {
         </List>
       </Drawer>
       <IconButton
-        sx={{ color: "white", marginLeft: "auto" }}
+        sx={{ color: "white", marginRight: 5 }}
         onClick={() => setOpenDrawer(!openDrawer)}
         className="muidrawertwoiconbutton"
       >

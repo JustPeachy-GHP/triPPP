@@ -9,7 +9,8 @@ const {
   createDestRating,
   reviseDestRating, 
   getDestVotes,
-  getLocationNameById
+  getLocationNameById,
+  getItineraryLocations
 } = require("../db/helpers/locations");
 
 // GET api/locations/destname/:location_id - get all votes that
@@ -79,6 +80,18 @@ router.get("/", async (req, res, next) => {
   try {
     const location = await getAllLocations();
     res.send(location);
+  } catch (error) {
+    throw error;
+  }
+});
+
+// GET - api/location/itinerary/:id - get all itinerary location
+router.get("/itinerary/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const activities = await getItineraryLocations(id);
+    res.send(activities);
   } catch (error) {
     throw error;
   }

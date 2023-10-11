@@ -32,6 +32,8 @@ div#root {
   display: block;
 }
 
+/* Activity and Destination raters */
+
 .inforater {
   display: block;
   margin-left: auto;
@@ -65,11 +67,14 @@ div#root {
 
 /* LOCATIONS COMPONENTS */
 
+
 .scrollable-content {
   /* Style the scrollable content container */
   height: 100vh; /* Set a fixed height or any height you prefer */
   overflow-y: scroll; /* Enable vertical scrolling */
+  margin: 70px auto 0; /* Center horizontally */
 }
+
 
 .fixed-component {
   /* Style the fixed component */
@@ -133,6 +138,7 @@ div#root {
   width: 50%;
 }
 
+
 .itinerary-item {
   width: 50vw;
   border: solid 1px black;
@@ -141,3 +147,150 @@ div#root {
   margin-right: auto;
   cursor: move;
 }
+
+
+/* ModalItinerary */
+.place {
+  box-sizing: border-box;
+  padding-left: 10px;
+  width: 50vw;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: move;
+  background-color: #fff;
+}
+
+.daymarker h2 {
+  border-top: solid 3px #f27c38;
+  border-bottom: solid 3px #f27c38;
+  color: #f27c38;
+  font-size: 2.5em;
+  padding-left: 1em;
+}
+
+.meal {
+  color: #8fa69d;
+  text-align: center;
+}
+
+.modaltitle {
+  text-align: center;
+}
+
+/* slider for SetDestToggle component */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-top: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #f49867;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f49867;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* User Landing */
+.textButtons {
+  width: 60vw;
+  border: none;
+  color: #8fa69d;
+  background-color: whitesmoke;
+  opacity: .8;
+  font-size: 1.5em;
+  /* background: rgba(0,0,0,0.5); */
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 4px 4px 8px whitesmoke;
+  margin: 5px;
+}
+
+.logoutButton {
+  background-color: #fcf9f3;
+  box-sizing: border-box;
+  padding: 0;
+  color: #f49867;
+}
+
+.journalLink {
+  font-size: 2em;
+}
+
+.userlanding {
+  width: 70vw;
+  margin: 70px auto 0; /* Center horizontally */
+  position: sticky;
+  background-color: whitesmoke;
+  padding: 2;
+  font: black;
+
+}
+
+.viewItinerary {
+
+  background-color: whitesmoke; /* Background color for the button */
+  border: none;
+  border-radius: 10px; /* Adjust the border radius for rounded corners */
+  padding: 12px 24px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  color: black;
+  box-shadow: 6px 6px 12px #c0c0c0, -6px -6px 12px whitesmoke; /* Neumorphic shadow effect */
+  transition: all 0.2s ease-in-out; /* Smooth transition on hover */
+  float: left;
+  margin: auto 0;
+}
+

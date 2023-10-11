@@ -2,18 +2,20 @@ import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SetDestToggle from "../Display/SetDestToggle";
 
-const TInfoWindow = () => {
+const LocationsInfoWindow = (trip_id) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const navigate = useNavigate(); // Add React Router's useHistory hook
 
   useEffect(() => {
+    console.log(trip_id);
     if (isGoogleMapsLoaded && Object.keys(placesDetails).length > 0) {
       const keys = Object.keys(placesDetails);
       setPlaceKeys(keys);
     }
-  }, [isGoogleMapsLoaded, map, placesDetails]);
+  }, [isGoogleMapsLoaded, map, placesDetails, trip_id]);
 
   const handleCardClick = (placeId) => {
     const lat = placesDetails[placeId].geometry.location.lat();
@@ -25,9 +27,13 @@ const TInfoWindow = () => {
     }
   };
 
-  const handleLetsGoClick = () => {
-    // Navigate to the itinerary page with the placeId as a URL parameter
-    navigate(`/itinerary/`);
+  const handleLetsGoClick = (placeId) => {
+    const url = `/itinerary/${placeId}`;
+
+    // Navigate to the itinerary page and pass the current destination
+    // navigate function can pass props to the component rendered at the /itinerary/ path
+    // this is passed as an object with a key called state
+    navigate(url);
   };
 
   return (
@@ -52,6 +58,7 @@ const TInfoWindow = () => {
                 <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
                   Lets Go!
                 </button>
+                <SetDestToggle/>
               </div>
             ))}
           </div>
@@ -65,9 +72,9 @@ const TInfoWindow = () => {
 
 
 
-TInfoWindow.propTypes = {
+LocationsInfoWindow.propTypes = {
   
-  placeDetails: PropTypes.arrayOf(PropTypes.object),
+  trip_id: PropTypes.object,
 };
 
-export default TInfoWindow;
+export default LocationsInfoWindow;

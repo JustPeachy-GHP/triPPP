@@ -41,6 +41,24 @@ export const fetchSingleTrip = async (trip_id) => {
   }
 };
 
+export async function editIsDecidedTrip(trip_id, trip) {
+  try {
+    console.log("in client helper, trip:", trip)
+    const response = await fetch(`${BASE_URL}/decided/${trip_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(trip),
+    });
+    const result = await response.json();
+    console.log("decided trip client helper", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // delete trip
 // delete groupmemb
 // update trip
