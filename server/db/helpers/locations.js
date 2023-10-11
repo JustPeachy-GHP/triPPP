@@ -134,8 +134,9 @@ const getDestVotes = async (trip_id, location_id) => {
       SELECT * 
       FROM itineraryitems
       WHERE trip_id = $1 AND location_id = $2;
-    `,[trip_id, location_id])
-
+    `,
+      [trip_id, location_id]
+    );
     return rows;
   } catch (error) {
     throw error;
@@ -159,5 +160,7 @@ const getLocationNameById = async (location_id) => {
 };
 
 
+
 module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations };
+
 

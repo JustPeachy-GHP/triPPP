@@ -189,7 +189,7 @@ const alterItineraryitemTable = async () => {
   } catch (error) {
     throw error;
   }
-  console.log(trips);
+  console.log(itineraryitems);
 };
 
 // create users
@@ -278,6 +278,25 @@ const createInitialGroupmembs = async () => {
   console.log(groupmembs);
 };
 
+// run commands to fix out of sync primary keys
+const fixKeys = async () => {
+  try {
+    console.log("FIXING OUT OF SYNC PRIMARY KEYS");
+    await client.query(`
+    SELECT setval('groupmembs_groupmemb_id_seq', (select max(groupmemb_id) from groupmembs)+1);
+    SELECT setval('groups_group_id_seq', (select max(group_id) from groups)+1);
+    SELECT setval('itineraryitems_itinerary_id_seq', (select max(itinerary_id) from itineraryitems)+1);
+    SELECT setval('journals_journal_id_seq', (select max(journal_id) from journals)+1);
+    SELECT setval('locations_location_id_seq ', (select max(location_id) from locations)+1);
+    SELECT setval('trips_trip_id_seq ', (select max(trip_id) from trips)+1);
+    SELECT setval('users_user_id_seq', (select max(user_id) from users)+1);
+  `);
+  } catch (error) {
+    throw error;
+  }
+  console.log("FIXED KEYS");
+};
+
 // rebuild db
 const rebuildDb = async () => {
   try {
@@ -303,6 +322,8 @@ const rebuildDb = async () => {
 
     await alterTripTable();
     await alterItineraryitemTable();
+
+    await fixKeys();
 
     // await dropTables();
   } catch (error) {
