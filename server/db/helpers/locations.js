@@ -32,7 +32,7 @@ const createLocation = async ({
   place_id,
   destination_place_id,
   destination,
-  vibes
+  vibes,
 }) => {
   try {
     const {
@@ -51,14 +51,9 @@ const createLocation = async ({
   }
 };
 
-// used by addNewItinRating and changeRating 
+// used by addNewItinRating and changeRating
 // in client helper
-const createDestRating = async ({
-  trip_id,
-  location_id,
-  user_id,
-  rating
-}) => {
+const createDestRating = async ({ trip_id, location_id, user_id, rating }) => {
   try {
     const {
       rows: [destinationObject],
@@ -68,10 +63,7 @@ const createDestRating = async ({
         VALUES($1, $2, $3, $4)
         RETURNING *;
         `,
-      [ trip_id,
-        location_id,
-        user_id,
-        rating]
+      [trip_id, location_id, user_id, rating]
     );
     return destinationObject;
   } catch (error) {
@@ -84,7 +76,7 @@ const reviseDestRating = async ({
   location_id,
   user_id,
   rating,
-  itinerary_id
+  itinerary_id,
 }) => {
   try {
     const {
@@ -95,19 +87,13 @@ const reviseDestRating = async ({
        WHERE itinerary_id = $5
        RETURNING *;
       `,
-      [ trip_id,
-        location_id,
-        user_id,
-        rating,
-        itinerary_id]
+      [trip_id, location_id, user_id, rating, itinerary_id]
     );
     return destinationObject;
   } catch (error) {
     throw error;
   }
 };
-
-
 
 const getLocationById = async (location_id) => {
   try {
@@ -143,11 +129,14 @@ const getLocationByVibe = async (vibe) => {
 // untested -- currently not allowing votes on destination
 const getDestVotes = async (trip_id, location_id) => {
   try {
-    const { rows } = await client.query(`
+    const { rows } = await client.query(
+      `
       SELECT * 
       FROM itineraryitems
       WHERE trip_id = $1 AND location_id = $2;
-    `,[trip_id, location_id])
+    `,
+      [trip_id, location_id]
+    );
     return rows;
   } catch (error) {
     throw error;
@@ -156,15 +145,28 @@ const getDestVotes = async (trip_id, location_id) => {
 
 const getLocationNameById = async (location_id) => {
   try {
-    const {rows} = await client.query(`
+    const { rows } = await client.query(
+      `
       SELECT destination
       FROM locations
       WHERE location_id = $1;
-      `,[location_id])
-    return rows
+      `,
+      [location_id]
+    );
+    return rows;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
-module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations };
+module.exports = {
+  createLocation,
+  getAllLocations,
+  getLocationById,
+  getLocationByVibe,
+  createDestRating,
+  reviseDestRating,
+  getDestVotes,
+  getLocationNameById,
+  getItineraryLocations,
+};

@@ -137,7 +137,7 @@ dist
 
 #env
 .env.development
-
+.env
 
 # secrets file
 server/secrets.js

@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom"
 export default function UserLanding() {
   const [tripsMemb, setTripsMemb] = useState([]);
   const [tripAdmins, setTripAdmins] = useState([]);
-  const [journals, setJournals] = useState([]);
+  const [journals, setJournals] = useState([])
+  const [newUser, setNewUser] = useState([false])
 
   const myId = useSelector((state) => state.auth.user_id);
   const myname = useSelector((state) => state.auth.firstname);
@@ -50,8 +51,17 @@ export default function UserLanding() {
     getMyJournals(myId);
   }, []);
 
+  useEffect(() =>{
+    if ( tripsMemb.length === 0 && 
+      tripAdmins === 0 && 
+      journals === 0) {
+      setNewUser(true)
+    }
+  })
+
   return (
-    <>
+  <>
+    <div> 
       <div className="userlanding">
         <h1>Welcome, {myname}!</h1>
         <h2>Trips</h2>
@@ -69,7 +79,8 @@ export default function UserLanding() {
         {/* {journals.map((entry) => {
           return <UserJEntry entry={entry} />;
         })} */}
-      </div>
-    </>
+      </div> 
+    </div>
+  </>
   );
 }
