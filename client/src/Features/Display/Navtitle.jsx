@@ -14,7 +14,6 @@ import triPPPimage from "../../Assets/triPPPimage.png";
 import MuiDrawertwo from "./MuiDrawertwo";
 import Navbar from "./Navbar";
 
-
 const Header = () => {
   const [value, setValue] = useState();
   const theme = useTheme();
@@ -24,21 +23,21 @@ const Header = () => {
 
   return (
     <React.Fragment>
-
-      <AppBar sx={{ background: "#F49867", }}> 
-        <Toolbar sx={{ width: '50%', margin: "0auto"}}>
+      <AppBar sx={{ background: "#F49867" }}>
+        <Toolbar sx={{ width: "50%", margin: "0auto" }}>
           <div>
-            <img src={triPPPimage} alt="" className="imagelogo"/>
-         </div>
-         <MuiDrawertwo />
+            <img src={triPPPimage} alt="" className="imagelogo" />
+          </div>
+          <MuiDrawertwo />
           {isMatch ? (
             <>
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10px" }} className="logoname"> 
-              </Typography>
+              <Typography
+                sx={{ fontSize: "2rem", paddingLeft: "10px" }}
+                className="logoname"
+              ></Typography>
             </>
           ) : (
             <></>
-
           )}
         </Toolbar>
       </AppBar>

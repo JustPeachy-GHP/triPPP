@@ -50,9 +50,15 @@ export default function AllJournals() {
     fetchTrips();
   }, []);
 
-  const searchHandler = () => {
-    setSearchParam(searchTripNameRef.current.value.toLowerCase());
-  };
+  const tripsToDisplay = searchParam
+    ? allTrips.filter((trip) =>
+        trip.tripname.toLowerCase().includes(searchParam)
+      )
+    : allTrips;
+
+  // const searchHandler = () => {
+  //   setSearchParam(searchTripNameRef.current.value.toLowerCase());
+  // };
 
   return (
     <div>
@@ -62,18 +68,14 @@ export default function AllJournals() {
         <input
           type="text"
           placeholder="Search for trip name"
-          ref={searchTripNameRef}
+          onChange={(event) => setSearchParam(event.target.value.toLowerCase())}
         />
-        <button className="button" onClick={searchHandler}>
-          Search
-        </button>
       </div>
 
       {/* if journal.trip_id = number in array then map over */}
 
-
       <div>
-        {allTrips.map((trip) => {
+        {tripsToDisplay.map((trip) => {
           if (
             trips.includes(trip.trip_id) &&
             (!searchParam || trip.tripname.toLowerCase().includes(searchParam))
@@ -95,27 +97,9 @@ export default function AllJournals() {
           return null;
         })}
       </div>
-
-            <div>
-              <button
-                className="button"
-                onClick={() => {
-                  navigate(`/journals/${journal.journal_id}`);
-                }}
-              >
-                See Details
-              </button>
-              <button
-                className="button"
-                onClick={() => handleDelete(journal.journal_id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        );
-      }
-
+    </div>
+  );
+}
 
 // function getCoordinatesForJournal(journalId, journals, trips, locations) {
 //   // Find the journal entry with the given journal_id
