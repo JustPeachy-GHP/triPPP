@@ -7,6 +7,7 @@ import {
 } from "../../helpers/userLanding";
 import UserTrips from "./UserTripDetail";
 import UserJEntry from "./UserJEntryDetail";
+import { useNavigate } from "react-router-dom"
 
 export default function UserLanding() {
   const [tripsMemb, setTripsMemb] = useState([]);
@@ -15,6 +16,8 @@ export default function UserLanding() {
 
   const myId = useSelector((state) => state.auth.user_id);
   const myname = useSelector((state) => state.auth.firstname);
+
+  const navigate = useNavigate()
 
   //get list of trips user is organizing
   useEffect(() => {
@@ -60,11 +63,12 @@ export default function UserLanding() {
         {tripsMemb.map((group) => {
           return <UserTrips group={group} trip_id={group.trip_id} location_id={group.location_id}/>;
         })}
-
-        <h2>Journals</h2>
-        {journals.map((entry) => {
+        <div className="journalLink">
+        <a href={"/journals"}>Journals</a>
+        </div>
+        {/* {journals.map((entry) => {
           return <UserJEntry entry={entry} />;
-        })}
+        })} */}
       </div>
     </>
   );
