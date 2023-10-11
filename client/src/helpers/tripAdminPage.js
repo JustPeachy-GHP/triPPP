@@ -38,7 +38,7 @@ export async function deleteGroupMember(user_id, trip_id) {
 // delete from group membs where groupid=groupid
 // ================ADD GROUP MEMB==============
 export async function addGroupMember(trip_id, user_id) {
-  const url = `${GROUPMEMBS_URL}/${trip_id}/${user_id}`;
+  const url = `${GROUPMEMBS_URL}`;
   try {
     const response = await fetch(url, {
       method: "POST",
