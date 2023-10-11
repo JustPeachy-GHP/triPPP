@@ -24,6 +24,7 @@ const Header = () => {
 
   return (
     <React.Fragment>
+
       <AppBar sx={{ background: "#F49867", }}> 
         <Toolbar sx={{ width: '50%', margin: "0auto"}}>
           <div>
@@ -37,6 +38,7 @@ const Header = () => {
             </>
           ) : (
             <></>
+
           )}
         </Toolbar>
       </AppBar>
@@ -45,6 +47,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-

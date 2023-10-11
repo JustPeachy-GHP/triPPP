@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 
+
   const navigate=useNavigate()
 
   const isAuthenticated = localStorage.getItem("isAuthenticated")
@@ -25,4 +26,5 @@ export default function Navbar() {
       {/* <Link to="/about"> About </Link> */}
     </div>
   )}
+
 

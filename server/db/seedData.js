@@ -415,6 +415,7 @@ const journals = [
       "Today was a day I will forever hold dear. As the morning sun gently kissed the streets of Paris, I ventured out into the enchanting city. The Eiffel Tower, standing tall and majestic, was my first stop. Seeing this iconic symbol of France up close was a dream come true. Its intricate lattice structure against the clear blue sky left me in awe. Afterward, I found a cozy café tucked away on a charming Parisian street. With a view of the Eiffel Tower in the distance, I savored a fresh croissant, warm from the oven. Its delicate layers melted in my mouth, a taste of pure Parisian delight. Today's experience was a perfect blend of history, culture, and culinary delight, making my time in Paris truly unforgettable.",
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 1,
+    location_id: 1
   },
   {
     journal_id: 1,
@@ -426,6 +427,7 @@ const journals = [
     entry: "Today, I visited the Eiffel Tower and had a delicious croissant.",
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 1,
+    location_id: 1
   },
   {
     journal_id: 1,
