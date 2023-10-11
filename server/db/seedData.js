@@ -355,7 +355,7 @@ const trips = [
   {
     trip_id: 1,
     itinerary_id: 1,
-    group_id: 1,
+    user_id: 1,
     location_id: 1,
     tripname: "European Adventure",
     numdays: 14,
@@ -366,7 +366,7 @@ const trips = [
   {
     trip_id: 2,
     itinerary_id: 2,
-    group_id: 2,
+    user_id: 2,
     location_id: 2,
     tripname: "Party",
     numdays: 7,
@@ -377,7 +377,7 @@ const trips = [
   {
     trip_id: 3,
     itinerary_id: 3,
-    group_id: 3,
+    user_id: 3,
     location_id: 3,
     tripname: "Cultural Experience",
     numdays: 10,
@@ -388,7 +388,7 @@ const trips = [
   {
     trip_id: 4,
     itinerary_id: 4,
-    group_id: 4,
+    user_id: 4,
     location_id: 4,
     tripname: "City Exploration",
     numdays: 5,
@@ -399,7 +399,7 @@ const trips = [
   {
     trip_id: 5,
     itinerary_id: 5,
-    group_id: 5,
+    user_id: 5,
     location_id: 5,
     tripname: "Mountain Retreat",
     numdays: 3,
@@ -410,7 +410,7 @@ const trips = [
   {
     trip_id: 6,
     itinerary_id: 8,
-    group_id: 6,
+    user_id: 6,
     location_id: 3,
     tripname: "Vegas, Baby!",
     numdays: 3,
@@ -421,7 +421,7 @@ const trips = [
   {
     trip_id: 7,
     itinerary_id: 7,
-    group_id: 5,
+    user_id: 5,
     location_id: 2,
     tripname: "Golfing Long Weekend",
     numdays: 3,
@@ -531,96 +531,96 @@ const groupmembs = [
     groupmemb_id: 1,
     trip_id: 1,
     user_id: 1,
-    group_id: 1,
+    // group_id: 1,
   },
   {
     groupmemb_id: 2,
     trip_id: 1,
     user_id: 2,
-    group_id: 1,
+    // group_id: 1,
   },
   {
     groupmemb_id: 3,
     trip_id: 2,
     user_id: 3,
-    group_id: 2,
+    // group_id: 2,
   },
   {
     groupmemb_id: 4,
     trip_id: 2,
     user_id: 4,
-    group_id: 2,
+    // group_id: 2,
   },
   {
     groupmemb_id: 5,
     trip_id: 3,
     user_id: 1,
-    group_id: 3,
+    // group_id: 3,
   },
   {
     groupmemb_id: 6,
     trip_id: 3,
     user_id: 5,
-    group_id: 3,
+    // group_id: 3,
   },
   {
     groupmemb_id: 7,
     trip_id: 7,
     user_id: 1,
-    group_id: 5,
+    // group_id: 5,
   },
   {
     groupmemb_id: 8,
     trip_id: 7,
     user_id: 3,
-    group_id: 5,
+    // group_id: 5,
   },
   {
     groupmemb_id: 9,
     trip_id: 6,
     user_id: 3,
-    group_id: 6,
+    // group_id: 6,
   },
   {
     groupmemb_id: 10,
     trip_id: 6,
     user_id: 5,
-    group_id: 6,
+    // group_id: 6,
   },
 ];
 
-const groups = [
-  {
-    group_id: 1,
-    trip_id: 1,
-    user_id: 1,
-  },
-  {
-    group_id: 2,
-    trip_id: 1,
-    user_id: 2,
-  },
-  {
-    group_id: 3,
-    trip_id: 2,
-    user_id: 3,
-  },
-  {
-    group_id: 4,
-    trip_id: 3,
-    user_id: 4,
-  },
-  {
-    group_id: 5,
-    trip_id: 7,
-    user_id: 1,
-  },
-  {
-    group_id: 6,
-    trip_id: 6,
-    user_id: 3,
-  },
-];
+// const groups = [
+//   {
+//     group_id: 1,
+//     trip_id: 1,
+//     user_id: 1,
+//   },
+//   {
+//     group_id: 2,
+//     trip_id: 1,
+//     user_id: 2,
+//   },
+//   {
+//     group_id: 3,
+//     trip_id: 2,
+//     user_id: 3,
+//   },
+//   {
+//     group_id: 4,
+//     trip_id: 3,
+//     user_id: 4,
+//   },
+//   {
+//     group_id: 5,
+//     trip_id: 7,
+//     user_id: 1,
+//   },
+//   {
+//     group_id: 6,
+//     trip_id: 6,
+//     user_id: 3,
+//   },
+// ];
 
 const itineraryitems = [
   {
@@ -785,6 +785,6 @@ module.exports = {
   journals,
   locations,
   itineraryitems,
-  groupmembs,
-  groups,
+  groupmembs
+  // groups,
 };

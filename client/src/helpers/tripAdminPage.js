@@ -1,5 +1,5 @@
 const BASE_URL = "http://localhost:8080/api/trips";
-const GROUP_URL = "http://localhost:8080/api/groups";
+const GROUPMEMBS_URL = "http://localhost:8080/api/groupmembs";
 
 // deleteGroupMemb-line 10
 // addGroupMemb-line 27
