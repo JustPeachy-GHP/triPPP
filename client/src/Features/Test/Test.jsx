@@ -8,6 +8,14 @@ import ActivityRater from '../Display/ActivityRater'
 import DestinationRater from '../Display/DestinationRater'
 import BasicModal from "./BasicModal";
 import ModalItinerary from "../Itinerary/ModalItinerary"
+import LoginModal from "../Auth/LoginModal";
+import TripAdminPage from "../Trip/TripAdmin/TripAdminPage";
+// import TripAdminModal from "../Trip/TripAdmin/TripadminModal";
+import RegistrationModal from "../Auth/RegistrationModal";
+import TripformModal from "../Trip/TripForm/TripformModal";
+
+
+
 
 export default function Test() {
   // getting testVal1 and testVal2 from redux
@@ -63,6 +71,16 @@ const handleSubmit = () => {
         <DestinationRater />
 
         <BasicModal/>
+
+        <LoginModal/>
+
+        <RegistrationModal/>
+
+        {/* <TripAdminModal/> */}
+
+        <TripformModal/>
+
+      
 
         <ModalItinerary />
 

@@ -19,6 +19,8 @@ import AllJournalEntries from "./Features/Journal/AllJournalEntries";
 import SingleJournalEntry from "./Features/Journal/SingleJournalEntry";
 import CreateJournalForm from "./Features/Journal/CreateJournalForm";
 import EditJournalForm from "./Features/Journal/EditJournalForm";
+import UserlandingModal from "./Features/User/UserlandingModal"
+
 
 function App() {
   return (
@@ -26,7 +28,12 @@ function App() {
       <ErrorBoundary>
         <GoogleMapsContextProvider>
           <Navtitle />
+          <UserlandingModal/>
+          
+          
           <Routes>
+         
+
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<LocationsPage />} />
             <Route path="/test" element={<Test />} />
