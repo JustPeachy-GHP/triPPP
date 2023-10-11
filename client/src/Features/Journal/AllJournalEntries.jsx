@@ -118,7 +118,7 @@ export default function AllJournals() {
 
             <div>
               <button
-                class="button"
+                className="button"
                 onClick={() => {
                   navigate(`/journals/${journal.journal_id}`);
                 }}
@@ -126,7 +126,7 @@ export default function AllJournals() {
                 See Details
               </button>
               <button
-                class="button"
+                className="button"
                 onClick={() => handleDelete(journal.journal_id)}
               >
                 Delete

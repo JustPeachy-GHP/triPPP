@@ -23,6 +23,7 @@ function GoogleMapsContextProvider({children}) {
     const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(isLoaded);
     const [placesDetails, setPlacesDetails] = useState({});
     const [map, setMap] = useState(null);
+    const [itineraryPlacesDetails, setItineraryPlacesDetails] = useState({});
 
     useEffect(() => {
         // Update isGoogleMapsLoaded when isLoaded changes
@@ -34,6 +35,8 @@ function GoogleMapsContextProvider({children}) {
         setIsGoogleMapsLoaded,
         placesDetails,
         setPlacesDetails,
+        itineraryPlacesDetails,
+        setItineraryPlacesDetails,
         map,
         setMap,
     };

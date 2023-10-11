@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { createJournal } from "../../../journals";
+import { createJournal } from "../../helpers/journals";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
 

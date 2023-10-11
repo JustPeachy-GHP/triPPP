@@ -1,80 +1,69 @@
-import PropTypes from "prop-types";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import React, { useState, useEffect } from "react";
 import ActivityRater from "../Display/ActivityRater";
-import { useJsApiLoader } from "@react-google-maps/api";
+import PropTypes from "prop-types";
 
-const libraries = ["places"];
-const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
 
 const ItineraryInfoWindow = () => {
-  const [map, setMap] = React.useState(null);
-  const [placesService, setPlacesService] = useState(null);
-  const [placeDetails, setPlaceDetails] = useState([]);
-
-  const placeIds = [
-    "ChIJXYDlZVfzWYgRaimqe4ND4Vs",
-    "ChIJ9ZsMofuMWYgRPaMd6kPpv70",
-    "ChIJ0X31pIK3voARo3mz1ebVzDo",
-    "ChIJZ9il6JPzWYgR1cUrYlcprbw",
-    "ChIJdb2htJTyWYgRG4PVQhGknMY",
-    "ChIJ9-sHI0e7WYgRpiJprZdEIWg",
-    "ChIJcyDdW2PzWYgRV7WZYmKiOW4",
-    "ChIJ_7Pu4IqNWYgR1CvE0rTQ2Mw",
-  ];
-
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: API_KEY,
-    libraries,
-  });
+  const { isGoogleMapsLoaded, map, itineraryPlacesDetails } = useGoogleMaps();
+  const [placeKeys, setPlaceKeys] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoaded && map && placesService) {
-      // Initialize placesService here
-      const placesService = new window.google.maps.places.PlacesService(map);
-      setPlacesService(placesService);
-
-      // Fetch place details for each placeId
-      placeIds.forEach((placeId) => {
-        const request = {
-          placeId: placeId,
-          fields: ["name", "photos"],
-          key: API_KEY,
-        };
-
-        placesService.getDetails(request, (place, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            setPlaceDetails((prevPlaceDetails) => [...prevPlaceDetails, place]);
-          } else {
-            console.error("Error fetching place details", placeId, status);
-          }
-        });
-      });
+    if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
+      const keys = Object.keys(itineraryPlacesDetails);
+      console.log(keys);
+      setPlaceKeys(keys);
+      setIsLoading(false);
     }
-  }, [isLoaded, map, placesService]); // Include isLoaded and map in the dependency array
+  }, [isGoogleMapsLoaded, map, itineraryPlacesDetails]);
+
+  const handleCardClick = (placeId) => {
+    const lat = itineraryPlacesDetails[placeId].geometry.location.lat();
+    const lng = itineraryPlacesDetails[placeId].geometry.location.lng();
+
+    if (map) {
+      map.panTo(new window.google.maps.LatLng(lat, lng));
+      map.setZoom(10); // You can adjust the zoom level as needed
+    }
+
+  };
+
 
   return (
-    <>
-      <div className="infoContainer">
-        {!isLoaded ? (
-          <h1>Loading...</h1>
-        ) : (
-          <div className="info-card">
-            <h1>Activity Options:</h1>
-            {placeDetails.map((place, index) => (
-              <div key={index} spacing={2} className="info-card">
-                <h1>{place.name}</h1>
-                {place.photos && place.photos.length > 0 && (
-                  <img src={place.photos[0].getUrl()} alt={place.name} />
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-        <ActivityRater />
+    <div className="infoContainer">
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : placeKeys.length > 0 ? 
+      (
+         <div className="info-card">
+           <h1>Activity Options:</h1>
+          {placeKeys.map((key) => (
+        <div key={key} className="info-item">
+          <h2 className="nameZoom" onClick={() => handleCardClick(key)}>
+                  {itineraryPlacesDetails[key].name}
+                </h2>
+        {/* <h3>{itineraryPlacesDetails[key].name}</h3> */}
+        {itineraryPlacesDetails[key].photos && 
+          itineraryPlacesDetails[key].photos.length > 0 ? (
+                  <img
+                    src={itineraryPlacesDetails[key].photos[0].getUrl()}
+                    alt={itineraryPlacesDetails[key].name}
+                    style={{ width: '400px', height: 'auto' }}
+                  />
+                  ): null}
+        </div> 
+      ))}
       </div>
-    </>
-  );
+      ): (
+        <div>No location information available.</div>
+  )}
+  </div>
+);
 };
+
+ItineraryInfoWindow.propTypes = {
+  itineraryPlacesDetails: PropTypes.object,
+}
 
 export default ItineraryInfoWindow;

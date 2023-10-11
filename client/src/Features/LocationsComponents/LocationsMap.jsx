@@ -31,10 +31,8 @@ const LocationsMap = () => {
   }, []);
 
   function parseCoordinates(coord) {
-    console.log(coord);
     if (coord && typeof coord === 'object' && 'x' in coord && 'y' in coord) {
       const coordinateObj = { lat: coord.x, lng: coord.y };
-      console.log(coordinateObj);
       return coordinateObj;
     } else {
       console.error("Invalid coordinate format:", coord);
@@ -73,14 +71,20 @@ const LocationsMap = () => {
 
   const onLoad = React.useCallback(async function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
-    const placesService = new window.google.maps.places.PlacesService(map);
-    setPlacesService(placesService);
     let places = {};
 
     try {
+
+      const placesService = new window.google.maps.places.PlacesService(map);
+      setPlacesService(placesService);
+
       for (const location of locations) {
         bounds.extend(parseCoordinates(location.coord));
-        places = await onHandleGetLocationInfo(location.place_id, places);
+        if (location.place_id) {
+          places = await onHandleGetLocationInfo(location.place_id, places);
+        } else {
+          console.warn("Skipping item due to place_id", location);
+        }
       }
 
       map.fitBounds(bounds);
@@ -121,6 +125,7 @@ const LocationsMap = () => {
                     key={index}
                     position={parseCoordinates(coord)}
                     icon={{
+                      url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
                       scaledSize: new window.google.maps.Size(30, 30),
                       origin: new window.google.maps.Point(0, 0),
                       anchor: new window.google.maps.Point(15, 15),

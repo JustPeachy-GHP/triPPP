@@ -4,9 +4,22 @@ const getAllLocations = async () => {
   try {
     const { rows } = await client.query(`
     SELECT * FROM locations
-    WHERE vibe
+    WHERE vibes
     IS NOT NULL;
     `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getItineraryLocations = async (destination) => {
+  try {
+    const { rows } = await client.query(`
+    SELECT * 
+    FROM locations
+    WHERE destination_place_id = '${destination}';
+  `);
     return rows;
   } catch (error) {
     throw error;
@@ -17,6 +30,7 @@ const createLocation = async ({
   location_id,
   coord,
   place_id,
+  destination_place_id,
   destination,
   vibes
 }) => {
@@ -25,11 +39,11 @@ const createLocation = async ({
       rows: [location],
     } = await client.query(
       `
-        INSERT INTO locations(location_id, coord, place_id, destination, vibes)
-        VALUES($1, $2, $3, $4, $5)
+        INSERT INTO locations(location_id, coord, place_id, destination_place_id, destination, vibes)
+        VALUES($1, $2, $3, $4, $5, $6)
         RETURNING *;
         `,
-      [location_id, coord, place_id, destination, vibes]
+      [location_id, coord, place_id, destination_place_id, destination, vibes]
     );
     return location;
   } catch (error) {
@@ -134,7 +148,6 @@ const getDestVotes = async (trip_id, location_id) => {
       FROM itineraryitems
       WHERE trip_id = $1 AND location_id = $2;
     `,[trip_id, location_id])
-    console.log(rows)
     return rows;
   } catch (error) {
     throw error;
@@ -154,4 +167,4 @@ const getLocationNameById = async (location_id) => {
   }
 }
 
-module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById };
+module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations };

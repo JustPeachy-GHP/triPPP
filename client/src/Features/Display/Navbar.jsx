@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-  console.log("hi,this is from Navbar");
 
   const navigate=useNavigate()
 
@@ -12,7 +11,8 @@ export default function Navbar() {
   }
 
   return (
-    <div className="navBar" id="navbar">
+
+    <div className="navBar" id="navbar">   
       <Link to="/">Home </Link>  <br></br>
       <Link to="/tripform"> Make A Trip</Link> <br></br> 
       <Link to="/userlanding"> My Trips </Link> <br></br>  
@@ -24,6 +24,5 @@ export default function Navbar() {
        <br></br>
       {/* <Link to="/about"> About </Link> */}
     </div>
-  );
-}
+  )}
 

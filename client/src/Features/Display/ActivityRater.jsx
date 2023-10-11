@@ -74,7 +74,7 @@ export default function Rater() {
       try {
         const response = await checkRatings(checkItinObject);
 
-        console.log("Rater component", response);
+        // console.log("Rater component", response);
         setRatings([...ratings, ...response]);
         retrieved = [...response];
       } catch (error) {
@@ -88,7 +88,7 @@ export default function Rater() {
       // console.log("types of", typeof retrieved[0].user_id, typeof user_id);
 
       const index = retrieved.findIndex((obj) => obj.user_id === user_id);
-      console.log("returned from findIndex", index);
+      // console.log("returned from findIndex", index);
 
       index !== -1 || null
         ? setAlreadyRated(true)
@@ -110,7 +110,7 @@ export default function Rater() {
       let calcAvg = tempTotal / numVoters;
       // console.log("calcAvg", calcAvg);
       setAvg(calcAvg);
-      console.log("average", avg);
+      // console.log("average", avg);
       // reset tempTotal in case rerenders
       tempTotal = 0;
 
@@ -125,8 +125,8 @@ export default function Rater() {
         (3 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
       );
 
-      console.log("limit high", limitHigh);
-      console.log("limit low", limitLow);
+      // console.log("limit high", limitHigh);
+      // console.log("limit low", limitLow);
     }
     getRatings();
   }, [value]);
@@ -164,7 +164,7 @@ export default function Rater() {
   };
 
   async function onVote(newValue) {
-    console.log("already rated?", alreadyRated);
+    // console.log("already rated?", alreadyRated);
     let itineraryObject = {
       trip_id: trip_id,
       location_id: location_id,
@@ -175,9 +175,9 @@ export default function Rater() {
       try {
         // user's vote already exists, add itinerary_id to object
         itineraryObject.itinerary_id = itinerary_id;
-        console.log("added", itineraryObject.itinerary_id, itineraryObject);
+        // console.log("added", itineraryObject.itinerary_id, itineraryObject);
         const response = await reviseIRating(itineraryObject);
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.log(error);
       }
