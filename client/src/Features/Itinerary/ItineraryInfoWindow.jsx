@@ -1,11 +1,15 @@
 import { useGoogleMaps } from "../../context/googleMapsContext";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ActivityRater from "../Display/ActivityRater";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const ItineraryInfoWindow = () => {
+
+const ItineraryInfoWindow = (place_id) => {
   const { isGoogleMapsLoaded, map, itineraryPlacesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
@@ -19,11 +23,14 @@ const ItineraryInfoWindow = () => {
   const handleCardClick = (placeId) => {
     const lat = itineraryPlacesDetails[placeId].geometry.location.lat();
     const lng = itineraryPlacesDetails[placeId].geometry.location.lng();
+    const url = `/locations?place_id=${placeId}`;
+    navigate(url);
 
     if (map) {
       map.panTo(new window.google.maps.LatLng(lat, lng));
       map.setZoom(10); // You can adjust the zoom level as needed
     }
+
   };
 
 
@@ -59,6 +66,8 @@ const ItineraryInfoWindow = () => {
 );
 };
 
-
+ItineraryInfoWindow.propTypes = {
+  itineraryPlacesDetails: PropTypes.object,
+}
 
 export default ItineraryInfoWindow;

@@ -71,11 +71,13 @@ const LocationsMap = () => {
 
   const onLoad = React.useCallback(async function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
-    const placesService = new window.google.maps.places.PlacesService(map);
-    setPlacesService(placesService);
     let places = {};
 
     try {
+
+      const placesService = new window.google.maps.places.PlacesService(map);
+      setPlacesService(placesService);
+
       for (const location of locations) {
         bounds.extend(parseCoordinates(location.coord));
         if (location.place_id) {
