@@ -8,7 +8,7 @@
 # create the database
 1. Create a database called trippp  
 `psql`   
-`createdb trippp`
+`createdb trippp;`
   
 2. Clone down this repo and navigate into triPPP
   
@@ -28,7 +28,7 @@
      
 # client
 7. Navigate into the /triPPP/client directory  
-`npm install`
+`npm install`  
 `npm install -D tailwindcss postcss autoprefixer`
   
 8. Check that .gitignore lists **.env**
