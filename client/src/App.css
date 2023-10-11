@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .imagelogo {
   width: 60px;
   height: 60px;
@@ -29,6 +33,7 @@ div#root {
 }
 
 /* Activity and Destination raters */
+
 .inforater {
   display: block;
   margin-left: auto;
@@ -62,11 +67,14 @@ div#root {
 
 /* LOCATIONS COMPONENTS */
 
+
 .scrollable-content {
   /* Style the scrollable content container */
   height: 100vh; /* Set a fixed height or any height you prefer */
   overflow-y: scroll; /* Enable vertical scrolling */
+  margin: 70px auto 0; /* Center horizontally */
 }
+
 
 .fixed-component {
   /* Style the fixed component */
@@ -129,6 +137,17 @@ div#root {
   height: 100%;
   width: 50%;
 }
+
+
+.itinerary-item {
+  width: 50vw;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: move;
+}
+
 
 /* ModalItinerary */
 .place {
@@ -229,13 +248,14 @@ input:checked + .slider:before {
 .textButtons {
   width: 60vw;
   border: none;
-  background-color: white;
+  color: #8fa69d;
+  background-color: whitesmoke;
   opacity: .8;
   font-size: 1.5em;
   /* background: rgba(0,0,0,0.5); */
   border: 1px solid black;
   border-radius: 4px;
-  box-shadow: 4px 4px 8px white;
+  box-shadow: 4px 4px 8px whitesmoke;
   margin: 5px;
 }
 
@@ -249,3 +269,28 @@ input:checked + .slider:before {
 .journalLink {
   font-size: 2em;
 }
+
+.userlanding {
+  width: 70vw;
+  margin: 70px auto 0; /* Center horizontally */
+  position: sticky;
+  background-color: whitesmoke;
+  padding: 2;
+  font: black;
+
+}
+
+.viewItinerary {
+
+  background-color: whitesmoke; /* Background color for the button */
+  border: none;
+  border-radius: 10px; /* Adjust the border radius for rounded corners */
+  padding: 12px 24px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  color: black;
+  box-shadow: 6px 6px 12px #c0c0c0, -6px -6px 12px whitesmoke; /* Neumorphic shadow effect */
+  transition: all 0.2s ease-in-out; /* Smooth transition on hover */
+  float: left;
+  margin: auto 0;
+}
+

@@ -53,7 +53,7 @@ const getAllJournalsByTrip = async (user_id, trip_id) => {
   try {
     const { rows } = await client.query(
       `
-      SELECT * 
+      SELECT *
       FROM journals
       WHERE user_id = $1
       AND trip_id = $2
@@ -63,6 +63,23 @@ const getAllJournalsByTrip = async (user_id, trip_id) => {
     return rows;
   } catch (error) {
     throw error;
+  }
+};
+
+const getAllJournalsByUser = async (user_id) => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT * 
+      FROM journals
+      WHERE user_id = $1
+    `,
+      [user_id]
+    );
+    console.log("GETTING JOURNALS BY USER(DB)", rows);
+    return rows;
+  } catch (error) {
+    throw ("CANT GET JOURNALS BY USER(DB)", error);
   }
 };
 
@@ -145,4 +162,5 @@ module.exports = {
   updateJournal,
   deleteJournal,
   getAllJournalsByLocation,
+  getAllJournalsByUser,
 };

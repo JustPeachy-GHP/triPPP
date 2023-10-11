@@ -1,8 +1,10 @@
 /* Include the Open Sans font from Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
 /* JOURNAL */
-
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 h1,
 h2,
@@ -53,8 +55,8 @@ input {
 }
 
 input[type="submit"] {
-  background-color: #007bff; /* Button background color */
-  color: #fff; /* Button text color */
+  background-color: #007bff;
+  color: #fff;
   border: none;
   padding: 10px 40px;
   border-radius: 5px;
@@ -62,7 +64,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #0056b3; /* Button background color on hover */
+  background-color: #0056b3;
 }
 
 h2 {
@@ -70,7 +72,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Optional: Add label styles for better form accessibility */
 label {
   display: block;
   font-weight: bold;
@@ -120,4 +121,93 @@ a:hover {
 
 .journal {
   font-family: "Open Sans", sans-serif;
+}
+
+.journal-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.journal-card {
+  width: calc(33.33% - 20px);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.journal-card h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.journal-card p {
+  font-size: 16px;
+  color: #555;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.single-journal-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journal-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 100%;
+}
+
+.journal-title {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+
+.journal-entry {
+  font-size: 16px;
+  color: #555;
+}
+
+.journal-image {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
 }

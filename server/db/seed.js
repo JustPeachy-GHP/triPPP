@@ -102,7 +102,7 @@ const createTables = async () => {
             numdays INTEGER,
             numtravelers INTEGER,
             isdecided BOOLEAN,
-            vibeform vibe
+            vibeform vibes
                         
         );
 

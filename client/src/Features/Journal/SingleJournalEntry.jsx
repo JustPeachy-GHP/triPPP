@@ -23,14 +23,21 @@ export default function SingleJournal() {
   }, []);
 
   return (
-    <div key={journal.journal_id}>
+    <div className="single-journal-container" key={journal.journal_id}>
       <JournalNavbar />
-      <h4>{journal.title}</h4>
-      <h4 id="journal">Entry: {journal.entry}</h4> <br />
-      <img id="image" src={journal.image} alt={journal.title} /> <br />
-      <Link to={`/journals/${params.journal_id}/edit`}>
-        <button class="button ">Edit</button>
-      </Link>
+      <div className="journal-card">
+        <h4 className="journal-title">{journal.title}</h4>
+        <p className="journal-entry">Entry: {journal.entry}</p> <br />
+        <img
+          className="journal-image"
+          src={journal.image}
+          alt={journal.title}
+        />{" "}
+        <br />
+        <Link to={`/journals/${params.journal_id}/edit`}>
+          <button className="edit-button">Edit</button>
+        </Link>
+      </div>
     </div>
   );
 }

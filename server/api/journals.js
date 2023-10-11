@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllJournals, createJournal, getJournalById } = require("../db/helpers/journals");
+const {
+  getAllJournals,
+  createJournal,
+  getJournalById,
+  getAllJournalsByUser,
+  getAllJournalsByTrip,
+} = require("../db/helpers/journals");
 
 // GET - api/journal - get all journal
 router.get("/", async (req, res, next) => {
@@ -14,12 +20,36 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET - api/journal/:journalId - get single journal
-router.get("/:journalId", async (req, res, next) => {
+router.get("/:journal_id", async (req, res, next) => {
   try {
-    const journal = await getJournalById(req.params.journalId);
+    const journal = await getJournalById(req.params.journal_id);
     res.send(journal);
   } catch (error) {
     next(error);
+  }
+});
+
+// Get journals by USER
+router.get("/user/:user_id", async (req, res, next) => {
+  try {
+    const journal = await getAllJournalsByUser(req.params.user_id);
+    res.send(journal);
+    console.log("GETTING JOURNALS BY USER(API)", journal);
+  } catch (error) {
+    next("CANT GET JOURNALS BY USER(API)", error);
+  }
+});
+
+router.get("/trip/:user_id/:trip_id", async (req, res, next) => {
+  try {
+    const journal = await getAllJournalsByTrip(
+      req.params.user_id,
+      req.params.trip_id
+    );
+    res.send(journal);
+    console.log("GETTING JOURNALS BY USER(API)", journal);
+  } catch (error) {
+    next("CANT GET JOURNALS BY USER(API)", error);
   }
 });
 

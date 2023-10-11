@@ -159,14 +159,8 @@ const getLocationNameById = async (location_id) => {
   }
 };
 
-module.exports = {
-  createLocation,
-  getAllLocations,
-  getLocationById,
-  getLocationByVibe,
-  createDestRating,
-  reviseDestRating,
-  getDestVotes,
-  getLocationNameById,
-  getItineraryLocations,
-};
+
+
+module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations };
+
+
