@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import Navtitle from "./Features/Display/Navtitle";
 import Test from "./Features/Test/Test";
 import DisplayTest from "./Features/Test/DisplayTest";
@@ -20,6 +21,18 @@ import SingleJournalEntry from "./Features/Journal/SingleJournalEntry";
 import CreateJournalForm from "./Features/Journal/CreateJournalForm";
 import EditJournalForm from "./Features/Journal/EditJournalForm";
 
+const ProtectedRoute = ({ children }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const token = localStorage.getItem("JWToken");
+
+  if (!token) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+  return children;
+};
+
 function App() {
   return (
     <>
@@ -27,7 +40,136 @@ function App() {
         <GoogleMapsContextProvider>
           <Navtitle />
           <Routes>
+            {/* Unprotected Routes */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+
+            {/* Protected Routes */}
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <LocationsPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/test"
+              element={
+                <ProtectedRoute>
+                  <Test />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/displaytest"
+              element={
+                <ProtectedRoute>
+                  <DisplayTest />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/userlanding"
+              element={
+                <ProtectedRoute>
+                  <UserLanding />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/trips"
+              element={
+                <ProtectedRoute>
+                  <LandingPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tripform"
+              element={
+                <ProtectedRoute>
+                  <TripForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tripadminpage"
+              element={
+                <ProtectedRoute>
+                  <TripAdminPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tripadminpage/1"
+              element={
+                <ProtectedRoute>
+                  <TripAdminPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/journals"
+              element={
+                <ProtectedRoute>
+                  <AllJournalEntries />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/journalform"
+              element={
+                <ProtectedRoute>
+                  <CreateJournalForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/journals/:user_id/:trip_id"
+              element={
+                <ProtectedRoute>
+                  <AllJournalEntries />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/journals/:journal_id"
+              element={
+                <ProtectedRoute>
+                  <SingleJournalEntry />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/journals/:journal_id/edit"
+              element={
+                <ProtectedRoute>
+                  <EditJournalForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/itinerary"
+              element={
+                <ProtectedRoute>
+                  <ItineraryPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/locations"
+              element={
+                <ProtectedRoute>
+                  <LocationsPage />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<LocationsPage />} />
             <Route path="/test" element={<Test />} />
             <Route path="/displaytest" element={<DisplayTest />} />
@@ -44,7 +186,8 @@ function App() {
             <Route path="/journals/:journal_id" element={<SingleJournalEntry />}/>
             <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
             <Route path="/itinerary" element={<ItineraryPage />} />
-            <Route path="/locations" element={<LocationsPage />} />
+            <Route path="/locations" element={<LocationsPage />} /> */}
+
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>
