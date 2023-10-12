@@ -75,27 +75,34 @@ export default function AllJournals() {
       {/* if journal.trip_id = number in array then map over */}
 
       <div>
-        {tripsToDisplay.map((trip) => {
-          if (
-            trips.includes(trip.trip_id) &&
-            (!searchParam || trip.tripname.toLowerCase().includes(searchParam))
-          ) {
-            return (
-              <div key={trip.trip_id}>
-                <h4>Trip Name: {trip.tripname}</h4>
-                <button
-                  className="button"
-                  onClick={() => {
-                    navigate(`/journals/trip/${trip.trip_id}`);
-                  }}
-                >
-                  See Journal Entries
-                </button>
-              </div>
-            );
-          }
-          return null;
-        })}
+        {tripsToDisplay.length === 0 ? (
+          <div className="journal-card">
+            <p>No journal entries found for this trip.</p>
+          </div>
+        ) : (
+          tripsToDisplay.map((trip) => {
+            if (
+              trips.includes(trip.trip_id) &&
+              (!searchParam ||
+                trip.tripname.toLowerCase().includes(searchParam))
+            ) {
+              return (
+                <div key={trip.trip_id}>
+                  <h4>Trip Name: {trip.tripname}</h4>
+                  <button
+                    className="button"
+                    onClick={() => {
+                      navigate(`/journals/trip/${trip.trip_id}`);
+                    }}
+                  >
+                    See Journal Entries
+                  </button>
+                </div>
+              );
+            }
+            return null;
+          })
+        )}
       </div>
     </div>
   );

@@ -102,7 +102,7 @@ const getAllJournalsByLocation = async (user_id, location_id) => {
 
 const deleteJournal = async (journal_id) => {
   try {
-    console.log("deleting a song");
+    console.log("deleting a journal");
     const { rows } = await client.query(`
     DELETE FROM journals
     WHERE journal_id = ${journal_id}

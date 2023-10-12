@@ -7,9 +7,10 @@ const {
   getJournalById,
   getAllJournalsByUser,
   getAllJournalsByTrip,
+  deleteJournal,
 } = require("../db/helpers/journals");
 
-// GET - api/journal - get all journal
+// GET - api/journals - get all journal
 router.get("/", async (req, res, next) => {
   try {
     const journal = await getAllJournals();
@@ -19,7 +20,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/journal/:journalId - get single journal
+// GET - api/journals/:journalId - get single journal
 router.get("/:journal_id", async (req, res, next) => {
   try {
     const journal = await getJournalById(req.params.journal_id);
@@ -60,6 +61,18 @@ router.post("/", async (req, res, next) => {
     res.send(journal);
   } catch (error) {
     next(error);
+  }
+});
+
+// DELETE - /api/journals/:journal_id - delete a journal
+router.delete("/:journal_id", async (req, res, next) => {
+  try {
+    console.log("entering router delete");
+    const journal = await deleteJournal(req.params.journal_id);
+    console.log(journal);
+    res.send(journal);
+  } catch (error) {
+    console.error(error);
   }
 });
 module.exports = router;

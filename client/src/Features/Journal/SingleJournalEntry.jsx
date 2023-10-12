@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchSingleJournal } from "../../../src/helpers/journals";
+import {
+  fetchSingleJournal,
+  deleteJournal,
+} from "../../../src/helpers/journals";
 import { Link } from "react-router-dom";
 import EditJournalForm from "./EditJournalForm";
 import JournalNavbar from "./JournalNavbar";
@@ -22,6 +25,16 @@ export default function SingleJournal() {
     getSingleJournal();
   }, []);
 
+  // DELETE journal
+  const handleDelete = async (journal_id) => {
+    try {
+      const response = await deleteJournal(journal_id);
+      console.log(response);
+    } catch (error) {
+      console.error("Trouble deleting journal", error);
+    }
+  };
+
   return (
     <div className="single-journal-container" key={journal.journal_id}>
       <JournalNavbar />
@@ -38,6 +51,12 @@ export default function SingleJournal() {
           <button className="edit-button">Edit</button>
         </Link>
       </div>
+      <button
+        className="button"
+        onClick={() => handleDelete(journal.journal_id)}
+      >
+        Delete
+      </button>
     </div>
   );
 }

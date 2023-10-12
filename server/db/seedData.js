@@ -135,97 +135,90 @@ const locations = [
   },
   {
     location_id: 9,
-    destination: "Mountain to Sea Trail",
-    place_id: "ChIJA9MEKyPzWYgRvrImY8Q13f0",
-    destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
-    coord: ('35.592901,-82.481200')
-  },
-  {
-    location_id: 10,
     destination: "Omni Grove Park Inn - Country Club",
     place_id: "ChIJLb17W8f0WYgRpWXPmOh22Fk",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: "35.619857,-82.542978",
   },
   {
-    location_id: 11,
+    location_id: 10,
     destination: "Biltmore Forest Country Club",
     place_id: "ChIJdb2htJTyWYgRG4PVQhGknMY",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: "35.532191,-82.536819",
   },
   {
-    location_id: 12,
+    location_id: 11,
     destination: "Lake Lure Adventure Company",
     place_id: "ChIJ_xr5xelYV4gRc1TL7kMyiV0",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: "35.423333,-82.186666",
   },
   {
-    location_id: 13,
+    location_id: 12,
     destination: "Reems Creek Golf Club",
     place_id: "ChIJ3zMqbswfWogRUYZ0hyNgj58",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: "35.698753,-82.520927",
   },
   {
-    location_id: 14,
+    location_id: 13,
     destination: "Asheville Adventure Company",
     place_id: "ChIJ9289NOaMWYgRzGcX7_SMje4",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: "35.566272,-82.586497",
   },
   {
-    location_id: 15,
+    location_id: 14,
     destination: "Asheville Municipal Golf Course",
     place_id: "ChIJZ9il6JPzWYgR1cUrYlcprbw",
     destination_place_id: "ChIJCW8PPKmMWYgRXTo0BsEx75Q",
     coord: "35.5783,-82.500883",
   },
   {
-    location_id: 16,
+    location_id: 15,
     destination: "Eiffel Tower",
     place_id: "ChIJLU7jZClu5kcR4PcOOO6p3I0",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: "48.858844,2.294351",
   },
   {
-    location_id: 17,
+    location_id: 16,
     destination: "La Barceloneta Beach",
     place_id: "ChIJk1xgCQejpBIRUvCCQOH6ACY",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: "41.3784,2.1925",
   },
   {
-    location_id: 18,
+    location_id: 17,
     destination: "Montpellier Botanical Garden",
     place_id: "ChIJuaew9wavthIRVF6Rv-gqcSE",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: "43.3643,3.5238",
   },
   {
-    location_id: 19,
+    location_id: 18,
     destination: "Palais des Papes",
     place_id: "ChIJb_jbjobrtRIRy9KIwWXljHc",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: "43.9509,4.8077",
   },
   {
-    location_id: 20,
+    location_id: 19,
     destination: "Basilica of Notre Dame of Fourvière",
     place_id: "ChIJK1Jxdanr9EcRKY5nG3nMG50",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: "45.7623,4.8226",
   },
   {
-    location_id: 21,
+    location_id: 20,
     destination: "Louvre Museum",
     place_id: "ChIJD3uTd9hx5kcR1IQvGfr8dbk",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
     coord: "48.8606,2.3376",
   },
   {
-    location_id: 22,
+    location_id: 21,
     destination: "La Boqueria Market",
     place_id: "ChIJAVoetfeipBIR1a1z3FTGCoY",
     destination_place_id: "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
@@ -233,7 +226,7 @@ const locations = [
   },
 
   {
-    location_id: 23,
+    location_id: 22,
     destination: "The Forum Shops at Caesars Palace",
     place_id: "ChIJSfBqxTzEyIARuYjvD1pecJ8",
     destination_place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
@@ -241,7 +234,7 @@ const locations = [
   },
 
   {
-    location_id: 24,
+    location_id: 23,
     destination: "XS Nightclub",
     place_id: "ChIJb7Qe8RTEyIARqt7WfhoTKPY",
     destination_place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
@@ -249,7 +242,7 @@ const locations = [
   },
 
   {
-    location_id: 25,
+    location_id: 24,
     destination: "The LINQ Promenade",
     place_id: "ChIJd1tXQznEyIAR6hB3hvz06RY",
     destination_place_id: "ChIJ0X31pIK3voARo3mz1ebVzDo",
@@ -257,49 +250,49 @@ const locations = [
   },
 
   {
-    location_id: 26,
+    location_id: 25,
     destination: "Wicker Park",
     place_id: "ChIJTVle-sbSD4gRnXE7zWH7kkU",
     destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
     coord: "41.6764342,-89.1990669",
   },
   {
-    location_id: 27,
+    location_id: 26,
     destination: "Andersonville",
     place_id: "ChIJrwSWvojRD4gRMJiiFShC3R4",
     destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
     coord: "41.98192,-87.66830",
   },
   {
-    location_id: 28,
+    location_id: 27,
     destination: "Lincoln Square",
     place_id: "ChIJOQwghALSD4gRPZgJcaYbnmY",
     destination_place_id: "ChIJ7cv00DwsDogRAMDACa2m4K8",
     coord: "41.96937,-87.68867",
   },
   {
-    location_id: 29,
+    location_id: 28,
     destination: "Cherry Creek Shopping Center",
     place_id: "ChIJX4Jmj5B-bIcR48cSaPW_jR0",
     destination_place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
     coord: "39.71734,-104.95216",
   },
   {
-    location_id: 30,
+    location_id: 29,
     destination: "Red Rocks Park and Amphitheatre",
     place_id: "ChIJ18hsDtqCa4cRrdYsOQfng3w",
     destination_place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
     coord: "39.66551,-105.20540",
   },
   {
-    location_id: 31,
+    location_id: 30,
     destination: "16th Street Mall",
     place_id: "ChIJHY5jhNp4bIcRN013V1sn9Ug",
     destination_place_id: "ChIJzxcfI6qAa4cR1jaKJ_j0jhE",
     coord: "39.74826,-104.99463",
   },
   {
-    location_id: 32,
+    location_id: 31,
     destination: "Duval Street",
     place_id:
       "EiFEdXZhbCBTdCwgS2V5IFdlc3QsIEZMIDMzMDQwLCBVU0EiLiosChQKEgmHXBXO6bbRiBGhSA43NRlsuBIUChIJdyOVrTSx0YgRXjtGdy_pzj8",
@@ -307,35 +300,35 @@ const locations = [
     coord: "24.56270,-81.80857",
   },
   {
-    location_id: 33,
+    location_id: 32,
     destination: "Mallory Square",
     place_id: "ChIJFYVni-y20YgRB3LW82ZY4bw",
     destination_place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
     coord: "24.56268,-81.81589",
   },
   {
-    location_id: 34,
+    location_id: 33,
     destination: "Smathers Beach",
     place_id: "ChIJYxGtrzGx0YgRO0FndRyfyLs",
     destination_place_id: "ChIJGZPxxsW20YgRVe3uNrw1q-k",
     coord: "24.55219,-81.76857",
   },
   {
-    location_id: 35,
-    destination: "Chelsea Market",
+    location_id: 34,
+    destination: "Little Market NYC",
     place_id: "ChIJw2lMFL9ZwokRosAtly52YX4",
-    destination_place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
-    coord: "40.74533,-73.99646",
+    destination_place_id: "ChIJc3w6RtlZwokRurBBrgR0PcI",
+    coord: "40.72340,-74.00326",
   },
   {
-    location_id: 36,
+    location_id: 35,
     destination: "Greenwich Village",
     place_id: "ChIJpxMyDJRZwokRX0XfgiHEgog",
     destination_place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
     coord: "40.74862,-73.89170",
   },
   {
-    location_id: 37,
+    location_id: 36,
     destination: "Melrose Avenue",
     place_id:
       "EiFNZWxyb3NlIEF2ZSwgTG9zIEFuZ2VsZXMsIENBLCBVU0EiLiosChQKEgl9KOCx07jCgBG4KPB94SvDnBIUChIJE9on3F3HwoAR9AhGJW_fL-I",
@@ -343,7 +336,7 @@ const locations = [
     coord: "41.735167,-93.5711476",
   },
   {
-    location_id: 38,
+    location_id: 37,
     destination: "Sunset Strip",
     place_id: "ChIJb-baHr2-woARBkWdGpP-CRQ",
     destination_place_id: "ChIJE9on3F3HwoAR9AhGJW_fL-I",
@@ -355,7 +348,7 @@ const trips = [
   {
     trip_id: 1,
     itinerary_id: 1,
-    group_id: 1,
+    user_id: 1,
     location_id: 1,
     tripname: "European Adventure",
     numdays: 14,
@@ -366,7 +359,7 @@ const trips = [
   {
     trip_id: 2,
     itinerary_id: 2,
-    group_id: 2,
+    user_id: 2,
     location_id: 2,
     tripname: "Party",
     numdays: 7,
@@ -377,7 +370,7 @@ const trips = [
   {
     trip_id: 3,
     itinerary_id: 3,
-    group_id: 3,
+    user_id: 3,
     location_id: 3,
     tripname: "Cultural Experience",
     numdays: 10,
@@ -388,7 +381,7 @@ const trips = [
   {
     trip_id: 4,
     itinerary_id: 4,
-    group_id: 4,
+    user_id: 4,
     location_id: 4,
     tripname: "City Exploration",
     numdays: 5,
@@ -399,7 +392,7 @@ const trips = [
   {
     trip_id: 5,
     itinerary_id: 5,
-    group_id: 5,
+    user_id: 5,
     location_id: 5,
     tripname: "Mountain Retreat",
     numdays: 3,
@@ -410,7 +403,7 @@ const trips = [
   {
     trip_id: 6,
     itinerary_id: 8,
-    group_id: 6,
+    user_id: 6,
     location_id: 3,
     tripname: "Vegas, Baby!",
     numdays: 3,
@@ -421,7 +414,7 @@ const trips = [
   {
     trip_id: 7,
     itinerary_id: 7,
-    group_id: 5,
+    user_id: 5,
     location_id: 2,
     tripname: "Golfing Long Weekend",
     numdays: 3,
@@ -443,7 +436,7 @@ const journals = [
       "Today was a day I will forever hold dear. As the morning sun gently kissed the streets of Paris, I ventured out into the enchanting city. The Eiffel Tower, standing tall and majestic, was my first stop. Seeing this iconic symbol of France up close was a dream come true. Its intricate lattice structure against the clear blue sky left me in awe. Afterward, I found a cozy café tucked away on a charming Parisian street. With a view of the Eiffel Tower in the distance, I savored a fresh croissant, warm from the oven. Its delicate layers melted in my mouth, a taste of pure Parisian delight. Today's experience was a perfect blend of history, culture, and culinary delight, making my time in Paris truly unforgettable.",
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 1,
-    location_id: 1
+    location_id: 1,
   },
   {
     journal_id: 1,
@@ -455,7 +448,7 @@ const journals = [
     entry: "Today, I visited the Eiffel Tower and had a delicious croissant.",
     timestamp: "2023-09-08 16:28:32-07",
     trip_id: 1,
-    location_id: 1
+    location_id: 1,
   },
   {
     journal_id: 1,
@@ -531,94 +524,51 @@ const groupmembs = [
     groupmemb_id: 1,
     trip_id: 1,
     user_id: 1,
-    group_id: 1,
   },
   {
     groupmemb_id: 2,
     trip_id: 1,
     user_id: 2,
-    group_id: 1,
   },
   {
     groupmemb_id: 3,
     trip_id: 2,
     user_id: 3,
-    group_id: 2,
   },
   {
     groupmemb_id: 4,
     trip_id: 2,
     user_id: 4,
-    group_id: 2,
   },
   {
     groupmemb_id: 5,
     trip_id: 3,
     user_id: 1,
-    group_id: 3,
   },
   {
     groupmemb_id: 6,
     trip_id: 3,
     user_id: 5,
-    group_id: 3,
   },
   {
     groupmemb_id: 7,
     trip_id: 7,
     user_id: 1,
-    group_id: 5,
   },
   {
     groupmemb_id: 8,
     trip_id: 7,
     user_id: 3,
-    group_id: 5,
   },
   {
     groupmemb_id: 9,
     trip_id: 6,
     user_id: 3,
-    group_id: 6,
   },
   {
     groupmemb_id: 10,
     trip_id: 6,
     user_id: 5,
-    group_id: 6,
-  },
-];
-
-const groups = [
-  {
-    group_id: 1,
-    trip_id: 1,
-    user_id: 1,
-  },
-  {
-    group_id: 2,
-    trip_id: 1,
-    user_id: 2,
-  },
-  {
-    group_id: 3,
-    trip_id: 2,
-    user_id: 3,
-  },
-  {
-    group_id: 4,
-    trip_id: 3,
-    user_id: 4,
-  },
-  {
-    group_id: 5,
-    trip_id: 7,
-    user_id: 1,
-  },
-  {
-    group_id: 6,
-    trip_id: 6,
-    user_id: 3,
   },
 ];
 
@@ -786,5 +736,4 @@ module.exports = {
   locations,
   itineraryitems,
   groupmembs,
-  groups,
 };
