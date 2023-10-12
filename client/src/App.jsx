@@ -53,7 +53,7 @@ function App() {
             <Route path="/register" element={<Registration />} />
 
             {/* Protected Routes */}
-            <Route
+            {/* <Route
               path="/home"
               element={
                 <ProtectedRoute>
@@ -174,10 +174,10 @@ function App() {
                   <LocationsPage />
                 </ProtectedRoute>
               }
-            />
+            /> */}
 
-            {/* <Route path="/" element={<LandingPage />} />
-            <Route path="/home" element={<LocationsPage />} />
+            {/* {/* <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<LocationsPage />} /> */}
 
 
             <Route path="/test" element={<Test />} />

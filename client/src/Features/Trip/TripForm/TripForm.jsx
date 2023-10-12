@@ -1,9 +1,14 @@
-import React, { useState } from "react";
 // import "./tripform.css";
 // import Login from "../Auth/Login";
 import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
 import { useNavigate } from "react-router-dom";
+
+
+import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
 
 export default function TripForm() {
   const [trip_id, setTrip_Id] = useState(null);
@@ -12,6 +17,31 @@ export default function TripForm() {
   const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
   const navigate = useNavigate();
+
+  //modal stuff here
+  const [isOpen, setIsOpen] = useState(true);
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    overflow: "scroll",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  //modal stuff ends here
+
 
   // hardcoding dummy data for a user_id
 
@@ -54,6 +84,15 @@ export default function TripForm() {
   }
 
   return (
+    <div>
+    <Modal
+      open={isOpen}
+      onClose={closeModal}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+
     <div>
       <form onSubmit={submitHandler}>
         <h1> Let's find out more about your Trippp </h1>
@@ -184,6 +223,10 @@ export default function TripForm() {
         </fieldset>
         <button type="Submit" onClick={handleSubmitClick}>Submit</button>
       </form>
+    </div>
+    <br/>
+    </Box>
+      </Modal>
     </div>
   );
 }
