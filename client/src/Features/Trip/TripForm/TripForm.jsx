@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
 import { useNavigate } from "react-router-dom";
+import shopping from "../../../Assets/shopping.jpeg";
 
 export default function TripForm() {
   const [trip_id, setTrip_Id] = useState(null);
@@ -64,7 +65,7 @@ export default function TripForm() {
           required
         />{" "}
         <br />
-        <h3> How many people are you traveling with?</h3>
+        <h3> How many people are in your party?</h3>
         <input
           type="number"
           min="1"
@@ -161,7 +162,7 @@ export default function TripForm() {
               onChange={(e) => setVibeForm(e.target.id)}
             />
             <label htmlFor="local">
-              Local
+              Local Culture
               <img
                 id="vibe-img"
                 src="https://tinyurl.com/5t4sndky"
@@ -179,12 +180,7 @@ export default function TripForm() {
               onChange={(e) => setVibeForm(e.target.id)}
             />
             <label htmlFor="shop">
-              Shop{" "}
-              <img
-                id="vibe-img"
-                src=" https://tinyurl.com/5n8mwked"
-                alt="woman shopping in a store"
-              ></img>
+              Shop <img id="vibe-img" src={shopping} alt="woman shopping"></img>
             </label>
           </div>
           <br />
