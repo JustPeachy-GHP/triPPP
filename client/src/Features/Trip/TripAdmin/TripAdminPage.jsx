@@ -19,9 +19,8 @@ export default function TripAdminPage({ trip_id }) {
     async function getSingleTrip() {
       const response = await fetchSingleTrip(trip_id);
       console.log("One trip to rule them all!", response);
-      setoneTrip(response);
     }
-    getSingleTrip(trip_id);
+    getSingleTrip(response.trip_id);
   }, [trip_id]);
   // ==========Getting All Group Membs
   useEffect(() => {
