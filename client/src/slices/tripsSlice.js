@@ -1,13 +1,13 @@
-import ( createSlice ) from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
+import { createSlice } from '@reduxjs/toolkit';
+// import { useSelector } from 'react-redux';
 
-const user_id = useSelector((state) => state.auth.user_id);
+// const user_id = useSelector((state) => state.auth.user_id);
 
 
 const initialState = {
     trip_id : null,
     vibeform: [],
-    user_id,
+    // user_id,
 
 };
 
