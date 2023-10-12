@@ -1,9 +1,7 @@
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import React, { useState, useEffect } from "react";
-import ActivityRater from "../Display/ActivityRater";
+import ActivityRater from "./ActivityRater";
 import PropTypes from "prop-types";
-import ModalItinerary from "./ModalItinerary";
-
 
 
 const ItineraryInfoWindow = () => {

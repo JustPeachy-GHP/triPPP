@@ -23,7 +23,7 @@ const style = {
 
 // trip_id will be passed through from the click that
 // gets you to the itinerary view page
-const trip_id = 7;
+// const trip_id = 7;
 
 // *** Mock data ***
 // near line 160 (votes = items) should be commented out if you are using

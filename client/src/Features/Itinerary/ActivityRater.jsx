@@ -12,10 +12,10 @@ import {
 } from "../../helpers/itinerary";
 
 // dummy data being used until we are loading component from the map
-const trip_id = 4;
-const location_id = 2;
-const user_id = 1;
-const numtravelers = 5;
+// const trip_id = 4;
+// const location_id = 2;
+// const user_id = 1;
+// const numtravelers = 5;
 
 // const mockVotes = [
 //   {
