@@ -25,11 +25,10 @@ export default function TripForm() {
       vibeform: vibeform,
     };
     console.log("submit data", newTripObject);
-    
-    
+
     createNewTrip();
   };
-  
+
   async function createNewTrip(tripObj) {
     const result = await createTrip(tripObj);
     console.log(result);
@@ -51,7 +50,7 @@ export default function TripForm() {
     const trip = await createNewTrip(newTripObject);
     console.log(trip);
     navigate(`/${trip.trip_id}/locations`);
-  }
+  };
 
   return (
     <div>
@@ -62,22 +61,31 @@ export default function TripForm() {
           placeholder="Trip Name"
           onChange={(e) => settripName(e.target.value)}
           value={tripname}
+          required
         />{" "}
         <br />
         <h3> How many people are you traveling with?</h3>
         <input
           type="number"
+          min="1"
+          oninput="validity.valid||(value='');"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           placeholder="Number of Travelers"
           onChange={(e) => setNumTravelers(e.target.value)}
           value={numtravelers}
+          required
         />{" "}
         <br />
         <h3> How many days do you want to plan for?</h3>
         <input
           type="number"
+          min="1"
+          oninput="validity.valid||(value='');"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           placeholder="Number of Days"
           onChange={(e) => setNumDays(e.target.value)}
           value={numdays}
+          required
         />{" "}
         <br />
         {/* ====================VIBE QUESTIONS============== */}
@@ -182,7 +190,9 @@ export default function TripForm() {
           <br />
           {/* hook up event listener to  */}
         </fieldset>
-        <button type="Submit" onClick={handleSubmitClick}>Submit</button>
+        <button type="Submit" onClick={handleSubmitClick}>
+          Submit
+        </button>
       </form>
     </div>
   );
