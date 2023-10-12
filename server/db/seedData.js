@@ -314,10 +314,10 @@ const locations = [
   },
   {
     location_id: 34,
-    destination: "Chelsea Market",
+    destination: "Little Market NYC",
     place_id: "ChIJw2lMFL9ZwokRosAtly52YX4",
-    destination_place_id: "ChIJOwg_06VPwokRYv534QaPC8g",
-    coord: ('40.74533,-73.99646')
+    destination_place_id: "ChIJc3w6RtlZwokRurBBrgR0PcI",
+    coord: ('40.72340,-74.00326')
   },
   {
     location_id: 35,
