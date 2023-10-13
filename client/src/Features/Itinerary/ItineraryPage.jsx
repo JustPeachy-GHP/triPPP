@@ -5,16 +5,17 @@ import ModalItineray from "./ModalItinerary";
 
 export default function ItineraryPage() {
     const params = useParams();
+    console.log(params);
 
     return(
         <> 
             <div>
             </div>
             <div className="fixed-component">
-                <MemoizedItineraryMap props={params.place_id}/>
+                <MemoizedItineraryMap params={params.place_id}/>
             </div>
             <div className="scrollable-content"> 
-                <ModalItineray props={params.trip_id}/>
+                <ModalItineray params={params.trip_id}/>
                 <ItineraryInfoWindow params={params.trip_id}/> 
             </div>
         </>

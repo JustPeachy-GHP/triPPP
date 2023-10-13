@@ -5,14 +5,14 @@ import "../Test/test.css";
 import { editIsDecidedTrip } from "../../helpers/trips";
 
 //*** remove when passing in props ***/
-const location_id = 2; // pass in with props
-const trip_id = 7; // pass in with props
+// const location_id = 2; // pass in with props
+// const trip_id = 7; // pass in with props
 
 // need props -- trip_id
 // if coming from parent component, pass along location_id, decided,
 // setDecided, tripLocationId, setTripLocationId
 
-export default function SetDestToggle() {
+export default function SetDestToggle(trip_id) {
   const [decided, setDecided] = useState();
   const [tripLocationId, setTripLocationId] = useState("");
   const [content, setContent] = useState(null);
@@ -43,7 +43,7 @@ export default function SetDestToggle() {
 
   // and set correct state of toggle slider
 
-  function constructContent() {
+  function constructContent(location_id) {
     if (decided === true && tripLocationId === location_id) {
       console.log("decided && trip locations should match", tripLocationId, "=", location_id);
 

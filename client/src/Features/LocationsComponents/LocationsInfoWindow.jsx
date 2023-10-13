@@ -3,11 +3,13 @@ import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SetDestToggle from "../Display/SetDestToggle";
+import { useParams } from 'react-router-dom';
 
 const LocationsInfoWindow = (trip_id) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const navigate = useNavigate(); // Add React Router's useHistory hook
+  const params = useParams();
 
   useEffect(() => {
     console.log(trip_id);
@@ -58,7 +60,7 @@ const LocationsInfoWindow = (trip_id) => {
                 <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
                   Lets Go!
                 </button>
-                <SetDestToggle/>
+                <SetDestToggle params={params.trip_id}/>
               </div>
             ))}
           </div>

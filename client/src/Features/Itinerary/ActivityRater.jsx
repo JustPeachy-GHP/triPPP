@@ -177,7 +177,7 @@ export default function Rater() {
         itineraryObject.itinerary_id = itinerary_id;
         // console.log("added", itineraryObject.itinerary_id, itineraryObject);
         const response = await reviseIRating(itineraryObject);
-        // console.log(response)
+        console.log(response)
       } catch (error) {
         console.log(error);
       }
