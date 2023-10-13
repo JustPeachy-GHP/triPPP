@@ -56,6 +56,9 @@ export default function UserLanding() {
       tripAdmins === 0 && 
       journals === 0) {
       setNewUser(true)
+      console.log("newUser =", true)
+    } else {
+      console.log("existing user")
     }
   })
 
