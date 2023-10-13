@@ -11,14 +11,15 @@ const createTrip = async ({
   numtravelers,
   // isdecided,
   vibeform,
+  user_id,
 }) => {
   try {
     const {
       rows: [trip],
     } = await client.query(
       `
-            INSERT INTO trips( tripname, numdays, numtravelers, vibeform)
-            VALUES($1, $2, $3, $4)
+            INSERT INTO trips( tripname, numdays, numtravelers, vibeform, user_id)
+            VALUES($1, $2, $3, $4, $5)
             RETURNING *;
             `,
       [
@@ -31,6 +32,7 @@ const createTrip = async ({
         numtravelers,
         // isdecided,
         vibeform,
+        user_id
       ]
     );
     return trip;
