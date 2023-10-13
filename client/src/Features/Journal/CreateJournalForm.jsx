@@ -20,6 +20,7 @@ export default function CreateJournalForm({
   const [entry, setEntry] = useState("");
   const [error, setError] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState("");
+
   // const [trips, setTrips] = useState([]);
 
   async function handleSubmit(e) {
@@ -32,7 +33,7 @@ export default function CreateJournalForm({
 
     const API = await createJournal(
       user_id,
-      trip_id,
+      selectedTrip,
       videocontent,
       image,
       title,
