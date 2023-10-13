@@ -56,6 +56,7 @@
     font-family: inherit;
     background-color: #8FA69D;
     cursor: pointer;
+    font: whitesmoke;
     transition: border-color 0.25s;
   }
   button:hover {

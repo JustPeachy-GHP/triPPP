@@ -6,6 +6,13 @@ import { getDestName } from "../../helpers/location";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMaps } from '../../slices/mapsSlice';
+// import {} from '../../slices/authSlice';
+import { setTrips } from '../../slices/tripsSlice';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const style = {
   position: 'absolute',
@@ -139,6 +146,14 @@ const style = {
 // ];
 
 export default function ItineraryView(trip_id) {
+  console.log(useSelector(state => state.maps.location_id))
+  console.log(useSelector(state => state.trips.trip_id))
+
+  const initialLocationId = useSelector(state => state.maps.location_id);
+  const initialTripId = useSelector(state => state.trips.trip_id)
+
+  const [locationId, setInitialLocationId] = useState(initialLocationId);
+  const [tripId, setInitialTripId] = useState(initialTripId);
   const [items, setItems] = useState([]);
   const [numDays, setNumDays] = useState(0);
   const [numTravelers, setNumTravelers] = useState(0);
@@ -152,7 +167,11 @@ export default function ItineraryView(trip_id) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  
+  const navigate = useNavigate()
   let content = "";
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // Get additional trip info for the itinerary from the trip table

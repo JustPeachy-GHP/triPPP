@@ -69,10 +69,13 @@ export default function UserLanding() {
         {tripAdmins.map((group) => {
           return <UserTrips group={group} trip_id={group.trip_id} location_id={group.location_id}/>;
         })}
+        {/* isdecided goes to itinerary page & not decided goes to locations page */}
         <h3>Joining:</h3>
         {tripsMemb.map((group) => {
           return <UserTrips group={group} trip_id={group.trip_id} location_id={group.location_id}/>;
         })}
+        {/* should NOT be seen if the admin hasn't chosen location or an alert message */}
+        {/* connect to itinerary */}
         <div className="journalLink">
         <a href={"/journals"}>Journals</a>
         </div>
