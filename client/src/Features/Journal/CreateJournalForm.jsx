@@ -19,10 +19,17 @@ export default function CreateJournalForm({
   const [timestamp, setTimestamp] = useState("");
   const [entry, setEntry] = useState("");
   const [error, setError] = useState(null);
+  const [selectedTrip, setSelectedTrip] = useState("");
   // const [trips, setTrips] = useState([]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!selectedTrip) {
+      alert("Please choose a trip before submitting the form.");
+      return;
+    }
+
     const API = await createJournal(
       user_id,
       trip_id,
@@ -51,46 +58,17 @@ export default function CreateJournalForm({
       console.log(error);
     }
   }
-  console.log(trips);
-
-  // useEffect(() => {
-  //   async function fetchJournals() {
-  //     try {
-  //       const response = await fetchAllJournalsByUser(user_id);
-  //       console.log("Response:", response);
-
-  //       setJournal(response);
-  //       const tripIds = response.map((journal) => journal.trip_id);
-  //       const uniqueTripIds = [...new Set(tripIds)];
-
-  //       setTrips(uniqueTripIds);
-  //     } catch (error) {
-  //       console.error("Error fetching journals by user:", error);
-  //     }
-  //   }
-  //   if (user_id) {
-  //     fetchJournals();
-  //   }
-  // }, [user_id]);
-
-  // useEffect(() => {
-  //   async function fetchTrips() {
-  //     const response = await fetchAllTrips();
-  //     // console.log("Response:", response);
-  //     setTrips(response);
-  //     // console.log(allTrips);
-  //   }
-  //   fetchTrips();
-  // }, []);
+  // console.log(trips);
 
   return (
     <>
-      <JournalNavbar />
-
       <label htmlFor="trip-select">
         Choose a trip you want to write about:
       </label>
-      <select name="trip" id="trip-select">
+      <select
+        value={selectedTrip}
+        onChange={(event) => setSelectedTrip(event.target.value)}
+      >
         <option value="">--Please choose a trip--</option>
         {allTrips.map((trip) => {
           if (trips.includes(trip.trip_id)) {
@@ -104,41 +82,43 @@ export default function CreateJournalForm({
           }
         })}
       </select>
-      <form onSubmit={handleSubmit}>
-        <input
-          id="videocontent"
-          autoFocus
-          placeholder="Insert Video URL"
-          value={videocontent}
-          onChange={(e) => setVideocontent(e.target.value)}
-        />
+      {selectedTrip && (
+        <form onSubmit={handleSubmit}>
+          <input
+            id="videocontent"
+            autoFocus
+            placeholder="Insert Video URL"
+            value={videocontent}
+            onChange={(e) => setVideocontent(e.target.value)}
+          />
 
-        <input
-          id="image-text"
-          placeholder="Insert Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <input
-          id="title"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          id="timestamp"
-          placeholder="Date and Time"
-          value={timestamp}
-          onChange={(e) => setTimestamp(e.target.value)}
-        />
-        <input
-          id="entry-text"
-          placeholder="Entry"
-          value={entry}
-          onChange={(e) => setEntry(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+          <input
+            id="image-text"
+            placeholder="Insert Image URL"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+          <input
+            id="title"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            id="timestamp"
+            placeholder="Date and Time"
+            value={timestamp}
+            onChange={(e) => setTimestamp(e.target.value)}
+          />
+          <input
+            id="entry-text"
+            placeholder="Entry"
+            value={entry}
+            onChange={(e) => setEntry(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </>
   );
 }
