@@ -91,7 +91,7 @@ export default function TripForm() {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box sx={style} className="scrollable-content">
 
     <div>
       <form onSubmit={submitHandler}>

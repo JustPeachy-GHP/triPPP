@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   deleteJournal,
   fetchAllJournalsByUser,
@@ -11,6 +11,11 @@ import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
 import { useSelector } from "react-redux";
 
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+
 export default function AllJournals() {
   const [journal, setJournal] = useState([]);
   const [searchParam, setSearchParam] = useState("");
@@ -19,6 +24,31 @@ export default function AllJournals() {
   const [trips, setTrips] = useState([]);
   const [allTrips, setAllTrips] = useState([]);
   const user_id = useSelector((state) => state.auth.user_id);
+
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    overflow: "scroll",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
 
   useEffect(() => {
     async function fetchJournals() {
@@ -55,6 +85,15 @@ export default function AllJournals() {
   };
 
   return (
+    <div>
+      <Modal
+        open={isOpen}
+        onClose={closeModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        <div className="modal-content">
     <div>
       <JournalNavbar />
       <div>
@@ -113,6 +152,11 @@ export default function AllJournals() {
               </button>
             </div>
           </div>
+          <br />
+          </div>
+        </Box>
+      </Modal>
+    </div>
         );
       }
 
@@ -137,3 +181,11 @@ export default function AllJournals() {
 //   const coordinates = location.coord;
 //   return coordinates;
 // }
+
+
+
+
+
+
+
+
