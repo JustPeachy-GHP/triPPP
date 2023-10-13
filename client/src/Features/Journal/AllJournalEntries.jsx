@@ -1,13 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import {
-  deleteJournal,
-  fetchAllJournalsByUser,
-  fetchAllJournalsByTrip,
-} from "../../../src/helpers/journals";
+import { fetchAllJournalsByUser } from "../../../src/helpers/journals";
 import { fetchAllTrips } from "../../../src/helpers/trips";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
+import CreateJournalForm from "./CreateJournalForm";
 import "./Journal.css";
 import { useSelector } from "react-redux";
 
@@ -15,10 +12,12 @@ export default function AllJournals() {
   const [journal, setJournal] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
-  const searchTripNameRef = useRef("");
+
   const [trips, setTrips] = useState([]);
   const [allTrips, setAllTrips] = useState([]);
   const user_id = useSelector((state) => state.auth.user_id);
+
+  const [showCreateJournalForm, setShowCreateJournalForm] = useState(false);
 
   useEffect(() => {
     async function fetchJournals() {
@@ -50,15 +49,15 @@ export default function AllJournals() {
     fetchTrips();
   }, []);
 
+  const handleCreateJournal = () => {
+    setShowCreateJournalForm(true);
+  };
+
   const tripsToDisplay = searchParam
     ? allTrips.filter((trip) =>
         trip.tripname.toLowerCase().includes(searchParam)
       )
     : allTrips;
-
-  // const searchHandler = () => {
-  //   setSearchParam(searchTripNameRef.current.value.toLowerCase());
-  // };
 
   return (
     <div>
@@ -71,6 +70,19 @@ export default function AllJournals() {
           onChange={(event) => setSearchParam(event.target.value.toLowerCase())}
         />
       </div>
+
+      <button className="button" onClick={handleCreateJournal}>
+        Create Journal
+      </button>
+
+      {showCreateJournalForm && (
+        <CreateJournalForm
+          user_id={user_id}
+          trip_id={trips.trip_id}
+          trips={trips}
+          allTrips={allTrips}
+        />
+      )}
 
       {/* if journal.trip_id = number in array then map over */}
 
