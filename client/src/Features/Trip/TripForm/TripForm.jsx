@@ -6,13 +6,32 @@ import { createTrip } from "../../../helpers/trips";
 import { useNavigate } from "react-router-dom";
 import shopping from "../../../Assets/shopping.jpeg";
 
-export default function TripForm() {
-  const [trip_id, setTrip_Id] = useState(null);
+export default function TripForm(props) {
+  const [trip_id, setTrip_Id] = useState(Inittrip_id);
   const [tripname, settripName] = useState("");
   const [numdays, setNumDays] = useState("");
   const [numtravelers, setNumTravelers] = useState("");
-  const [vibeform, setVibeForm] = useState("");
+  const [vibeform, setVibeForm] = useState(Initvibeform);
+  const [user_id, setUserId] = useState(Inituser_id);
+
   const navigate = useNavigate();
+
+  console.log(useSelector((state) => state.trips.trip_id));
+  console.log(useSelector((state) => state.trips.vibeform));
+  console.log(useSelector((state) => state.trips.user_id));
+
+  const Inittrip_id = useSelector((state) => state.trips.trip_id);
+  const Inituser_id = useSelector((state) => state.trips.user_id);
+  const Initvibeform = useSelector((state) => state.trips.vibeform);
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    dispatch(setTrip_Id({ trip_id: trip_id }));
+    dispatch(setVibeForm({ vibeform: vibeform }));
+    dispatch(setUserId({ user_id: user_id }));
+    navigate(":trip_id/locations/");
+  };
 
   // hardcoding dummy data for a user_id
 

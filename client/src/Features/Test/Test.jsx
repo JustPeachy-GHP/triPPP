@@ -1,44 +1,44 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom'
-import { setone, settwo } from '../../slices/testSlice'
+import { useNavigate } from "react-router-dom";
+import { setone, settwo } from "../../slices/testSlice";
 // added a DisplayTest component so you can see the value retrieved from state - "Look ma, no props!"
 import DisplayTest from "./DisplayTest";
-import ActivityRater from '../Display/ActivityRater'
-import DestinationRater from '../Display/DestinationRater'
+import ActivityRater from "../Display/ActivityRater";
+import DestinationRater from "../Display/DestinationRater";
 import BasicModal from "./BasicModal";
-import ModalItinerary from "../Itinerary/ModalItinerary"
-import Tooltip from '@mui/material/Tooltip';
-import "./test.css"
-import SetDestToggle from '../Display/SetDestToggle'
+import ModalItinerary from "../Itinerary/ModalItinerary";
+import Tooltip from "@mui/material/Tooltip";
+import "./test.css";
+import SetDestToggle from "../Display/SetDestToggle";
 
 export default function Test() {
   // getting testVal1 and testVal2 from redux
-  console.log(useSelector(state => state.test.testVal1))
-  console.log(useSelector(state => state.test.testVal2))
+  console.log(useSelector((state) => state.test.testVal1));
+  console.log(useSelector((state) => state.test.testVal2));
 
-  const navigate = useNavigate()
-  const classDisabled = null
+  const navigate = useNavigate();
+  const classDisabled = null;
 
   // same as above, but retrieving from redux to use as inital state for useState hooks
-  const initialVal1 = useSelector(state => state.test.testVal1);
-  const initialVal2 = useSelector(state => state.test.testVal2);
+  const initialVal1 = useSelector((state) => state.test.testVal1);
+  const initialVal2 = useSelector((state) => state.test.testVal2);
 
   const [val1, setVal1] = useState(initialVal1);
   const [val2, setVal2] = useState(initialVal2);
 
   // can' useDispatch() directly, have to set it to a variable - same as useNavigate
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // on form submit using setone and settwo in testReducer to change the values of testVal1 and testVal2
-const handleSubmit = () => {
-    dispatch(setone({testVal1: val1}))
-    dispatch(settwo({testVal2: val2}))
+  const handleSubmit = () => {
+    dispatch(setone({ testVal1: val1 }));
+    dispatch(settwo({ testVal2: val2 }));
 
     // the page resets with the form submit so here we're navigating to another component to show the values changed -- if you look at app.jsx there's a route for /displaytest that points to the DisplayTest component
 
-    navigate("/displaytest")
-}
+    navigate("/displaytest");
+  };
 
   return (
     <>
@@ -66,14 +66,13 @@ const handleSubmit = () => {
         <h2>Testing destination voting/rater</h2>
         <DestinationRater />
 
-        <BasicModal/>
+        <BasicModal />
 
         <ModalItinerary />
 
         {/* <Tooltip title="Toggle me to set your destination." enterDelay="500" > */}
         <SetDestToggle />
         {/* </Tooltip> */}
-
       </div>
     </>
   );

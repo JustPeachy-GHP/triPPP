@@ -4,19 +4,18 @@ import { useParams } from "react-router-dom";
 import ModalItineray from "./ModalItinerary";
 
 export default function ItineraryPage() {
-    const params = useParams();
+  const params = useParams();
 
-    return(
-        <> 
-            <div>
-            </div>
-            <div className="fixed-component">
-                <MemoizedItineraryMap props={params.place_id}/>
-            </div>
-            <div className="scrollable-content"> 
-                <ModalItineray props={params.trip_id}/>
-                <ItineraryInfoWindow params={params.trip_id}/> 
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div></div>
+      <div className="fixed-component">
+        <MemoizedItineraryMap props={params.place_id} />
+      </div>
+      <div className="scrollable-content">
+        <ModalItineray props={params.trip_id} />
+        <ItineraryInfoWindow params={params.trip_id} />
+      </div>
+    </>
+  );
 }

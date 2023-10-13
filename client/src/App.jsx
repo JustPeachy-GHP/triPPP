@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
@@ -24,8 +23,8 @@ import SingleJournalEntry from "./Features/Journal/SingleJournalEntry";
 import CreateJournalForm from "./Features/Journal/CreateJournalForm";
 import EditJournalForm from "./Features/Journal/EditJournalForm";
 import JournalsByTrip from "./Features/Journal/JournalsByTrip";
-
-
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,13 +37,12 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-
 function App() {
+  const [trip_id, setTripId] = useState(null);
   return (
     <>
       <ErrorBoundary>
         <GoogleMapsContextProvider>
-
           <Navtitle />
           <Routes>
             {/* Unprotected Routes */}
@@ -83,7 +81,7 @@ function App() {
               path="/userlanding"
               element={
                 <ProtectedRoute>
-                  <UserLanding />
+                  <UserLanding setTripId={setTripId} />
                 </ProtectedRoute>
               }
             />
@@ -103,19 +101,19 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/tripadminpage"
               element={
                 <ProtectedRoute>
                   <TripAdminPage />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
-              path="/tripadminpage/1"
+              path="/tripadminpage/:trip_id"
               element={
                 <ProtectedRoute>
-                  <TripAdminPage />
+                  <TripAdminPage trip_id={trip_id} />
                 </ProtectedRoute>
               }
             />
@@ -214,11 +212,9 @@ function App() {
             {/* <Route path="/display" element={<Display/>}/>
             {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
 
-{/* //             <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
+            {/* //             <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
 //             <Route path="/itinerary" element={<ItineraryPage />} />
-//             <Route path="/locations" element={<LocationsPage />} /> */} 
-
-
+//             <Route path="/locations" element={<LocationsPage />} /> */}
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>
@@ -227,4 +223,3 @@ function App() {
 }
 
 export default App;
-
