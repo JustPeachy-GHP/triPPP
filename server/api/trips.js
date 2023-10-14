@@ -20,10 +20,10 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/trips/:tripId - get single trip
-router.get("/:tripId", async (req, res, next) => {
+// GET - api/trips/:trip_id - get single trip
+router.get("/:trip_id", async (req, res, next) => {
   try {
-    const trip = await getTripById(req.params.tripId);
+    const trip = await getTripById(req.params.trip_id);
     res.send(trip);
   } catch (error) {
     next(error);
@@ -51,8 +51,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// // PUT- api/trips/:tripId - update a single trip
-router.put("/:tripId", async (req, res, next) => {
+// // PUT- api/trips/:trip_id - update a single trip
+router.put("/:trip_id", async (req, res, next) => {
   try {
     const trip = await updateTrip(req.params.trip_id, req.body);
     res.send(trip);
@@ -62,7 +62,7 @@ router.put("/:tripId", async (req, res, next) => {
 });
 
 // DELETE - api/trips - delete trip
-router.delete("/:tripId", async (req, res, next) => {
+router.delete("/:trip_id", async (req, res, next) => {
   try {
     const trip = await deleteTrip(req.params.id);
     res.send(trip);

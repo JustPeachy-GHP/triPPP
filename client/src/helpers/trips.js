@@ -34,6 +34,9 @@ export async function createTrip(tripobj) {
 export const fetchSingleTrip = async (trip_id) => {
   try {
     const response = await fetch(`${BASE_URL}/${trip_id}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const result = await response.json();
     return result;
   } catch (error) {

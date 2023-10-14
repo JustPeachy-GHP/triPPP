@@ -92,12 +92,12 @@ export default function SetDestToggle(trip_id) {
     e.preventDefault()
 
     setDecided(!decided);
-    setTripLocationId(location_id);
+    setTripLocationId();
 
     let editTripObject = {
         trip_id: trip_id,
         isdecided: true,
-        location_id: location_id
+        location_id: location_id,
     }
 
     try {
