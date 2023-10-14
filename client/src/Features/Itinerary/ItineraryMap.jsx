@@ -9,6 +9,7 @@ import {
 } from "@react-google-maps/api"; // Corrected component names
 
 function ItineraryMap(destination) {
+  console.log(destination)
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
   const { isGoogleMapsLoaded, map, setMap, itineraryPlacesDetails, setItineraryPlacesDetails } = useGoogleMaps();
