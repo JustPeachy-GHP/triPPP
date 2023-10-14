@@ -4,19 +4,29 @@ const createJournal = async ({
   // journal_id,
   user_id,
   trip_id,
+  // location_id,
   videocontent,
   image,
   title,
   timestamp,
   entry,
 }) => {
-  console.log(user_id, trip_id, videocontent, image, title, timestamp, entry);
+  console.log(
+    user_id,
+    trip_id,
+    // location_id,
+    videocontent,
+    image,
+    title,
+    timestamp,
+    entry
+  );
   try {
     const {
       rows: [journal],
     } = await client.query(
       `
-        INSERT INTO journals(user_id, trip_id, videocontent, image, title, timestamp, entry)
+        INSERT INTO journals(user_id, trip_id, videocontent,  image, title, timestamp, entry)
         VALUES($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
         `,
@@ -24,6 +34,7 @@ const createJournal = async ({
         // journal_id,
         user_id,
         trip_id,
+        // location_id,
         videocontent,
         image,
         title,

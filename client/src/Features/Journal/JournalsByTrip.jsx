@@ -8,8 +8,19 @@ function JournalEntriesPage() {
   const { trip_id } = useParams();
   const navigate = useNavigate();
   const user_id = useSelector((state) => state.auth.user_id);
-  console.log("journals by trip", user_id);
-  console.log(trip_id);
+  // console.log("journals by trip", user_id);
+  // console.log(trip_id);
+
+  const formatTimestamp = (timestamp) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(timestamp).toLocaleString(undefined, options);
+  };
 
   const fetchJournalEntries = async () => {
     try {
@@ -33,7 +44,7 @@ function JournalEntriesPage() {
       ) : (
         journals.map((journal) => (
           <div key={journal.journal_id} className="journal-card">
-            <h3>Date: {journal.timestamp}</h3>
+            <h3>Date: {formatTimestamp(journal.timestamp)}</h3>
             <h4>Title: {journal.title}</h4>
             <button
               className="button"

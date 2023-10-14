@@ -4,6 +4,7 @@ import { fetchAllTrips } from "../../../src/helpers/trips";
 // import { fetchAllJournalsByUser } from "../../../src/helpers/journals";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
+import SuccessMessage from "./SuccessMessage";
 
 export default function CreateJournalForm({
   journal,
@@ -16,11 +17,14 @@ export default function CreateJournalForm({
   const [videocontent, setVideocontent] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
-  const [timestamp, setTimestamp] = useState("");
+  // const [timestamp, setTimestamp] = useState("");
   const [entry, setEntry] = useState("");
   const [error, setError] = useState(null);
   const [selectedTrip, setSelectedTrip] = useState("");
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
+  const currentTimestamp = new Date().toISOString();
+  // const location_id = 1;
   // const [trips, setTrips] = useState([]);
 
   async function handleSubmit(e) {
@@ -33,30 +37,32 @@ export default function CreateJournalForm({
 
     const API = await createJournal(
       user_id,
+      // location_id,
       selectedTrip,
       videocontent,
       image,
       title,
-      timestamp,
+      currentTimestamp,
       entry
     );
     console.log(API);
     // only alert if form is completed
     alert("New journal has been created!");
     if (API.success) {
-      console.log("New journal entry: ", API.data.newJournal);
+      console.log("New journal entry: ", API.data);
 
-      const newJournal = API.data.newJournal;
+      const newJournal = API.data;
       setJournal((journals) => [...journals, newJournal]);
 
       setVideocontent("");
       setImage("");
       setTitle("");
-      setTimestamp("");
+      // setTimestamp("");
       setEntry("");
+      setSubmissionSuccess(true);
     } else {
-      setError(API.data.newJournal);
-      console.log(error);
+      setError(API.data);
+      // console.log(API.data);
     }
   }
   // console.log(trips);
@@ -105,12 +111,12 @@ export default function CreateJournalForm({
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <input
+          {/* <input
             id="timestamp"
             placeholder="Date and Time"
             value={timestamp}
             onChange={(e) => setTimestamp(e.target.value)}
-          />
+          /> */}
           <input
             id="entry-text"
             placeholder="Entry"
@@ -120,6 +126,7 @@ export default function CreateJournalForm({
           <button type="submit">Submit</button>
         </form>
       )}
+      {submissionSuccess && <SuccessMessage />}
     </>
   );
 }
