@@ -41,6 +41,30 @@ const createTrip = async ({
   }
 };
 
+// GET -  api/users/exttripdata/:user_id
+// *** user_id is member's NOT admin's ***
+// gets extended data about a trip that a user is joining
+
+async function getTripExtData (trip_id) {
+  try {
+    console.log("in getTripExtData", trip_id)
+    const { rows: [trip] } = await client.query(`
+    SELECT 
+      users.firstname as admin_name,
+      users.email as admin_email,
+      trips.user_id as admin_id,
+      trips.tripname,
+      trips.numdays,
+      trips.numtravelers,
+      trips.isdecided
+    FROM users 
+    INNER JOIN trips on users.user_id = trips.user_id 
+    WHERE trips.trip_id = $1;
+    `, [trip_id]);
+    return trip
+  } catch (error) {}
+}
+
 // GET - api/trips - get all trips
 async function getAllTrips() {
   try {
@@ -143,6 +167,7 @@ async function deleteTrip(trip_id) {
 
 module.exports = {
   createTrip,
+  getTripExtData,
   getAllTrips,
   getTripById,
   updateTrip,
