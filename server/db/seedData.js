@@ -483,7 +483,7 @@ const journals = [
   },
   {
     journal_id: 3,
-    user_id: 3,
+    user_id: 1,
     video_content: "https://www.youtube.com/watch?v=5DcA4BePBdA",
     image:
       "https://www.historyhit.com/app/uploads/fly-images/5149921/The-Colosseum-e1633702661138-750x537-c.jpg?x80808",
@@ -494,7 +494,7 @@ const journals = [
   },
   {
     journal_id: 4,
-    user_id: 1,
+    user_id: 3,
     video_content: "https://www.youtube.com/watch?v=WLSnrXEtrT4",
     image:
       "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/f2/84/26.jpg",
@@ -535,7 +535,7 @@ const groupmembs = [
   },
   {
     groupmemb_id: 4,
-    trip_id: 2,
+    trip_id: 4,
     user_id: 4,
   },
   {
@@ -601,7 +601,7 @@ const itineraryitems = [
   },
   {
     itinerary_id: 5,
-    location_id: 2,
+    location_id: 7,
     user_id: 3,
     rating: 1,
     trip_id: 4,

@@ -52,13 +52,13 @@ async function getAllTrips() {
 }
 
 // GET - /api/trips/:id
-async function getTripById(id) {
+async function getTripById(trip_id) {
   try {
     const {
       rows: [trip],
     } = await client.query(`
             SELECT * FROM trips
-            WHERE trip_id = ${id}
+            WHERE trip_id = ${trip_id}
         `);
     console.log(trip);
     return trip;
