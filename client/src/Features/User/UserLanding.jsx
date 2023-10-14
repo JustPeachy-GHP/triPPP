@@ -6,6 +6,7 @@ import {
   getMyJEntries,
 } from "../../helpers/userLanding";
 import UserTrips from "./UserTripDetail";
+import UserTripMember from "./UserTripMember";
 import { useNavigate } from "react-router-dom";
 
 export default function UserLanding() {
@@ -13,7 +14,6 @@ export default function UserLanding() {
   const [tripAdmins, setTripAdmins] = useState([]);
   const [journals, setJournals] = useState([]);
   const [newUser, setNewUser] = useState([false]);
-
 
   const myId = useSelector((state) => state.auth.user_id);
   const myname = useSelector((state) => state.auth.firstname);
@@ -24,7 +24,6 @@ export default function UserLanding() {
   useEffect(() => {
     async function getMyData() {
       const adminOfGroups = await getMyGroupAdmin(myId);
-      console.log("Admin: ", adminOfGroups);
       setTripAdmins(adminOfGroups);
 
       const membOfGroups = await getMyMembGroups(myId);
@@ -32,27 +31,26 @@ export default function UserLanding() {
       setTripsMemb(membOfGroups);
 
       const journalEntries = await getMyJEntries(myId);
-      console.log("Journals: ", journalEntries);
       setJournals(journalEntries);
-      
-      console.log(adminOfGroups.length)
-      console.log(membOfGroups.length)
 
       if (adminOfGroups.length === 0 && membOfGroups.length === 0) {
         setNewUser(true);
       } else {
         setNewUser(false);
-        console.log("existing user");
       }
-    } getMyData(myId)
+    } getMyData()
   }, []);
 
   return (
     <>
       <div>
-        {console.log("in return", tripAdmins)}
         <div className="userlanding">
+
+          { myname ? ( 
           <h1>Welcome, {myname}!</h1>
+          ) : (
+            <h1>Welcome!</h1>)
+          }
           { newUser ? (
             <div>
               <h3>
@@ -64,15 +62,18 @@ export default function UserLanding() {
             <div>
               <h2>Trips</h2>
               <div>
-                <h3>Organizing:</h3>
+                <h3>Trips you are organizing:</h3>
                 {tripAdmins.map((admin) => (
                   <UserTrips key={admin.trip_id} trip_id={admin.trip_id} location_id={admin.location_id} tripname={admin.tripname} />
                 ))}
               </div>
               <div>
-                <h3>Joining:</h3>
-                {tripsMemb.map((memb) => (
-                  <UserTrips key={memb.trip_id} trip_id={memb.trip_id} location_id={memb.location_id} tripname={memb.tripname} />
+                <h3>Trips you are joining:</h3>
+                {tripsMemb.map((memb) => (  
+                // eslint-disable-next-line react/jsx-key
+                <div>
+                  <UserTripMember key={memb.trip_id} trip_id={memb.trip_id} location_id={memb.location_id} tripname={memb.tripname} />
+                  </div>
                 ))}
               </div>
             </div>
