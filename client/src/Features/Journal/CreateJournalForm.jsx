@@ -69,64 +69,79 @@ export default function CreateJournalForm({
 
   return (
     <>
-      <label htmlFor="trip-select">
-        Choose a trip you want to write about:
-      </label>
-      <select
-        value={selectedTrip}
-        onChange={(event) => setSelectedTrip(event.target.value)}
-      >
-        <option value="">--Please choose a trip--</option>
-        {allTrips.map((trip) => {
-          if (trips.includes(trip.trip_id)) {
-            return (
-              <option key={trip.trip_id} value={trip.trip_id}>
-                {trip.tripname}
-              </option>
-            );
-          } else {
-            return null;
-          }
-        })}
-      </select>
-      {selectedTrip && (
-        <form onSubmit={handleSubmit}>
-          <input
-            id="videocontent"
-            autoFocus
-            placeholder="Insert Video URL"
-            value={videocontent}
-            onChange={(e) => setVideocontent(e.target.value)}
-          />
+      <div className="create-journal-form p-4">
+        <label htmlFor="trip-select" className="mb-2">
+          Choose a trip you want to write about:
+        </label>
+        <select
+          className="mb-2"
+          value={selectedTrip}
+          onChange={(event) => setSelectedTrip(event.target.value)}
+        >
+          <option value="">--Please choose a trip--</option>
+          {allTrips.map((trip) => {
+            if (trips.includes(trip.trip_id)) {
+              return (
+                <option key={trip.trip_id} value={trip.trip_id}>
+                  {trip.tripname}
+                </option>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </select>
+        {selectedTrip && (
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              <input
+                id="videocontent"
+                autoFocus
+                placeholder="Insert Video URL"
+                value={videocontent}
+                onChange={(e) => setVideocontent(e.target.value)}
+                className="col-span-1 p-2 border border-gray-300 rounded"
+              />
 
-          <input
-            id="image-text"
-            placeholder="Insert Image URL"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <input
-            id="title"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          {/* <input
+              <input
+                id="image-text"
+                placeholder="Insert Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                className="col-span-1 p-2 border border-gray-300 rounded"
+              />
+              <input
+                id="title"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="col-span-1 p-2 border border-gray-300 rounded"
+              />
+            </div>
+            {/* <input
             id="timestamp"
             placeholder="Date and Time"
             value={timestamp}
             onChange={(e) => setTimestamp(e.target.value)}
           /> */}
-          <input
-            id="entry-text"
-            placeholder="Entry"
-            value={entry}
-            onChange={(e) => setEntry(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      )}
-      {submissionSuccess && <SuccessMessage />}
+
+            <textarea
+              id="entry-text"
+              placeholder="Entry"
+              value={entry}
+              onChange={(e) => setEntry(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded h-32"
+            />
+            <button
+              type="submit"
+              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Submit
+            </button>
+          </form>
+        )}
+        {submissionSuccess && <SuccessMessage />}
+      </div>
     </>
   );
 }

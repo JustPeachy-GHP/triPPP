@@ -71,55 +71,70 @@ export default function AllJournals() {
         />
       </div>
 
-      <button className="button" onClick={handleCreateJournal}>
-        Create Journal
-      </button>
-
-      {showCreateJournalForm && (
-        <CreateJournalForm
-          user_id={user_id}
-          trip_id={trips.trip_id}
-          trips={trips}
-          allTrips={allTrips}
-        />
-      )}
-
-      {/* if journal.trip_id = number in array then map over */}
-
-      <div>
+      <div style={{ position: "relative", bottom: "0px", right: "0px" }}>
         {tripsToDisplay.length === 0 ? (
           <div className="journal-card">
             <p>No journal entries found for this trip.</p>
           </div>
         ) : (
-          tripsToDisplay.map((trip) => {
-            if (
-              trips.includes(trip.trip_id) &&
-              (!searchParam ||
-                trip.tripname.toLowerCase().includes(searchParam))
-            ) {
-              return (
-                <div key={trip.trip_id}>
-                  <h4>Trip Name: {trip.tripname}</h4>
-                  <button
-                    className="button"
-                    onClick={() => {
-                      navigate(`/journals/trip/${trip.trip_id}`);
-                    }}
-                  >
-                    See Journal Entries
-                  </button>
-                </div>
-              );
-            }
-            return null;
-          })
+          <div className="grid grid-cols-1 gap-4">
+            {tripsToDisplay.map((trip) => {
+              if (
+                trips.includes(trip.trip_id) &&
+                (!searchParam ||
+                  trip.tripname.toLowerCase().includes(searchParam))
+              ) {
+                return (
+                  <div key={trip.trip_id} className="mb-4">
+                    <h4>Trip Name: {trip.tripname}</h4>
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => {
+                        navigate(`/journals/trip/${trip.trip_id}`);
+                      }}
+                    >
+                      See Journal Entries
+                    </button>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
         )}
       </div>
+
+      <div className="relative min-h-screen">
+        <div className="pb-20"></div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+          }}
+          onClick={handleCreateJournal}
+        >
+          Create Journal
+        </button>
+      </div>
+      {showCreateJournalForm && (
+        <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-50 bg-opacity-90">
+          <div className="bg-white rounded p-4">
+            <CreateJournalForm
+              user_id={user_id}
+              trip_id={trips.trip_id}
+              trips={trips}
+              allTrips={allTrips}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* if journal.trip_id = number in array then map over */}
     </div>
   );
 }
-
 // function getCoordinatesForJournal(journalId, journals, trips, locations) {
 //   // Find the journal entry with the given journal_id
 //   const journalEntry = journals.find((journal) => journal.journal_id === journalId);
