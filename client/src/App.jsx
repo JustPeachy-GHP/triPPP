@@ -160,7 +160,7 @@ function App() {
               }
             />
             <Route
-              path="/itinerary/:place_id"
+              path="trips/:trip_id/itinerary/:place_id"
               element={
                 <ProtectedRoute>
                   <ItineraryPage />
@@ -168,57 +168,13 @@ function App() {
               }
             />
             <Route
-              path=":trip_id/locations"
+              path="trips/:trip_id/locations"
               element={
                 <ProtectedRoute>
                   <LocationsPage />
                 </ProtectedRoute>
               }
             />
-
-            {/* <Route path="/" element={<LandingPage />} />
-            <Route path="/home" element={<LocationsPage />} />
-
-
-            <Route path="/test" element={<Test />} />
-            <Route path="/displaytest" element={<DisplayTest />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Registration />} />
-
-
-
-            <Route path="/userlanding" element={<UserLanding />} />
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/tripform" element={<TripForm />} />
-            <Route path="/tripadminpage" element={<TripAdminPage />} />
-            <Route path=":trip_id/locations/" element={<LocationsPage />} />
-            <Route path="/itinerary/:place_id" element={<ItineraryPage/>}/>
-            <Route path="/journals/:user_id/:trip_id" element={<AllJournalEntries />}/>
-            <Route path="/journals/:journal_id" element={<SingleJournalEntry />}/>
-
-
-            
-            <Route path="/journals" element={<AllJournalEntries />} />
-            <Route
-              path="/journals/trip/:trip_id"
-              element={<JournalsByTrip />}
-            />
-           
-            <Route path="/journalform" element={<CreateJournalForm />} />
-            <Route
-              path="/journals/:journal_id/edit"
-              element={<EditJournalForm />}
-            />
-
-            {/* <Route path="/register" element={<Registration/>}/> */}
-            {/* <Route path="/display" element={<Display/>}/>
-            {/* <Route path="/journals" element={<AllJournalEntries/>}/> */}
-
-{/* //             <Route path="/journals/:journal_id/edit" element={<EditJournalForm />}/>
-//             <Route path="/itinerary" element={<ItineraryPage />} />
-//             <Route path="/locations" element={<LocationsPage />} /> */} 
-
-
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>

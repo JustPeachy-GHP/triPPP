@@ -1,35 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // import "./tripform.css";
-// import Login from "../Auth/Login";
-import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
 import { useNavigate } from "react-router-dom";
 
 export default function TripForm() {
-  const [trip_id, setTrip_Id] = useState(null);
   const [tripname, settripName] = useState("");
   const [numdays, setNumDays] = useState("");
   const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
   const navigate = useNavigate();
 
-  // hardcoding dummy data for a user_id
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    alert("You've submitted your trip!");
-    let newTripObject = {
-      tripname: tripname,
-      numdays: numdays,
-      numtravelers: numtravelers,
-      vibeform: vibeform,
-    };
-    console.log("submit data", newTripObject);
-    
-    
-    createNewTrip();
-  };
-  
+  // hardcoding dummy data for a user_id  
   async function createNewTrip(tripObj) {
     const result = await createTrip(tripObj);
     console.log(result);
@@ -50,12 +31,12 @@ export default function TripForm() {
 
     const trip = await createNewTrip(newTripObject);
     console.log(trip);
-    navigate(`/${trip.trip_id}/locations`);
+    navigate(`/trips/${trip.trip_id}/locations`, {replace: true});
   }
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmitClick}>
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input

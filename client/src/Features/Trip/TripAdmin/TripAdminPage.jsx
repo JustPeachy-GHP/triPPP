@@ -14,6 +14,11 @@ export default function TripAdminPage() {
 
   useEffect(() => setTripId(trip_id), []);
 
+  // Open Questions:
+  // Can a user submit any email? Or does it have to be an email associated with an account on TriPPP?
+  // How are we navigating to this page?
+  // Is the route checking if the currently logged in user is an admin for the trip?
+
   // async function handleSubmit(e) {
   //   try {
   //     e.preventDefault();

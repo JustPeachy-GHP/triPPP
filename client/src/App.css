@@ -111,6 +111,26 @@ div#root {
   }
 }
 
+.confirmButton:disabled {
+  background-color: #ccc; /* Background color for the button */
+  border: none;
+  border-radius: 10px; /* Adjust the border radius for rounded corners */
+  padding: 12px 24px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  color: #8fa69d;
+  box-shadow: 6px 6px 12px #c0c0c0, -6px -6px 12px whitesmoke; /* Neumorphic shadow effect */
+  transition: all 0.2s ease-in-out; /* Smooth transition on hover */
+
+  &:hover {
+    box-shadow: 4px 4px 8px #c0c0c0, -4px -4px 8px whitesmoke;
+  }
+
+  /* Active (clicked) effect */
+  &:active {
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .infoContainer {
   height: 100vh;
   width: 41vw;

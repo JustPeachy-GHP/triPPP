@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 const LocationsInfoWindow = (trip_id) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
+  const [destinationDecided, setDestinationDecided] = useState(false);
   const navigate = useNavigate(); // Add React Router's useHistory hook
   const params = useParams();
 
@@ -30,13 +31,19 @@ const LocationsInfoWindow = (trip_id) => {
   };
 
   const handleLetsGoClick = (placeId) => {
-    const url = `/itinerary/${placeId}`;
+    // need to add the placeId to the trip
+    
+    const url = `/trips/${params.trip_id}/itinerary/${placeId}`;
 
     // Navigate to the itinerary page and pass the current destination
     // navigate function can pass props to the component rendered at the /itinerary/ path
     // this is passed as an object with a key called state
     navigate(url);
   };
+
+  const handleDecidedStateChange = (destinationToggleState) => {
+    setDestinationDecided(destinationToggleState);
+  }
 
   return (
     <div className="infoContainer">
@@ -57,10 +64,21 @@ const LocationsInfoWindow = (trip_id) => {
                   />
                 )}
                 <br></br>
-                <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
-                  Lets Go!
-                </button>
-                <SetDestToggle params={params.trip_id}/>
+                {
+                  destinationDecided ?
+                  (
+                    <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
+                      Lets Go!
+                    </button>
+                  )
+                  :
+                  (
+                    <button className="confirmButton" disabled>
+                      Lets Go!
+                    </button>
+                  )
+                }
+                <SetDestToggle onDecidedStateChange={handleDecidedStateChange} />
               </div>
             ))}
           </div>

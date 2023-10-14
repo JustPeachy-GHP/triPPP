@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMaps } from '../../slices/mapsSlice';
 // import {} from '../../slices/authSlice';
 import { setTrips } from '../../slices/tripsSlice';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -145,15 +145,15 @@ const style = {
 //   },
 // ];
 
-export default function ItineraryView(trip_id) {
-  console.log(useSelector(state => state.maps.location_id))
-  console.log(useSelector(state => state.trips.trip_id))
+export default function ItineraryView() {
+  // console.log(useSelector(state => state.maps.location_id))
+  // console.log(useSelector(state => state.trips.trip_id))
 
   const initialLocationId = useSelector(state => state.maps.location_id);
   const initialTripId = useSelector(state => state.trips.trip_id)
 
   const [locationId, setInitialLocationId] = useState(initialLocationId);
-  const [tripId, setInitialTripId] = useState(initialTripId);
+  // const [tripId, setInitialTripId] = useState(initialTripId);
   const [items, setItems] = useState([]);
   const [numDays, setNumDays] = useState(0);
   const [numTravelers, setNumTravelers] = useState(0);
@@ -166,12 +166,11 @@ export default function ItineraryView(trip_id) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  
-  const navigate = useNavigate()
+  const params = useParams()
   let content = "";
 
   const dispatch = useDispatch()
+  const trip_id = params.trip_id;
 
   useEffect(() => {
     // Get additional trip info for the itinerary from the trip table
@@ -193,150 +192,149 @@ export default function ItineraryView(trip_id) {
         console.log(error);
       }
     }
+    console.log(trip_id);
     getTripInfo();
-  }, []);
+  }, [trip_id]);
 
-  useEffect (() => {
-    function sortRatings() {
-      // use to switch between mock data and database data
-      console.log("items", items);
-      const votes = items;
+  // useEffect (() => {
+  //   function sortRatings() {
+  //     // use to switch between mock data and database data
+  //     console.log("items", items);
+  //     const votes = items;
 
-      // for each item retrieved by getItineraryItems check if the
-      // location id and the rating have been added to the location
-      // and add to location
-      const location = {};
-      votes.forEach((vote) => {
-        const location_id = vote.location_id;
-        const rating = vote.rating;
+  //     // for each item retrieved by getItineraryItems check if the
+  //     // location id and the rating have been added to the location
+  //     // and add to location
+  //     const location = {};
+  //     votes.forEach((vote) => {
+  //       const location_id = vote.location_id;
+  //       const rating = vote.rating;
 
-        // result is an object with unique key
-        // corresponding to destination and the sum of the ratings
-        if (!location[location_id]) {
-          location[location_id] = rating;
-        } else {
-          location[location_id] += rating;
-        }
-      });
+  //       // result is an object with unique key
+  //       // corresponding to destination and the sum of the ratings
+  //       if (!location[location_id]) {
+  //         location[location_id] = rating;
+  //       } else {
+  //         location[location_id] += rating;
+  //       }
+  //     });
 
-      // divide by number of travelers for average
-      for (const location_id in location) {
-        location[location_id] /= numTravelers;
-      }
+  //     // divide by number of travelers for average
+  //     for (const location_id in location) {
+  //       location[location_id] /= numTravelers;
+  //     }
 
-      // sort the objects in descending order by average
-      const arraytosort = Object.entries(location);
-      console.log("arraytosort", arraytosort)
-      const sortedvotes = arraytosort.sort((a, b) => b[1] - a[1]);
-      console.log("sortedvotes", sortedvotes)
-      setFinalVotes(sortedvotes)
-    }
-    sortRatings()
-  },[items])
+  //     // sort the objects in descending order by average
+  //     const arraytosort = Object.entries(location);
+  //     console.log("arraytosort", arraytosort)
+  //     const sortedvotes = arraytosort.sort((a, b) => b[1] - a[1]);
+  //     console.log("sortedvotes", sortedvotes)
+  //     setFinalVotes(sortedvotes)
+  //   }
+  //   sortRatings()
+  // },[items])
 
-  useEffect(() => {
-    // get destination names for each location id and add
-    // to each location's array
-    async function getDestinationNames(finalVotes) {
-      try {
-        console.log("finalvotes in getdestinationnames", finalVotes)
-        const destinationNames = []
+  // useEffect(() => {
+  //   // get destination names for each location id and add
+  //   // to each location's array
+  //   async function getDestinationNames(finalVotes) {
+  //     try {
+  //       console.log("finalvotes in getdestinationnames", finalVotes)
+  //       const destinationNames = []
 
-        for (const entry of finalVotes) {
-          const locId = entry[0];
-          const response = await getDestName(locId);
-          destinationNames.push(response[0]["destination"])
-        }
+  //       for (const entry of finalVotes) {
+  //         const locId = entry[0];
+  //         const response = await getDestName(locId);
+  //         destinationNames.push(response[0]["destination"])
+  //       }
 
-        console.log("destinationNames", destinationNames)
-        setDestNames(destinationNames);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getDestinationNames(finalVotes);
-    console.log(finalVotes);
-  }, [finalVotes]);
+  //       console.log("destinationNames", destinationNames)
+  //       setDestNames(destinationNames);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   getDestinationNames(finalVotes);
+  //   console.log(finalVotes);
+  // }, [finalVotes]);
 
-  useEffect(() => {
-    function makeDaysList() {
-      const itineraryArray = [];
-      let arrayCount = 0;
+  // useEffect(() => {
+  //   function makeDaysList() {
+  //     const itineraryArray = [];
+  //     let arrayCount = 0;
 
-      // number of activities in the morning and afternoon
-      const numActMorn = 1; // for simplicity, leaving set to 1
-      const numActAft = 1; // for simplicity, leaving set to 1
+  //     // number of activities in the morning and afternoon
+  //     const numActMorn = 1; // for simplicity, leaving set to 1
+  //     const numActAft = 1; // for simplicity, leaving set to 1
 
-      for (let i = 1; i <= numDays; i++) {
-        // for each day:
-        itineraryArray.push({
-            locid:"",
-            displayname: "Day " + i,
-            rating: "",
-            classtype: "daymarker"
-          });
-        itineraryArray.push({
-          locid: "",
-          displayname: "Breakfast",
-          rating: "",
-          classtype: "meal"
-        });
-        for (let x = 1; x <= numActMorn; x++) {
-          if (arrayCount < finalVotes.length) {
-            itineraryArray.push({
-              locid: finalVotes[arrayCount][0],
-              displayname: destNames[arrayCount],
-              rating: finalVotes[arrayCount][1],
-              classtype: "place"
-            });
-          } else {
-            itineraryArray.push({
-              locid: "",
-              displayname: "Free Time",
-              rating: "",
-              classtype: "freetime"
-            });
-          }
-          arrayCount++;
-        }
-        itineraryArray.push({
-          locid: "",
-          displayname: "Lunch",
-          rating: "",
-          classtype: "meal"
-        });
-        for (let y = 1; y <= numActAft; y++) {
-          if (arrayCount < finalVotes.length) {
-            itineraryArray.push({
-              locid: finalVotes[arrayCount][0],
-              displayname: destNames[arrayCount],
-              rating: finalVotes[arrayCount][1],
-              classtype: "place"
-            });             
-          } else {
-            itineraryArray.push({
-              locid: "",
-              displayname: "Free Time",
-              rating: "",
-              classtype: "freetime"
-            });
-          }
-          arrayCount++;
-        }
-        itineraryArray.push({
-          locid: "",
-          displayname: "Dinner",
-          rating: "",
-          classtype: "meal"
-        });
-      }
-      setDayPlanArray(itineraryArray);
-      console.log("itineraryArray", itineraryArray);
-    }
-    makeDaysList();
-  }, [destNames]);
-
-  console.log("dayPlanArray", dayPlanArray)
+  //     for (let i = 1; i <= numDays; i++) {
+  //       // for each day:
+  //       itineraryArray.push({
+  //           locid:"",
+  //           displayname: "Day " + i,
+  //           rating: "",
+  //           classtype: "daymarker"
+  //         });
+  //       itineraryArray.push({
+  //         locid: "",
+  //         displayname: "Breakfast",
+  //         rating: "",
+  //         classtype: "meal"
+  //       });
+  //       for (let x = 1; x <= numActMorn; x++) {
+  //         if (arrayCount < finalVotes.length) {
+  //           itineraryArray.push({
+  //             locid: finalVotes[arrayCount][0],
+  //             displayname: destNames[arrayCount],
+  //             rating: finalVotes[arrayCount][1],
+  //             classtype: "place"
+  //           });
+  //         } else {
+  //           itineraryArray.push({
+  //             locid: "",
+  //             displayname: "Free Time",
+  //             rating: "",
+  //             classtype: "freetime"
+  //           });
+  //         }
+  //         arrayCount++;
+  //       }
+  //       itineraryArray.push({
+  //         locid: "",
+  //         displayname: "Lunch",
+  //         rating: "",
+  //         classtype: "meal"
+  //       });
+  //       for (let y = 1; y <= numActAft; y++) {
+  //         if (arrayCount < finalVotes.length) {
+  //           itineraryArray.push({
+  //             locid: finalVotes[arrayCount][0],
+  //             displayname: destNames[arrayCount],
+  //             rating: finalVotes[arrayCount][1],
+  //             classtype: "place"
+  //           });             
+  //         } else {
+  //           itineraryArray.push({
+  //             locid: "",
+  //             displayname: "Free Time",
+  //             rating: "",
+  //             classtype: "freetime"
+  //           });
+  //         }
+  //         arrayCount++;
+  //       }
+  //       itineraryArray.push({
+  //         locid: "",
+  //         displayname: "Dinner",
+  //         rating: "",
+  //         classtype: "meal"
+  //       });
+  //     }
+  //     setDayPlanArray(itineraryArray);
+  //     console.log("itineraryArray", itineraryArray);
+  //   }
+  //   makeDaysList();
+  // }, [destNames]);
 
   return (
     <div >
@@ -347,23 +345,23 @@ export default function ItineraryView(trip_id) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-      <Box sx={style}>
-      <div className="modaltitle">
-      <h1>{tripname}</h1>
-      <h2>Suggested Itinerary for {numDays} days</h2>
-      </div>
-      {dayPlanArray.map((item, index) => {
-        return (
-          <ItineraryItems
-            key={index}
-            locid={item.locid}
-            displayname={item.displayname}
-            rating={item.rating}
-            classtype={item.classtype}
-          />
-        );
-      })}
-      </Box>
+        <Box sx={style}>
+        <div className="modaltitle">
+        <h1>{tripname}</h1>
+        <h2>Suggested Itinerary for {numDays} days</h2>
+        </div>
+        {dayPlanArray.map((item, index) => {
+          return (
+            <ItineraryItems
+              key={index}
+              locid={item.locid}
+              displayname={item.displayname}
+              rating={item.rating}
+              classtype={item.classtype}
+            />
+          );
+        })}
+        </Box>
       </Modal>
     </div>
   );

@@ -15,7 +15,7 @@ export default function ItineraryPage() {
                 <MemoizedItineraryMap props={params.place_id}/>
             </div>
             <div className="scrollable-content"> 
-                <ModalItineray props={params.trip_id}/>
+                <ModalItineray />
                 <ItineraryInfoWindow params={params.trip_id}/> 
             </div>
         </>
