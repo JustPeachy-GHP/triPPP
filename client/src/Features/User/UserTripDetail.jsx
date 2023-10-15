@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function UserTrips({ group, trip_id, location_id }) {
-  console.log("group", group);
+export default function UserTrips({ trip_id, location_id, tripname }) {
   console.log("trip_id", trip_id);
   console.log("location_id", location_id);
 
@@ -15,7 +14,7 @@ export default function UserTrips({ group, trip_id, location_id }) {
           className="textButtons"
           onClick={() => navigate(`/trips/${trip_id}`)}
         >
-          {group.tripname}
+          {tripname}
         </button>
       </div>
     </>

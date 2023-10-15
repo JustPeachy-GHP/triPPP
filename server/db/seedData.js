@@ -401,7 +401,7 @@ const trips = [
   {
     trip_id: 6,
     itinerary_id: 8,
-    user_id: 6,
+    user_id: 4,
     location_id: 3,
     tripname: "Vegas, Baby!",
     numdays: 3,

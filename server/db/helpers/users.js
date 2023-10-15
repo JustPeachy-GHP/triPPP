@@ -138,8 +138,7 @@ const getTripsAdminById = async (user_id) => {
       `
     SELECT *
     FROM trips
-    JOIN groups on groups.trip_id = trips.trip_id
-    Where groups.user_id = $1;
+    WHERE user_id = $1;
     `,
       [user_id]
     );

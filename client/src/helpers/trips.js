@@ -81,6 +81,16 @@ export async function updateTrip(trip_id, updated_trip) {
   }
 }
 
+export async function getExtTripData (trip_id) {
+  try {
+      const response = await fetch (`${BASE_URL}/exttripdata/${trip_id}`)
+      const returnVal = response.json()
+      return returnVal
+  } catch (error) {
+      return error
+  }
+}
+
 // delete trip
 // delete groupmemb
 // update trip

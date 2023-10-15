@@ -5,6 +5,7 @@ const {
   getAllTrips,
   createTrip,
   getTripById,
+  getTripExtData,
   updateTrip,
   deleteTrip,
   setIsDecidedTrip
@@ -42,6 +43,18 @@ router.patch("/:trip_id", async (req, res, next) => {
     const trip = await updateTrip(req.params.trip_id, trip_update);
     console.log("Updated trip: ", trip);
     res.send(trip);
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET -  api/trips/exttripdata/:user_id
+// gets extended data about a trip that a user is joining
+router.get("/exttripdata/:trip_id", async (req, res, next) => {
+  try {
+    const trip = await getTripExtData(req.params.trip_id)
+    console.log("trip api", trip)
+    res.send(trip)
   } catch (error) {
     next(error)
   }
