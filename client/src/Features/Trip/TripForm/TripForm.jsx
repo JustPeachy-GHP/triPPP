@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // import "./tripform.css";
-// import Login from "../Auth/Login";
-import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
 import { createNewGroupMemb } from "../../../helpers/groupmembs";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +7,6 @@ import shopping from "../../../Assets/shopping.jpeg";
 import { useSelector } from "react-redux";
 
 export default function TripForm() {
-  const [trip_id, setTrip_Id] = useState(null);
   const [tripname, settripName] = useState("");
   const [numdays, setNumDays] = useState("");
   const [numtravelers, setNumTravelers] = useState("");
@@ -59,6 +56,7 @@ export default function TripForm() {
     const trip = await createNewTrip(newTripObject);
     console.log(trip);
 
+
     let newGroupMembObject = {
       trip_id: trip.trip_id,
       user_id: user_id
@@ -72,9 +70,10 @@ export default function TripForm() {
     navigate(`/trips/${trip.trip_id}/locations`, {replace: true});
   };
 
+
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmitClick}>
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input

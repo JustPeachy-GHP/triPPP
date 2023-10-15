@@ -6,6 +6,13 @@ import { getDestName } from "../../helpers/location";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMaps } from '../../slices/mapsSlice';
+// import {} from '../../slices/authSlice';
+import { setTrips } from '../../slices/tripsSlice';
+import { useParams } from 'react-router-dom';
+
+
 
 const style = {
   position: 'absolute',
@@ -23,122 +30,19 @@ const style = {
 
 // trip_id will be passed through from the click that
 // gets you to the itinerary view page
-const trip_id = 7;
+// const trip_id = 7;
 
-// *** Mock data ***
-// near line 160 (votes = items) should be commented out if you are using
-// the votes array here on line 18;
-// it should NOT be commented out if getting data from the database
 
-// const votes = [
-//   {
-//     itinerary_id: 6,
-//     trip_id: 1,
-//     location_id: 1,
-//     user_id: 1,
-//     rating: 2,
-//   },
-//   {
-//     itinerary_id: 7,
-//     trip_id: 1,
-//     location_id: 1,
-//     user_id: 2,
-//     rating: 2,
-//   },
-//   {
-//     itinerary_id: 8,
-//     trip_id: 1,
-//     location_id: 1,
-//     user_id: 3,
-//     rating: 3,
-//   },
-//   {
-//     itinerary_id: 9,
-//     trip_id: 1,
-//     location_id: 2,
-//     user_id: 1,
-//     rating: 3,
-//   },
-//   {
-//     itinerary_id: 10,
-//     trip_id: 1,
-//     location_id: 2,
-//     user_id: 2,
-//     rating: 1,
-//   },
-//   {
-//     itinerary_id: 11,
-//     trip_id: 1,
-//     location_id: 2,
-//     user_id: 3,
-//     rating: 1,
-//   },
-//   {
-//     itinerary_id: 12,
-//     trip_id: 1,
-//     location_id: 3,
-//     user_id: 1,
-//     rating: 1,
-//   },
-//   {
-//     itinerary_id: 13,
-//     trip_id: 1,
-//     location_id: 3,
-//     user_id: 2,
-//     rating: 1,
-//   },
-//   {
-//     itinerary_id: 14,
-//     trip_id: 1,
-//     location_id: 3,
-//     user_id: 3,
-//     rating: 1,
-//   },
-//   {
-//     itinerary_id: 15,
-//     trip_id: 2,
-//     location_id: 4,
-//     user_id: 1,
-//     rating: 2,
-//   },
-//   {
-//     itinerary_id: 16,
-//     trip_id: 2,
-//     location_id: 4,
-//     user_id: 2,
-//     rating: 3,
-//   },
-//   {
-//     itinerary_id: 17,
-//     trip_id: 2,
-//     location_id: 4,
-//     user_id: 3,
-//     rating: 3,
-//   },
-//   {
-//     itinerary_id: 18,
-//     trip_id: 2,
-//     location_id: 5,
-//     user_id: 1,
-//     rating: 3,
-//   },
-//   {
-//     itinerary_id: 19,
-//     trip_id: 2,
-//     location_id: 5,
-//     user_id: 2,
-//     rating: 3,
-//   },
-//   {
-//     itinerary_id: 20,
-//     trip_id: 2,
-//     location_id: 5,
-//     user_id: 3,
-//     rating: 3,
-//   },
-// ];
 
-export default function ItineraryView(trip_id) {
+export default function ItineraryView() {
+  // console.log(useSelector(state => state.maps.location_id))
+  // console.log(useSelector(state => state.trips.trip_id))
+
+  // const initialLocationId = useSelector(state => state.maps.location_id);
+  // const initialTripId = useSelector(state => state.trips.trip_id)
+
+  // const [locationId, setInitialLocationId] = useState(initialLocationId);
+  // const [tripId, setInitialTripId] = useState(initialTripId);
   const [items, setItems] = useState([]);
   const [numDays, setNumDays] = useState(0);
   const [numTravelers, setNumTravelers] = useState(0);
@@ -151,8 +55,11 @@ export default function ItineraryView(trip_id) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const params = useParams()
   let content = "";
+
+  const dispatch = useDispatch()
+  const trip_id = params.trip_id;
 
   useEffect(() => {
     // Get additional trip info for the itinerary from the trip table
@@ -174,8 +81,9 @@ export default function ItineraryView(trip_id) {
         console.log(error);
       }
     }
+    console.log(trip_id);
     getTripInfo();
-  }, []);
+  }, [trip_id]);
 
   useEffect (() => {
     function sortRatings() {
@@ -317,8 +225,6 @@ export default function ItineraryView(trip_id) {
     makeDaysList();
   }, [destNames]);
 
-  console.log("dayPlanArray", dayPlanArray)
-
   return (
     <div >
       <Button className="viewItinerary" onClick={handleOpen}>View Itinerary</Button>
@@ -328,23 +234,23 @@ export default function ItineraryView(trip_id) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-      <Box sx={style}>
-      <div className="modaltitle">
-      <h1>{tripname}</h1>
-      <h2>Suggested Itinerary for {numDays} days</h2>
-      </div>
-      {dayPlanArray.map((item, index) => {
-        return (
-          <ItineraryItems
-            key={index}
-            locid={item.locid}
-            displayname={item.displayname}
-            rating={item.rating}
-            classtype={item.classtype}
-          />
-        );
-      })}
-      </Box>
+        <Box sx={style}>
+        <div className="modaltitle">
+        <h1>{tripname}</h1>
+        <h2>Suggested Itinerary for {numDays} days</h2>
+        </div>
+        {dayPlanArray.map((item, index) => {
+          return (
+            <ItineraryItems
+              key={index}
+              locid={item.locid}
+              displayname={item.displayname}
+              rating={item.rating}
+              classtype={item.classtype}
+            />
+          );
+        })}
+        </Box>
       </Modal>
     </div>
   );

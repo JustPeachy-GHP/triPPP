@@ -31,7 +31,7 @@ function ItineraryMap(destination) {
       // the value of that props is the destination place id
       getItineraryLocations(destination.props);
     } catch(e) {
-      console.log(e);
+      console.error(e);
     }
   }, [destination.props]);
 
@@ -88,7 +88,6 @@ function ItineraryMap(destination) {
 
     try {
       const placesService = new window.google.maps.places.PlacesService(map);
-      console.log("placesService:", placesService);
       setPlacesService(placesService);
 
       for (const item of activities) {

@@ -33,7 +33,11 @@ export async function createTrip(tripobj) {
 
 export const fetchSingleTrip = async (trip_id) => {
   try {
+    console.log("Fetching trip: ", trip_id);
     const response = await fetch(`${BASE_URL}/${trip_id}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const result = await response.json();
     return result;
   } catch (error) {
@@ -53,6 +57,24 @@ export async function editIsDecidedTrip(trip_id, trip) {
     });
     const result = await response.json();
     console.log("decided trip client helper", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateTrip(trip_id, updated_trip) {
+  try {
+    console.log("in client helper, trip:", updated_trip)
+    const response = await fetch(`${BASE_URL}/${trip_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updated_trip),
+    });
+    const result = await response.json();
+    console.log("updated trip client helper", result);
     return result;
   } catch (error) {
     console.error(error);

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { setone, settwo } from '../../slices/testSlice'
 // added a DisplayTest component so you can see the value retrieved from state - "Look ma, no props!"
 import DisplayTest from "./DisplayTest";
-import ActivityRater from '../Display/ActivityRater'
+import ActivityRater from '../Itinerary/ActivityRater'
 import DestinationRater from '../Display/DestinationRater'
 import BasicModal from "./BasicModal";
 import ModalItinerary from "../Itinerary/ModalItinerary"
