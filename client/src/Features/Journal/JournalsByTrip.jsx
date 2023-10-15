@@ -44,16 +44,20 @@ function JournalEntriesPage() {
       ) : (
         journals.map((journal) => (
           <div key={journal.journal_id} className="journal-card">
-            <h3>Date: {formatTimestamp(journal.timestamp)}</h3>
-            <h4>Title: {journal.title}</h4>
-            <button
-              className="button"
-              onClick={() => {
-                navigate(`/journals/${journal.journal_id}`);
-              }}
-            >
-              See Entry
-            </button>
+            <div className="mb-4 p-4 border rounded shadow-md">
+              <h3 className="text-xl font-semibold">
+                Date: {formatTimestamp(journal.timestamp)}
+              </h3>
+              <h4 className="text-lg">Title: {journal.title}</h4>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+                onClick={() => {
+                  navigate(`/journals/${journal.journal_id}`);
+                }}
+              >
+                See Entry
+              </button>
+            </div>
           </div>
         ))
       )}
