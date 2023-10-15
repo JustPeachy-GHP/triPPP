@@ -13,7 +13,6 @@ const ItineraryInfoWindow = () => {
   useEffect(() => {
     if (isGoogleMapsLoaded && Object.keys(itineraryPlacesDetails).length > 0) {
       const keys = Object.keys(itineraryPlacesDetails);
-      console.log(keys);
       setPlaceKeys(keys);
       setIsLoading(false);
     }

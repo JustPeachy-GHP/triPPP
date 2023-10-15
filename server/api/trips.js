@@ -9,6 +9,7 @@ const {
   deleteTrip,
   setIsDecidedTrip
 } = require("../db/helpers/trips");
+const { getLocationIdByPlaceId } = require("../db/helpers/locations");
 
 // GET - api/trips - get all trips
 router.get("/", async (req, res, next) => {
@@ -29,6 +30,22 @@ router.get("/:trip_id", async (req, res, next) => {
     next(error);
   }
 });
+
+router.patch("/:trip_id", async (req, res, next) => {
+  try {
+    let trip_update = req.body;
+    if (trip_update.place_id) {
+      const location_id = await getLocationIdByPlaceId(trip_update.place_id)
+      trip_update = {...trip_update, ...location_id};
+      console.log("Trip update with location id: ", trip_update);
+    }
+    const trip = await updateTrip(req.params.trip_id, trip_update);
+    console.log("Updated trip: ", trip);
+    res.send(trip);
+  } catch (error) {
+    next(error)
+  }
+})
 
 //PATCH - api/trips/decided/:trip_id
 router.patch("/decided/:trip_id", async (req, res, next) => {

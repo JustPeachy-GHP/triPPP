@@ -10,6 +10,7 @@ import {
   addNewItinRating,
   reviseIRating,
 } from "../../helpers/itinerary";
+import { useSelector } from 'react-redux';
 
 // dummy data being used until we are loading component from the map
 // const trip_id = 4;
@@ -53,83 +54,80 @@ import {
 // end dummy data
 
 export default function Rater() {
-  const [alreadyRated, setAlreadyRated] = useState(false);
   const [itinerary_id, setItineraryId] = useState("");
   const [value, setValue] = useState(0);
   const [hover, setHover] = useState(-1);
   const [avg, setAvg] = useState(0);
   const [limitLow, setLimitLow] = useState(0);
   const [limitHigh, setLimitHigh] = useState(0);
-  const [ratings, setRatings] = useState([]);
+  const auth = useSelector((state) => state.auth);
 
-  let retrieved = [];
+  // useEffect(() => {
+  //   async function getRatings() {
+  //     let checkItinObject = {
+  //       trip_id: trip_id,
+  //       location_id: location_id,
+  //       user_id: user_id,
+  //     };
+  //     try {
+  //       const response = await checkRatings(checkItinObject);
 
-  useEffect(() => {
-    async function getRatings() {
-      let checkItinObject = {
-        trip_id: trip_id,
-        location_id: location_id,
-        user_id: user_id,
-      };
-      try {
-        const response = await checkRatings(checkItinObject);
+  //       // console.log("Rater component", response);
+  //       setRatings([...ratings, ...response]);
+  //       retrieved = [...response];
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
 
-        // console.log("Rater component", response);
-        setRatings([...ratings, ...response]);
-        retrieved = [...response];
-      } catch (error) {
-        console.log(error);
-      }
+  //     // retrieved.map((rated, index) => {
+  //     //   console.log("top of getAvg rating", rated, "index", index);
+  //     // });
 
-      // retrieved.map((rated, index) => {
-      //   console.log("top of getAvg rating", rated, "index", index);
-      // });
+  //     // console.log("types of", typeof retrieved[0].user_id, typeof user_id);
 
-      // console.log("types of", typeof retrieved[0].user_id, typeof user_id);
+  //     const index = retrieved.findIndex((obj) => obj.user_id === user_id);
+  //     // console.log("returned from findIndex", index);
 
-      const index = retrieved.findIndex((obj) => obj.user_id === user_id);
-      // console.log("returned from findIndex", index);
+  //     index !== -1 || null
+  //       ? setAlreadyRated(true)
+  //       : console.log("user_id", user_id, "not found");
+  //     // console.log("already rated", alreadyRated);
+  //     setItineraryId(retrieved[index].itinerary_id);
+  //     // console.log("itinerary_id", retrieved[index].itinerary_id);
+  //     setValue(retrieved[index].rating);
+  //     // console.log("retrieved vote from db", retrieved[index].rating);
+  //     let tempTotal = 0;
 
-      index !== -1 || null
-        ? setAlreadyRated(true)
-        : console.log("user_id", user_id, "not found");
-      // console.log("already rated", alreadyRated);
-      setItineraryId(retrieved[index].itinerary_id);
-      // console.log("itinerary_id", retrieved[index].itinerary_id);
-      setValue(retrieved[index].rating);
-      // console.log("retrieved vote from db", retrieved[index].rating);
-      let tempTotal = 0;
+  //     let numVoters = retrieved.length;
 
-      let numVoters = retrieved.length;
+  //     for (let i = 0; i < numVoters; i++) {
+  //       // tempTotal = tempTotal + mockVotes[i].rating;
+  //       tempTotal = tempTotal + retrieved[i].rating;
+  //       // console.log("i", i, "tempTotal", tempTotal);
+  //     }
+  //     let calcAvg = tempTotal / numVoters;
+  //     // console.log("calcAvg", calcAvg);
+  //     setAvg(calcAvg);
+  //     // console.log("average", avg);
+  //     // reset tempTotal in case rerenders
+  //     tempTotal = 0;
 
-      for (let i = 0; i < numVoters; i++) {
-        // tempTotal = tempTotal + mockVotes[i].rating;
-        tempTotal = tempTotal + retrieved[i].rating;
-        // console.log("i", i, "tempTotal", tempTotal);
-      }
-      let calcAvg = tempTotal / numVoters;
-      // console.log("calcAvg", calcAvg);
-      setAvg(calcAvg);
-      // console.log("average", avg);
-      // reset tempTotal in case rerenders
-      tempTotal = 0;
+  //     //lower threshold: if 50% of the group votes 1 and everyone else 2
+  //     //high threshold: if 50% of the group votes 3 and everyone else 2
 
-      //lower threshold: if 50% of the group votes 1 and everyone else 2
-      //high threshold: if 50% of the group votes 3 and everyone else 2
+  //     const gt50percent = Math.ceil(numVoters / 2);
+  //     setLimitLow(
+  //       (1 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
+  //     );
+  //     setLimitHigh(
+  //       (3 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
+  //     );
 
-      const gt50percent = Math.ceil(numVoters / 2);
-      setLimitLow(
-        (1 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
-      );
-      setLimitHigh(
-        (3 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
-      );
-
-      // console.log("limit high", limitHigh);
-      // console.log("limit low", limitLow);
-    }
-    getRatings();
-  }, [value]);
+  //     // console.log("limit high", limitHigh);
+  //     // console.log("limit low", limitLow);
+  //   }
+  //   getRatings();
+  // }, [value]);
 
   // function to calculate thresholds to show large heart color
   // mapped to popularity of itinerary activity based on votes
@@ -165,32 +163,34 @@ export default function Rater() {
 
   async function onVote(newValue) {
     // console.log("already rated?", alreadyRated);
-    let itineraryObject = {
-      trip_id: trip_id,
-      location_id: location_id,
-      user_id: user_id,
-      rating: newValue,
-    };
-    if (alreadyRated === true) {
-      try {
-        // user's vote already exists, add itinerary_id to object
-        itineraryObject.itinerary_id = itinerary_id;
-        // console.log("added", itineraryObject.itinerary_id, itineraryObject);
-        const response = await reviseIRating(itineraryObject);
-        console.log(response)
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        // create new row in itineraryitems
-        const response = await addNewItinRating(itineraryObject);
-        setAlreadyRated(true);
-        return response;
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    // let itineraryObject = {
+    //   trip_id: trip_id,
+    //   location_id: location_id,
+    //   user_id: user_id,
+    //   rating: newValue,
+    // };
+    // if (alreadyRated === true) {
+    //   try {
+    //     // user's vote already exists, add itinerary_id to object
+    //     itineraryObject.itinerary_id = itinerary_id;
+    //     // console.log("added", itineraryObject.itinerary_id, itineraryObject);
+    //     const response = await reviseIRating(itineraryObject);
+    //     console.log(response)
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // } else {
+    //   try {
+    //     // create new row in itineraryitems
+    //     const response = await addNewItinRating(itineraryObject);
+    //     setAlreadyRated(true);
+    //     return response;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
+    console.log("VOTED");
+    console.log("User: ", auth.user_id);
   }
   return (
     <>

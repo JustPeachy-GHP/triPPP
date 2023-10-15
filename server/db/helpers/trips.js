@@ -60,7 +60,7 @@ async function getTripById(trip_id) {
             SELECT * FROM trips
             WHERE trip_id = ${trip_id}
         `);
-    console.log(trip);
+    console.log("Get trip: ", trip);
     return trip;
   } catch (error) {
     throw error;
@@ -69,7 +69,19 @@ async function getTripById(trip_id) {
 
 // PUT - /api/trips/:id
 // get this checked out
-async function updateTrip(trip_id, updateTripData) {
+async function updateTrip(trip_id, update_trip_data) {
+  let existing_trip;
+  try {
+    existing_trip = await getTripById(trip_id);
+  } catch (error) {
+    throw error;
+  }
+  
+  if (update_trip_data.location_id) {
+    delete existing_trip.location_id;
+  }
+  const trip_update = { ...update_trip_data, ...existing_trip };
+  console.log("Trip_update: ", trip_update);
   try {
     const {
       rows: [trip],
@@ -77,20 +89,28 @@ async function updateTrip(trip_id, updateTripData) {
       `
     UPDATE trips 
     SET 
-    tripname = $1, 
-    numdays = $2, 
-   numtravelers = $3,
-   isdecided = $4,
-   vibeform = $5
+    itinerary_id = $1,
+    location_id = $2,
+    tripname = $3, 
+    numdays = $4, 
+    numtravelers = $5,
+    isdecided = $6,
+    vibeform = $7,
+    user_id = $8,
+    group_id = $9
     WHERE trip_id = ${trip_id}
     RETURNING *;
     `,
       [
-        updateTripData.tripname,
-        updateTripData.numdays,
-        updateTripData.numtravelers,
-        updateTripData.isdecided,
-        updateTripData.vibeform,
+        trip_update.itinerary_id,
+        trip_update.location_id,
+        trip_update.tripname,
+        trip_update.numdays,
+        trip_update.numtravelers,
+        trip_update.isdecided,
+        trip_update.vibeform,
+        trip_update.user_id,
+        trip_update.group_id
       ]
     );
     return trip;

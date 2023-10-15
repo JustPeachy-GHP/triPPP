@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SetDestToggle from "../Display/SetDestToggle";
 import { useParams } from 'react-router-dom';
+import { updateTrip } from "../../helpers/trips";
 
 const LocationsInfoWindow = (trip_id) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
@@ -30,15 +31,22 @@ const LocationsInfoWindow = (trip_id) => {
     }
   };
 
-  const handleLetsGoClick = (placeId) => {
-    // need to add the placeId to the trip
-    
-    const url = `/trips/${params.trip_id}/itinerary/${placeId}`;
+  const handleLetsGoClick = async (placeId) => {
+    try {
+      const updatedTrip = {
+        isdecided: true,
+        place_id: placeId
+      }
 
-    // Navigate to the itinerary page and pass the current destination
-    // navigate function can pass props to the component rendered at the /itinerary/ path
-    // this is passed as an object with a key called state
-    navigate(url);
+      const trip = await updateTrip(params.trip_id, updatedTrip);
+      console.log("Updated trip: ", trip);
+      const url = `/trips/${params.trip_id}/itinerary/${placeId}`;
+      navigate(url);
+    } catch (error) {
+      console.error('Error: ', error);
+    }
+    
+    
   };
 
   const handleDecidedStateChange = (destinationToggleState) => {

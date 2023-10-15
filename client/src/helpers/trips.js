@@ -63,6 +63,24 @@ export async function editIsDecidedTrip(trip_id, trip) {
   }
 }
 
+export async function updateTrip(trip_id, updated_trip) {
+  try {
+    console.log("in client helper, trip:", updated_trip)
+    const response = await fetch(`${BASE_URL}/${trip_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updated_trip),
+    });
+    const result = await response.json();
+    console.log("updated trip client helper", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // delete trip
 // delete groupmemb
 // update trip
