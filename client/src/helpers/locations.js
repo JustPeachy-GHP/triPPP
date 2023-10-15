@@ -53,11 +53,13 @@ export async function fetchCoord(coord) {
 // GET place_id
 export async function fetchPlaceId(place_id) {
   try {
-    const response = await fetch(`${BASE_URL}/${place_id}`);
-    if (response.status === 204) {
-      const result = await response.json();
-      return result;
+    const response = await fetch(`${BASE_URL}/place/${place_id}`);
+    
+    if (!response.ok) {
+      throw new Error(`Network response was not ok. Status: ${response.status}`);
     }
+    const result = await response.json();
+    return result;
   } catch (error) {
     console.error(error);
   }
