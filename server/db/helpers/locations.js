@@ -110,6 +110,23 @@ const getLocationById = async (location_id) => {
   }
 };
 
+const getLocationIdByPlaceId = async (place_id) => {
+  console.log("Place ID: ", place_id);
+  console.log(typeof place_id);
+  try {
+    const { 
+      rows: [locations] 
+    } = await client.query(`
+      SELECT location_id 
+      FROM locations
+      WHERE place_id = $1;
+    `, [place_id]);
+    return locations;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // not tested
 const getLocationByVibe = async (vibe) => {
   try {
@@ -161,6 +178,6 @@ const getLocationNameById = async (location_id) => {
 
 
 
-module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations };
+module.exports = { createLocation, getAllLocations, getLocationById, getLocationByVibe, createDestRating,reviseDestRating, getDestVotes, getLocationNameById, getItineraryLocations, getLocationIdByPlaceId };
 
 

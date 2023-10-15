@@ -20,7 +20,7 @@ const mapsSlice = createSlice({
     name: 'maps',
     initialState,
     reducers: {
-        setTrips: (state, action) => {
+        setMaps: (state, action) => {
             state.location_id = action.payload.location_id;
             state.isdecided = action.payload.isdecided;
 

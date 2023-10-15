@@ -5,6 +5,7 @@ const {
   getAllLocations,
   createLocation,
   getLocationById,
+  getLocationIdByPlaceId,
   getLocationByVibe,
   createDestRating,
   reviseDestRating, 
@@ -118,9 +119,10 @@ router.get("/:coord", async (req, res, next) => {
 });
 
 // // GET - api/location/:place_id - get single location
-router.get("/:place_id", async (req, res, next) => {
+router.get("/place/:place_id", async (req, res, next) => {
   try {
-    const location = await getLocationByPlaceId(req.params.place_id);
+    console.log("hitting this endpoint");
+    const location = await getLocationIdByPlaceId(req.params.place_id);
     res.send(location);
   } catch (error) {
     next(error);

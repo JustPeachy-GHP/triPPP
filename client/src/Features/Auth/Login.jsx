@@ -14,8 +14,6 @@ export default function Login(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const values = useSelector((state) => state.auth)
-    console.log(values)
     
     function handleClick () {
         navigate("/register")
@@ -56,13 +54,13 @@ export default function Login(){
             localStorage.setItem("JWToken", response.token)
 
             response.token && navigate("/userlanding")
-            return content
+            // return content
 
         } catch (error) {
             console.log(error)
         }
     }
-    console.log("selector has: ", values)
+    // console.log("selector has: ", values)
     return (
 
         <div className="loginform">
