@@ -53,7 +53,7 @@ const ItineraryInfoWindow = () => {
                   />
                   
                   ): null}
-                  <ActivityRater />
+                  <ActivityRater place_id={key}/>
         </div> 
       ))}
       </div>

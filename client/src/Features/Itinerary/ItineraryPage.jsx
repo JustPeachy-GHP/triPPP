@@ -1,7 +1,7 @@
 import ItineraryInfoWindow from "./ItineraryInfoWindow";
 import MemoizedItineraryMap from "./ItineraryMap";
 import { useParams } from "react-router-dom";
-import ModalItineray from "./ModalItinerary";
+import ItineraryView from "./ModalItinerary";
 
 export default function ItineraryPage() {
     const params = useParams();
@@ -15,7 +15,7 @@ export default function ItineraryPage() {
                 <MemoizedItineraryMap props={params.place_id}/>
             </div>
             <div className="scrollable-content"> 
-                <ModalItineray />
+                <ItineraryView />
                 <ItineraryInfoWindow params={params.trip_id}/> 
             </div>
         </>

@@ -28,7 +28,7 @@ export default function SetDestToggle({ onDecidedStateChange }) {
       {
         decided ?
         (
-          <Tooltip title="Already set" enterDelay="500">
+          <Tooltip title="Already set" enterDelay={500}>
             <label className="switch">
               <input checked type="checkbox" onClick={resetClick} />
               <span className="slider round"></span>
@@ -37,7 +37,7 @@ export default function SetDestToggle({ onDecidedStateChange }) {
         )
         :
         (
-          <Tooltip title="Toggle me to set your destination." enterDelay="500">
+          <Tooltip title="Toggle me to set your destination." enterDelay={500}ß>
             <label className="switch">
               <input type="checkbox" onClick={handleClick} />
               <span className="slider round"></span>

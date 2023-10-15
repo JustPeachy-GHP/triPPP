@@ -1,133 +1,26 @@
 // pass { trip_id, location_id, numtravelers } in as props
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box } from "@mui/material";
-import {
-  checkRatings,
-  addNewItinRating,
-  reviseIRating,
-} from "../../helpers/itinerary";
+import { addNewItinRating, reviseIRating } from "../../helpers/itinerary";
 import { useSelector } from 'react-redux';
+import { fetchPlaceId } from "../../helpers/locations";
 
-// dummy data being used until we are loading component from the map
-// const trip_id = 4;
-// const location_id = 2;
-// const user_id = 1;
-// const numtravelers = 5;
-
-// const mockVotes = [
-//   {
-//     trip_id: 3,
-//     location_id: 1,
-//     user_id: 1,
-//     rating: 1,
-//   },
-//   {
-//     trip_id: 3,
-//     location_id: 1,
-//     user_id: 4,
-//     rating: 1,
-//   },
-//   {
-//     trip_id: 3,
-//     location_id: 1,
-//     user_id: 3,
-//     rating: 3,
-//   },
-//   {
-//     trip_id: 3,
-//     location_id: 1,
-//     user_id: 2,
-//     rating: 1,
-//   },
-//   {
-//     trip_id: 3,
-//     location_id: 1,
-//     user_id: 5,
-//     rating: 2,
-//   },
-// ];
-
-// end dummy data
-
-export default function Rater() {
-  const [itinerary_id, setItineraryId] = useState("");
+export default function Rater(props) {
+  const [itineraryId, setItineraryId] = useState(0);
   const [value, setValue] = useState(0);
   const [hover, setHover] = useState(-1);
   const [avg, setAvg] = useState(0);
   const [limitLow, setLimitLow] = useState(0);
   const [limitHigh, setLimitHigh] = useState(0);
+  const [rated, setRated] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const params = useParams();
 
-  // useEffect(() => {
-  //   async function getRatings() {
-  //     let checkItinObject = {
-  //       trip_id: trip_id,
-  //       location_id: location_id,
-  //       user_id: user_id,
-  //     };
-  //     try {
-  //       const response = await checkRatings(checkItinObject);
-
-  //       // console.log("Rater component", response);
-  //       setRatings([...ratings, ...response]);
-  //       retrieved = [...response];
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-
-  //     // retrieved.map((rated, index) => {
-  //     //   console.log("top of getAvg rating", rated, "index", index);
-  //     // });
-
-  //     // console.log("types of", typeof retrieved[0].user_id, typeof user_id);
-
-  //     const index = retrieved.findIndex((obj) => obj.user_id === user_id);
-  //     // console.log("returned from findIndex", index);
-
-  //     index !== -1 || null
-  //       ? setAlreadyRated(true)
-  //       : console.log("user_id", user_id, "not found");
-  //     // console.log("already rated", alreadyRated);
-  //     setItineraryId(retrieved[index].itinerary_id);
-  //     // console.log("itinerary_id", retrieved[index].itinerary_id);
-  //     setValue(retrieved[index].rating);
-  //     // console.log("retrieved vote from db", retrieved[index].rating);
-  //     let tempTotal = 0;
-
-  //     let numVoters = retrieved.length;
-
-  //     for (let i = 0; i < numVoters; i++) {
-  //       // tempTotal = tempTotal + mockVotes[i].rating;
-  //       tempTotal = tempTotal + retrieved[i].rating;
-  //       // console.log("i", i, "tempTotal", tempTotal);
-  //     }
-  //     let calcAvg = tempTotal / numVoters;
-  //     // console.log("calcAvg", calcAvg);
-  //     setAvg(calcAvg);
-  //     // console.log("average", avg);
-  //     // reset tempTotal in case rerenders
-  //     tempTotal = 0;
-
-  //     //lower threshold: if 50% of the group votes 1 and everyone else 2
-  //     //high threshold: if 50% of the group votes 3 and everyone else 2
-
-  //     const gt50percent = Math.ceil(numVoters / 2);
-  //     setLimitLow(
-  //       (1 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
-  //     );
-  //     setLimitHigh(
-  //       (3 * gt50percent + 2 * (numVoters - gt50percent)) / numVoters
-  //     );
-
-  //     // console.log("limit high", limitHigh);
-  //     // console.log("limit low", limitLow);
-  //   }
-  //   getRatings();
-  // }, [value]);
 
   // function to calculate thresholds to show large heart color
   // mapped to popularity of itinerary activity based on votes
@@ -162,36 +55,47 @@ export default function Rater() {
   };
 
   async function onVote(newValue) {
-    // console.log("already rated?", alreadyRated);
-    // let itineraryObject = {
-    //   trip_id: trip_id,
-    //   location_id: location_id,
-    //   user_id: user_id,
-    //   rating: newValue,
-    // };
-    // if (alreadyRated === true) {
-    //   try {
-    //     // user's vote already exists, add itinerary_id to object
-    //     itineraryObject.itinerary_id = itinerary_id;
-    //     // console.log("added", itineraryObject.itinerary_id, itineraryObject);
-    //     const response = await reviseIRating(itineraryObject);
-    //     console.log(response)
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // } else {
-    //   try {
-    //     // create new row in itineraryitems
-    //     const response = await addNewItinRating(itineraryObject);
-    //     setAlreadyRated(true);
-    //     return response;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
     console.log("VOTED");
     console.log("User: ", auth.user_id);
+    console.log("PLACE: ", props.place_id);
+    let location;
+    
+    
+
+    try {
+      location = await fetchPlaceId(props.place_id);
+      console.log(location);
+    } catch (error) {
+      console.error(error);
+    }
+
+    let itineraryObject = {
+      trip_id: params.trip_id,
+      location_id: location.location_id,
+      user_id: auth.user_id,
+      rating: newValue,
+    };
+
+    if (rated) {
+      try {
+        itineraryObject = {itinerary_id: itineraryId, ...itineraryObject };
+        const rating = await reviseIRating(itineraryObject);
+        console.log(rating);
+      } catch (error) {
+        console.errof(error);
+      }
+    } else {
+      try {
+        const rating = await addNewItinRating(itineraryObject);
+        console.log(rating);
+        setRated(true);
+        setItineraryId(rating.itinerary_id);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
+
   return (
     <>
       <div className="inforater">

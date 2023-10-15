@@ -60,7 +60,7 @@ export default function Login(){
             console.log(error)
         }
     }
-    console.log("selector has: ", values)
+    // console.log("selector has: ", values)
     return (
 
         <div className="loginform">

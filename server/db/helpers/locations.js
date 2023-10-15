@@ -111,14 +111,16 @@ const getLocationById = async (location_id) => {
 };
 
 const getLocationIdByPlaceId = async (place_id) => {
+  console.log("Place ID: ", place_id);
+  console.log(typeof place_id);
   try {
     const { 
       rows: [locations] 
     } = await client.query(`
-    SELECT location_id 
-    FROM locations
-    WHERE place_id = '${place_id}';
-  `);
+      SELECT location_id 
+      FROM locations
+      WHERE place_id = $1;
+    `, [place_id]);
     return locations;
   } catch (error) {
     throw error;
