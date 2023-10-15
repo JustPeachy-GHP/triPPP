@@ -3,8 +3,10 @@ import React, { useState } from "react";
 // import Login from "../Auth/Login";
 import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
+import { createNewGroupMemb } from "../../../helpers/groupmembs";
 import { useNavigate } from "react-router-dom";
 import shopping from "../../../Assets/shopping.jpeg";
+import { useSelector } from "react-redux";
 
 export default function TripForm() {
   const [trip_id, setTrip_Id] = useState(null);
@@ -13,6 +15,10 @@ export default function TripForm() {
   const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
   const navigate = useNavigate();
+
+  const user_id = useSelector((state) => state.auth.user_id)
+
+  console.log("my user id", user_id)
 
   // hardcoding dummy data for a user_id
 
@@ -24,6 +30,7 @@ export default function TripForm() {
       numdays: numdays,
       numtravelers: numtravelers,
       vibeform: vibeform,
+      user_id: user_id
     };
     console.log("submit data", newTripObject);
 
@@ -45,12 +52,24 @@ export default function TripForm() {
       numdays: numdays,
       numtravelers: numtravelers,
       vibeform: vibeform,
+      user_id: user_id
     };
     console.log("submit data", newTripObject);
 
     const trip = await createNewTrip(newTripObject);
     console.log(trip);
-    navigate(`/${trip.trip_id}/locations`);
+
+    let newGroupMembObject = {
+      trip_id: trip.trip_id,
+      user_id: user_id
+    }
+
+    console.log("new group member", newGroupMembObject)
+    const memb = await createNewGroupMemb(newGroupMembObject)
+    console.log("memb after submit", memb)
+
+    // navigate(`/${trip.trip_id}/locations`);
+    navigate(`/trips/${trip.trip_id}/locations`, {replace: true});
   };
 
   return (
