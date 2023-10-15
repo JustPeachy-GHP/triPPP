@@ -73,7 +73,7 @@ export default function AllJournals() {
 
       <div style={{ position: "relative", bottom: "0px", right: "0px" }}>
         {tripsToDisplay.length === 0 ? (
-          <div className="journal-card">
+          <div className="journal-card font-montserrat">
             <p>No journal entries found for this trip.</p>
           </div>
         ) : (
@@ -85,10 +85,10 @@ export default function AllJournals() {
                   trip.tripname.toLowerCase().includes(searchParam))
               ) {
                 return (
-                  <div key={trip.trip_id} className="mb-4">
+                  <div key={trip.trip_id} className="mb-4 font-bold">
                     <h4>Trip Name: {trip.tripname}</h4>
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded  font-montserrat"
                       onClick={() => {
                         navigate(`/journals/trip/${trip.trip_id}`);
                       }}
@@ -107,7 +107,7 @@ export default function AllJournals() {
       <div className="relative min-h-screen">
         <div className="pb-20"></div>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 font-montserrat"
           style={{
             position: "fixed",
             bottom: "20px",
