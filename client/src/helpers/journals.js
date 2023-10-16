@@ -79,6 +79,7 @@ export async function deleteJournal(journal_id) {
 export async function createJournal(
   user_id,
   trip_id,
+  // location_id,
   videocontent,
   image,
   title,
@@ -94,6 +95,7 @@ export async function createJournal(
       body: JSON.stringify({
         user_id,
         trip_id,
+        // location_id,
         videocontent,
         image,
         title,

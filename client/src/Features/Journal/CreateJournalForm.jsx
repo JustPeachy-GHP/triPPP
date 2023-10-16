@@ -1,88 +1,147 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createJournal } from "../../../src/helpers/journals";
+import { fetchAllTrips } from "../../../src/helpers/trips";
+// import { fetchAllJournalsByUser } from "../../../src/helpers/journals";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
+import SuccessMessage from "./SuccessMessage";
 
-export default function CreateJournalForm({ journal, setJournal }) {
+export default function CreateJournalForm({
+  journal,
+  setJournal,
+  trip_id,
+  user_id,
+  trips,
+  allTrips,
+}) {
   const [videocontent, setVideocontent] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
-  const [timestamp, setTimestamp] = useState("");
+  // const [timestamp, setTimestamp] = useState("");
   const [entry, setEntry] = useState("");
   const [error, setError] = useState(null);
-  // had to hard code for now
-  const user_id = 1;
-  const trip_id = 1;
+  const [selectedTrip, setSelectedTrip] = useState("");
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+
+  const currentTimestamp = new Date().toISOString();
+  // const location_id = 1;
+  // const [trips, setTrips] = useState([]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!selectedTrip) {
+      alert("Please choose a trip before submitting the form.");
+      return;
+    }
+
     const API = await createJournal(
       user_id,
-      trip_id,
+      // location_id,
+      selectedTrip,
       videocontent,
       image,
       title,
-      timestamp,
+      currentTimestamp,
       entry
     );
     console.log(API);
     // only alert if form is completed
     alert("New journal has been created!");
     if (API.success) {
-      console.log("New journal entry: ", API.data.newJournal);
+      console.log("New journal entry: ", API.data);
 
-      const newJournal = API.data.newJournal;
+      const newJournal = API.data;
       setJournal((journals) => [...journals, newJournal]);
 
       setVideocontent("");
       setImage("");
       setTitle("");
-      setTimestamp("");
+      // setTimestamp("");
       setEntry("");
+      setSubmissionSuccess(true);
     } else {
-      setError(API.data.newJournal);
-      console.log(error);
+      setError(API.data);
+      // console.log(API.data);
     }
   }
+  // console.log(trips);
 
   return (
     <>
-      <JournalNavbar />
-      <form onSubmit={handleSubmit}>
-        <input
-          id="videocontent"
-          autoFocus
-          placeholder="Insert Video URL"
-          value={videocontent}
-          onChange={(e) => setVideocontent(e.target.value)}
-        />
+      <div className="create-journal-form p-4">
+        <label htmlFor="trip-select" className="mb-2">
+          Choose a trip you want to write about:
+        </label>
+        <select
+          className="mb-2"
+          value={selectedTrip}
+          onChange={(event) => setSelectedTrip(event.target.value)}
+        >
+          <option value="">--Please choose a trip--</option>
+          {allTrips.map((trip) => {
+            if (trips.includes(trip.trip_id)) {
+              return (
+                <option key={trip.trip_id} value={trip.trip_id}>
+                  {trip.tripname}
+                </option>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </select>
+        {selectedTrip && (
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              <input
+                id="videocontent"
+                autoFocus
+                placeholder="Insert Video URL"
+                value={videocontent}
+                onChange={(e) => setVideocontent(e.target.value)}
+                className="col-span-1 p-2 border border-gray-300 rounded"
+              />
 
-        <input
-          id="image-text"
-          placeholder="Insert Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <input
-          id="title"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          id="timestamp"
-          placeholder="Date and Time"
-          value={timestamp}
-          onChange={(e) => setTimestamp(e.target.value)}
-        />
-        <input
-          id="entry-text"
-          placeholder="Entry"
-          value={entry}
-          onChange={(e) => setEntry(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+              <input
+                id="image-text"
+                placeholder="Insert Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                className="col-span-1 p-2 border border-gray-300 rounded"
+              />
+              <input
+                id="title"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="col-span-1 p-2 border border-gray-300 rounded"
+              />
+            </div>
+            {/* <input
+            id="timestamp"
+            placeholder="Date and Time"
+            value={timestamp}
+            onChange={(e) => setTimestamp(e.target.value)}
+          /> */}
+
+            <textarea
+              id="entry-text"
+              placeholder="Entry"
+              value={entry}
+              onChange={(e) => setEntry(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded h-32"
+            />
+            <button
+              type="submit"
+              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Submit
+            </button>
+          </form>
+        )}
+        {submissionSuccess && <SuccessMessage />}
+      </div>
     </>
   );
 }

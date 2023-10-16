@@ -4,19 +4,29 @@ const createJournal = async ({
   // journal_id,
   user_id,
   trip_id,
+  // location_id,
   videocontent,
   image,
   title,
   timestamp,
   entry,
 }) => {
-  console.log(user_id, trip_id, videocontent, image, title, timestamp, entry);
+  console.log(
+    user_id,
+    trip_id,
+    // location_id,
+    videocontent,
+    image,
+    title,
+    timestamp,
+    entry
+  );
   try {
     const {
       rows: [journal],
     } = await client.query(
       `
-        INSERT INTO journals(user_id, trip_id, videocontent, image, title, timestamp, entry)
+        INSERT INTO journals(user_id, trip_id, videocontent,  image, title, timestamp, entry)
         VALUES($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
         `,
@@ -24,6 +34,7 @@ const createJournal = async ({
         // journal_id,
         user_id,
         trip_id,
+        // location_id,
         videocontent,
         image,
         title,
@@ -102,7 +113,7 @@ const getAllJournalsByLocation = async (user_id, location_id) => {
 
 const deleteJournal = async (journal_id) => {
   try {
-    console.log("deleting a song");
+    console.log("deleting a journal");
     const { rows } = await client.query(`
     DELETE FROM journals
     WHERE journal_id = ${journal_id}

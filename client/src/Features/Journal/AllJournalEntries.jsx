@@ -1,54 +1,23 @@
-import React, { useEffect, useState, useRef } from "react";
-import {
-  deleteJournal,
-  fetchAllJournalsByUser,
-  fetchAllJournalsByTrip,
-} from "../../../src/helpers/journals";
+import { useEffect, useState, useRef } from "react";
+import { fetchAllJournalsByUser } from "../../../src/helpers/journals";
 import { fetchAllTrips } from "../../../src/helpers/trips";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import JournalNavbar from "./JournalNavbar";
+import CreateJournalForm from "./CreateJournalForm";
 import "./Journal.css";
 import { useSelector } from "react-redux";
-
-import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-
 
 export default function AllJournals() {
   const [journal, setJournal] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
-  const searchTripNameRef = useRef("");
+
   const [trips, setTrips] = useState([]);
   const [allTrips, setAllTrips] = useState([]);
   const user_id = useSelector((state) => state.auth.user_id);
 
-
-  const [isOpen, setIsOpen] = useState(true);
-
-  useEffect(() => {
-    setIsOpen(true);
-  }, []);
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    overflow: "scroll",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-
+  const [showCreateJournalForm, setShowCreateJournalForm] = useState(false);
 
   useEffect(() => {
     async function fetchJournals() {
@@ -80,20 +49,17 @@ export default function AllJournals() {
     fetchTrips();
   }, []);
 
-  const searchHandler = () => {
-    setSearchParam(searchTripNameRef.current.value.toLowerCase());
+  const handleCreateJournal = () => {
+    setShowCreateJournalForm(true);
   };
 
+  const tripsToDisplay = searchParam
+    ? allTrips.filter((trip) =>
+        trip.tripname.toLowerCase().includes(searchParam)
+      )
+    : allTrips;
+
   return (
-    <div>
-      <Modal
-        open={isOpen}
-        onClose={closeModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-        <div className="modal-content">
     <div>
       <JournalNavbar />
       <div>
@@ -101,66 +67,74 @@ export default function AllJournals() {
         <input
           type="text"
           placeholder="Search for trip name"
-          ref={searchTripNameRef}
+          onChange={(event) => setSearchParam(event.target.value.toLowerCase())}
         />
-        <button className="button" onClick={searchHandler}>
-          Search
+      </div>
+
+      <div style={{ position: "relative", bottom: "0px", right: "0px" }}>
+        {tripsToDisplay.length === 0 ? (
+          <div className="journal-card font-montserrat">
+            <p>No journal entries found for this trip.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4">
+            {tripsToDisplay.map((trip) => {
+              if (
+                trips.includes(trip.trip_id) &&
+                (!searchParam ||
+                  trip.tripname.toLowerCase().includes(searchParam))
+              ) {
+                return (
+                  <div key={trip.trip_id} className="mb-4 font-bold">
+                    <h4>Trip Name: {trip.tripname}</h4>
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded  font-montserrat"
+                      onClick={() => {
+                        navigate(`/journals/trip/${trip.trip_id}`);
+                      }}
+                    >
+                      See Journal Entries
+                    </button>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
+        )}
+      </div>
+
+      <div className="relative min-h-screen">
+        <div className="pb-20"></div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 font-montserrat"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+          }}
+          onClick={handleCreateJournal}
+        >
+          Create Journal
         </button>
       </div>
-
+      {showCreateJournalForm && (
+        <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-50 bg-opacity-90">
+          <div className="bg-white rounded p-4">
+            <CreateJournalForm
+              user_id={user_id}
+              trip_id={trips.trip_id}
+              trips={trips}
+              allTrips={allTrips}
+            />
+          </div>
+        </div>
+      )}
+      
       {/* if journal.trip_id = number in array then map over */}
-
-
-      <div>
-        {allTrips.map((trip) => {
-          if (
-            trips.includes(trip.trip_id) &&
-            (!searchParam || trip.tripname.toLowerCase().includes(searchParam))
-          ) {
-            return (
-              <div key={trip.trip_id}>
-                <h4>Trip Name: {trip.tripname}</h4>
-                <button
-                  className="button"
-                  onClick={() => {
-                    navigate(`/journals/trip/${trip.trip_id}`);
-                  }}
-                >
-                  See Journal Entries
-                </button>
-              </div>
-            );
-          }
-          return null;
-        })}
-      </div>
-
-            <div>
-              <button
-                className="button"
-                onClick={() => {
-                  navigate(`/journals/${journal.journal_id}`);
-                }}
-              >
-                See Details
-              </button>
-              <button
-                className="button"
-                onClick={() => handleDelete(journal.journal_id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-          <br />
-          </div>
-        </Box>
-      </Modal>
     </div>
-        );
-      }
-
-
+  );
+}
 // function getCoordinatesForJournal(journalId, journals, trips, locations) {
 //   // Find the journal entry with the given journal_id
 //   const journalEntry = journals.find((journal) => journal.journal_id === journalId);
@@ -181,7 +155,6 @@ export default function AllJournals() {
 //   const coordinates = location.coord;
 //   return coordinates;
 // }
-
 
 
 

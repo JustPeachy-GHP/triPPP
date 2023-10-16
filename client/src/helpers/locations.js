@@ -10,32 +10,30 @@ export async function fetchAllLocations() {
       );
     }
     const data = await response.json();
-    return data;
+    return data.locations;
   } catch (error) {
     console.error("Error fetching locations:", error);
     return []; // Return an empty array or handle the error appropriately
   }
-
 }
 
-
-  // GET all itinerary locations data
+// GET all itinerary locations data
 export async function fetchItineraryLocations(id) {
-    try {
-      const url = `${BASE_URL}/itinerary/${id}`;
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Network response was not ok. Status: ${response.status}`);
-      }
-      const items = await response.json();
-      return items;
-    } catch (error) {
-      console.error("Error fetching locations:", error);
-      return []; // Return an empty array or handle the error appropriately
+  try {
+    const url = `${BASE_URL}/itinerary/${id}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Network response was not ok. Status: ${response.status}`
+      );
     }
+    const items = await response.json();
+    return items;
+  } catch (error) {
+    console.error("Error fetching locations:", error);
+    return []; // Return an empty array or handle the error appropriately
   }
-  
-
+}
 
 // GET all coord
 export async function fetchCoord(coord) {

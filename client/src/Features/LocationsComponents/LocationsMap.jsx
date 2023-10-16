@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useGoogleMaps } from "../../context/googleMapsContext";
 import { fetchAllLocations } from "../../helpers/locations";
-import {
-  GoogleMap,
-  MarkerF,
-  InfoWindowF,
-} from "@react-google-maps/api"; // Corrected component names
+import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api"; // Corrected component names
 
 const LocationsMap = ({locations, setLocations}) => {
   const [placesService, setPlacesService] = useState(null);
@@ -26,13 +22,13 @@ const LocationsMap = ({locations, setLocations}) => {
 
     try {
       getAllLocations();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }, []);
 
   function parseCoordinates(coord) {
-    if (coord && typeof coord === 'object' && 'x' in coord && 'y' in coord) {
+    if (coord && typeof coord === "object" && "x" in coord && "y" in coord) {
       const coordinateObj = { lat: coord.x, lng: coord.y };
       return coordinateObj;
     } else {
@@ -41,63 +37,71 @@ const LocationsMap = ({locations, setLocations}) => {
     }
   }
 
-  const onHandleGetLocationInfo = React.useCallback(function callback(placeId, placesObj) {
-    return new Promise((resolve, reject) => {
-      if (placesService && placeId) {
-        const request = {
-          placeId: placeId,
-          fields: ["name", "photos", "geometry"],
-        };
+  const onHandleGetLocationInfo = React.useCallback(
+    function callback(placeId, placesObj) {
+      return new Promise((resolve, reject) => {
+        if (placesService && placeId) {
+          const request = {
+            placeId: placeId,
+            fields: ["name", "photos", "geometry"],
+          };
 
-        placesService.getDetails(request, (place, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            placesObj[placeId] = place;
-            resolve(placesObj);
-          } else {
-            console.error("Error fetching place details", placeId, status);
-            reject(status);
-          }
-        });
-      } else {
-        reject("Missing placesService or placeId");
-      }
-    });
-  }, [placesService]);
-
-  const onHandleSetPlacesDetails = React.useCallback(function callback(places) {
-    if (Object.keys(places).length > 0) {
-      setPlacesDetails(places);
-    }
-  }, [setPlacesDetails]);
-
-  const onLoad = React.useCallback(async function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    let places = {};
-
-    try {
-
-      const placesService = new window.google.maps.places.PlacesService(map);
-      setPlacesService(placesService);
-
-      for (const location of locations) {
-        bounds.extend(parseCoordinates(location.coord));
-        if (location.place_id) {
-          places = await onHandleGetLocationInfo(location.place_id, places);
+          placesService.getDetails(request, (place, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+              placesObj[placeId] = place;
+              resolve(placesObj);
+            } else {
+              console.error("Error fetching place details", placeId, status);
+              reject(status);
+            }
+          });
         } else {
-          console.warn("Skipping item due to place_id", location);
+          reject("Missing placesService or placeId");
         }
-      }
+      });
+    },
+    [placesService]
+  );
 
-      map.fitBounds(bounds);
-      setMap(map);
-
+  const onHandleSetPlacesDetails = React.useCallback(
+    function callback(places) {
       if (Object.keys(places).length > 0) {
-        onHandleSetPlacesDetails(places);
+        setPlacesDetails(places);
       }
-    } catch (error) {
-      console.error("Error loading location info:", error);
-    }
-  }, [onHandleGetLocationInfo, locations, onHandleSetPlacesDetails, setMap]);
+    },
+    [setPlacesDetails]
+  );
+
+  const onLoad = React.useCallback(
+    async function callback(map) {
+      const bounds = new window.google.maps.LatLngBounds();
+      let places = {};
+
+      try {
+        const placesService = new window.google.maps.places.PlacesService(map);
+        setPlacesService(placesService);
+
+        for (const location of locations) {
+          bounds.extend(parseCoordinates(location.coord));
+          if (location.place_id) {
+            places = await onHandleGetLocationInfo(location.place_id, places);
+          } else {
+            console.warn("Skipping item due to place_id", location);
+          }
+        }
+
+        map.fitBounds(bounds);
+        setMap(map);
+
+        if (Object.keys(places).length > 0) {
+          onHandleSetPlacesDetails(places);
+        }
+      } catch (error) {
+        console.error("Error loading location info:", error);
+      }
+    },
+    [onHandleGetLocationInfo, locations, onHandleSetPlacesDetails, setMap]
+  );
 
   const handleZoomToLocation = (lat, lng) => {
     if (map) {
@@ -113,64 +117,75 @@ const LocationsMap = ({locations, setLocations}) => {
   return (
     <>
       <div className="mapContainer">
-        {isGoogleMapsLoaded && locations.length > 0 ? 
-          (
-            <GoogleMap
-              mapContainerClassName="map-container"
-              zoom={12}
-              onLoad={onLoad}
-            >
-              {Array.isArray(locations) && locations.length > 0 ? (
-                locations.map(({ coord, place_id, vibes }, index) => (
-                  <MarkerF
-                    key={index}
-                    position={parseCoordinates(coord)}
-                    icon={{
-                      url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-                      scaledSize: new window.google.maps.Size(30, 30),
-                      origin: new window.google.maps.Point(0, 0),
-                      anchor: new window.google.maps.Point(15, 15),
-                    }}
-                    onClick={() => {
-                      setActiveMarker(index);
-                    }}
-                  >
-                    {placesService && activeMarker === index ? (
-                      <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-                        <div className="locationInformation">
-                          <button onClick={() => handleZoomToLocation(parseCoordinates(coord).lat, parseCoordinates(coord).lng)}>
-                            Zoom to Location
-                          </button>
-                          {
-                            (
-                              <div>
-                                <h3>{placesDetails[place_id].name}</h3>
-                                {vibes && vibes.length > 0 && (
-                                  <h3>Vibes: {vibes.replace(/[{}]/g, '').split(',').join(", ")}</h3>
-                                )}
-                                {placesDetails[place_id].photos &&
-                                  placesDetails[place_id].photos.length > 0 && (
-                                    <img
-                                      src={placesDetails[place_id].photos[0].getUrl()}
-                                      alt={placesDetails[place_id].name}
-                                    />
-                                  )}
-                              </div>
+        {isGoogleMapsLoaded && locations.length > 0 ? (
+          <GoogleMap
+            mapContainerClassName="map-container"
+            zoom={12}
+            onLoad={onLoad}
+          >
+            {Array.isArray(locations) && locations.length > 0 ? (
+              locations.map(({ coord, place_id, vibes }, index) => (
+                <MarkerF
+                  key={index}
+                  position={parseCoordinates(coord)}
+                  icon={{
+                    url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                    scaledSize: new window.google.maps.Size(30, 30),
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15, 15),
+                  }}
+                  onClick={() => {
+                    setActiveMarker(index);
+                  }}
+                >
+                  {placesService && activeMarker === index ? (
+                    <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
+                      <div className="locationInformation">
+                        <button
+                          onClick={() =>
+                            handleZoomToLocation(
+                              parseCoordinates(coord).lat,
+                              parseCoordinates(coord).lng
                             )
                           }
-                        </div>
-                      </InfoWindowF>
-                    ) : null}
-                  </MarkerF>
-                ))
-              ) : (
-                <h1>No locations to display.</h1>
-              )}
-            </GoogleMap>
-          ) : (
-            <h1>Loading...</h1>
-          )
-        }
+                        >
+                          Zoom to Location
+                        </button>
+                        {
+                          <div>
+                            <h3>{placesDetails[place_id].name}</h3>
+                            {vibes && vibes.length > 0 && (
+                              <h3>
+                                Vibes:{" "}
+                                {vibes
+                                  .replace(/[{}]/g, "")
+                                  .split(",")
+                                  .join(", ")}
+                              </h3>
+                            )}
+                            {placesDetails[place_id].photos &&
+                              placesDetails[place_id].photos.length > 0 && (
+                                <img
+                                  src={placesDetails[
+                                    place_id
+                                  ].photos[0].getUrl()}
+                                  alt={placesDetails[place_id].name}
+                                />
+                              )}
+                          </div>
+                        }
+                      </div>
+                    </InfoWindowF>
+                  ) : null}
+                </MarkerF>
+              ))
+            ) : (
+              <h1>No locations to display.</h1>
+            )}
+          </GoogleMap>
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </div>
     </>
   );

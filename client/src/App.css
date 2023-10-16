@@ -68,14 +68,12 @@ div#root {
 
 /* LOCATIONS COMPONENTS */
 
-
 .scrollable-content {
   /* Style the scrollable content container */
   height: 100vh; /* Set a fixed height or any height you prefer */
   overflow-y: scroll; /* Enable vertical scrolling */
   margin: 70px auto 0; /* Center horizontally */
 }
-
 
 .fixed-component {
   /* Style the fixed component */
@@ -159,7 +157,6 @@ div#root {
   width: 50%;
 }
 
-
 .itinerary-item {
   width: 50vw;
   border: solid 1px black;
@@ -168,7 +165,6 @@ div#root {
   margin-right: auto;
   cursor: move;
 }
-
 
 /* ModalItinerary */
 .place {
@@ -271,7 +267,7 @@ input:checked + .slider:before {
   border: none;
   color: #8fa69d;
   background-color: whitesmoke;
-  opacity: .8;
+  opacity: 0.8;
   font-size: 1.5em;
   /* background: rgba(0,0,0,0.5); */
   border: 1px solid black;
@@ -298,11 +294,9 @@ input:checked + .slider:before {
   background-color: whitesmoke;
   padding: 2;
   font: black;
-
 }
 
 .viewItinerary {
-
   background-color: whitesmoke; /* Background color for the button */
   border: none;
   border-radius: 10px; /* Adjust the border radius for rounded corners */
@@ -314,4 +308,3 @@ input:checked + .slider:before {
   float: left;
   margin: auto 0;
 }
-

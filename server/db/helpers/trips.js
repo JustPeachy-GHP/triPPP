@@ -146,9 +146,9 @@ async function updateTrip(trip_id, update_trip_data) {
 }
 
 // PATCH - /api/trips/decided/:trip_id
-async function setIsDecidedTrip({trip_id, isdecided, location_id}) {
+async function setIsDecidedTrip({ trip_id, isdecided, location_id }) {
   try {
-    console.log("in patch", isdecided, location_id)
+    console.log("in patch", isdecided, location_id);
     const {
       rows: [trip],
     } = await client.query(
@@ -160,11 +160,7 @@ async function setIsDecidedTrip({trip_id, isdecided, location_id}) {
     WHERE trip_id = $3
     RETURNING *;
     `,
-    [
-    isdecided,
-    location_id, 
-    trip_id
-    ]
+      [isdecided, location_id, trip_id]
     );
     return trip;
   } catch (error) {
@@ -192,5 +188,5 @@ module.exports = {
   getTripById,
   updateTrip,
   deleteTrip,
-  setIsDecidedTrip
+  setIsDecidedTrip,
 };

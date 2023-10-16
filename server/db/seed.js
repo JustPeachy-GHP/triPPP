@@ -33,7 +33,6 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS locations cascade;
       DROP TABLE IF EXISTS itineraryitems cascade;
       DROP TABLE IF EXISTS groupmembs cascade;
-      DROP TABLE IF EXISTS groups cascade;
       DROP TYPE IF EXISTS vibes cascade;
           `);
     console.log("tables dropped!");

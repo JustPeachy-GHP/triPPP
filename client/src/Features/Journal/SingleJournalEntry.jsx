@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchSingleJournal } from "../../../src/helpers/journals";
+import {
+  fetchSingleJournal,
+  deleteJournal,
+} from "../../../src/helpers/journals";
 import { Link } from "react-router-dom";
 import EditJournalForm from "./EditJournalForm";
 import JournalNavbar from "./JournalNavbar";
@@ -22,21 +25,41 @@ export default function SingleJournal() {
     getSingleJournal();
   }, []);
 
+  // DELETE journal
+  const handleDelete = async (journal_id) => {
+    try {
+      const response = await deleteJournal(journal_id);
+      console.log(response);
+    } catch (error) {
+      console.error("Trouble deleting journal", error);
+    }
+  };
+
   return (
-    <div className="single-journal-container" key={journal.journal_id}>
+    <div
+      className="single-journal-container font-montserrat"
+      key={journal.journal_id}
+    >
       <JournalNavbar />
-      <div className="journal-card">
-        <h4 className="journal-title">{journal.title}</h4>
-        <p className="journal-entry">Entry: {journal.entry}</p> <br />
+      <div className="journal-card text-center p-4">
+        <h4 className="journal-title font-montserrat">{journal.title}</h4>
+        <p className="journal-entry font-montserrat">Entry: {journal.entry}</p>
         <img
-          className="journal-image"
+          className="mx-auto my-4 max-w-full h-auto"
           src={journal.image}
           alt={journal.title}
-        />{" "}
-        <br />
-        <Link to={`/journals/${params.journal_id}/edit`}>
-          <button className="edit-button">Edit</button>
-        </Link>
+        />
+        <div className="text-center">
+          <Link to={`/journals/${params.journal_id}/edit`}>
+            <button className="edit-button my-2">Edit</button>
+          </Link>
+          <button
+            className="button my-2 mx-2"
+            onClick={() => handleDelete(journal.journal_id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
