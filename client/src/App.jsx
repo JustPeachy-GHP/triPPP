@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
@@ -25,7 +24,6 @@ import CreateJournalForm from "./Features/Journal/CreateJournalForm";
 import EditJournalForm from "./Features/Journal/EditJournalForm";
 import JournalsByTrip from "./Features/Journal/JournalsByTrip";
 
-
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,13 +36,11 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-
 function App() {
   return (
     <>
       <ErrorBoundary>
         <GoogleMapsContextProvider>
-
           <Navtitle />
           <Routes>
             {/* Unprotected Routes */}
@@ -103,16 +99,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/tripadminpage"
               element={
                 <ProtectedRoute>
                   <TripAdminPage />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
-              path="/tripadminpage/1"
+              path="/tripadminpage/:trip_id"
               element={
                 <ProtectedRoute>
                   <TripAdminPage />
@@ -183,4 +179,3 @@ function App() {
 }
 
 export default App;
-

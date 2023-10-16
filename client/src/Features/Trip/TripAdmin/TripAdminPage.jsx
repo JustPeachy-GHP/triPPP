@@ -7,20 +7,20 @@ import {
 } from "../../../helpers/tripAdminPage";
 import EachMemb from "./EachMemb";
 
-export default function TripAdminPage({ trip_id }) {
+export default function TripAdminPage() {
   const [email, setEmail] = useState(null);
   const [oneTrip, setoneTrip] = useState([]);
-  // const [trip_id, setTripId] = useState();
+  const [trip_id, setTripId] = useState(1);
   const [allGMembs, setAllGMembs] = useState([]);
 
   // useEffect(() => setTripId(trip_id), [trip_id]);
   // console.log(trip_id, "this is my trip id ");
   useEffect(() => {
-    async function getSingleTrip() {
-      const response = await fetchSingleTrip(trip_id);
+    async function getSingleTrip(trip_id) {
+      const response = await fetchSingleTrip();
       console.log("One trip to rule them all!", response);
     }
-    getSingleTrip(response.trip_id);
+    getSingleTrip(trip_id);
   }, [trip_id]);
   // ==========Getting All Group Membs
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function TripAdminPage({ trip_id }) {
       <h1>{oneTrip.tripname}</h1>
       <br />
       {console.log(allGMembs, "mapmapmap")}
-      {allGMembs.map((member) => {
+      {allGMembs?.map((member) => {
         return (
           //  groupmembs.trip_id, groupmembs.group_id, users.email, users.firstname, users.lastname
           <EachMemb
