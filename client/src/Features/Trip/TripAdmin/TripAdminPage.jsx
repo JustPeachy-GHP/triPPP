@@ -62,7 +62,7 @@ export default function TripAdminPage({ trip_id }) {
       <h1>{oneTrip.tripname}</h1>
       <br />
       {console.log(allGMembs, "mapmapmap")}
-      {allGMembs.map((member) => {
+      {allGMembs?.map((member) => {
         return (
           //  groupmembs.trip_id, groupmembs.group_id, users.email, users.firstname, users.lastname
           <EachMemb
