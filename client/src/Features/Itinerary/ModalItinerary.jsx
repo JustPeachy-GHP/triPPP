@@ -59,7 +59,7 @@ export default function ItineraryView() {
   let content = "";
 
   const dispatch = useDispatch()
-  const trip_id = params.trip_id;
+  const trip_id = params.trip_id.substring(1);
 
   useEffect(() => {
     // Get additional trip info for the itinerary from the trip table

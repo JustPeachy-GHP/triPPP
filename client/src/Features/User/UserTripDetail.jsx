@@ -13,7 +13,9 @@ export default function UserTrips({ trip_id, location_id, tripname }) {
         {/* use onClick to navigate to a new page/view or open trip admin as a modal over the current page */}
         <button
           className="textButtons"
+
           onClick={() => navigate(`/tripadminpage/${params.trip_id}`)}
+
         >
           {tripname}
         </button>

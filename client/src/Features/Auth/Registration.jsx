@@ -1,8 +1,14 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { postNewUser } from '../../helpers/auth'
 import { login } from '../../slices/authSlice'
+
+
+import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import triPPPimage from "../../Assets/triPPPimage.png";
 
 export default function Registration({setToken, setActiveUser}) {
 
@@ -13,6 +19,30 @@ export default function Registration({setToken, setActiveUser}) {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const [isOpen, setIsOpen] = useState(true);
+
+    useEffect(() => {
+      setIsOpen(true);
+    }, []);
+  
+    const closeModal = () => {
+      setIsOpen(false);
+    };
+  
+    const style = {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      overflow: "scroll",
+      width: 400,
+      bgcolor: "background.paper",
+      border: "2px solid #000",
+      boxShadow: 24,
+      p: 4,
+    };
+  
 
     const values = useSelector((state) => state.auth)
     console.log(values)
@@ -56,6 +86,14 @@ export default function Registration({setToken, setActiveUser}) {
       }
       console.log("selector has: ", values)
     return (
+        <div>
+        <Modal
+          open={isOpen}
+          onClose={closeModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
     <>
     <div className="displaytop">
         <div className="loginform">
@@ -90,5 +128,8 @@ export default function Registration({setToken, setActiveUser}) {
         </div>
     </div>
     </>
+    </Box>
+      </Modal>
+    </div>
     )
 } 
