@@ -5,10 +5,12 @@ const {
   getAllTrips,
   createTrip,
   getTripById,
+  getTripExtData,
   updateTrip,
   deleteTrip,
   setIsDecidedTrip
 } = require("../db/helpers/trips");
+const { getLocationIdByPlaceId } = require("../db/helpers/locations");
 
 // GET - api/trips - get all trips
 router.get("/", async (req, res, next) => {
@@ -20,15 +22,43 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET - api/trips/:tripId - get single trip
-router.get("/:tripId", async (req, res, next) => {
+// GET - api/trips/:trip_id - get single trip
+router.get("/:trip_id", async (req, res, next) => {
   try {
-    const trip = await getTripById(req.params.tripId);
+    const trip = await getTripById(req.params.trip_id);
     res.send(trip);
   } catch (error) {
     next(error);
   }
 });
+
+router.patch("/:trip_id", async (req, res, next) => {
+  try {
+    let trip_update = req.body;
+    if (trip_update.place_id) {
+      const location_id = await getLocationIdByPlaceId(trip_update.place_id)
+      trip_update = {...trip_update, ...location_id};
+      console.log("Trip update with location id: ", trip_update);
+    }
+    const trip = await updateTrip(req.params.trip_id, trip_update);
+    console.log("Updated trip: ", trip);
+    res.send(trip);
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET -  api/trips/exttripdata/:user_id
+// gets extended data about a trip that a user is joining
+router.get("/exttripdata/:trip_id", async (req, res, next) => {
+  try {
+    const trip = await getTripExtData(req.params.trip_id)
+    console.log("trip api", trip)
+    res.send(trip)
+  } catch (error) {
+    next(error)
+  }
+})
 
 //PATCH - api/trips/decided/:trip_id
 router.patch("/decided/:trip_id", async (req, res, next) => {
@@ -51,8 +81,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// // PUT- api/trips/:tripId - update a single trip
-router.put("/:tripId", async (req, res, next) => {
+// // PUT- api/trips/:trip_id - update a single trip
+router.put("/:trip_id", async (req, res, next) => {
   try {
     const trip = await updateTrip(req.params.trip_id, req.body);
     res.send(trip);
@@ -62,7 +92,7 @@ router.put("/:tripId", async (req, res, next) => {
 });
 
 // DELETE - api/trips - delete trip
-router.delete("/:tripId", async (req, res, next) => {
+router.delete("/:trip_id", async (req, res, next) => {
   try {
     const trip = await deleteTrip(req.params.id);
     res.send(trip);

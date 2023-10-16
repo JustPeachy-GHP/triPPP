@@ -33,7 +33,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS locations cascade;
       DROP TABLE IF EXISTS itineraryitems cascade;
       DROP TABLE IF EXISTS groupmembs cascade;
-      // DROP TABLE IF EXISTS groups cascade;
+      DROP TABLE IF EXISTS groups cascade;
       DROP TYPE IF EXISTS vibes cascade;
           `);
     console.log("tables dropped!");
@@ -103,12 +103,6 @@ const createTables = async () => {
             user_id INTEGER REFERENCES users(user_id)                     
         );
 
-      //   CREATE TABLE groups (
-      //     group_id SERIAL PRIMARY KEY,
-      //     user_id INTEGER REFERENCES users(user_id),
-      //     trip_id INTEGER REFERENCES trips(trip_id)  
-      // );
-
         CREATE TABLE journals (
             journal_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
@@ -124,8 +118,7 @@ const createTables = async () => {
         CREATE TABLE groupmembs (
             groupmemb_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
-            trip_id INTEGER REFERENCES trips(trip_id),
-            group_id INTEGER REFERENCES groups(group_id)
+            trip_id INTEGER REFERENCES trips(trip_id)
         );
 
 
@@ -155,19 +148,19 @@ const createTables = async () => {
 // };
 
 // alter trip table to have group_id
-const alterTripTable = async () => {
-  try {
-    console.log("TRIP tables are being ALTERED!");
-    await client.query(`
-    ALTER TABLE trips 
-      ADD group_id INTEGER REFERENCES groups(group_id)
+// const alterTripTable = async () => {
+//   try {
+//     console.log("TRIP tables are being ALTERED!");
+//     await client.query(`
+//     ALTER TABLE trips 
+//       ADD group_id INTEGER REFERENCES groups(group_id)
 
-  `);
-  } catch (error) {
-    throw error;
-  }
-  console.log(trips);
-};
+//   `);
+//   } catch (error) {
+//     throw error;
+//   }
+//   console.log(trips);
+// };
 // alter itinerary items table to have trip_id
 const alterItineraryitemTable = async () => {
   try {
@@ -275,7 +268,6 @@ const fixKeys = async () => {
     console.log("FIXING OUT OF SYNC PRIMARY KEYS");
     await client.query(`
     SELECT setval('groupmembs_groupmemb_id_seq', (select max(groupmemb_id) from groupmembs)+1);
-    // SELECT setval('groups_group_id_seq', (select max(group_id) from groups)+1);
     SELECT setval('itineraryitems_itinerary_id_seq', (select max(itinerary_id) from itineraryitems)+1);
     SELECT setval('journals_journal_id_seq', (select max(journal_id) from journals)+1);
     SELECT setval('locations_location_id_seq ', (select max(location_id) from locations)+1);
@@ -311,7 +303,7 @@ const rebuildDb = async () => {
     await createInitialGroupmembs();
     await createInitialLocations();
 
-    await alterTripTable();
+    // await alterTripTable();
     await alterItineraryitemTable();
 
     await fixKeys();

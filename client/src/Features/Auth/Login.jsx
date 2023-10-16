@@ -41,8 +41,6 @@ export default function Login(){
         p: 4,
       };
 
-    const values = useSelector((state) => state.auth)
-    console.log(values)
     
     function handleClick () {
         navigate("/register")
@@ -83,13 +81,13 @@ export default function Login(){
             localStorage.setItem("JWToken", response.token)
 
             response.token && navigate("/userlanding")
-            return content
+            // return content
 
         } catch (error) {
             console.log(error)
         }
     }
-    console.log("selector has: ", values)
+
 
     return (
         <div>
