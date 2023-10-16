@@ -175,6 +175,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+          
           </Routes>
         </GoogleMapsContextProvider>
       </ErrorBoundary>

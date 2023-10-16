@@ -1,10 +1,16 @@
-import { useState } from "react";
+
 // import "./tripform.css";
 import { createTrip } from "../../../helpers/trips";
 import { createNewGroupMemb } from "../../../helpers/groupmembs";
 import { useNavigate } from "react-router-dom";
 import shopping from "../../../Assets/shopping.jpeg";
 import { useSelector } from "react-redux";
+
+
+import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
@@ -13,9 +19,36 @@ export default function TripForm() {
   const [vibeform, setVibeForm] = useState("");
   const navigate = useNavigate();
 
+
+  //modal stuff here
+  const [isOpen, setIsOpen] = useState(true);
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    overflow: "scroll",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  //modal stuff ends here
+
+
   const user_id = useSelector((state) => state.auth.user_id)
 
   console.log("my user id", user_id)
+
 
   // hardcoding dummy data for a user_id
 
@@ -73,7 +106,20 @@ export default function TripForm() {
 
   return (
     <div>
+
+    <Modal
+      open={isOpen}
+      onClose={closeModal}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style} className="scrollable-content">
+
+    <div>
+//       <form onSubmit={submitHandler}>
+
       <form onSubmit={handleSubmitClick}>
+
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input
@@ -208,6 +254,10 @@ export default function TripForm() {
           Submit
         </button>
       </form>
+    </div>
+    <br/>
+    </Box>
+      </Modal>
     </div>
   );
 }
