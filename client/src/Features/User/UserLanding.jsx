@@ -38,20 +38,16 @@ export default function UserLanding() {
       } else {
         setNewUser(false);
       }
-    } getMyData()
+    }
+    getMyData();
   }, []);
 
   return (
     <>
       <div>
         <div className="userlanding">
-
-          { myname ? ( 
-          <h1>Welcome, {myname}!</h1>
-          ) : (
-            <h1>Welcome!</h1>)
-          }
-          { newUser ? (
+          {myname ? <h1>Welcome, {myname}!</h1> : <h1>Welcome!</h1>}
+          {newUser ? (
             <div>
               <h3>
                 I think you're new here, would you like to start planning a
@@ -64,15 +60,25 @@ export default function UserLanding() {
               <div>
                 <h3>Trips you are organizing:</h3>
                 {tripAdmins.map((admin) => (
-                  <UserTrips key={admin.trip_id} trip_id={admin.trip_id} location_id={admin.location_id} tripname={admin.tripname} />
+                  <UserTrips
+                    key={admin.trip_id}
+                    trip_id={admin.trip_id}
+                    location_id={admin.location_id}
+                    tripname={admin.tripname}
+                  />
                 ))}
               </div>
               <div>
                 <h3>Trips you are joining:</h3>
-                {tripsMemb.map((memb) => (  
-                // eslint-disable-next-line react/jsx-key
-                <div>
-                  <UserTripMember key={memb.trip_id} trip_id={memb.trip_id} location_id={memb.location_id} tripname={memb.tripname} />
+                {tripsMemb.map((memb) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <div>
+                    <UserTripMember
+                      key={memb.trip_id}
+                      trip_id={memb.trip_id}
+                      location_id={memb.location_id}
+                      tripname={memb.tripname}
+                    />
                   </div>
                 ))}
               </div>

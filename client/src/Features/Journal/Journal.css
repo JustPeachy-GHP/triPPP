@@ -123,13 +123,27 @@ a:hover {
   font-family: "Open Sans", sans-serif;
 }
 
-.journal-list {
+.trips {
+  margin: 0 20px;
+}
+
+.button-space {
+  margin-top: 10px; /* Adjust the margin-top value as needed to control the spacing. */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .journal-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+} */
 
-.journal-card {
+/* .journal-card {
   width: calc(33.33% - 20px);
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -137,17 +151,17 @@ a:hover {
   margin-bottom: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   background-color: #fff;
-}
+} */
 
-.journal-card h2 {
+/* .journal-card h2 {
   font-size: 20px;
   margin: 0;
-}
+} */
 
-.journal-card p {
+/* .journal-card p {
   font-size: 16px;
   color: #555;
-}
+} */
 
 .button {
   background-color: #007bff;

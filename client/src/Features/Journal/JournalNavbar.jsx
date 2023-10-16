@@ -13,9 +13,6 @@ const Navbar = () => {
           {/* hard code for now */}
           <Link to="/journals">Journals</Link>
         </li>
-        <li>
-          <Link to="/journalform">Create</Link>
-        </li>
       </ul>
     </nav>
   );
