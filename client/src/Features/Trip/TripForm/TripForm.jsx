@@ -87,8 +87,8 @@ export default function TripForm() {
         <input
           type="number"
           min="1"
-          oninput="validity.valid||(value='');"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          onInput="validity.valid||(value='');"
+          onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           placeholder="Number of Travelers"
           onChange={(e) => setNumTravelers(e.target.value)}
           value={numtravelers}
@@ -99,8 +99,8 @@ export default function TripForm() {
         <input
           type="number"
           min="1"
-          oninput="validity.valid||(value='');"
-          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          onInput="validity.valid||(value='');"
+          onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           placeholder="Number of Days"
           onChange={(e) => setNumDays(e.target.value)}
           value={numdays}
