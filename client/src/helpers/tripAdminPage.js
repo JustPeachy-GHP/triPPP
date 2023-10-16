@@ -55,18 +55,15 @@ export async function addGroupMember(userobj) {
 }
 
 // ==============GET SINGLE TRIP==============
-export const fetchSingleTrip = async (trip_id) => {
+export async function fetchSingleTrip(trip_id) {
   try {
     const response = await fetch(`${BASE_URL}/${trip_id}`);
-    if (!response.ok) {
-      throw new Error("error fetching single trip");
-    }
-    const result = await response.json();
-    return result;
+    const returnVal = await response.json();
+    return returnVal;
   } catch (error) {
-    console.error("Cannot fetch single trip", error);
+    console.error(error);
   }
-};
+}
 // ===============DELETE TRIP================
 export async function deleteTrip(trip_id) {
   try {

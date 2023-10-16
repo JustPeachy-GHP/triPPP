@@ -47,7 +47,7 @@ export const fetchSingleTrip = async (trip_id) => {
 
 export async function editIsDecidedTrip(trip_id, trip) {
   try {
-    console.log("in client helper, trip:", trip)
+    console.log("in client helper, trip:", trip);
     const response = await fetch(`${BASE_URL}/decided/${trip_id}`, {
       method: "PATCH",
       headers: {
@@ -65,7 +65,7 @@ export async function editIsDecidedTrip(trip_id, trip) {
 
 export async function updateTrip(trip_id, updated_trip) {
   try {
-    console.log("in client helper, trip:", updated_trip)
+    console.log("in client helper, trip:", updated_trip);
     const response = await fetch(`${BASE_URL}/${trip_id}`, {
       method: "PATCH",
       headers: {
@@ -81,13 +81,13 @@ export async function updateTrip(trip_id, updated_trip) {
   }
 }
 
-export async function getExtTripData (trip_id) {
+export async function getExtTripData(trip_id) {
   try {
-      const response = await fetch (`${BASE_URL}/exttripdata/${trip_id}`)
-      const returnVal = response.json()
-      return returnVal
+    const response = await fetch(`${BASE_URL}/exttripdata/${trip_id}`);
+    const returnVal = response.json();
+    return returnVal;
   } catch (error) {
-      return error
+    return error;
   }
 }
 

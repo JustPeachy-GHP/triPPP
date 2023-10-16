@@ -21,7 +21,9 @@ router.get("/", async (req, res, next) => {
 // GET - api/groupmembs/trip_id - get all groupmembs by trip id
 router.get("/all/:trip_id", async (req, res, next) => {
   try {
+    console.log("getting groupmembs by id", req.params.trip_id);
     const groupmembs = await getTripGroupMembsbyId(req.params.trip_id);
+
     res.send(groupmembs);
   } catch (error) {
     throw error;
