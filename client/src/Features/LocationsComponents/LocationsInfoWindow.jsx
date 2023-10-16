@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import SetDestToggle from "../Display/SetDestToggle";
 import { useParams } from 'react-router-dom';
 import { updateTrip } from "../../helpers/trips";
+import { editIsDecidedTrip } from "../../helpers/trips";
 
 const LocationsInfoWindow = ({trip_id, locations}) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
@@ -53,6 +54,26 @@ const LocationsInfoWindow = ({trip_id, locations}) => {
 
   const handleDecidedStateChange = (destinationToggleState) => {
     setDestinationDecided(destinationToggleState);
+  }
+
+  const setLocationDb = async () => {
+
+    const editTripObject = {
+      trip_id: trip_id,
+      isdecided: true,
+      location_id: location_id
+    }
+    try {
+      const response = await editIsDecidedTrip(
+        editTripObject.trip_id,
+        editTripObject
+    )
+    const returnVal=response
+
+    return returnVal
+    } catch (error) {
+      console. error
+    }
   }
 
   return (
