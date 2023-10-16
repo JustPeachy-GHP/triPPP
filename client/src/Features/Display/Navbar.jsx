@@ -16,6 +16,7 @@ export default function Navbar() {
       <Link to="/userlanding"> My Trips </Link> <br></br>
       <Link to="/journals"> Journal </Link> <br></br>
       <Link to="/aboutus">About Us</Link>
+      <br></br>
       {isAuthenticated ? (
         <button className="logoutButton" onClick={handleLogout}>
           Logout
