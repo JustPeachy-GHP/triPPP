@@ -6,12 +6,14 @@ import SetDestToggle from "../Display/SetDestToggle";
 import { useParams } from 'react-router-dom';
 import { updateTrip } from "../../helpers/trips";
 
-const LocationsInfoWindow = (trip_id) => {
+const LocationsInfoWindow = ({trip_id, locations}) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const [destinationDecided, setDestinationDecided] = useState(false);
   const navigate = useNavigate(); // Add React Router's useHistory hook
   const params = useParams();
+
+  console.log("infowindow", locations)
 
   useEffect(() => {
     console.log(trip_id);
@@ -86,7 +88,11 @@ const LocationsInfoWindow = (trip_id) => {
                     </button>
                   )
                 }
-                <SetDestToggle onDecidedStateChange={handleDecidedStateChange} />
+                <SetDestToggle 
+                onDecidedStateChange={handleDecidedStateChange}
+                trip_id={params.trip_id.substring(1)} 
+                location_id={locations.find(obj => obj.place_id === key)?.location_id}
+                />
               </div>
             ))}
           </div>

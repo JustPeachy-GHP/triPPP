@@ -7,17 +7,18 @@ import {
   InfoWindowF,
 } from "@react-google-maps/api"; // Corrected component names
 
-const LocationsMap = () => {
+const LocationsMap = ({locations, setLocations}) => {
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
   const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
-  const [locations, setLocations] = useState([]);
+  // const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     async function getAllLocations() {
       try {
         const locationsData = await fetchAllLocations();
         setLocations(locationsData);
+        console.log("locations map", locationsData)
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
