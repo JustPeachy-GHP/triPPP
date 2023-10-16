@@ -4,7 +4,7 @@ import { fetchAllTrips } from "../../../src/helpers/trips";
 // import { fetchAllJournalsByUser } from "../../../src/helpers/journals";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
-import SuccessMessage from "./SuccessMessage";
+import SuccessMessage from "../Display/SuccessMessage";
 
 export default function CreateJournalForm({
   journal,

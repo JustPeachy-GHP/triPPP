@@ -1,4 +1,4 @@
-import "./Journal.css";
+import "../Journal/Journal.css";
 import { useState, useEffect } from "react";
 
 export default function SuccessMessage() {
