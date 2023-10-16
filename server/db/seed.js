@@ -117,8 +117,7 @@ const createTables = async () => {
         CREATE TABLE groupmembs (
             groupmemb_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
-            trip_id INTEGER REFERENCES trips(trip_id),
-            group_id INTEGER REFERENCES groups(group_id)
+            trip_id INTEGER REFERENCES trips(trip_id)
         );
 
 
@@ -148,19 +147,19 @@ const createTables = async () => {
 // };
 
 // alter trip table to have group_id
-const alterTripTable = async () => {
-  try {
-    console.log("TRIP tables are being ALTERED!");
-    await client.query(`
-    ALTER TABLE trips 
-      ADD group_id INTEGER REFERENCES groups(group_id)
+// const alterTripTable = async () => {
+//   try {
+//     console.log("TRIP tables are being ALTERED!");
+//     await client.query(`
+//     ALTER TABLE trips 
+//       ADD group_id INTEGER REFERENCES groups(group_id)
 
-  `);
-  } catch (error) {
-    throw error;
-  }
-  console.log(trips);
-};
+//   `);
+//   } catch (error) {
+//     throw error;
+//   }
+//   console.log(trips);
+// };
 // alter itinerary items table to have trip_id
 const alterItineraryitemTable = async () => {
   try {
@@ -303,7 +302,7 @@ const rebuildDb = async () => {
     await createInitialGroupmembs();
     await createInitialLocations();
 
-    await alterTripTable();
+    // await alterTripTable();
     await alterItineraryitemTable();
 
     await fixKeys();

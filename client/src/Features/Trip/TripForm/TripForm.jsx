@@ -1,17 +1,54 @@
-import React, { useState } from "react";
+
 // import "./tripform.css";
-// import Login from "../Auth/Login";
-import { Link } from "react-router-dom";
 import { createTrip } from "../../../helpers/trips";
+import { createNewGroupMemb } from "../../../helpers/groupmembs";
 import { useNavigate } from "react-router-dom";
+import shopping from "../../../Assets/shopping.jpeg";
+import { useSelector } from "react-redux";
+
+
+import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
 
 export default function TripForm() {
-  const [trip_id, setTrip_Id] = useState(null);
   const [tripname, settripName] = useState("");
   const [numdays, setNumDays] = useState("");
   const [numtravelers, setNumTravelers] = useState("");
   const [vibeform, setVibeForm] = useState("");
   const navigate = useNavigate();
+
+
+  //modal stuff here
+  const [isOpen, setIsOpen] = useState(true);
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    overflow: "scroll",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  //modal stuff ends here
+
+
+  const user_id = useSelector((state) => state.auth.user_id)
+
+  console.log("my user id", user_id)
+
 
   // hardcoding dummy data for a user_id
 
@@ -23,13 +60,13 @@ export default function TripForm() {
       numdays: numdays,
       numtravelers: numtravelers,
       vibeform: vibeform,
+      user_id: user_id
     };
     console.log("submit data", newTripObject);
-    
-    
+
     createNewTrip();
   };
-  
+
   async function createNewTrip(tripObj) {
     const result = await createTrip(tripObj);
     console.log(result);
@@ -45,39 +82,75 @@ export default function TripForm() {
       numdays: numdays,
       numtravelers: numtravelers,
       vibeform: vibeform,
+      user_id: user_id
     };
     console.log("submit data", newTripObject);
 
     const trip = await createNewTrip(newTripObject);
     console.log(trip);
-    navigate(`/${trip.trip_id}/locations`);
-  }
+
+
+    let newGroupMembObject = {
+      trip_id: trip.trip_id,
+      user_id: user_id
+    }
+
+    console.log("new group member", newGroupMembObject)
+    const memb = await createNewGroupMemb(newGroupMembObject)
+    console.log("memb after submit", memb)
+
+    // navigate(`/${trip.trip_id}/locations`);
+    navigate(`/trips/${trip.trip_id}/locations`, {replace: true});
+  };
+
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+
+    <Modal
+      open={isOpen}
+      onClose={closeModal}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style} className="scrollable-content">
+
+    <div>
+//       <form onSubmit={submitHandler}>
+
+      <form onSubmit={handleSubmitClick}>
+
         <h1> Let's find out more about your Trippp </h1>
         <h3> Trip Name</h3>
         <input
           placeholder="Trip Name"
           onChange={(e) => settripName(e.target.value)}
           value={tripname}
+          required
         />{" "}
         <br />
-        <h3> How many people are you traveling with?</h3>
+        <h3> How many people are in your party?</h3>
         <input
           type="number"
+          min="1"
+          onInput="validity.valid||(value='');"
+          onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           placeholder="Number of Travelers"
           onChange={(e) => setNumTravelers(e.target.value)}
           value={numtravelers}
+          required
         />{" "}
         <br />
         <h3> How many days do you want to plan for?</h3>
         <input
           type="number"
+          min="1"
+          onInput="validity.valid||(value='');"
+          onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           placeholder="Number of Days"
           onChange={(e) => setNumDays(e.target.value)}
           value={numdays}
+          required
         />{" "}
         <br />
         {/* ====================VIBE QUESTIONS============== */}
@@ -153,7 +226,7 @@ export default function TripForm() {
               onChange={(e) => setVibeForm(e.target.id)}
             />
             <label htmlFor="local">
-              Local
+              Local Culture
               <img
                 id="vibe-img"
                 src="https://tinyurl.com/5t4sndky"
@@ -171,19 +244,20 @@ export default function TripForm() {
               onChange={(e) => setVibeForm(e.target.id)}
             />
             <label htmlFor="shop">
-              Shop{" "}
-              <img
-                id="vibe-img"
-                src=" https://tinyurl.com/5n8mwked"
-                alt="woman shopping in a store"
-              ></img>
+              Shop <img id="vibe-img" src={shopping} alt="woman shopping"></img>
             </label>
           </div>
           <br />
           {/* hook up event listener to  */}
         </fieldset>
-        <button type="Submit" onClick={handleSubmitClick}>Submit</button>
+        <button type="Submit" onClick={handleSubmitClick}>
+          Submit
+        </button>
       </form>
+    </div>
+    <br/>
+    </Box>
+      </Modal>
     </div>
   );
 }

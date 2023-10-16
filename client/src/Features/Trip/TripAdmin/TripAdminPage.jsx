@@ -1,39 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { fetchSingleTrip } from "../../../helpers/tripAdminPage";
-// import DeleteTripButton from "./DeleteTripButton";
-import { addGroupMember } from "../../../helpers/tripAdminPage";
-import { getAllMembersbyId } from "../../../helpers/tripAdminPage";
-import { deleteTrip } from "../../../helpers/tripAdminPage";
+import {
+  fetchSingleTrip,
+  fetchSingleUserbyEmail,
+  addGroupMember,
+  getAllMembersbyId,
+} from "../../../helpers/tripAdminPage";
 import EachMemb from "./EachMemb";
 
 export default function TripAdminPage() {
-  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
   const [oneTrip, setoneTrip] = useState([]);
   const [trip_id, setTripId] = useState(1);
   const [allGMembs, setAllGMembs] = useState([]);
 
-  useEffect(() => setTripId(trip_id), []);
-
-  // async function handleSubmit(e) {
-  //   try {
-  //     e.preventDefault();
-  //     const APIData = await addGroupMember(username);
-  //     console.log("API Data", APIData);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-  console.log(trip_id, "this is my trip id ");
+  // useEffect(() => setTripId(trip_id), [trip_id]);
+  // console.log(trip_id, "this is my trip id ");
   useEffect(() => {
     async function getSingleTrip(trip_id) {
-      // hardcoded in trip_id of 1
-      const response = await fetchSingleTrip(trip_id);
+      const response = await fetchSingleTrip();
       console.log("One trip to rule them all!", response);
-      setoneTrip(response);
     }
     getSingleTrip(trip_id);
   }, [trip_id]);
-
+  // ==========Getting All Group Membs
   useEffect(() => {
     async function membersingroup() {
       const response = await getAllMembersbyId(trip_id);
@@ -43,22 +32,37 @@ export default function TripAdminPage() {
     }
     membersingroup();
   }, [trip_id]);
+  // ========Adding Traveler
+  useEffect(() => {
+    async function addTraveler(trip_id, email) {
+      const response = await fetchSingleUserbyEmail(email);
+      if (response !== null) {
+        await addGroupMember(response.user_id, trip_id);
+        setEmail(email);
+        membersingroup();
+        console.log("Adding member", response);
+      } else {
+        alert("User not in system. Try Again.");
+      }
+    }
+  });
 
-  // async function handleDelete() {
-  //   try {
-  //     const response = await deleteTrip();
-  //     // navigate("/userlanding");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
+  // =========Deleting Trip ===========
+  async function handleDelete() {
+    try {
+      const response = await deleteTrip();
+      // navigate("/userlanding");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  // ==========RETURN ================
   return (
     <>
       <h1>{oneTrip.tripname}</h1>
       <br />
       {console.log(allGMembs, "mapmapmap")}
-      {allGMembs.map((member) => {
+      {allGMembs?.map((member) => {
         return (
           //  groupmembs.trip_id, groupmembs.group_id, users.email, users.firstname, users.lastname
           <EachMemb
@@ -79,12 +83,12 @@ export default function TripAdminPage() {
           <input
             // className="inputField"
             // id="username"
-            value={username}
-            type="text"
+            value={email}
+            type="email"
             // name="username"
             placeholder="email"
             onChange={(e) => {
-              setUsername(e.target.value);
+              setEmail(e.target.value);
             }}
           />
         </label>

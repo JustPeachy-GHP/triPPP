@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const { JWT_SECRET, COOKIE_SECRET } = require("../secrets");
 const router = require("express").Router();
 
@@ -16,7 +16,7 @@ const {
   getGroupMemberById,
   getJournalById,
   getTripsAdminById,
-  getTripsMemberById
+  getTripsMemberById,
 } = require("../db/helpers/users");
 
 // GET - /api/users - get all users
@@ -47,13 +47,13 @@ router.post("/register", async (req, res, next) => {
     console.log(req.body);
     const { email, password, firstname, lastname } = req.body;
 
-    console.log("before bcrypt: ", password)
+    console.log("before bcrypt: ", password);
     // NOTE currently bypassing bcrypt - will use the below line when we put bcrypt back in:
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-   
-    req.body['password'] = hashedPassword
 
-    console.log("after bcrypt: ", req.body)
+    req.body["password"] = hashedPassword;
+
+    console.log("after bcrypt: ", req.body);
 
     const user = await createUser(req.body);
     console.log("after created: ", user);
@@ -69,7 +69,7 @@ router.post("/register", async (req, res, next) => {
     });
 
     console.log("server api token", token);
-    console.log("server api user", user)
+    console.log("server api user", user);
 
     res.send({ user, token });
   } catch (error) {
@@ -94,7 +94,7 @@ router.post("/login", async (req, res, next) => {
     delete user.password;
     if (validPassword) {
       //create our token
-      console.log("should have no password", user)
+      console.log("should have no password", user);
       const token = jwt.sign(user, JWT_SECRET);
       //attach cookie to our response using the token that we created
       res.cookie("token", token, {
@@ -131,7 +131,7 @@ router.post("/logout", async (req, res, next) => {
 
 // PATCH - /api/users/edit
 // change password if email and (old) password match
-router.patch('/edit', async(req, res, next) => {
+router.patch("/edit", async (req, res, next) => {
   try {
     console.log("req.body", req.body);
     const { email, password, newpass } = req.body;
@@ -151,15 +151,15 @@ router.patch('/edit', async(req, res, next) => {
       // hash
       const hashedPassword = await bcrypt.hash(newpass, SALT_ROUNDS);
 
-      const user = await updateUserPass({email, password: hashedPassword})
-      console.log(user)
-      delete user.password
-      res.send(user)
+      const user = await updateUserPass({ email, password: hashedPassword });
+      console.log(user);
+      delete user.password;
+      res.send(user);
     }
   } catch (error) {
-      throw error
+    throw error;
   }
-})
+});
 
 // GET - /api/users/uadmin/:id - get group_id from groupadmin by id -- groups user is an admin of
 
@@ -191,7 +191,7 @@ router.get("/ujournal/:id", async (req, res, next) => {
   try {
     console.log("getting journal_id from journals by id...");
     const user = await getJournalById(req.params.id);
-    console.log("journal ", user)
+    console.log("journal ", user);
     res.send(user);
   } catch (error) {
     next(error);
@@ -204,7 +204,7 @@ router.get("/utripadmin/:id", async (req, res, next) => {
   try {
     console.log("getting trips by groups that user is admin of by id...");
     const user = await getTripsAdminById(req.params.id);
-    console.log("admin ", user)
+    console.log("admin ", user);
     res.send(user);
   } catch (error) {
     next(error);
@@ -217,7 +217,7 @@ router.get("/utripmemb/:id", async (req, res, next) => {
   try {
     console.log("getting trips by groups that user is member of by id...");
     const user = await getTripsMemberById(req.params.id);
-    console.log("memb ", user)
+    console.log("memb ", user);
     res.send(user);
   } catch (error) {
     next(error);
@@ -233,6 +233,17 @@ router.post("/", async (req, res, next) => {
     res.send(newUser);
   } catch (error) {
     throw error;
+  }
+});
+
+// GET - /api/users/:userId - get user by id
+router.get("/email/:email", async (req, res, next) => {
+  try {
+    console.log("getting userByEmail...");
+    const user = await getUserByEmail(req.params.email);
+    res.send(user);
+  } catch (error) {
+    next(error);
   }
 });
 

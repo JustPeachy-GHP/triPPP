@@ -3,11 +3,18 @@ import { useGoogleMaps } from "../../context/googleMapsContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SetDestToggle from "../Display/SetDestToggle";
+import { useParams } from 'react-router-dom';
+import { updateTrip } from "../../helpers/trips";
+import { editIsDecidedTrip } from "../../helpers/trips";
 
-const LocationsInfoWindow = (trip_id) => {
+const LocationsInfoWindow = ({trip_id, locations}) => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
+  const [destinationDecided, setDestinationDecided] = useState(false);
   const navigate = useNavigate(); // Add React Router's useHistory hook
+  const params = useParams();
+
+  console.log("infowindow", locations)
 
   useEffect(() => {
     console.log(trip_id);
@@ -27,14 +34,47 @@ const LocationsInfoWindow = (trip_id) => {
     }
   };
 
-  const handleLetsGoClick = (placeId) => {
-    const url = `/itinerary/${placeId}`;
+  const handleLetsGoClick = async (placeId) => {
+    try {
+      const updatedTrip = {
+        isdecided: true,
+        place_id: placeId
+      }
 
-    // Navigate to the itinerary page and pass the current destination
-    // navigate function can pass props to the component rendered at the /itinerary/ path
-    // this is passed as an object with a key called state
-    navigate(url);
+      const trip = await updateTrip(params.trip_id, updatedTrip);
+      console.log("Updated trip: ", trip);
+      const url = `/trips/${params.trip_id}/itinerary/${placeId}`;
+      navigate(url);
+    } catch (error) {
+      console.error('Error: ', error);
+    }
+    
+    
   };
+
+  const handleDecidedStateChange = (destinationToggleState) => {
+    setDestinationDecided(destinationToggleState);
+  }
+
+  const setLocationDb = async () => {
+
+    const editTripObject = {
+      trip_id: trip_id,
+      isdecided: true,
+      location_id: location_id
+    }
+    try {
+      const response = await editIsDecidedTrip(
+        editTripObject.trip_id,
+        editTripObject
+    )
+    const returnVal=response
+
+    return returnVal
+    } catch (error) {
+      console. error
+    }
+  }
 
   return (
     <div className="infoContainer">
@@ -55,10 +95,25 @@ const LocationsInfoWindow = (trip_id) => {
                   />
                 )}
                 <br></br>
-                <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
-                  Lets Go!
-                </button>
-                <SetDestToggle/>
+                {
+                  destinationDecided ?
+                  (
+                    <button className="confirmButton" onClick={() => handleLetsGoClick(key)}>
+                      Lets Go!
+                    </button>
+                  )
+                  :
+                  (
+                    <button className="confirmButton" disabled>
+                      Lets Go!
+                    </button>
+                  )
+                }
+                <SetDestToggle 
+                onDecidedStateChange={handleDecidedStateChange}
+                trip_id={params.trip_id.substring(1)} 
+                location_id={locations.find(obj => obj.place_id === key)?.location_id}
+                />
               </div>
             ))}
           </div>

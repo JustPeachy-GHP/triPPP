@@ -130,7 +130,7 @@ export default function AllJournals() {
           </div>
         </div>
       )}
-
+      
       {/* if journal.trip_id = number in array then map over */}
     </div>
   );
@@ -155,3 +155,10 @@ export default function AllJournals() {
 //   const coordinates = location.coord;
 //   return coordinates;
 // }
+
+
+
+
+
+
+
