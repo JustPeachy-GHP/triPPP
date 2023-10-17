@@ -8,7 +8,6 @@ import {
 } from "../../../helpers/tripAdminPage";
 import EachMemb from "./EachMemb";
 import { Modal, Box } from "@mui/material";
-// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
@@ -44,7 +43,7 @@ export default function TripAdminPage() {
     p: 4,
   };
 
-  // db queries - get my own trip info, members in my group
+  // db queries - get own trip info, members in my group
   useEffect(() => {
     async function getSingleTrip(trip_id) {
       try {
@@ -71,6 +70,7 @@ export default function TripAdminPage() {
   }, [trip_id]);
 
   // form and entry handlers
+
   // ========Adding Traveler
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,6 +107,7 @@ export default function TripAdminPage() {
   };
 
   // delete trip and return to userlanding
+  // *** this one needs work still ***
   async function handleDelete() {
     try {
       const response = await deleteTrip(trip_id);
@@ -128,28 +129,23 @@ export default function TripAdminPage() {
       >
         <Box sx={style}>
           <h1>{oneTrip.tripname}</h1>
-          {/* <h1>European Adventure </h1> */}
           <br />
-          {console.log(allGMembs, "mapmapmap")}
           {allGMembs?.map((member) => {
             return (
-              //  groupmembs.trip_id, groupmembs.group_id, users.email, users.firstname, users.lastname
-              // eslint-disable-next-line react/jsx-key
               <EachMemb
+                key={member.user_id}
                 email={member.email}
                 firstname={member.firstname}
                 lastname={member.lastname}
                 trip_id={member.trip_id}
                 user_id={member.user_id}
               />
-              // whatever you've got in all g membs array
             );
           })}
 
           <form onSubmit={handleSubmit}>
             <label>
               <h2> Add Traveler </h2>
-              {/* // check if this is right */}
               <input
                 // className="inputField"
                 // id="username"
