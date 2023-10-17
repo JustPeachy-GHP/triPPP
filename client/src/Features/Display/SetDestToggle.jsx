@@ -37,7 +37,7 @@ export default function SetDestToggle({ onDecidedStateChange }) {
         )
         :
         (
-          <Tooltip title="Toggle me to set your destination." enterDelay={500}ß>
+          <Tooltip title="Toggle me to set your destination." enterDelay={500}>
             <label className="switch">
               <input type="checkbox" onClick={handleClick} />
               <span className="slider round"></span>
