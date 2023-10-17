@@ -62,10 +62,10 @@ export default function Registration({setToken, setActiveUser}) {
         <h2>Register</h2>
             <form onSubmit={handleSubmit} >
              <label>
-            Username: <input required value={email} onChange={(e) => setEmail(e.target.value)} />
+            Username: <input autocomplete="off" required value={email} onChange={(e) => setEmail(e.target.value)} />
             </label><br/>
             <label>
-            Password: <input required value={password} onChange={(e) => setPassword(e.target.value)} />
+            Password: <input autocomplete="off" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
             </label><br/>
             <label>
             First Name: <input required value={firstname} onChange={(e) => setFirstname(e.target.value)} />
