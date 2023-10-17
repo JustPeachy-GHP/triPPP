@@ -101,15 +101,7 @@ function App() {
               }
             />
             <Route
-              path="/tripadminpage"
-              element={
-                <ProtectedRoute>
-                  <TripAdminPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/tripadminpage/1"
+              path="/tripadminpage/:trip_id"
               element={
                 <ProtectedRoute>
                   <TripAdminPage />

@@ -15,17 +15,19 @@ export default function EachMemb({
   }
 
   return (
-    <div>
-      <h2>{firstname}</h2>
-      <h2>{lastname}</h2>
-      <h2>{email}</h2>
-      <button
-        type="button"
-        onClick={() => handleDelete(trip_id, user_id)}
-      ></button>
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <div>
+        <h2>
+          {firstname + " "} {lastname}
+        </h2>
+        <h3>{email}</h3>
+        <button style={{}} onClick={() => handleDelete(trip_id, user_id)}>
+          Delete Traveler
+        </button>
 
-      {/* map over group members to display members and to add delete button to each */}
-      {/* need delete group memb button to display next to each group memb */}
+        {/* map over group members to display members and to add delete button to each */}
+        {/* need delete group memb button to display next to each group memb */}
+      </div>
     </div>
   );
 }

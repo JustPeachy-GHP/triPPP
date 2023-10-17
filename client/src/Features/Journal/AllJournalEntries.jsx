@@ -109,7 +109,7 @@ export default function AllJournals() {
       <div className="relative min-h-screen">
         <div className="pb-20"></div>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 font-montserrat"
+          // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 font-montserrat"
           style={{
             position: "fixed",
             bottom: "20px",

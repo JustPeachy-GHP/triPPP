@@ -7,6 +7,8 @@ const {
   getJournalById,
   getAllJournalsByUser,
   getAllJournalsByTrip,
+  deleteJournal,
+  updateJournal,
 } = require("../db/helpers/journals");
 
 // GET - api/journal - get all journal
@@ -58,6 +60,27 @@ router.post("/", async (req, res, next) => {
   try {
     const journal = await createJournal(req.body);
     res.send(journal);
+  } catch (error) {
+    next(error);
+  }
+});
+// DELETE - /api/journals/:journal_id - delete a journal
+router.delete("/:journal_id", async (req, res, next) => {
+  try {
+    console.log("entering router delete");
+    const journal = await deleteJournal(req.params.journal_id);
+    console.log(journal);
+    res.send(journal);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// PUT - api/journal/:journal_id - update a journal
+router.put("/:journal_id", async (req, res, next) => {
+  try {
+    const updatedJournal = await updateJournal(req.params.journal_id, req.body);
+    res.send(updatedJournal);
   } catch (error) {
     next(error);
   }

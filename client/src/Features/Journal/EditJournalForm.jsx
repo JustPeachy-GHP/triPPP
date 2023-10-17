@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { updateJournal } from "../../../src/helpers/journals";
 import { fetchSingleJournal } from "../../../src/helpers/journals";
 import JournalNavbar from "./JournalNavbar";
@@ -14,8 +15,9 @@ export default function EditJournal() {
   const [title, setTitle] = useState("");
   const [timestamp, setTimestamp] = useState("");
   const [entry, setEntry] = useState("");
+  const user_id = useSelector((state) => state.auth.user_id);
   //   hard code for now
-  const user_id = 1;
+  // const user_id = 1;
   const trip_id = 1;
 
   // const navigate = useNavigate();
@@ -81,51 +83,51 @@ export default function EditJournal() {
 
   return (
     <>
-      <JournalNavbar />
-      <h2>Edit Journal</h2>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            id="videocontent"
-            autoFocus
-            placeholder="Insert Video URL"
-            value={videocontent}
-            default={videocontent}
-            onChange={(e) => setVideocontent(e.target.value)}
-          />
+      <div style={{ marginTop: "100px" }}>
+        <JournalNavbar />
+        <h2>Edit Journal</h2>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <input
+              id="videocontent"
+              autoFocus
+              placeholder="Insert Video URL"
+              value={videocontent}
+              default={videocontent}
+              onChange={(e) => setVideocontent(e.target.value)}
+            />
 
-          <input
-            id="image-text"
-            placeholder="Insert Image URL"
-            default={image}
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <input
-            id="title"
-            placeholder="Title"
-            default={title}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            id="timestamp"
-            placeholder="Date and Time"
-            default={timestamp}
-            value={timestamp}
-            onChange={(e) => setTimestamp(e.target.value)}
-          />
-          <input
-            id="entry-text"
-            placeholder="Entry"
-            default={entry}
-            value={entry}
-            onChange={(e) => setEntry(e.target.value)}
-          />
-          <button class="button" type="submit">
-            Submit
-          </button>
-        </form>
+            <input
+              id="image-text"
+              placeholder="Insert Image URL"
+              default={image}
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+            <input
+              id="title"
+              placeholder="Title"
+              default={title}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+              id="timestamp"
+              placeholder="Date and Time"
+              default={timestamp}
+              value={timestamp}
+              onChange={(e) => setTimestamp(e.target.value)}
+            />
+            <input
+              id="entry-text"
+              placeholder="Entry"
+              default={entry}
+              value={entry}
+              onChange={(e) => setEntry(e.target.value)}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     </>
   );

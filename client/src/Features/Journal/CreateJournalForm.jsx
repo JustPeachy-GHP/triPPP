@@ -132,9 +132,11 @@ export default function CreateJournalForm({
               onChange={(e) => setEntry(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded h-32"
             />
+            <br></br>
             <button
               type="submit"
-              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+
+              // className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Submit
             </button>
