@@ -9,30 +9,71 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MapIcon from "@mui/icons-material/Map";
 import { Link } from "react-router-dom";
 import AboutMap from "./AboutMap";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 export default function Aboutpage() {
-  const commonStyles = {
-    width: "150px",
-    height: "150px",
-    borderRadius: "50%",
-    margin: "10px",
-    textAlign: "center",
-  };
+  const renderAvatarCard = (
+    avatarSrc,
+    name,
+    linkedinLink,
+    githubLink,
+    travelDestination,
+    width = "200px",
+    height = "160px"
+  ) => (
+    <Card style={{ width: "450px", margin: "10px" }}>
+      <div style={{ display: "flex" }}>
+        <div>
+          <img
+            src={avatarSrc}
+            alt={`${name} Avatar`}
+            style={{
+              width,
+              height,
+              borderRadius: "50%",
+              margin: "10px",
+              textAlign: "center",
+            }}
+          />
+        </div>
+        <div style={{ marginLeft: "20px" }}>
+          <Typography
+            variant="h5"
+            style={{ fontFamily: "Arial", fontWeight: "bold", margin: "10px" }}
+          >
+            {name}
+          </Typography>
+          <Typography
+            variant="body2"
+            style={{ fontFamily: "Arial", fontWeight: "bold", margin: "10px" }}
+          >
+            <LinkedInIcon />{" "}
+            <Link to={linkedinLink} style={{ color: "blue" }}>
+              {linkedinLink}
+            </Link>
+            <br />
+            <GitHubIcon />{" "}
+            <Link to={githubLink} style={{ color: "blue" }}>
+              {githubLink}
+            </Link>
+            <br />
+            <MapIcon /> Bucket List Travel Destination: {travelDestination}
+          </Typography>
+        </div>
+      </div>
+    </Card>
+  );
 
   return (
-    <div
-      className="about-me"
-      style={{
-        marginTop: "100px",
-        display: "flex",
-        flexWrap: "wrap",
-      }}
-    >
+    <div className="about-me" style={{ marginTop: "100px", display: "flex" }}>
       <div style={{ flex: 1, padding: "10px" }}>
         <h1
           style={{
             color: "black",
             fontSize: "24px",
+            fontWeight: "bold",
             fontFamily: "Arial",
             width: "100%",
             textAlign: "center",
@@ -42,157 +83,55 @@ export default function Aboutpage() {
         </h1>
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <img src={amyavatar} alt="AmyAvatar" style={{ ...commonStyles }} />
-          <p
-            style={{
-              color: "black",
-              fontSize: "13px",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Amy Kwong
-            <br /> <LinkedInIcon />{" "}
-            <Link to="www.linkedin.com/in/amy-kwong" style={{ color: "blue" }}>
-              www.linkedin.com/in/amy-kwong
-            </Link>
-            <br /> <GitHubIcon />{" "}
-            <Link to="https://github.com/Amy-Kw" style={{ color: "blue" }}>
-              https://github.com/Amy-Kw
-            </Link>
-            <br /> <MapIcon /> Bucket List Travel Destination: Greece, Finland
-          </p>
+          {renderAvatarCard(
+            amyavatar,
+            "Amy Kwong",
+            "https://www.linkedin.com/in/amy-kwong",
+            "https://github.com/Amy-Kw",
+            "Greece, Finland"
+          )}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <img
-            src={kirbyavatar}
-            alt="KirbyAvatar"
-            style={{ ...commonStyles }}
-          />
-          <p
-            style={{
-              color: "black",
-              fontSize: "13px",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Kirby Schuetz
-            <br /> <LinkedInIcon />{" "}
-            <Link
-              to="https://www.linkedin.com/in/kirby-schuetz/"
-              style={{ color: "blue" }}
-            >
-              https://www.linkedin.com/in/kirby-schuetz/
-            </Link>
-            <br /> <GitHubIcon />{" "}
-            <Link
-              to="https://github.com/Kirby-Schuetz"
-              style={{ color: "blue" }}
-            >
-              {" "}
-              https://github.com/Kirby-Schuetz
-            </Link>
-            <br /> <MapIcon />
-            Bucket List Destination: Lisbon, Portugal
-          </p>
+          {renderAvatarCard(
+            kirbyavatar,
+            "Kirby Schuetz",
+            "https://www.linkedin.com/in/kirby-schuetz/",
+            "https://github.com/Kirby-Schuetz",
+            "Lisbon, Portugal"
+          )}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <img
-            src={stephanieavatar}
-            alt="StephanieAvatar"
-            style={{ ...commonStyles }}
-          />
-          <p
-            style={{
-              color: "black",
-              fontSize: "13px",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Stephanie Tayengco
-            <br /> <LinkedInIcon />{" "}
-            <Link
-              to="www.linkedin.com/in/stephanie-tayengco"
-              style={{ color: "blue" }}
-            >
-              www.linkedin.com/in/stephanie-tayengco
-            </Link>
-            <br /> <GitHubIcon />{" "}
-            <Link to="https://github.com/STayengco" style={{ color: "blue" }}>
-              {" "}
-              https://github.com/STayengco
-            </Link>
-            <br /> <MapIcon /> Bucket List Destination: Machu Picchu
-          </p>
+          {renderAvatarCard(
+            stephanieavatar,
+            "Stephanie Tayengco",
+            "www.linkedin.com/in/stephanie-tayengco",
+            "https://github.com/STayengco",
+            "Machu Picchu",
+            "170px",
+            "170px"
+          )}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <img
-            src={jackieavatar}
-            alt="JackieAvatar"
-            style={{ ...commonStyles }}
-          />
-          <p
-            style={{
-              color: "black",
-              fontSize: "13px",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Jaclyn Barbieri
-            <br /> <LinkedInIcon />{" "}
-            <Link
-              style={{ color: "blue" }}
-              to="https://www.linkedin.com/in/jaclyn-barbieri/"
-            >
-              https://www.linkedin.com/in/jaclyn-barbieri/
-            </Link>
-            <br /> <GitHubIcon />{" "}
-            <Link
-              style={{ color: "blue" }}
-              to="https://github.com/uhohjackieson"
-            >
-              {" "}
-              https://github.com/uhohjackieson
-            </Link>
-            <br /> <MapIcon /> Bucket List Destination: Giza, Egypt
-          </p>
+          {renderAvatarCard(
+            jackieavatar,
+            "Jaclyn Barbieri",
+            "https://www.linkedin.com/in/jaclyn-barbieri/",
+            "https://github.com/uhohjackieson",
+            "Giza, Egypt"
+          )}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <img src={gabyavatar} alt="GabyAvatar" style={{ ...commonStyles }} />
-          <p
-            style={{
-              color: "black",
-              fontSize: "13px",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Gaby Markley
-            <br /> <LinkedInIcon />
-            <Link
-              style={{ color: "blue" }}
-              to="https://www.linkedin.com/in/gaby-markley/"
-            >
-              {" "}
-              https://www.linkedin.com/in/gaby-markley/
-            </Link>
-            <br /> <GitHubIcon />{" "}
-            <Link
-              style={{ color: "blue" }}
-              to="https://github.com/Gaby-Markley"
-            >
-              {" "}
-              https://github.com/Gaby-Markley
-            </Link>
-            <br /> <MapIcon /> Bucket List Travel Destination: Antarctica
-          </p>
+          {renderAvatarCard(
+            gabyavatar,
+            "Gaby Markley",
+            "https://www.linkedin.com/in/gaby-markley/",
+            "https://github.com/Gaby-Markley",
+            "Antarctica"
+          )}
         </div>
       </div>
 
