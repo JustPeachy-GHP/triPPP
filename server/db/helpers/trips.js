@@ -79,6 +79,7 @@ async function getAllTrips() {
 
 // GET - /api/trips/:id
 async function getTripById(trip_id) {
+  console.log("in getTripByID db helper")
   try {
     const {
       rows: [trip],
