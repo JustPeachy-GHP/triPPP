@@ -56,9 +56,12 @@ async function getTripExtData (trip_id) {
       trips.tripname,
       trips.numdays,
       trips.numtravelers,
-      trips.isdecided
+      trips.isdecided,
+      trips.location_id,
+      locations.place_id
     FROM users 
     INNER JOIN trips on users.user_id = trips.user_id 
+    INNER JOIN locations on trips.location_id = locations.location_id
     WHERE trips.trip_id = $1;
     `, [trip_id]);
     return trip
