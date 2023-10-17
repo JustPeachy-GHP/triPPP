@@ -9,8 +9,8 @@ import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { setMaps } from "../../slices/mapsSlice";
 // import {} from '../../slices/authSlice';
-import { setTrips } from "../../slices/tripsSlice";
-import { useParams } from "react-router-dom";
+import { setTrips } from '../../slices/tripsSlice';
+import { useParams } from 'react-router-dom';
 
 const style = {
   position: "absolute",
@@ -58,8 +58,7 @@ export default function ItineraryView() {
 
   const handleOpen = () => {
     setOpen(true);
-    makeDaysList();
-  };
+  }
 
   useEffect(() => {
     // Get additional trip info for the itinerary from the trip table
@@ -223,6 +222,7 @@ export default function ItineraryView() {
     }
     makeDaysList();
   }, [destNames]);
+
 
   return (
     <div>
