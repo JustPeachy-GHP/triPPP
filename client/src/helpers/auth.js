@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8081/api/users'
+const baseUrl = 'http://localhost:8080/api/users'
 
 export async function postNewUser(newUserObj) {
     try {
