@@ -1,19 +1,18 @@
 import { deleteGroupMember } from "../../../helpers/tripAdminPage";
 
 export default function EachMemb({
-                                  email,
-                                  firstname,
-                                  lastname,
-                                  trip_id,
-                                  user_id,
-                                  groupState,
-                                  setGroupState
-                                  }) 
-{
+  email,
+  firstname,
+  lastname,
+  trip_id,
+  user_id,
+  groupState,
+  setGroupState,
+}) {
   async function handleDelete(trip_id, user_id) {
     try {
       const response = await deleteGroupMember(trip_id, user_id);
-      setGroupState(!groupState)
+      setGroupState(!groupState);
     } catch (error) {
       console.error(error);
     }

@@ -5,21 +5,19 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import React, { useState } from "react";
-import { useGoogleMaps } from "../../context/googleMapsContext";
 const libraries = ["places"];
 const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
-
-const AboutMap = () => {
+const LocationsMap = () => {
   const [map, setMap] = React.useState(null);
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
   const [placeDetails, setPlaceDetails] = useState(null);
   const pinned = [
-    { lat: 41.7128, lng: 74.006 },
-    { lat: 40.7891, lng: 73.135 },
-    { lat: 41.5868, lng: 98.625 },
-    { lat: 47.6061, lng: 122.3328 },
-    { lat: 34.0549, lng: 118.2426 },
+    { lat: 40.72304188542622, lng: -74.01269760988193 },
+    { lat: 40.829445231364105, lng: -73.1470572026469 },
+    { lat: 41.58256431381637, lng: -93.62334239098554 },
+    { lat: 47.56939350503413, lng: -122.31049148269511 },
+    { lat: 34.032557126361965, lng: -118.20168264082076 },
   ];
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: API_KEY,
@@ -33,6 +31,22 @@ const AboutMap = () => {
     setMap(map);
     setPlacesService(placesService);
   }, []);
+  const handleGetLocationInfo = (placeId) => {
+    if (placesService && placeId) {
+      const request = {
+        placeId: placeId,
+        fields: ["name", "photos", "type"],
+        key: "AIzaSyCAzIfZMMLLhXLAO_QnX60PEpTWSyndAb8",
+      };
+      placesService.getDetails(request, (place, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          setPlaceDetails(place);
+        } else {
+          console.error("Error fetching place details", placeId, status);
+        }
+      });
+    }
+  };
   return (
     <>
       <div className="mapContainer">
@@ -44,7 +58,7 @@ const AboutMap = () => {
             zoom={12}
             onLoad={onLoad}
           >
-            {pinned.map(({ lat, lng }, index) => (
+            {pinned.map(({ lat, lng, placeId }, index) => (
               <MarkerF
                 key={index}
                 position={{ lat, lng }}
@@ -53,17 +67,18 @@ const AboutMap = () => {
                   origin: new window.google.maps.Point(0, 0),
                   anchor: new window.google.maps.Point(15, 15),
                 }}
-                //   onClick={() => {
-                //     setActiveMarker(index);
-                //     handleGetLocationInfo(placeId);
-                //   }}
+                onClick={() => {
+                  setActiveMarker(index);
+                  handleGetLocationInfo(placeId);
+                }}
               >
                 {placesService && activeMarker === index ? (
                   <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
                     <div className="locationInformation">
-                      {/* <button
-                  onClick={handleGetLocationInfo(placeId)}
-                > Location Information</button> */}
+                      <button onClick={handleGetLocationInfo(placeId)}>
+                        {" "}
+                        Location Information
+                      </button>
                       {placeDetails && (
                         <div>
                           <h3>{placeDetails.name}</h3>
@@ -88,5 +103,4 @@ const AboutMap = () => {
     </>
   );
 };
-
-export default AboutMap;
+export default LocationsMap;

@@ -76,7 +76,7 @@ router.delete("/:journal_id", async (req, res, next) => {
   }
 });
 
-// PUT - api/journal/:journal_id - update a journal
+// PUT - api/journals/:journal_id - update a journal
 router.put("/:journal_id", async (req, res, next) => {
   try {
     const updatedJournal = await updateJournal(req.params.journal_id, req.body);
