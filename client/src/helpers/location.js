@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8081/api/locations"
+const baseUrl = "http://localhost:8080/api/locations"
 
 //not tested
 export async function getDestByVibe (vibe) {
