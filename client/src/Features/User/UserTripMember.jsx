@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getExtTripData } from "../../helpers/trips"
+import { getExtTripData } from "../../helpers/trips";
 
 export default function UserTripMember({ trip_id, location_id, tripname }) {
-
-  const [myTrip, setMyTrip] = useState([])
+  const [myTrip, setMyTrip] = useState([]);
 
   const navigate = useNavigate();
   const myId = useSelector((state) => state.auth.user_id);
-    
-    // *** do query for admin/admin name,
-    // isdecided in UserTripMember component!
-    useEffect (()=>{ 
-      async function getMyData() {
-        const extData = await getExtTripData(trip_id)
-        console.log("getting extended data", extData)
-        setMyTrip(extData)
-      } getMyData()
-    },[])
-    
+
+  // *** do query for admin/admin name,
+  // isdecided in UserTripMember component!
+  useEffect(() => {
+    async function getMyData() {
+      const extData = await getExtTripData(trip_id);
+      console.log("getting extended data", extData);
+      setMyTrip(extData);
+    }
+    getMyData();
+  }, []);
+
   return (
     <>
       <div>

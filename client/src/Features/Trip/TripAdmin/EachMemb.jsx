@@ -26,14 +26,13 @@ export default function EachMemb({
           {firstname + " "} {lastname}
         </h2>
         <h3>{email}</h3>
-        <button
-          type="button"
-          style={{}}
-          onClick={() => handleDelete(trip_id, user_id)}
-        >
+        <button style={{}} onClick={() => handleDelete(trip_id, user_id)}>
           Delete Traveler
         </button>
 
+        {/* map over group members to display members and to add delete button to each */}
+        {/* need delete group memb button to display next to each group memb */}
+      </div>
         {/* map over group members to display members and to add delete button to each */}
         {/* need delete group memb button to display next to each group memb */}
       </div>
