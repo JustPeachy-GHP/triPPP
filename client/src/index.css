@@ -65,10 +65,3 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-.about-me {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 18%;
-}
