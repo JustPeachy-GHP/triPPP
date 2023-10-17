@@ -62,13 +62,13 @@ export default function UserLanding() {
             <div>
               <h2>Trips</h2>
               <div>
-                <h3>Trips you are organizing:</h3>
+                <h3>Add companions to the trips you manage:</h3>
                 {tripAdmins.map((admin) => (
                   <UserTrips key={admin.trip_id} trip_id={admin.trip_id} location_id={admin.location_id} tripname={admin.tripname} />
                 ))}
               </div>
               <div>
-                <h3>Trips you are joining:</h3>
+                <h3>Decide on places to go, things to see:</h3>
                 {tripsMemb.map((memb) => (  
                 // eslint-disable-next-line react/jsx-key
                 <div>

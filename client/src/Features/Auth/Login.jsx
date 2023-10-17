@@ -67,10 +67,10 @@ export default function Login(){
         <h2>Log In</h2>
         <form onSubmit={handleSubmit} >
         <label>
-            Username: <input id="username" required autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />
+            Username: <input autocomplete="off" id="username" required autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />
         </label><br/>
         <label>
-            Password: <input id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            Password: <input autocomplete="off" type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </label><br/>
         <div>
             <button disabled = { 
