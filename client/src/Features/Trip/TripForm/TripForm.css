@@ -1,9 +1,38 @@
-.vibe-img {
-    width: 50px; /* Adjust the width to your preference */
-    height: 50px; /* Adjust the height to your preference */
-  }
-  
-  /* Optional: Add some spacing around each image option */
-  .vibe-option {
-    margin-bottom: 10px;
-  }
+img {
+  width: 100px;
+  height: 140px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* HIDE RADIO */
+[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type="radio"] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type="radio"]:checked + img {
+  outline: 2px solid #f49867;
+}
+
+/* vibe options */
+.vibe-option {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.button {
+  display: block;
+  margin-left: 43%;
+}

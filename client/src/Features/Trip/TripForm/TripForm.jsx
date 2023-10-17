@@ -3,10 +3,11 @@ import { createNewGroupMemb } from "../../../helpers/groupmembs";
 import { useNavigate } from "react-router-dom";
 import shopping from "../../../Assets/shopping.jpeg";
 import { useSelector } from "react-redux";
-
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import "./TripForm.css";
+import { green } from "@mui/material/colors";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
@@ -27,16 +28,15 @@ export default function TripForm() {
 
   const style = {
     position: "absolute",
-    top: "45%",
+    top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     overflow: "scroll",
-    width: 700,
-    height: 750,
+    width: 500,
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
-    p: 3,
+    p: 4,
   };
   // Modal stuff ends here
 
@@ -92,7 +92,11 @@ export default function TripForm() {
         <Box sx={style} className="scrollable-content">
           <div>
             <form onSubmit={submitHandler}>
-              <h1> Let's find out more about your Trip</h1>
+              <div className="title">
+                <h1> Make A Trip</h1>
+                <h3>Tell us more about that dream vacation!</h3>
+              </div>
+              <br />
               <h3> Trip Name</h3>
               <input
                 placeholder="Trip Name"
@@ -125,6 +129,7 @@ export default function TripForm() {
                 required
               />{" "}
               <br />
+              <br />
               {/* ====================VIBE QUESTIONS============== */}
               <h3>What's the vibe you're going for?</h3>
               {/* outdoors, chill, party, local, shop*/}
@@ -132,104 +137,150 @@ export default function TripForm() {
                 {/* ==============CHILL ============*/}
                 <div className="vibe-option">
                   <div>
-                    <input
-                      type="radio"
-                      id="chill"
-                      name="vibe"
-                      value={vibeform}
-                      onChange={(e) => setVibeForm(e.target.id)}
-                    />
-                    <label htmlFor="chill">
-                      Chill
+                    <h3>Chill</h3>
+                    <label>
+                      <input
+                        type="radio"
+                        id="chill"
+                        name="vibe"
+                        value={vibeform}
+                        onChange={(e) => setVibeForm(e.target.id)}
+                      />
                       <img
                         id="vibe-img"
                         src="https://tinyurl.com/446u8r4f"
                         alt="woman relaxing on the beach"
                       ></img>
+                      <label htmlFor="chill">
+                        <h5>
+                          You love to hang out on the beach, go visit a spa, or
+                          spend some time with that vacation read. Your trip is
+                          all about rest and relaxation.
+                        </h5>
+                        <br />
+                      </label>
                     </label>
                   </div>
                 </div>
 
                 {/* ============OUTDOORS============= */}
                 <div className="vibe-option">
-                  <input
-                    type="radio"
-                    id="outdoors"
-                    name="vibe"
-                    value={vibeform}
-                    onChange={(e) => setVibeForm(e.target.id)}
-                  />
                   <label htmlFor="outdoors">
-                    Outdoors
+                    <h3>Outdoors</h3>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="outdoors"
+                      name="vibe"
+                      value={vibeform}
+                      onChange={(e) => setVibeForm(e.target.id)}
+                    />
                     <img
                       id="vibe-img"
                       src="https://tinyurl.com/3f5zeycb"
                       alt="couple in mountains"
                     ></img>
                   </label>
+                  <h5>
+                    You live for summer camping trips, ziplining through a
+                    jungle, or even just a nice hike. Nothing is better than
+                    connecting with nature.
+                  </h5>
                 </div>
+                <br />
 
                 {/* ===========PARTY============= */}
                 <div className="vibe-option">
-                  <input
-                    type="radio"
-                    id="party"
-                    name="vibe"
-                    value={vibeform}
-                    onChange={(e) => setVibeForm(e.target.id)}
-                  />
                   <label htmlFor="party">
-                    Party
+                    <h3>Party</h3>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="party"
+                      name="vibe"
+                      value={vibeform}
+                      // style={{ display: "none" }}
+                      onChange={(e) => setVibeForm(e.target.id)}
+                    />
                     <img
                       id="vibe-img"
                       src="https://tinyurl.com/4yw8yvbr"
                       alt="people partying in a club"
                     ></img>
                   </label>
+                  <h5>
+                    {" "}
+                    You feel the most alive when you're out on the town,
+                    experiencing new music, lights, and sounds. Life is all
+                    about fun!{" "}
+                  </h5>
                 </div>
-
+                <br />
                 {/* ==========LOCAL============ */}
                 <div className="vibe-option">
-                  <input
-                    type="radio"
-                    id="local"
-                    name="vibe"
-                    value={vibeform}
-                    onChange={(e) => setVibeForm(e.target.id)}
-                  />
                   <label htmlFor="local">
-                    Local Culture
+                    <h3>Local Culture</h3>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="local"
+                      name="vibe"
+                      value={vibeform}
+                      onChange={(e) => setVibeForm(e.target.id)}
+                    />
                     <img
                       id="vibe-img"
                       src="https://tinyurl.com/5t4sndky"
                       alt="man sitting in front of parisian cafe"
                     ></img>
                   </label>
+                  <h5>
+                    {" "}
+                    What better way to travel than to live like the locals do?
+                    You love good food, beautiful sights, and a little history
+                    sprinkled in.{" "}
+                  </h5>
                 </div>
+                <br />
                 {/* ==========SHOP============ */}
                 <div className="vibe-option">
-                  <input
-                    type="radio"
-                    id="shop"
-                    name="vibe"
-                    value={vibeform}
-                    onChange={(e) => setVibeForm(e.target.id)}
-                  />
                   <label htmlFor="shop">
-                    Shop
+                    <h3>Shop</h3>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="shop"
+                      name="vibe"
+                      value={vibeform}
+                      onChange={(e) => setVibeForm(e.target.id)}
+                    />
                     <img
                       id="vibe-img"
                       src={shopping}
                       alt="woman shopping"
                     ></img>
                   </label>
+                  <h5>
+                    {" "}
+                    What's better than coming home with that one-of-a-kind find?
+                    You love to remember your travels through the unique pieces
+                    you collect.
+                  </h5>
                 </div>
                 <br />
                 {/* hook up event listener to  */}
+                <button
+                  className="button"
+                  type="Submit"
+                  onClick={handleSubmitClick}
+                >
+                  Submit
+                </button>
               </fieldset>
-              <button type="Submit" onClick={handleSubmitClick}>
-                Submit
-              </button>
             </form>
           </div>
           <br />

@@ -2,6 +2,8 @@ import React from "react";
 import kirbyavatar from "../../Assets/kirbyavatar.png";
 import amyavatar from "../../Assets/amyavatar.png";
 import jackieavatar from "../../Assets/jackieavatar.png";
+import gabyavatar from "../../Assets/gabyavatar.png";
+import stephanieavatar from "../../Assets/stephanieavatar.png";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MapIcon from "@mui/icons-material/Map";
@@ -51,10 +53,13 @@ export default function Aboutpage() {
           >
             Amy Kwong
             <br /> <LinkedInIcon />{" "}
-            <Link style={{ color: "blue" }}>
-              LinkedIn: www.linkedin.com/in/amy-kwong
+            <Link to="www.linkedin.com/in/amy-kwong" style={{ color: "blue" }}>
+              www.linkedin.com/in/amy-kwong
             </Link>
-            <br /> <GitHubIcon /> Github: https://github.com/Amy-Kw
+            <br /> <GitHubIcon />{" "}
+            <Link to="https://github.com/Amy-Kw" style={{ color: "blue" }}>
+              https://github.com/Amy-Kw
+            </Link>
             <br /> <MapIcon /> Bucket List Travel Destination: Greece, Finland
           </p>
         </div>
@@ -74,9 +79,21 @@ export default function Aboutpage() {
             }}
           >
             Kirby Schuetz
-            <br /> <LinkedInIcon /> LinkedIn:
-            https://www.linkedin.com/in/kirby-schuetz/
-            <br /> <GitHubIcon /> Github: https://github.com/Kirby-Schuetz
+            <br /> <LinkedInIcon />{" "}
+            <Link
+              to="https://www.linkedin.com/in/kirby-schuetz/"
+              style={{ color: "blue" }}
+            >
+              https://www.linkedin.com/in/kirby-schuetz/
+            </Link>
+            <br /> <GitHubIcon />{" "}
+            <Link
+              to="https://github.com/Kirby-Schuetz"
+              style={{ color: "blue" }}
+            >
+              {" "}
+              https://github.com/Kirby-Schuetz
+            </Link>
             <br /> <MapIcon />
             Bucket List Destination: Lisbon, Portugal
           </p>
@@ -84,8 +101,8 @@ export default function Aboutpage() {
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
           <img
-            src={kirbyavatar}
-            alt="KirbyAvatar"
+            src={stephanieavatar}
+            alt="StephanieAvatar"
             style={{ ...commonStyles }}
           />
           <p
@@ -97,9 +114,18 @@ export default function Aboutpage() {
             }}
           >
             Stephanie Tayengco
-            <br /> <LinkedInIcon /> LinkedIn:
-            www.linkedin.com/in/stephanie-tayengco
-            <br /> <GitHubIcon /> Github: https://github.com/STayengco
+            <br /> <LinkedInIcon />{" "}
+            <Link
+              to="www.linkedin.com/in/stephanie-tayengco"
+              style={{ color: "blue" }}
+            >
+              www.linkedin.com/in/stephanie-tayengco
+            </Link>
+            <br /> <GitHubIcon />{" "}
+            <Link to="https://github.com/STayengco" style={{ color: "blue" }}>
+              {" "}
+              https://github.com/STayengco
+            </Link>
             <br /> <MapIcon /> Bucket List Destination: Machu Picchu
           </p>
         </div>
@@ -119,19 +145,27 @@ export default function Aboutpage() {
             }}
           >
             Jaclyn Barbieri
-            <br /> <LinkedInIcon /> Linkedin:
-            https://www.linkedin.com/in/jaclyn-barbieri/
-            <br /> <GitHubIcon /> Github: https://github.com/uhohjackieson
+            <br /> <LinkedInIcon />{" "}
+            <Link
+              style={{ color: "blue" }}
+              to="https://www.linkedin.com/in/jaclyn-barbieri/"
+            >
+              https://www.linkedin.com/in/jaclyn-barbieri/
+            </Link>
+            <br /> <GitHubIcon />{" "}
+            <Link
+              style={{ color: "blue" }}
+              to="https://github.com/uhohjackieson"
+            >
+              {" "}
+              https://github.com/uhohjackieson
+            </Link>
             <br /> <MapIcon /> Bucket List Destination: Giza, Egypt
           </p>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          <img
-            src={kirbyavatar}
-            alt="KirbyAvatar"
-            style={{ ...commonStyles }}
-          />
+          <img src={gabyavatar} alt="GabyAvatar" style={{ ...commonStyles }} />
           <p
             style={{
               color: "black",
@@ -142,14 +176,27 @@ export default function Aboutpage() {
           >
             Gaby Markley
             <br /> <LinkedInIcon />
-            Linkedin: https://www.linkedin.com/in/gaby-markley/
-            <br /> <GitHubIcon /> Github: https://github.com/Gaby-Markley
+            <Link
+              style={{ color: "blue" }}
+              to="https://www.linkedin.com/in/gaby-markley/"
+            >
+              {" "}
+              https://www.linkedin.com/in/gaby-markley/
+            </Link>
+            <br /> <GitHubIcon />{" "}
+            <Link
+              style={{ color: "blue" }}
+              to="https://github.com/Gaby-Markley"
+            >
+              {" "}
+              https://github.com/Gaby-Markley
+            </Link>
             <br /> <MapIcon /> Bucket List Travel Destination: Antarctica
           </p>
         </div>
       </div>
 
-      <div style={{ flex: 2 }}>
+      <div>
         <AboutMap />
       </div>
     </div>
