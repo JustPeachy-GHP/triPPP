@@ -1,6 +1,6 @@
-const BASE_URL = "http://localhost:8080/api/trips";
-const GROUPMEMBS_URL = "http://localhost:8080/api/groupmembs";
-const USERS_URL = "http://localhost:8080/api/users";
+const BASE_URL = "https://peachypits.onrender.com/api/trips";
+const GROUPMEMBS_URL = "https://peachypits.onrender.com/api/groupmembs";
+const USERS_URL = "https://peachypits.onrender.com/api/users";
 
 // deleteGroupMemb-line 10
 // addGroupMemb-line 27

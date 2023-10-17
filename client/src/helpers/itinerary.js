@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080/api/itineraryitems";
+const baseUrl = "https://peachypits.onrender.com/api/itineraryitems";
 
 export async function checkRatings(checkItinObject) {
   try {

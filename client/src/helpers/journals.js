@@ -1,5 +1,5 @@
 // const baseUrl = "http://localhost:8080/api";
-const journalUrl = "http://localhost:8080/api/journals";
+const journalUrl = "https://peachypits.onrender.com/api/journals";
 
 export async function fetchAllJournals() {
   try {

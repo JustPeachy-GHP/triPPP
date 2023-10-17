@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/trips";
+const BASE_URL = "https://peachypits.onrender.com/api/trips";
 
 export async function fetchAllTrips() {
   try {

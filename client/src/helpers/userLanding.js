@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080/api/users'
+const baseUrl = 'https://peachypits.onrender.com/api/users'
 
 export async function getMyGroupAdmin (user_id) {
     try {
