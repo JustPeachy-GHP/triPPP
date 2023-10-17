@@ -23,15 +23,6 @@ export default function EachMemb({
         type="button"
         onClick={() => handleDelete(trip_id, user_id)}
       ></button>
-
-      {/* map over group members to display members and to add delete button to each */}
-      {/* need delete group memb button to display next to each group memb */}
     </div>
   );
 }
-
-// need - trip name, map over the members
-
-// take in email
-// convert email to user_id
-// groupmemb change the trip_id to match the trip we're on
