@@ -7,7 +7,6 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./TripForm.css";
-import { green } from "@mui/material/colors";
 
 export default function TripForm() {
   const [tripname, settripName] = useState("");
@@ -92,13 +91,21 @@ export default function TripForm() {
         <Box sx={style} className="scrollable-content">
           <div>
             <form onSubmit={submitHandler}>
-              <div className="title">
+              <div class="title">
                 <h1> Make A Trip</h1>
                 <h3>Tell us more about that dream vacation!</h3>
               </div>
               <br />
               <h3> Trip Name</h3>
               <input
+                style={{
+                  backgroundColor: "white",
+                  color: "black",
+                  border: "1px solid black",
+                  borderRadius: "5px",
+                  padding: "5px",
+                  margin: "5px",
+                }}
                 placeholder="Trip Name"
                 onChange={(e) => settripName(e.target.value)}
                 value={tripname}
@@ -137,7 +144,9 @@ export default function TripForm() {
                 {/* ==============CHILL ============*/}
                 <div className="vibe-option">
                   <div>
-                    <h3>Chill</h3>
+                    <label htmlFor="chill">
+                      <h3>Chill</h3>
+                    </label>
                     <label>
                       <input
                         type="radio"
@@ -151,20 +160,18 @@ export default function TripForm() {
                         src="https://tinyurl.com/446u8r4f"
                         alt="woman relaxing on the beach"
                       ></img>
-                      <label htmlFor="chill">
-                        <h5>
-                          You love to hang out on the beach, go visit a spa, or
-                          spend some time with that vacation read. Your trip is
-                          all about rest and relaxation.
-                        </h5>
-                        <br />
-                      </label>
                     </label>
+                    <h5>
+                      You love to hang out on the beach, go visit a spa, or
+                      spend some time with that vacation read. Your trip is all
+                      about rest and relaxation.
+                    </h5>
+                    <br />
                   </div>
                 </div>
 
                 {/* ============OUTDOORS============= */}
-                <div className="vibe-option">
+                <div class="vibe-option">
                   <label htmlFor="outdoors">
                     <h3>Outdoors</h3>
                   </label>
@@ -274,7 +281,7 @@ export default function TripForm() {
                 <br />
                 {/* hook up event listener to  */}
                 <button
-                  className="button"
+                  class="button"
                   type="Submit"
                   onClick={handleSubmitClick}
                 >
@@ -289,5 +296,3 @@ export default function TripForm() {
     </div>
   );
 }
-
-// how are we going to pass data up to form.jsx?

@@ -334,3 +334,34 @@ input:checked + .slider:before {
   top: 10px;
   left: 10px;
 }
+
+/* These 2 are to fix the form input colors from black to white */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="text"][name="tripname"] {
+  background-color: white; /* Set the background color to white */
+  color: black; /* Set the text color to black */
+  border: 1px solid black; /* Add a black border */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 5px; /* Add some padding for spacing */
+  margin: 5px; /* Add margin for spacing */
+}
+
+textarea {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.nameZoom {
+  text-decoration: underline;
+
+  &:hover {
+    color: #bfd9cd;
+    font-size: 40px;
+  }
+}

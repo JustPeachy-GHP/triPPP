@@ -65,7 +65,13 @@ export default function AllJournals() {
       <JournalNavbar />
       {/* <SuccessMessage /> */}
       <div>
+        <br />
+        <label>
+          <h2> My Trips </h2>
+        </label>
         <label id="search">Search Trip Name: </label>
+        <br />
+
         <input
           type="text"
           placeholder="Search for trip name"
@@ -117,7 +123,7 @@ export default function AllJournals() {
           }}
           onClick={handleCreateJournal}
         >
-          Create Journal
+          + New Entry
         </button>
       </div>
       {showCreateJournalForm && (

@@ -106,7 +106,7 @@ export default function Aboutpage() {
           {renderAvatarCard(
             stephanieavatar,
             "Stephanie Tayengco",
-            "www.linkedin.com/in/stephanie-tayengco",
+            "https://www.linkedin.com/in/stephanie-tayengco",
             "https://github.com/STayengco",
             "Machu Picchu",
             "170px",
