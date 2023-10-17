@@ -1,5 +1,5 @@
-// const baseUrl = "http://localhost:8080/api";
-const journalUrl = "http://localhost:8080/api/journals";
+// const baseUrl = "http://localhost:8081/api";
+const journalUrl = "http://localhost:8081/api/journals";
 
 export async function fetchAllJournals() {
   try {

@@ -36,7 +36,7 @@ export default function EachMemb({
         {/* map over group members to display members and to add delete button to each */}
         {/* need delete group memb button to display next to each group memb */}
       </div>
-    </div>
+    
   );
 }
 
