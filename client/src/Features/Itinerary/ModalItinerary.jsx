@@ -12,8 +12,6 @@ import { setMaps } from '../../slices/mapsSlice';
 import { setTrips } from '../../slices/tripsSlice';
 import { useParams } from 'react-router-dom';
 
-
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -31,8 +29,6 @@ const style = {
 // trip_id will be passed through from the click that
 // gets you to the itinerary view page
 // const trip_id = 7;
-
-
 
 export default function ItineraryView() {
   // console.log(useSelector(state => state.maps.location_id))
@@ -62,7 +58,6 @@ export default function ItineraryView() {
 
   const handleOpen = () => {
     setOpen(true);
-    makeDaysList()
   }
 
   useEffect(() => {
@@ -228,6 +223,7 @@ export default function ItineraryView() {
     }
     makeDaysList();
   }, [destNames]);
+
 
   return (
     <div >
