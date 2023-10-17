@@ -29,18 +29,18 @@ export default function UserTripMember({ trip_id, location_id, tripname }) {
           <div>
             {/* check if destination isdecided is true - if it is, direct to itinerary map */}
           { myTrip.isdecided === true 
-          ? ( <button className="textButtons" onClick={() => navigate(`/trips/${trip_id}`)}>
-            {tripname}<p>load itinerary map</p> 
+          ? ( <button className="textButtons" onClick={() => navigate(`/trips/${myTrip.trip_id}`)}>
+            {tripname}<p>Look at things we can do on this trip.</p> 
             </button>)
           :    
             // if isdecided is false direct user to set destination if admin, or wait on admin
             (( myId === myTrip.admin_id)
-            ? (<button className="textButtons" onClick={() => alert(`this is where we redirect to destination map`)}>
-            {tripname}<p>direct user back to administrator</p>
+            ? (<button className="textButtons" onClick={() => navigate(`/trips/${trip_id}/locations`, {replace: true})}>
+            {tripname}<p>Let's set the destination for this trip!</p>
             </button>)
             :
             (<button className="textButtons" onClick={() => alert(`Waiting for ${myTrip.admin_name} at ${myTrip.admin_email} to set the destination...`)}>
-              {tripname}<p>direct user back to administrator</p>
+              {tripname}<p>... Waiting for { myTrip.admin_name ? `${myTrip.admin_name} at ${myTrip.admin_email} `: `your trip organizer ` } to set the destination ...</p>
               </button>)
             )
           }
@@ -49,3 +49,4 @@ export default function UserTripMember({ trip_id, location_id, tripname }) {
     </>
   );
 }
+
