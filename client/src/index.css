@@ -13,18 +13,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
   }
-  
+
   body {
     margin: 0;
     display: block;
     min-width: 320px;
     min-height: 100vh;
-    background-image: url("./Assets/background.png");
+    background-image: url("./Assets/beachwatercolor.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  
   
   img{
     border: 1px solid #ddd;
@@ -55,7 +58,6 @@
     font-weight: 500;
     font-family: inherit;
     background-color: #8FA69D;
-    cursor: pointer;
     font: whitesmoke;
     transition: border-color 0.25s;
   }

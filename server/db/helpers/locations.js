@@ -111,8 +111,7 @@ const getLocationById = async (location_id) => {
 };
 
 const getLocationIdByPlaceId = async (place_id) => {
-  console.log("Place ID: ", place_id);
-  console.log(typeof place_id);
+
   try {
     const { 
       rows: [locations] 
