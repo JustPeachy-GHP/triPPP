@@ -241,6 +241,7 @@ router.get("/email/:email", async (req, res, next) => {
   try {
     console.log("getting userByEmail...");
     const user = await getUserByEmail(req.params.email);
+    console.log("in users/email/:email api", user)
     res.send(user);
   } catch (error) {
     next(error);
