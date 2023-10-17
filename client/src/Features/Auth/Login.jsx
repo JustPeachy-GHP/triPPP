@@ -103,6 +103,7 @@ export default function Login() {
               <label>
                 Username:{" "}
                 <input
+                  autoComplete="off"
                   id="username"
                   required
                   autoFocus
@@ -114,6 +115,8 @@ export default function Login() {
               <label>
                 Password:{" "}
                 <input
+                  autoComplete="off"
+                  type="password"
                   id="password"
                   required
                   value={password}

@@ -32,12 +32,14 @@ const LocationsInfoWindow = (trip_id) => {
   };
 
   const handleLetsGoClick = async (placeId) => {
+   
     try {
       const updatedTrip = {
         isdecided: true,
         place_id: placeId
       }
 
+      console.log("Updated trip: ", updatedTrip);
       const trip = await updateTrip(params.trip_id, updatedTrip);
       console.log("Updated trip: ", trip);
       const url = `/trips/${params.trip_id}/itinerary/${placeId}`;

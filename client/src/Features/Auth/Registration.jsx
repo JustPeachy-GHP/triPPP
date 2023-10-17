@@ -101,6 +101,7 @@ export default function Registration({ setToken, setActiveUser }) {
                   <label>
                     Username:{" "}
                     <input
+                      autoComplete="off"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -110,6 +111,8 @@ export default function Registration({ setToken, setActiveUser }) {
                   <label>
                     Password:{" "}
                     <input
+                      autoComplete="off"
+                      type="password"
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}

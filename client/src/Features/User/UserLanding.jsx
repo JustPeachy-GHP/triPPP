@@ -58,7 +58,7 @@ export default function UserLanding() {
             <div>
               <h2>Trips</h2>
               <div>
-                <h3>Trips you are organizing:</h3>
+                <h3>Add companions to the trips you manage:</h3>
                 {tripAdmins.map((admin) => (
                   <UserTrips
                     key={admin.trip_id}
@@ -69,16 +69,11 @@ export default function UserLanding() {
                 ))}
               </div>
               <div>
-                <h3>Trips you are joining:</h3>
-                {tripsMemb.map((memb) => (
-                  // eslint-disable-next-line react/jsx-key
-                  <div>
-                    <UserTripMember
-                      key={memb.trip_id}
-                      trip_id={memb.trip_id}
-                      location_id={memb.location_id}
-                      tripname={memb.tripname}
-                    />
+                <h3>Decide on places to go, things to see:</h3>
+                {tripsMemb.map((memb) => (  
+                // eslint-disable-next-line react/jsx-key
+                <div>
+                  <UserTripMember key={memb.trip_id} trip_id={memb.trip_id} location_id={memb.location_id} tripname={memb.tripname} />
                   </div>
                 ))}
               </div>

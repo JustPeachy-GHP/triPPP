@@ -53,13 +53,17 @@ export default function ItineraryView() {
   const [dayPlanArray, setDayPlanArray] = useState([]);
   const [finalVotes, setFinalVotes] = useState([]);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const params = useParams()
   let content = "";
 
   const dispatch = useDispatch()
   const trip_id = params.trip_id;
+
+  const handleOpen = () => {
+    setOpen(true);
+    makeDaysList()
+  }
 
   useEffect(() => {
     // Get additional trip info for the itinerary from the trip table
