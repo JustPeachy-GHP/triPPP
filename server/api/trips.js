@@ -35,13 +35,14 @@ router.get("/:trip_id", async (req, res, next) => {
 router.patch("/:trip_id", async (req, res, next) => {
   try {
     let trip_update = req.body;
+    console.log("API: Updating trip: ", trip_update);
     if (trip_update.place_id) {
       const location_id = await getLocationIdByPlaceId(trip_update.place_id)
       trip_update = {...trip_update, ...location_id};
-      console.log("Trip update with location id: ", trip_update);
+      console.log("API: Trip update with location id: ", trip_update);
     }
     const trip = await updateTrip(req.params.trip_id, trip_update);
-    console.log("Updated trip: ", trip);
+    console.log("API: Updated trip: ", trip);
     res.send(trip);
   } catch (error) {
     next(error)
