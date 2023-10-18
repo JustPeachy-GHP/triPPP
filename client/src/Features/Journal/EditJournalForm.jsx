@@ -19,7 +19,6 @@ export default function EditJournal() {
   //   hard code for now
   // const user_id = 1;
   const trip_id = 1;
-  // const location_id = 1;
 
   // const navigate = useNavigate();
 
@@ -41,6 +40,8 @@ export default function EditJournal() {
   }, [journal_id]);
 
   async function handleSubmit(e) {
+    // add timestamp???
+
     const getTimeStamp = () => {
       const date = new Date(Date.now()).toISOString().split(".");
       let timestamp = date[0].replace("T", " ");
@@ -48,6 +49,7 @@ export default function EditJournal() {
     };
 
     const tStamp = getTimeStamp();
+    console.log(tStamp);
 
     e.preventDefault();
 
@@ -58,19 +60,22 @@ export default function EditJournal() {
       videocontent: videocontent,
       image: image,
       title: title,
-      timestamp: tStamp,
+      timestamp: timestamp,
       entry: entry,
-      // location_id: location_id,
     };
 
-    alert("Entry successfully edited!");
+    console.log("submit", editJournalObject);
+    alert("Entry succesfully edited!");
 
     try {
+      console.log("before post", editJournalObject);
       const response = await updateJournal(
         editJournalObject.journal_id,
         editJournalObject
       );
-      console.log("Posted", response);
+      console.log("posted", response);
+      const returnVal = response;
+      return returnVal;
     } catch (error) {
       console.log(error);
     }

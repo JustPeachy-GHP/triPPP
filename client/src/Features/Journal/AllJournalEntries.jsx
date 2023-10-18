@@ -40,17 +40,23 @@ export default function AllJournals() {
     }
   }, [user_id]);
 
-  useEffect(() => {
-    async function fetchTrips() {
+  const fetchTripsData = async () => {
+    try {
       const response = await fetchAllTrips();
       // console.log("Response:", response);
       setAllTrips(response);
-      // console.log(allTrips);
+    } catch (error) {
+      console.error("trouble getting trips", error);
     }
-    fetchTrips();
+  };
+
+  useEffect(() => {
+    fetchTripsData();
   }, []);
 
-  const handleCreateJournal = () => {
+
+  const handleCreateJournal = async () => {
+    await fetchTripsData();
     setShowCreateJournalForm(true);
   };
 

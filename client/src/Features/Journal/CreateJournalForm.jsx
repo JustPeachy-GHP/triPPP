@@ -5,6 +5,7 @@ import { fetchAllTrips } from "../../../src/helpers/trips";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
 import SuccessMessage from "../Display/SuccessMessage";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateJournalForm({
   journal,
@@ -24,6 +25,7 @@ export default function CreateJournalForm({
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
   const currentTimestamp = new Date().toISOString();
+  const navigate = useNavigate();
   // const location_id = 1;
   // const [trips, setTrips] = useState([]);
 
@@ -75,6 +77,8 @@ export default function CreateJournalForm({
       // setTimestamp("");
       setEntry("");
       setSubmissionSuccess(true);
+
+      navigate(`/journals/${newJournal.journal_id}`);
     } else {
       setError(API.data);
       // console.log(API.data);

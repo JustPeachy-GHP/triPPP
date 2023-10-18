@@ -79,7 +79,6 @@ export async function deleteJournal(journal_id) {
 export async function createJournal(
   user_id,
   trip_id,
-  // location_id,
   videocontent,
   image,
   title,
@@ -95,7 +94,6 @@ export async function createJournal(
       body: JSON.stringify({
         user_id,
         trip_id,
-        // location_id,
         videocontent,
         image,
         title,
@@ -113,7 +111,7 @@ export async function createJournal(
 
 export async function updateJournal(journal_id, journal) {
   try {
-    const response = await fetch(`${journalUrl}/${journal_id}`, {
+    const response = await fetch(`${journalUrl}/${journal_id}/edit`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
