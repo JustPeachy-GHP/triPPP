@@ -44,10 +44,10 @@ export default function LandingPage() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box className= "postcard" sx={style}>
+        <Box className="postcard" sx={style}>
           <div className="modal-content">
             <div>
-              <img className= "stamp" src={triPPPimage} alt="" />
+              <img className="stamp" src={triPPPimage} alt="" />
             </div>
             <p className="postcard_text" style={paragraphStyle}>
               {" "}
@@ -55,12 +55,12 @@ export default function LandingPage() {
               your travel experiences. It empowers you to collaborate with
               friends to curate your travel adventures by voting on activities
               and crafting exciting trips using an intuitive map-based
-              interface. You can effortlessly transition
-              from your app-generated itinerary to a dedicated journaling space,
-              where you can pen down your travel stories, save precious photos
-              and videos, and share these cherished moments with your travel
-              companions.Whether you are exploring new cities or revisiting old
-              favorites, TriPPP is your ultimate travel companion.
+              interface. You can effortlessly transition from your app-generated
+              itinerary to a dedicated journaling space, where you can pen down
+              your travel stories, save precious photos and videos, and share
+              these cherished moments with your travel companions.Whether you
+              are exploring new cities or revisiting old favorites, TriPPP is
+              your ultimate travel companion.
               <br />
             </p>
             <Link to="/login">

@@ -5,6 +5,7 @@ import { fetchAllTrips } from "../../../src/helpers/trips";
 import JournalNavbar from "./JournalNavbar";
 import "./Journal.css";
 import SuccessMessage from "../Display/SuccessMessage";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateJournalForm({
   journal,
@@ -24,8 +25,24 @@ export default function CreateJournalForm({
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
   const currentTimestamp = new Date().toISOString();
+  const navigate = useNavigate();
   // const location_id = 1;
   // const [trips, setTrips] = useState([]);
+
+  const formStyle = {
+    backgroundColor: "white",
+    color: "black",
+    border: "1px solid black",
+    borderRadius: "5px",
+    padding: "5px",
+    margin: "5px",
+  };
+
+  const centerContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -60,6 +77,8 @@ export default function CreateJournalForm({
       // setTimestamp("");
       setEntry("");
       setSubmissionSuccess(true);
+
+      navigate(`/journals/${newJournal.journal_id}`);
     } else {
       setError(API.data);
       // console.log(API.data);
@@ -74,6 +93,7 @@ export default function CreateJournalForm({
           Choose a trip you want to write about:
         </label>
         <select
+          style={formStyle}
           className="mb-2"
           value={selectedTrip}
           onChange={(event) => setSelectedTrip(event.target.value)}
@@ -93,45 +113,50 @@ export default function CreateJournalForm({
         </select>
         {selectedTrip && (
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-3 gap-4 mb-4">
-              <input
-                id="videocontent"
-                autoFocus
-                placeholder="Insert Video URL"
-                value={videocontent}
-                onChange={(e) => setVideocontent(e.target.value)}
-                className="col-span-1 p-2 border border-gray-300 rounded"
-              />
+            <div style={centerContainerStyle}>
+              <div className="grid grid-cols-3 gap-4 mb-4">
+                <input
+                  style={formStyle}
+                  id="videocontent"
+                  autoFocus
+                  placeholder="Insert Video URL"
+                  value={videocontent}
+                  onChange={(e) => setVideocontent(e.target.value)}
+                  className="col-span-1 p-2 border border-gray-300 rounded center-input"
+                />
 
-              <input
-                id="image-text"
-                placeholder="Insert Image URL"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                className="col-span-1 p-2 border border-gray-300 rounded"
-              />
-              <input
-                id="title"
-                placeholder="Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="col-span-1 p-2 border border-gray-300 rounded"
-              />
-            </div>
-            {/* <input
+                <input
+                  style={formStyle}
+                  id="image-text"
+                  placeholder="Insert Image URL"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                  className="col-span-1 p-2 border border-gray-300 rounded center-container"
+                />
+                <input
+                  style={formStyle}
+                  id="title"
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="col-span-1 p-2 border border-gray-300 rounded center-container"
+                />
+              </div>
+              {/* <input
             id="timestamp"
             placeholder="Date and Time"
             value={timestamp}
             onChange={(e) => setTimestamp(e.target.value)}
           /> */}
 
-            <textarea
-              id="entry-text"
-              placeholder="Entry"
-              value={entry}
-              onChange={(e) => setEntry(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded h-32"
-            />
+              <textarea
+                id="entry-text"
+                placeholder="Entry"
+                value={entry}
+                onChange={(e) => setEntry(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded larger-textarea center-container"
+              />
+            </div>
             <br></br>
             <button
               type="submit"

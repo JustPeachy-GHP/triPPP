@@ -19,7 +19,8 @@ body {
   display: block;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url("./Assets/background.png");
+  background-image: url("./Assets/peachbackground.png");
+  /* opacity: 0.9; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

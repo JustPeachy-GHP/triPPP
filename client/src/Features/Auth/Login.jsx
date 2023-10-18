@@ -103,6 +103,14 @@ export default function Login() {
               <label>
                 Username:{" "}
                 <input
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "1px solid black",
+                    borderRadius: "5px",
+                    padding: "5px",
+                    margin: "5px",
+                  }}
                   autoComplete="off"
                   id="username"
                   required
