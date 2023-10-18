@@ -163,7 +163,8 @@ div#root {
 
 .infoContainer {
   height: 100vh;
-  width: 41vw;
+  width: 50%;
+  float: left;
   display: block;
   background-color: #bfd9cd;
   color: black;
@@ -177,7 +178,7 @@ div#root {
 
 .mapContainer {
   height: 100vh;
-  width: 50vw;
+  width: 80vh;
   display: block;
   float: right;
   position: sticky;
@@ -185,7 +186,6 @@ div#root {
 }
 
 .map-container {
-  padding-left: 50%;
   height: 100%;
   width: 100%;
 }
