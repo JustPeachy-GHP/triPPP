@@ -6,8 +6,9 @@ import {
 } from "@react-google-maps/api";
 import React, { useState } from "react";
 const libraries = ["places"];
-// const API_KEY = import.meta.env.GOOGLE_MAPS_API_KEY;
-const API_KEY = import.process.env.GOOGLE_MAPS_API_KEY;
+
+const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
+
 const LocationsMap = () => {
   const [map, setMap] = React.useState(null);
   const [placesService, setPlacesService] = useState(null);

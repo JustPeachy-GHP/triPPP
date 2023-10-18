@@ -1,8 +1,7 @@
 import {createContext, useContext, useEffect, useState } from 'react';
 import { useJsApiLoader } from "@react-google-maps/api";
 
-// const API_KEY = import.meta.env.GOOGLE_MAPS_API_KEY;
-const API_KEY = import.process.env.GOOGLE_MAPS_API_KEY;
+const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
 
 // Define libraries as a constant outside of the component
 const libraries = ["places"];
