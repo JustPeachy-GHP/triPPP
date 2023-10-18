@@ -16,11 +16,14 @@ export default function TripAdminPage() {
   const [email, setEmail] = useState(null);
   const [oneTrip, setOneTrip] = useState([]);
   const [allGMembs, setAllGMembs] = useState([]);
+  const [groupState, setGroupState] = useState([]);
 
   const navigate = useNavigate();
   const params = useParams();
+  console.log("params trip admin page", params)
 
   const trip_id = params.trip_id;
+
 
   useEffect(() => {
     setIsOpen(true);
@@ -139,6 +142,8 @@ export default function TripAdminPage() {
                 lastname={member.lastname}
                 trip_id={member.trip_id}
                 user_id={member.user_id}
+                groupState={groupState}
+                setGroupState={setGroupState}
               />
             );
           })}

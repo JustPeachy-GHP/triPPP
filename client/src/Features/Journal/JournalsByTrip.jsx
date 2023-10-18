@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchAllJournalsByTrip } from "../../../src/helpers/journals";
 import { useSelector } from "react-redux";
-import JournalNavbar from "./JournalNavbar";
+import JournalNavbar from "./JournalNavbar"
 
 function JournalEntriesPage() {
   const [journals, setJournals] = useState([]);
