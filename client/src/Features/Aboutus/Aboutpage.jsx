@@ -84,11 +84,31 @@ export default function Aboutpage() {
 
         <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
           {renderAvatarCard(
+            jackieavatar,
+            "Jaclyn Barbieri",
+            "https://www.linkedin.com/in/jaclyn-barbieri/",
+            "https://github.com/uhohjackieson",
+            "Giza, Egypt"
+          )}
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
+          {renderAvatarCard(
             amyavatar,
             "Amy Kwong",
             "https://www.linkedin.com/in/amy-kwong",
             "https://github.com/Amy-Kw",
             "Greece, Finland"
+          )}
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
+          {renderAvatarCard(
+            gabyavatar,
+            "Gaby Markley",
+            "https://www.linkedin.com/in/gaby-markley/",
+            "https://github.com/Gaby-Markley",
+            "Antarctica"
           )}
         </div>
 
@@ -111,26 +131,6 @@ export default function Aboutpage() {
             "Machu Picchu",
             "170px",
             "170px"
-          )}
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          {renderAvatarCard(
-            jackieavatar,
-            "Jaclyn Barbieri",
-            "https://www.linkedin.com/in/jaclyn-barbieri/",
-            "https://github.com/uhohjackieson",
-            "Giza, Egypt"
-          )}
-        </div>
-
-        <div style={{ display: "flex", alignItems: "center", margin: "10px" }}>
-          {renderAvatarCard(
-            gabyavatar,
-            "Gaby Markley",
-            "https://www.linkedin.com/in/gaby-markley/",
-            "https://github.com/Gaby-Markley",
-            "Antarctica"
           )}
         </div>
       </div>
