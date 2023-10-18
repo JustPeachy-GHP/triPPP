@@ -57,13 +57,25 @@ async function getTripExtData (trip_id) {
       trips.numdays,
       trips.numtravelers,
       trips.isdecided,
-      trips.location_id,
-      locations.place_id
+      trips.location_id
     FROM users 
     INNER JOIN trips on users.user_id = trips.user_id 
-    INNER JOIN locations on trips.location_id = locations.location_id
     WHERE trips.trip_id = $1;
     `, [trip_id]);
+
+    if ( trip.location_id !== null ) {
+      const { rows: [trip2] } = await client.query(`
+      SELECT 
+        place_id
+      FROM locations 
+      WHERE location_id = $1;
+      `, [trip.location_id]);
+
+      trip.place_id = trip2.place_id
+
+      console.log("trip2", trip2, "trip object", trip)
+    }
+
     return trip
   } catch (error) {}
 }
