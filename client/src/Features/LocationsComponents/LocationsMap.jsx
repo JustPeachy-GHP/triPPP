@@ -113,7 +113,7 @@ const LocationsMap = () => {
     //     });
     //   }
     // };
-    const onHandleGetLocationInfo = function callback(placeId, placesObj) {
+    const onHandleGetLocationInfo = function callback(placeId) {
       if (placesService && placeId) {
         const request = {
           placeId: placeId,
@@ -123,8 +123,7 @@ const LocationsMap = () => {
         return new Promise((resolve, reject) => {
           placesService.getDetails(request, (place, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-              placesObj[placeId] = place;
-              resolve(placesObj);
+              resolve(place);
             } else {
               console.error("Error fetching place details", placeId, status);
               reject(status);
