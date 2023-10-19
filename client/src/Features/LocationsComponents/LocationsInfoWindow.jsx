@@ -6,7 +6,7 @@ import SetDestToggle from "../Display/SetDestToggle";
 import { useParams } from 'react-router-dom';
 import { updateTrip } from "../../helpers/trips";
 
-const LocationsInfoWindow = (trip_id) => {
+const LocationsInfoWindow = () => {
   const { isGoogleMapsLoaded, map, placesDetails } = useGoogleMaps();
   const [placeKeys, setPlaceKeys] = useState([]);
   const [destinationDecided, setDestinationDecided] = useState(false);
@@ -14,12 +14,12 @@ const LocationsInfoWindow = (trip_id) => {
   const params = useParams();
 
   useEffect(() => {
-    console.log(trip_id);
+    
     if (isGoogleMapsLoaded && Object.keys(placesDetails).length > 0) {
       const keys = Object.keys(placesDetails);
       setPlaceKeys(keys);
     }
-  }, [isGoogleMapsLoaded, map, placesDetails, trip_id]);
+  }, [isGoogleMapsLoaded, map, placesDetails]);
 
   const handleCardClick = (placeId) => {
     const lat = placesDetails[placeId].geometry.location.lat();
