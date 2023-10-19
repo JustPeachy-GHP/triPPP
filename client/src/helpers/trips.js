@@ -19,7 +19,7 @@ export async function createTrip(tripobj) {
         "Content-Type": "application/json",
       },
 
-      body: JSON.stringify(tripobj),
+      body: tripobj,
     });
     const result = await response.json();
     console.log(result);
