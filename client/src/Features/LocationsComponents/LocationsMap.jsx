@@ -85,62 +85,66 @@ const LocationsMap = () => {
     }
   }, [setPlacesDetails]);
 
-  const handleGetLocationInfo = (placeId) => {
-    if (placesService && placeId) {
-      const request = {
-        placeId: placeId,
-        fields: ["name", "photos", "geometry"],
-        key: API_KEY,
-      };
-
-      placesService.getDetails(request, (place, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-          return place;
-        } else {
-          console.error("Error fetching place details", placeId, status);
-        }
-      });
-    }
-  };
+  
   const onLoad = React.useCallback(async function callback(map) {
     if (!map || !window.google || !window.google.maps) {
       console.error("Google Maps or map not available.");
       return;
     }
+    
+    const placesService = new window.google.maps.places.PlacesService(map);
+    setPlacesService(placesService);
+
+    const handleGetLocationInfo = (placeId) => {
+      if (placesService && placeId) {
+        const request = {
+          placeId: placeId,
+          fields: ["name", "photos", "geometry"],
+          key: API_KEY,
+        };
+  
+        placesService.getDetails(request, (place, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            return place;
+          } else {
+            console.error("Error fetching place details", placeId, status);
+          }
+        });
+      }
+    };
 
     const bounds = new window.google.maps.LatLngBounds();
     let places = {};
 
-    try {
-      const placesService = new window.google.maps.places.PlacesService(map);
-      setPlacesService(placesService);
-
-      for (const location of locations) {
-        bounds.extend(parseCoordinates(location.coord));
-        if (location.place_id) {
-          // const placesDetails = await onHandleGetLocationInfo(location.place_id, places);
-          const placeDetails = handleGetLocationInfo(location.place_id);
+    for (const location of locations) {
+      bounds.extend(parseCoordinates(location.coord));
+      if (location.place_id) {
+        // const placesDetails = await onHandleGetLocationInfo(location.place_id, places);
+        let placeDetails;
+        try {
+          placeDetails = handleGetLocationInfo(location.place_id);
           console.log("Place Detail: ", placeDetails);
-          if (placeDetails) {
-            places[location.place_id] = placesDetails;
-          } else {
-            console.warn("Skipping item due to place details issue: ", location);
-          }
-        } else {
-          console.warn("Skipping item due to place_id", location);
+        } catch (error) {
+          console.error("Error loading location info:", error);
         }
+      
+        if (placeDetails) {
+          places[location.place_id] = placeDetails;
+        } else {
+          console.warn("Skipping item due to place details issue: ", location);
+        }
+      } else {
+        console.warn("Skipping item due to place_id", location);
       }
-
-      map.fitBounds(bounds);
-      setMap(map);
-
-      if (Object.keys(places).length > 0) {
-        onHandleSetPlacesDetails(places);
-      }
-    } catch (error) {
-      console.error("Error loading location info:", error);
     }
-  }, [onHandleGetLocationInfo, locations, onHandleSetPlacesDetails, setMap]);
+
+    map.fitBounds(bounds);
+    setMap(map);
+
+    if (Object.keys(places).length > 0) {
+      onHandleSetPlacesDetails(places);
+    }
+  }, [locations, onHandleSetPlacesDetails, setMap]);
 
   const handleZoomToLocation = (lat, lng) => {
     if (map) {
