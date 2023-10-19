@@ -45,28 +45,7 @@ function ItineraryMap(destination) {
     }
   }
 
-  const onHandleGetItineraryInfo = React.useCallback(function callback(placeId, placesObj) {
-    return new Promise((resolve, reject) => {
-      if (placesService && placeId) {
-        const request = {
-          placeId: placeId,
-          fields: ["name", "photos", "geometry", "rating"],
-        };
-
-        placesService.getDetails(request, (place, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            placesObj[placeId] = place;
-            resolve(placesObj);
-          } else {
-            console.error("Error fetching place details", placeId, status);
-            reject(status);
-          }
-        });
-      } else {
-        reject("Missing placesService or placeId");
-      }
-    });
-  }, [placesService]);
+  
 
   const onHandleSetItineraryPlacesDetails = React.useCallback(function callback(places) {
     if (Object.keys(places).length > 0) {
@@ -77,35 +56,63 @@ function ItineraryMap(destination) {
 
   const onLoad = React.useCallback(async function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
-    
     let itineraryPlaces = {};
+    const placesService = new window.google.maps.places.PlacesService(map);
+    setPlacesService(placesService);
+
+    const onHandleGetItineraryInfo = function callback(placeId) {
+      if (placesService && placeId) {
+        const request = {
+          placeId: placeId,
+          fields: ["name", "photos", "geometry", "rating"],
+        };
+        return new Promise((resolve, reject) => {
+          placesService.getDetails(request, (place, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+              resolve(place);
+            } else {
+              console.error("Error fetching place details", placeId, status);
+              reject(status);
+            }
+          });
+        })
+      } else {
+        console.error("Missing placesService or placeId");
+        return Promise.reject("Missing placesService or placeId");
+      }
+    };
     
     for (const item of activities) {
       bounds.extend(parseCoordinates(item.coord));
     }
+
+    for (const item of activities) {
+      
+      if (item.place_id) {
+        let itineraryPlace;
+        try {
+          itineraryPlace = await onHandleGetItineraryInfo(item.place_id);
+        } catch (error) {
+          console.error("Error loading itinerary location info:", error);
+        }
+
+        if (itineraryPlace) {
+          itineraryPlaces[item.place_id] = itineraryPlace;
+        } else {
+          console.warn("Skipping due to itinerary place details issue: ", item);
+        }
+      } else {
+        console.warn("Skipping item due to place_id", item);
+      }
+    }
     map.fitBounds(bounds);
     setMap(map);
 
-    try {
-      const placesService = new window.google.maps.places.PlacesService(map);
-      setPlacesService(placesService);
-
-      for (const item of activities) {
-        if (item.place_id) {
-          itineraryPlaces = await onHandleGetItineraryInfo(item.place_id, itineraryPlaces);
-        } else {
-          // Log a message for missing place_id
-          console.warn("Skipping item due to missing place_id:", item);
-        }
-      }
-  
-      if (Object.keys(itineraryPlaces).length > 0) {
-        onHandleSetItineraryPlacesDetails(itineraryPlaces);
-      }
-    } catch (error) {
-      console.error("Error loading location info:", error);
+    if (Object.keys(itineraryPlaces).length > 0) {
+      onHandleSetItineraryPlacesDetails(itineraryPlaces);
     }
-  }, [onHandleGetItineraryInfo, activities, onHandleSetItineraryPlacesDetails, setMap]);
+    
+  }, [activities, onHandleSetItineraryPlacesDetails, setMap]);
 
   const handleZoomToLocation = (lat, lng) => {
     if (map) {
