@@ -71,6 +71,11 @@ const LocationsMap = () => {
 
   
   const onLoad = React.useCallback(async function callback(map) {
+    if (!map || !window.google || !window.google.maps) {
+      console.error("Google Maps or map not available.");
+      return;
+    }
+    
     const bounds = new window.google.maps.LatLngBounds();
     let places = {};
 
