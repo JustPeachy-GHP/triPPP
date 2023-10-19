@@ -121,7 +121,7 @@ export default function TripForm() {
                 type="number"
                 min="1"
                 onInput="validity.valid||(value='');"
-                onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                // onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                 placeholder="Number of Travelers"
                 onChange={(e) => setNumTravelers(e.target.value)}
                 value={numtravelers}
@@ -133,7 +133,7 @@ export default function TripForm() {
                 type="number"
                 min="1"
                 onInput="validity.valid||(value='');"
-                onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                // onKeyPress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                 placeholder="Number of Days"
                 onChange={(e) => setNumDays(e.target.value)}
                 value={numdays}
