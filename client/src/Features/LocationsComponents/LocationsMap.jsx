@@ -8,13 +8,15 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api"; // Corrected component names
 
+const libraries = ["places"];
+const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
+
 const LocationsMap = () => {
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
   const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
   const [locations, setLocations] = useState([]);
-  const libraries = ["places"];
-  const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
+  
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: API_KEY,
     libraries,
