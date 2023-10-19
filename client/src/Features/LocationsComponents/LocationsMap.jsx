@@ -58,7 +58,13 @@ const LocationsMap = () => {
           }
         });
       } else {
-        reject("Missing placesService or placeId");
+        if (!placesService) {
+          reject("Missing places service: ", placesService);
+        }
+        if (!placeId) {
+          reject("Missing place id: ", placeId);
+        }
+        reject("Undetermined error in handing get location information");
       }
     });
   }, [placesService]);
@@ -75,7 +81,7 @@ const LocationsMap = () => {
       console.error("Google Maps or map not available.");
       return;
     }
-    
+
     const bounds = new window.google.maps.LatLngBounds();
     let places = {};
 
