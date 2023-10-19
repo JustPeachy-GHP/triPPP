@@ -43,13 +43,29 @@ export default function TripForm() {
 
   console.log("my user id", user_id);
 
-  const submitHandler = (e) => {
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   // The alert is throwing off the promise lifecycle of loading
+  //   // the alert page.
+  //   // For future improvements consider using something like
+  //   // https://mui.com/material-ui/react-snackbar/
+  //   // alert("You've submitted your trip!");
+  //   const newTripObject = {
+  //     tripname: tripname,
+  //     numdays: numdays,
+  //     numtravelers: numtravelers,
+  //     vibeform: vibeform,
+  //     user_id: user_id,
+  //   };
+  //   console.log("submit data", newTripObject);
+
+  //   // handleSubmitClick(newTripObject);
+  //   const result = await createTrip(tripObj);
+  // };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    // The alert is throwing off the promise lifecycle of loading
-    // the alert page.
-    // For future improvements consider using something like
-    // https://mui.com/material-ui/react-snackbar/
-    // alert("You've submitted your trip!");
+  
     const newTripObject = {
       tripname: tripname,
       numdays: numdays,
@@ -57,32 +73,45 @@ export default function TripForm() {
       vibeform: vibeform,
       user_id: user_id,
     };
-    console.log("submit data", newTripObject);
-
-    handleSubmitClick(newTripObject);
+  
+    try {
+      const trip = await createNewTrip(newTripObject);
+  
+      const newGroupMembObject = {
+        trip_id: trip.trip_id,
+        user_id: user_id,
+      };
+  
+      const memb = await createNewGroupMemb(newGroupMembObject);
+  
+      navigate(`/trips/${trip.trip_id}/locations`, { replace: true });
+    } catch (error) {
+      console.log("Error submitting the form:", error);
+    }
   };
+  
 
   async function createNewTrip(tripObj) {
     const result = await createTrip(tripObj);
-    console.log(result);
+    console.log("Create New Trip: New trip created");
     return result;
   }
 
-  const handleSubmitClick = async (newTripObject) => {
-    const trip = await createNewTrip(newTripObject);
-    console.log(trip);
+  // const handleSubmitClick = async (newTripObject) => {
+  //   const trip = await createNewTrip(newTripObject);
+  //   console.log(trip);
 
-    const newGroupMembObject = {
-      trip_id: trip.trip_id,
-      user_id: user_id,
-    };
+  //   const newGroupMembObject = {
+  //     trip_id: trip.trip_id,
+  //     user_id: user_id,
+  //   };
 
-    console.log("new group member", newGroupMembObject);
-    const memb = await createNewGroupMemb(newGroupMembObject);
-    console.log("memb after submit", memb);
+  //   console.log("new group member", newGroupMembObject);
+  //   const memb = await createNewGroupMemb(newGroupMembObject);
+  //   console.log("memb after submit", memb);
 
-    navigate(`/trips/${trip.trip_id}/locations`, { replace: true });
-  };
+  //   navigate(`/trips/${trip.trip_id}/locations`, { replace: true });
+  // };
 
   return (
     <div>
@@ -287,7 +316,6 @@ export default function TripForm() {
                 <button
                   class="button"
                   type="Submit"
-                  onClick={handleSubmitClick}
                 >
                   Submit
                 </button>
