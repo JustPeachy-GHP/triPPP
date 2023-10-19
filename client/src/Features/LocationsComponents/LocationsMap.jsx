@@ -14,7 +14,7 @@ const API_KEY = import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY;
 const LocationsMap = () => {
   const [placesService, setPlacesService] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null);
-  const { isGoogleMapsLoaded, map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
+  const { map, setMap, placesDetails, setPlacesDetails } = useGoogleMaps();
   const [locations, setLocations] = useState([]);
   
   const { isLoaded } = useJsApiLoader({
@@ -49,35 +49,35 @@ const LocationsMap = () => {
     }
   }
 
-  const onHandleGetLocationInfo = React.useCallback(function callback(placeId, placesObj) {
-    return new Promise((resolve, reject) => {
-      if (placesService && placeId) {
-        const request = {
-          placeId: placeId,
-          fields: ["name", "photos", "geometry"],
-          key: API_KEY
-        };
+  // const onHandleGetLocationInfo = React.useCallback(function callback(placeId, placesObj) {
+  //   return new Promise((resolve, reject) => {
+  //     if (placesService && placeId) {
+  //       const request = {
+  //         placeId: placeId,
+  //         fields: ["name", "photos", "geometry"],
+  //         key: API_KEY
+  //       };
 
-        placesService.getDetails(request, (place, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            placesObj[placeId] = place;
-            resolve(placesObj);
-          } else {
-            console.error("Error fetching place details", placeId, status);
-            reject(status);
-          }
-        });
-      } else {
-        if (!placesService) {
-          reject("Missing places service: ", placesService);
-        }
-        if (!placeId) {
-          reject("Missing place id: ", placeId);
-        }
-        reject("Undetermined error in handing get location information");
-      }
-    });
-  }, [placesService]);
+  //       placesService.getDetails(request, (place, status) => {
+  //         if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+  //           placesObj[placeId] = place;
+  //           resolve(placesObj);
+  //         } else {
+  //           console.error("Error fetching place details", placeId, status);
+  //           reject(status);
+  //         }
+  //       });
+  //     } else {
+  //       if (!placesService) {
+  //         reject("Missing places service: ", placesService);
+  //       }
+  //       if (!placeId) {
+  //         reject("Missing place id: ", placeId);
+  //       }
+  //       reject("Undetermined error in handing get location information");
+  //     }
+  //   });
+  // }, [placesService]);
 
   const onHandleSetPlacesDetails = React.useCallback(function callback(places) {
     if (Object.keys(places).length > 0) {
@@ -85,7 +85,23 @@ const LocationsMap = () => {
     }
   }, [setPlacesDetails]);
 
-  
+  const handleGetLocationInfo = (placeId) => {
+    if (placesService && placeId) {
+      const request = {
+        placeId: placeId,
+        fields: ["name", "photos", "geometry"],
+        key: API_KEY,
+      };
+
+      placesService.getDetails(request, (place, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          return place;
+        } else {
+          console.error("Error fetching place details", placeId, status);
+        }
+      });
+    }
+  };
   const onLoad = React.useCallback(async function callback(map) {
     if (!map || !window.google || !window.google.maps) {
       console.error("Google Maps or map not available.");
@@ -102,9 +118,11 @@ const LocationsMap = () => {
       for (const location of locations) {
         bounds.extend(parseCoordinates(location.coord));
         if (location.place_id) {
-          const placesDetails = await onHandleGetLocationInfo(location.place_id, places);
-          if (placesDetails) {
-            places = placesDetails;
+          // const placesDetails = await onHandleGetLocationInfo(location.place_id, places);
+          const placeDetails = handleGetLocationInfo(location.place_id);
+          console.log("Place Detail: ", placeDetails);
+          if (placeDetails) {
+            places[location.place_id] = placesDetails;
           } else {
             console.warn("Skipping item due to place details issue: ", location);
           }
