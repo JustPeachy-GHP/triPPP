@@ -75,14 +75,18 @@ const LocationsMap = () => {
     let places = {};
 
     try {
-
       const placesService = new window.google.maps.places.PlacesService(map);
       setPlacesService(placesService);
 
       for (const location of locations) {
         bounds.extend(parseCoordinates(location.coord));
         if (location.place_id) {
-          places = await onHandleGetLocationInfo(location.place_id, places);
+          const placesDetails = await onHandleGetLocationInfo(location.place_id, places);
+          if (placesDetails) {
+            places = placesDetails;
+          } else {
+            console.warn("Skipping item due to place details issue: ", location);
+          }
         } else {
           console.warn("Skipping item due to place_id", location);
         }
@@ -144,15 +148,15 @@ const LocationsMap = () => {
                           {
                             (
                               <div>
-                                <h3>{placesDetails[place_id].name}</h3>
+                                <h3>{placesDetails[place_id]?.name}</h3>
                                 {vibes && vibes.length > 0 && (
                                   <h3>Vibes: {vibes.replace(/[{}]/g, '').split(',').join(", ")}</h3>
                                 )}
-                                {placesDetails[place_id].photos &&
-                                  placesDetails[place_id].photos.length > 0 && (
+                                {placesDetails[place_id]?.photos &&
+                                  placesDetails[place_id].photos?.length > 0 && (
                                     <img
                                       src={placesDetails[place_id].photos[0].getUrl()}
-                                      alt={placesDetails[place_id].name}
+                                      alt={placesDetails[place_id]?.name}
                                     />
                                   )}
                               </div>
