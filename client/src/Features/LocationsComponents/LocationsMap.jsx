@@ -69,6 +69,7 @@ const LocationsMap = () => {
     }
   }, [setPlacesDetails]);
 
+  
   const onLoad = React.useCallback(async function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     let places = {};

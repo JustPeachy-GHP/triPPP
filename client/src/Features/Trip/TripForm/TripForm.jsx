@@ -45,7 +45,11 @@ export default function TripForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    alert("You've submitted your trip!");
+    // The alert is throwing off the promise lifecycle of loading
+    // the alert page.
+    // For future improvements consider using something like
+    // https://mui.com/material-ui/react-snackbar/
+    // alert("You've submitted your trip!");
     const newTripObject = {
       tripname: tripname,
       numdays: numdays,
